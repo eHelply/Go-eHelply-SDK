@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.87
+eHelply SDK - 1.1.96
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.87
+API version: 1.1.96
 Contact: support@ehelply.com
 */
 
@@ -172,7 +172,7 @@ func (a *SupportApiService) CreateContactExecute(r ApiCreateContactRequest) (*Co
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetAppointment403Response
+			var v GetServicesWithSpecs403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -361,7 +361,7 @@ func (a *SupportApiService) CreateTicketExecute(r ApiCreateTicketRequest) (*Tick
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetAppointment403Response
+			var v GetServicesWithSpecs403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -539,7 +539,7 @@ func (a *SupportApiService) ListTicketsExecute(r ApiListTicketsRequest) ([]Ticke
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetAppointment403Response
+			var v GetServicesWithSpecs403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -549,7 +549,7 @@ func (a *SupportApiService) ListTicketsExecute(r ApiListTicketsRequest) ([]Ticke
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetAppointment403Response
+			var v GetServicesWithSpecs403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -742,7 +742,7 @@ func (a *SupportApiService) UpdateTicketExecute(r ApiUpdateTicketRequest) (*Tick
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetAppointment403Response
+			var v GetServicesWithSpecs403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -924,7 +924,7 @@ func (a *SupportApiService) ViewTicketExecute(r ApiViewTicketRequest) (*TicketRe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetAppointment403Response
+			var v GetServicesWithSpecs403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

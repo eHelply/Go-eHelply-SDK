@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.87
+eHelply SDK - 1.1.96
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.87
+API version: 1.1.96
 Contact: support@ehelply.com
 */
 
@@ -2193,26 +2193,6 @@ func (a *DefaultApiService) GetAppointmentExecute(r ApiGetAppointmentRequest) (*
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetAppointment403Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetAppointment403Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v HTTPValidationError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2776,6 +2756,8 @@ type ApiSearchAppointmentRequest struct {
 	pageSize *int32
 	sortOn *string
 	sortDesc *bool
+	search *string
+	searchOn *string
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -2826,6 +2808,16 @@ func (r ApiSearchAppointmentRequest) SortOn(sortOn string) ApiSearchAppointmentR
 
 func (r ApiSearchAppointmentRequest) SortDesc(sortDesc bool) ApiSearchAppointmentRequest {
 	r.sortDesc = &sortDesc
+	return r
+}
+
+func (r ApiSearchAppointmentRequest) Search(search string) ApiSearchAppointmentRequest {
+	r.search = &search
+	return r
+}
+
+func (r ApiSearchAppointmentRequest) SearchOn(searchOn string) ApiSearchAppointmentRequest {
+	r.searchOn = &searchOn
 	return r
 }
 
@@ -2923,6 +2915,12 @@ func (a *DefaultApiService) SearchAppointmentExecute(r ApiSearchAppointmentReque
 	}
 	if r.sortDesc != nil {
 		localVarQueryParams.Add("sort_desc", parameterToString(*r.sortDesc, ""))
+	}
+	if r.search != nil {
+		localVarQueryParams.Add("search", parameterToString(*r.search, ""))
+	}
+	if r.searchOn != nil {
+		localVarQueryParams.Add("search_on", parameterToString(*r.searchOn, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3652,7 +3650,7 @@ type ApiSearchEntityAppointmentsRequest struct {
 	entityUuid string
 	startDate *string
 	endDate *string
-	excludeCancelled *bool
+	includeCancelled *bool
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -3671,8 +3669,8 @@ func (r ApiSearchEntityAppointmentsRequest) EndDate(endDate string) ApiSearchEnt
 	return r
 }
 
-func (r ApiSearchEntityAppointmentsRequest) ExcludeCancelled(excludeCancelled bool) ApiSearchEntityAppointmentsRequest {
-	r.excludeCancelled = &excludeCancelled
+func (r ApiSearchEntityAppointmentsRequest) IncludeCancelled(includeCancelled bool) ApiSearchEntityAppointmentsRequest {
+	r.includeCancelled = &includeCancelled
 	return r
 }
 
@@ -3753,8 +3751,8 @@ func (a *DefaultApiService) SearchEntityAppointmentsExecute(r ApiSearchEntityApp
 	if r.endDate != nil {
 		localVarQueryParams.Add("end_date", parameterToString(*r.endDate, ""))
 	}
-	if r.excludeCancelled != nil {
-		localVarQueryParams.Add("exclude_cancelled", parameterToString(*r.excludeCancelled, ""))
+	if r.includeCancelled != nil {
+		localVarQueryParams.Add("include_cancelled", parameterToString(*r.includeCancelled, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -4631,26 +4629,6 @@ func (a *DefaultApiService) UpdateAppointmentExecute(r ApiUpdateAppointmentReque
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetAppointment403Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetAppointment403Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v HTTPValidationError

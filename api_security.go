@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.87
+eHelply SDK - 1.1.96
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.87
+API version: 1.1.96
 Contact: support@ehelply.com
 */
 
@@ -255,7 +255,7 @@ func (a *SecurityApiService) CreateKeyExecute(r ApiCreateKeyRequest) (*ResponseC
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GetAppointment403Response
+			var v GetServicesWithSpecs403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -265,7 +265,7 @@ func (a *SecurityApiService) CreateKeyExecute(r ApiCreateKeyRequest) (*ResponseC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetAppointment403Response
+			var v GetServicesWithSpecs403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -385,7 +385,7 @@ func (a *SecurityApiService) DeleteKeyExecute(r ApiDeleteKeyRequest) (*ResponseD
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetAppointment403Response
+			var v GetServicesWithSpecs403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -512,7 +512,7 @@ func (a *SecurityApiService) GenerateTokenExecute(r ApiGenerateTokenRequest) (*R
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetAppointment403Response
+			var v GetServicesWithSpecs403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -751,7 +751,7 @@ func (a *SecurityApiService) GetKeyExecute(r ApiGetKeyRequest) (*SecurityKeyGet,
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetAppointment403Response
+			var v GetServicesWithSpecs403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -761,7 +761,7 @@ func (a *SecurityApiService) GetKeyExecute(r ApiGetKeyRequest) (*SecurityKeyGet,
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetAppointment403Response
+			var v GetServicesWithSpecs403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -877,7 +877,7 @@ func (a *SecurityApiService) SearchKeysExecute(r ApiSearchKeysRequest) ([]Securi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetAppointment403Response
+			var v GetServicesWithSpecs403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -995,7 +995,7 @@ func (a *SecurityApiService) VerifyKeyExecute(r ApiVerifyKeyRequest) (*SecurityK
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GetAppointment403Response
+			var v GetServicesWithSpecs403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1005,7 +1005,7 @@ func (a *SecurityApiService) VerifyKeyExecute(r ApiVerifyKeyRequest) (*SecurityK
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetAppointment403Response
+			var v GetServicesWithSpecs403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

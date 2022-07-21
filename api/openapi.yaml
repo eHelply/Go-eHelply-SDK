@@ -9,8 +9,8 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://superstack.ehelply.com/support/legal/terms
-  title: eHelply SDK - 1.1.87
-  version: 1.1.87
+  title: eHelply SDK - 1.1.96
+  version: 1.1.96
 servers:
 - description: eHelply / SuperStack Production
   url: https://api.prod.ehelply.com
@@ -344,11 +344,11 @@ paths:
         style: form
       - explode: true
         in: query
-        name: exclude_cancelled
+        name: include_cancelled
         required: false
         schema:
           default: false
-          title: Exclude Cancelled
+          title: Include Cancelled
           type: boolean
         style: form
       - explode: false
@@ -494,6 +494,22 @@ paths:
           default: false
           title: Sort Desc
           type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          title: Search
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: search_on
+        required: false
+        schema:
+          title: Search On
+          type: string
         style: form
       - explode: false
         in: header
@@ -777,14 +793,14 @@ paths:
         "403":
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+              example:
+                message: Error message
           description: Unauthorized - Denied by eHelply
         "404":
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+              example:
+                message: Error message
           description: Appointment does not exist
         "422":
           content:
@@ -868,14 +884,14 @@ paths:
         "403":
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+              example:
+                message: Error message
           description: Unauthorized - Denied by eHelply
         "404":
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+              example:
+                message: Error message
           description: Appointment does not exist
         "422":
           content:
@@ -8610,7 +8626,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           description: Not found
@@ -8640,7 +8656,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           description: Not found
@@ -8684,7 +8700,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           description: Not found
@@ -8812,7 +8828,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           description: Not found
@@ -8894,7 +8910,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           description: Not found
@@ -8978,7 +8994,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           description: Not found
@@ -9062,13 +9078,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Project does not exist
         "422":
           content:
@@ -9156,13 +9172,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Project does not exist
         "422":
           content:
@@ -9243,7 +9259,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           description: Not found
@@ -9324,7 +9340,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           description: Not found
@@ -9408,7 +9424,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           description: Not found
@@ -9447,13 +9463,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: UsageType does not exist
         "422":
           content:
@@ -9540,13 +9556,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: UsageType does not exist
         "422":
           content:
@@ -9639,13 +9655,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Member does not exist
         "422":
           content:
@@ -9738,13 +9754,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Project does not exist
         "422":
           content:
@@ -9834,13 +9850,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Project does not exist
         "422":
           content:
@@ -9929,13 +9945,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Project does not exist
         "422":
           content:
@@ -10036,13 +10052,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Project does not exist
         "422":
           content:
@@ -10132,13 +10148,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: "Project, Usage does not exist"
         "422":
           content:
@@ -10229,13 +10245,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: "Project, Entity, or Key does not exist"
         "422":
           content:
@@ -10319,13 +10335,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Project or Entity does not exist
         "422":
           content:
@@ -10412,13 +10428,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Project or Entity does not exist
         "422":
           content:
@@ -10427,6 +10443,484 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
       summary: Createprojectkey
+      tags:
+      - projects
+  /sam/projects/projects/{project_uuid}/credentials:
+    get:
+      operationId: getAllProjectCredentials
+      parameters:
+      - explode: false
+        in: path
+        name: project_uuid
+        required: true
+        schema:
+          title: Project Uuid
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/GetProjectCredential'
+                title: Response Getallprojectcredentials
+                type: array
+          description: Successful Response
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
+          description: Project credential not found does not exist
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Getallprojectcredentials
+      tags:
+      - projects
+    post:
+      operationId: createProjectCredential
+      parameters:
+      - explode: false
+        in: path
+        name: project_uuid
+        required: true
+        schema:
+          title: Project Uuid
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectCredential'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response_Createprojectcredential'
+          description: Successful Response
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          description: Not found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
+          description: Project credential already exits already exists
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Createprojectcredential
+      tags:
+      - projects
+  /sam/projects/projects/{project_uuid}/credentials/{service_name}:
+    delete:
+      operationId: deleteProjectCredential
+      parameters:
+      - explode: false
+        in: path
+        name: project_uuid
+        required: true
+        schema:
+          title: Project Uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: service_name
+        required: true
+        schema:
+          title: Service Name
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response_Deleteprojectcredential'
+          description: Successful Response
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
+          description: Project credential not found does not exist
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Deleteprojectcredential
+      tags:
+      - projects
+    get:
+      operationId: getSpecificProjectCredential
+      parameters:
+      - explode: false
+        in: path
+        name: project_uuid
+        required: true
+        schema:
+          title: Project Uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: service_name
+        required: true
+        schema:
+          title: Service Name
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetProjectCredential'
+          description: Successful Response
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
+          description: Project credential not found does not exist
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Getspecificprojectcredential
+      tags:
+      - projects
+    put:
+      operationId: updateProjectCredential
+      parameters:
+      - explode: false
+        in: path
+        name: project_uuid
+        required: true
+        schema:
+          title: Project Uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: service_name
+        required: true
+        schema:
+          title: Service Name
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProjectCredentialRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response_Updateprojectcredential'
+          description: Successful Response
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
+          description: Project credential not found does not exist
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Updateprojectcredential
       tags:
       - projects
   /sam/security/tokens:
@@ -10449,7 +10943,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           description: Not found
@@ -10479,7 +10973,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           description: Not found
@@ -10524,14 +11018,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: 'Access token and secret token lengths must be greater than
             48 characters and less than 1024 characters to guarantee adequate security. '
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           description: Not found
@@ -10567,7 +11061,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           description: Not found
@@ -10602,13 +11096,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Key does not exist
         "422":
           content:
@@ -10639,14 +11133,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: 'Access token and secret token lengths must be greater than
             48 characters and less than 1024 characters to guarantee adequate security. '
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Key
         "404":
           description: Not found
@@ -10806,7 +11300,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           description: Not found
@@ -10901,13 +11395,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Record does not exist
         "422":
           content:
@@ -11002,7 +11496,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           description: Not found
@@ -11102,7 +11596,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           description: Not found
@@ -11207,7 +11701,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
+                $ref: '#/components/schemas/GetServicesWithSpecs_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
           description: Not found
@@ -15163,6 +15657,28 @@ components:
       - uuid
       title: CreateKeyResponse
       type: object
+    CreateProjectCredential:
+      example:
+        service_name: service_name
+        secrets:
+        - name: name
+          value: value
+        - name: name
+          value: value
+      properties:
+        service_name:
+          title: Service Name
+          type: string
+        secrets:
+          items:
+            $ref: '#/components/schemas/Credential'
+          title: Secrets
+          type: array
+      required:
+      - secrets
+      - service_name
+      title: CreateProjectCredential
+      type: object
     CreateTicket:
       example:
         subject: subject
@@ -15178,6 +15694,53 @@ components:
       - priority
       - subject
       title: CreateTicket
+      type: object
+    Credential:
+      example:
+        name: name
+        value: value
+      properties:
+        name:
+          title: Name
+          type: string
+        value:
+          title: Value
+          type: string
+      required:
+      - name
+      - value
+      title: Credential
+      type: object
+    GetProjectCredential:
+      example:
+        service_name: service_name
+        secrets:
+        - name: name
+        - name: name
+      properties:
+        service_name:
+          title: Service Name
+          type: string
+        secrets:
+          items:
+            $ref: '#/components/schemas/GetSecret'
+          title: Secrets
+          type: array
+      required:
+      - secrets
+      - service_name
+      title: GetProjectCredential
+      type: object
+    GetSecret:
+      example:
+        name: name
+      properties:
+        name:
+          title: Name
+          type: string
+      required:
+      - name
+      title: GetSecret
       type: object
     GetServiceServiceWithSpecsResponse:
       example:
@@ -15590,14 +16153,18 @@ components:
     ProjectsProjectUpdate:
       description: Used for update endpoint
       example:
+        add_status: add_status
         max_spend: 0
-        status: status
+        remove_status: remove_status
       properties:
         max_spend:
           title: Max Spend
           type: integer
-        status:
-          title: Status
+        add_status:
+          title: Add Status
+          type: string
+        remove_status:
+          title: Remove Status
           type: string
       title: ProjectsProjectUpdate
       type: object
@@ -16276,6 +16843,23 @@ components:
       - ticket_id
       title: TicketsResponse
       type: object
+    UpdateProjectCredentialRequest:
+      example:
+        secrets:
+        - name: name
+          value: value
+        - name: name
+          value: value
+      properties:
+        secrets:
+          items:
+            $ref: '#/components/schemas/Credential'
+          title: Secrets
+          type: array
+      required:
+      - secrets
+      title: UpdateProjectCredentialRequest
+      type: object
     User:
       description: "User object, contains all required parameters"
       example:
@@ -16710,7 +17294,7 @@ components:
       - value
       title: UserValidations
       type: object
-    getAppointment_403_response:
+    GetServicesWithSpecs_403_response:
       example:
         message: Error message
       properties:
@@ -16748,6 +17332,30 @@ components:
         message:
           type: string
       title: Response Removememberfromproject
+      type: object
+    Response_Createprojectcredential:
+      example:
+        message: Credential added to project
+      properties:
+        message:
+          type: string
+      title: Response Createprojectcredential
+      type: object
+    Response_Updateprojectcredential:
+      example:
+        message: Credential updated
+      properties:
+        message:
+          type: string
+      title: Response Updateprojectcredential
+      type: object
+    Response_Deleteprojectcredential:
+      example:
+        message: Credential Deleted
+      properties:
+        message:
+          type: string
+      title: Response Deleteprojectcredential
       type: object
     Response_Generatetoken:
       example:

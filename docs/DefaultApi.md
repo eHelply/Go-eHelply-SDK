@@ -1340,7 +1340,7 @@ No authorization required
 
 ## SearchAppointment
 
-> interface{} SearchAppointment(ctx).PlaceUuid(placeUuid).ExcludeCancelled(excludeCancelled).IsDeleted(isDeleted).StartRange(startRange).EndRange(endRange).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> interface{} SearchAppointment(ctx).PlaceUuid(placeUuid).ExcludeCancelled(excludeCancelled).IsDeleted(isDeleted).StartRange(startRange).EndRange(endRange).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).Search(search).SearchOn(searchOn).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Search Appointment
 
@@ -1366,6 +1366,8 @@ func main() {
     pageSize := int32(56) // int32 |  (optional) (default to 25)
     sortOn := "sortOn_example" // string |  (optional)
     sortDesc := true // bool |  (optional) (default to false)
+    search := "search_example" // string |  (optional)
+    searchOn := "searchOn_example" // string |  (optional)
     xAccessToken := "xAccessToken_example" // string |  (optional)
     xSecretToken := "xSecretToken_example" // string |  (optional)
     authorization := "authorization_example" // string |  (optional)
@@ -1375,7 +1377,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.SearchAppointment(context.Background()).PlaceUuid(placeUuid).ExcludeCancelled(excludeCancelled).IsDeleted(isDeleted).StartRange(startRange).EndRange(endRange).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.DefaultApi.SearchAppointment(context.Background()).PlaceUuid(placeUuid).ExcludeCancelled(excludeCancelled).IsDeleted(isDeleted).StartRange(startRange).EndRange(endRange).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).Search(search).SearchOn(searchOn).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SearchAppointment``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1405,6 +1407,8 @@ Name | Type | Description  | Notes
  **pageSize** | **int32** |  | [default to 25]
  **sortOn** | **string** |  | 
  **sortDesc** | **bool** |  | [default to false]
+ **search** | **string** |  | 
+ **searchOn** | **string** |  | 
  **xAccessToken** | **string** |  | 
  **xSecretToken** | **string** |  | 
  **authorization** | **string** |  | 
@@ -1700,7 +1704,7 @@ No authorization required
 
 ## SearchEntityAppointments
 
-> interface{} SearchEntityAppointments(ctx, entityUuid).StartDate(startDate).EndDate(endDate).ExcludeCancelled(excludeCancelled).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> interface{} SearchEntityAppointments(ctx, entityUuid).StartDate(startDate).EndDate(endDate).IncludeCancelled(includeCancelled).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Get Entities Appointments
 
@@ -1720,7 +1724,7 @@ func main() {
     entityUuid := "entityUuid_example" // string | 
     startDate := "startDate_example" // string |  (optional)
     endDate := "endDate_example" // string |  (optional)
-    excludeCancelled := true // bool |  (optional) (default to false)
+    includeCancelled := true // bool |  (optional) (default to false)
     xAccessToken := "xAccessToken_example" // string |  (optional)
     xSecretToken := "xSecretToken_example" // string |  (optional)
     authorization := "authorization_example" // string |  (optional)
@@ -1730,7 +1734,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.SearchEntityAppointments(context.Background(), entityUuid).StartDate(startDate).EndDate(endDate).ExcludeCancelled(excludeCancelled).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.DefaultApi.SearchEntityAppointments(context.Background(), entityUuid).StartDate(startDate).EndDate(endDate).IncludeCancelled(includeCancelled).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SearchEntityAppointments``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1758,7 +1762,7 @@ Name | Type | Description  | Notes
 
  **startDate** | **string** |  | 
  **endDate** | **string** |  | 
- **excludeCancelled** | **bool** |  | [default to false]
+ **includeCancelled** | **bool** |  | [default to false]
  **xAccessToken** | **string** |  | 
  **xSecretToken** | **string** |  | 
  **authorization** | **string** |  | 

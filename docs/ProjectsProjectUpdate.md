@@ -5,7 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **MaxSpend** | Pointer to **int32** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
+**AddStatus** | Pointer to **string** |  | [optional] 
+**RemoveStatus** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -51,30 +52,55 @@ SetMaxSpend sets MaxSpend field to given value.
 
 HasMaxSpend returns a boolean if a field has been set.
 
-### GetStatus
+### GetAddStatus
 
-`func (o *ProjectsProjectUpdate) GetStatus() string`
+`func (o *ProjectsProjectUpdate) GetAddStatus() string`
 
-GetStatus returns the Status field if non-nil, zero value otherwise.
+GetAddStatus returns the AddStatus field if non-nil, zero value otherwise.
 
-### GetStatusOk
+### GetAddStatusOk
 
-`func (o *ProjectsProjectUpdate) GetStatusOk() (*string, bool)`
+`func (o *ProjectsProjectUpdate) GetAddStatusOk() (*string, bool)`
 
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+GetAddStatusOk returns a tuple with the AddStatus field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStatus
+### SetAddStatus
 
-`func (o *ProjectsProjectUpdate) SetStatus(v string)`
+`func (o *ProjectsProjectUpdate) SetAddStatus(v string)`
 
-SetStatus sets Status field to given value.
+SetAddStatus sets AddStatus field to given value.
 
-### HasStatus
+### HasAddStatus
 
-`func (o *ProjectsProjectUpdate) HasStatus() bool`
+`func (o *ProjectsProjectUpdate) HasAddStatus() bool`
 
-HasStatus returns a boolean if a field has been set.
+HasAddStatus returns a boolean if a field has been set.
+
+### GetRemoveStatus
+
+`func (o *ProjectsProjectUpdate) GetRemoveStatus() string`
+
+GetRemoveStatus returns the RemoveStatus field if non-nil, zero value otherwise.
+
+### GetRemoveStatusOk
+
+`func (o *ProjectsProjectUpdate) GetRemoveStatusOk() (*string, bool)`
+
+GetRemoveStatusOk returns a tuple with the RemoveStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemoveStatus
+
+`func (o *ProjectsProjectUpdate) SetRemoveStatus(v string)`
+
+SetRemoveStatus sets RemoveStatus field to given value.
+
+### HasRemoveStatus
+
+`func (o *ProjectsProjectUpdate) HasRemoveStatus() bool`
+
+HasRemoveStatus returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
