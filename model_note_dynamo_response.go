@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.87
+eHelply SDK - 1.1.88
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.87
+API version: 1.1.88
 Contact: support@ehelply.com
 */
 
@@ -13,39 +13,39 @@ package ehelply
 
 import (
 	"encoding/json"
-	"os"
 )
 
-// NoteDynamo A note from DynamoDB
-type NoteDynamo struct {
+// NoteDynamoResponse struct for NoteDynamoResponse
+type NoteDynamoResponse struct {
 	Uuid string `json:"uuid"`
-	Content **os.File `json:"content,omitempty"`
+	Content string `json:"content"`
 	Time string `json:"time"`
 	Meta NoteMeta `json:"meta"`
 }
 
-// NewNoteDynamo instantiates a new NoteDynamo object
+// NewNoteDynamoResponse instantiates a new NoteDynamoResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNoteDynamo(uuid string, time string, meta NoteMeta) *NoteDynamo {
-	this := NoteDynamo{}
+func NewNoteDynamoResponse(uuid string, content string, time string, meta NoteMeta) *NoteDynamoResponse {
+	this := NoteDynamoResponse{}
 	this.Uuid = uuid
+	this.Content = content
 	this.Time = time
 	this.Meta = meta
 	return &this
 }
 
-// NewNoteDynamoWithDefaults instantiates a new NoteDynamo object
+// NewNoteDynamoResponseWithDefaults instantiates a new NoteDynamoResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewNoteDynamoWithDefaults() *NoteDynamo {
-	this := NoteDynamo{}
+func NewNoteDynamoResponseWithDefaults() *NoteDynamoResponse {
+	this := NoteDynamoResponse{}
 	return &this
 }
 
 // GetUuid returns the Uuid field value
-func (o *NoteDynamo) GetUuid() string {
+func (o *NoteDynamoResponse) GetUuid() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -56,7 +56,7 @@ func (o *NoteDynamo) GetUuid() string {
 
 // GetUuidOk returns a tuple with the Uuid field value
 // and a boolean to check if the value has been set.
-func (o *NoteDynamo) GetUuidOk() (*string, bool) {
+func (o *NoteDynamoResponse) GetUuidOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -64,44 +64,36 @@ func (o *NoteDynamo) GetUuidOk() (*string, bool) {
 }
 
 // SetUuid sets field value
-func (o *NoteDynamo) SetUuid(v string) {
+func (o *NoteDynamoResponse) SetUuid(v string) {
 	o.Uuid = v
 }
 
-// GetContent returns the Content field value if set, zero value otherwise.
-func (o *NoteDynamo) GetContent() *os.File {
-	if o == nil || o.Content == nil {
-		var ret *os.File
+// GetContent returns the Content field value
+func (o *NoteDynamoResponse) GetContent() string {
+	if o == nil {
+		var ret string
 		return ret
 	}
-	return *o.Content
+
+	return o.Content
 }
 
-// GetContentOk returns a tuple with the Content field value if set, nil otherwise
+// GetContentOk returns a tuple with the Content field value
 // and a boolean to check if the value has been set.
-func (o *NoteDynamo) GetContentOk() (**os.File, bool) {
-	if o == nil || o.Content == nil {
+func (o *NoteDynamoResponse) GetContentOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Content, true
+	return &o.Content, true
 }
 
-// HasContent returns a boolean if a field has been set.
-func (o *NoteDynamo) HasContent() bool {
-	if o != nil && o.Content != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetContent gets a reference to the given *os.File and assigns it to the Content field.
-func (o *NoteDynamo) SetContent(v *os.File) {
-	o.Content = &v
+// SetContent sets field value
+func (o *NoteDynamoResponse) SetContent(v string) {
+	o.Content = v
 }
 
 // GetTime returns the Time field value
-func (o *NoteDynamo) GetTime() string {
+func (o *NoteDynamoResponse) GetTime() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -112,7 +104,7 @@ func (o *NoteDynamo) GetTime() string {
 
 // GetTimeOk returns a tuple with the Time field value
 // and a boolean to check if the value has been set.
-func (o *NoteDynamo) GetTimeOk() (*string, bool) {
+func (o *NoteDynamoResponse) GetTimeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -120,12 +112,12 @@ func (o *NoteDynamo) GetTimeOk() (*string, bool) {
 }
 
 // SetTime sets field value
-func (o *NoteDynamo) SetTime(v string) {
+func (o *NoteDynamoResponse) SetTime(v string) {
 	o.Time = v
 }
 
 // GetMeta returns the Meta field value
-func (o *NoteDynamo) GetMeta() NoteMeta {
+func (o *NoteDynamoResponse) GetMeta() NoteMeta {
 	if o == nil {
 		var ret NoteMeta
 		return ret
@@ -136,7 +128,7 @@ func (o *NoteDynamo) GetMeta() NoteMeta {
 
 // GetMetaOk returns a tuple with the Meta field value
 // and a boolean to check if the value has been set.
-func (o *NoteDynamo) GetMetaOk() (*NoteMeta, bool) {
+func (o *NoteDynamoResponse) GetMetaOk() (*NoteMeta, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -144,16 +136,16 @@ func (o *NoteDynamo) GetMetaOk() (*NoteMeta, bool) {
 }
 
 // SetMeta sets field value
-func (o *NoteDynamo) SetMeta(v NoteMeta) {
+func (o *NoteDynamoResponse) SetMeta(v NoteMeta) {
 	o.Meta = v
 }
 
-func (o NoteDynamo) MarshalJSON() ([]byte, error) {
+func (o NoteDynamoResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["uuid"] = o.Uuid
 	}
-	if o.Content != nil {
+	if true {
 		toSerialize["content"] = o.Content
 	}
 	if true {
@@ -165,38 +157,38 @@ func (o NoteDynamo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableNoteDynamo struct {
-	value *NoteDynamo
+type NullableNoteDynamoResponse struct {
+	value *NoteDynamoResponse
 	isSet bool
 }
 
-func (v NullableNoteDynamo) Get() *NoteDynamo {
+func (v NullableNoteDynamoResponse) Get() *NoteDynamoResponse {
 	return v.value
 }
 
-func (v *NullableNoteDynamo) Set(val *NoteDynamo) {
+func (v *NullableNoteDynamoResponse) Set(val *NoteDynamoResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableNoteDynamo) IsSet() bool {
+func (v NullableNoteDynamoResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableNoteDynamo) Unset() {
+func (v *NullableNoteDynamoResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableNoteDynamo(val *NoteDynamo) *NullableNoteDynamo {
-	return &NullableNoteDynamo{value: val, isSet: true}
+func NewNullableNoteDynamoResponse(val *NoteDynamoResponse) *NullableNoteDynamoResponse {
+	return &NullableNoteDynamoResponse{value: val, isSet: true}
 }
 
-func (v NullableNoteDynamo) MarshalJSON() ([]byte, error) {
+func (v NullableNoteDynamoResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableNoteDynamo) UnmarshalJSON(src []byte) error {
+func (v *NullableNoteDynamoResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

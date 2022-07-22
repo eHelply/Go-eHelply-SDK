@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CreateNote
 
-> NoteDynamo CreateNote(ctx).NoteBase(noteBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> NoteDynamoResponse CreateNote(ctx).NoteBase(noteBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Create Note
 
@@ -45,7 +45,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `NotesApi.CreateNote``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateNote`: NoteDynamo
+    // response from `CreateNote`: NoteDynamoResponse
     fmt.Fprintf(os.Stdout, "Response from `NotesApi.CreateNote`: %v\n", resp)
 }
 ```
@@ -71,7 +71,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NoteDynamo**](NoteDynamo.md)
+[**NoteDynamoResponse**](NoteDynamoResponse.md)
 
 ### Authorization
 
@@ -255,7 +255,7 @@ No authorization required
 
 ## UpdateNote
 
-> NoteDynamo UpdateNote(ctx, noteId).NoteBase(noteBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> NoteDynamoResponse UpdateNote(ctx, noteId).NoteBase(noteBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Update Note
 
@@ -288,7 +288,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `NotesApi.UpdateNote``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNote`: NoteDynamo
+    // response from `UpdateNote`: NoteDynamoResponse
     fmt.Fprintf(os.Stdout, "Response from `NotesApi.UpdateNote`: %v\n", resp)
 }
 ```
@@ -319,7 +319,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NoteDynamo**](NoteDynamo.md)
+[**NoteDynamoResponse**](NoteDynamoResponse.md)
 
 ### Authorization
 
