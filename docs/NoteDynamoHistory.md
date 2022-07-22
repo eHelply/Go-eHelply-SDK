@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Content** | Pointer to ***os.File** |  | [optional] 
 **Time** | **string** |  | 
 **Meta** | [**NoteMeta**](NoteMeta.md) |  | 
-**History** | Pointer to [**[]NoteDynamo**](NoteDynamo.md) |  | [optional] [default to []]
+**History** | Pointer to [**[]NoteDynamoResponse**](NoteDynamoResponse.md) |  | [optional] [default to []]
 
 ## Methods
 
@@ -116,20 +116,20 @@ SetMeta sets Meta field to given value.
 
 ### GetHistory
 
-`func (o *NoteDynamoHistory) GetHistory() []NoteDynamo`
+`func (o *NoteDynamoHistory) GetHistory() []NoteDynamoResponse`
 
 GetHistory returns the History field if non-nil, zero value otherwise.
 
 ### GetHistoryOk
 
-`func (o *NoteDynamoHistory) GetHistoryOk() (*[]NoteDynamo, bool)`
+`func (o *NoteDynamoHistory) GetHistoryOk() (*[]NoteDynamoResponse, bool)`
 
 GetHistoryOk returns a tuple with the History field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHistory
 
-`func (o *NoteDynamoHistory) SetHistory(v []NoteDynamo)`
+`func (o *NoteDynamoHistory) SetHistory(v []NoteDynamoResponse)`
 
 SetHistory sets History field to given value.
 

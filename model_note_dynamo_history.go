@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.96
+eHelply SDK - 1.1.97
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.96
+API version: 1.1.97
 Contact: support@ehelply.com
 */
 
@@ -22,7 +22,7 @@ type NoteDynamoHistory struct {
 	Content **os.File `json:"content,omitempty"`
 	Time string `json:"time"`
 	Meta NoteMeta `json:"meta"`
-	History []NoteDynamo `json:"history,omitempty"`
+	History []NoteDynamoResponse `json:"history,omitempty"`
 }
 
 // NewNoteDynamoHistory instantiates a new NoteDynamoHistory object
@@ -150,9 +150,9 @@ func (o *NoteDynamoHistory) SetMeta(v NoteMeta) {
 }
 
 // GetHistory returns the History field value if set, zero value otherwise.
-func (o *NoteDynamoHistory) GetHistory() []NoteDynamo {
+func (o *NoteDynamoHistory) GetHistory() []NoteDynamoResponse {
 	if o == nil || o.History == nil {
-		var ret []NoteDynamo
+		var ret []NoteDynamoResponse
 		return ret
 	}
 	return o.History
@@ -160,7 +160,7 @@ func (o *NoteDynamoHistory) GetHistory() []NoteDynamo {
 
 // GetHistoryOk returns a tuple with the History field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NoteDynamoHistory) GetHistoryOk() ([]NoteDynamo, bool) {
+func (o *NoteDynamoHistory) GetHistoryOk() ([]NoteDynamoResponse, bool) {
 	if o == nil || o.History == nil {
 		return nil, false
 	}
@@ -176,8 +176,8 @@ func (o *NoteDynamoHistory) HasHistory() bool {
 	return false
 }
 
-// SetHistory gets a reference to the given []NoteDynamo and assigns it to the History field.
-func (o *NoteDynamoHistory) SetHistory(v []NoteDynamo) {
+// SetHistory gets a reference to the given []NoteDynamoResponse and assigns it to the History field.
+func (o *NoteDynamoHistory) SetHistory(v []NoteDynamoResponse) {
 	o.History = v
 }
 
