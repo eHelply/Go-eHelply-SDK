@@ -171,7 +171,7 @@ No authorization required
 
 ## GetNote
 
-> NoteDynamoHistory GetNote(ctx, noteId).History(history).HistoryContent(historyContent).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> NoteDynamoHistoryResponse GetNote(ctx, noteId).History(history).HistoryContent(historyContent).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Get Note
 
@@ -205,7 +205,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `NotesApi.GetNote``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetNote`: NoteDynamoHistory
+    // response from `GetNote`: NoteDynamoHistoryResponse
     fmt.Fprintf(os.Stdout, "Response from `NotesApi.GetNote`: %v\n", resp)
 }
 ```
@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NoteDynamoHistory**](NoteDynamoHistory.md)
+[**NoteDynamoHistoryResponse**](NoteDynamoHistoryResponse.md)
 
 ### Authorization
 

@@ -9,8 +9,8 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://superstack.ehelply.com/support/legal/terms
-  title: eHelply SDK - 1.1.97
-  version: 1.1.97
+  title: eHelply SDK - 1.1.98
+  version: 1.1.98
 servers:
 - description: eHelply / SuperStack Production
   url: https://api.prod.ehelply.com
@@ -2202,7 +2202,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NoteDynamoHistory'
+                $ref: '#/components/schemas/NoteDynamoHistoryResponse'
           description: Successful Response
         "404":
           description: Not found
@@ -14133,7 +14133,7 @@ components:
       - time
       title: NoteBase
       type: object
-    NoteDynamoHistory:
+    NoteDynamoHistoryResponse:
       description: A note from Dynamo DB including n amount of version history of
         that note
       example:
@@ -14161,13 +14161,12 @@ components:
           uuid: uuid
           content: content
         uuid: uuid
-        content: ""
+        content: content
       properties:
         uuid:
           title: Uuid
           type: string
         content:
-          format: binary
           title: Content
           type: string
         time:
@@ -14182,10 +14181,11 @@ components:
           title: History
           type: array
       required:
+      - content
       - meta
       - time
       - uuid
-      title: NoteDynamoHistory
+      title: NoteDynamoHistoryResponse
       type: object
     NoteDynamoResponse:
       example:

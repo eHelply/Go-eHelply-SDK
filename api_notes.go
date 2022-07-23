@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.97
+eHelply SDK - 1.1.98
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.97
+API version: 1.1.98
 Contact: support@ehelply.com
 */
 
@@ -422,7 +422,7 @@ func (r ApiGetNoteRequest) EhelplyData(ehelplyData string) ApiGetNoteRequest {
 	return r
 }
 
-func (r ApiGetNoteRequest) Execute() (*NoteDynamoHistory, *http.Response, error) {
+func (r ApiGetNoteRequest) Execute() (*NoteDynamoHistoryResponse, *http.Response, error) {
 	return r.ApiService.GetNoteExecute(r)
 }
 
@@ -442,13 +442,13 @@ func (a *NotesApiService) GetNote(ctx context.Context, noteId string) ApiGetNote
 }
 
 // Execute executes the request
-//  @return NoteDynamoHistory
-func (a *NotesApiService) GetNoteExecute(r ApiGetNoteRequest) (*NoteDynamoHistory, *http.Response, error) {
+//  @return NoteDynamoHistoryResponse
+func (a *NotesApiService) GetNoteExecute(r ApiGetNoteRequest) (*NoteDynamoHistoryResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *NoteDynamoHistory
+		localVarReturnValue  *NoteDynamoHistoryResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotesApiService.GetNote")
