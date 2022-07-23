@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.88
+eHelply SDK - 1.1.89
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.88
+API version: 1.1.89
 Contact: support@ehelply.com
 */
 
