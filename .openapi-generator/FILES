@@ -78,7 +78,7 @@ docs/MetaDynamo.md
 docs/MetaSlugger.md
 docs/MonitorApi.md
 docs/NoteBase.md
-docs/NoteDynamoHistory.md
+docs/NoteDynamoHistoryResponse.md
 docs/NoteDynamoResponse.md
 docs/NoteMeta.md
 docs/NotesApi.md
@@ -210,7 +210,7 @@ model_meta_custom.go
 model_meta_dynamo.go
 model_meta_slugger.go
 model_note_base.go
-model_note_dynamo_history.go
+model_note_dynamo_history_response.go
 model_note_dynamo_response.go
 model_note_meta.go
 model_option_group.go

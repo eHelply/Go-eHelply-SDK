@@ -1,141 +1,136 @@
-# NoteDynamoHistory
+# NoteDynamoHistoryResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Uuid** | **string** |  | 
-**Content** | Pointer to ***os.File** |  | [optional] 
+**Content** | **string** |  | 
 **Time** | **string** |  | 
 **Meta** | [**NoteMeta**](NoteMeta.md) |  | 
 **History** | Pointer to [**[]NoteDynamoResponse**](NoteDynamoResponse.md) |  | [optional] [default to []]
 
 ## Methods
 
-### NewNoteDynamoHistory
+### NewNoteDynamoHistoryResponse
 
-`func NewNoteDynamoHistory(uuid string, time string, meta NoteMeta, ) *NoteDynamoHistory`
+`func NewNoteDynamoHistoryResponse(uuid string, content string, time string, meta NoteMeta, ) *NoteDynamoHistoryResponse`
 
-NewNoteDynamoHistory instantiates a new NoteDynamoHistory object
+NewNoteDynamoHistoryResponse instantiates a new NoteDynamoHistoryResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewNoteDynamoHistoryWithDefaults
+### NewNoteDynamoHistoryResponseWithDefaults
 
-`func NewNoteDynamoHistoryWithDefaults() *NoteDynamoHistory`
+`func NewNoteDynamoHistoryResponseWithDefaults() *NoteDynamoHistoryResponse`
 
-NewNoteDynamoHistoryWithDefaults instantiates a new NoteDynamoHistory object
+NewNoteDynamoHistoryResponseWithDefaults instantiates a new NoteDynamoHistoryResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetUuid
 
-`func (o *NoteDynamoHistory) GetUuid() string`
+`func (o *NoteDynamoHistoryResponse) GetUuid() string`
 
 GetUuid returns the Uuid field if non-nil, zero value otherwise.
 
 ### GetUuidOk
 
-`func (o *NoteDynamoHistory) GetUuidOk() (*string, bool)`
+`func (o *NoteDynamoHistoryResponse) GetUuidOk() (*string, bool)`
 
 GetUuidOk returns a tuple with the Uuid field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUuid
 
-`func (o *NoteDynamoHistory) SetUuid(v string)`
+`func (o *NoteDynamoHistoryResponse) SetUuid(v string)`
 
 SetUuid sets Uuid field to given value.
 
 
 ### GetContent
 
-`func (o *NoteDynamoHistory) GetContent() *os.File`
+`func (o *NoteDynamoHistoryResponse) GetContent() string`
 
 GetContent returns the Content field if non-nil, zero value otherwise.
 
 ### GetContentOk
 
-`func (o *NoteDynamoHistory) GetContentOk() (**os.File, bool)`
+`func (o *NoteDynamoHistoryResponse) GetContentOk() (*string, bool)`
 
 GetContentOk returns a tuple with the Content field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetContent
 
-`func (o *NoteDynamoHistory) SetContent(v *os.File)`
+`func (o *NoteDynamoHistoryResponse) SetContent(v string)`
 
 SetContent sets Content field to given value.
 
-### HasContent
-
-`func (o *NoteDynamoHistory) HasContent() bool`
-
-HasContent returns a boolean if a field has been set.
 
 ### GetTime
 
-`func (o *NoteDynamoHistory) GetTime() string`
+`func (o *NoteDynamoHistoryResponse) GetTime() string`
 
 GetTime returns the Time field if non-nil, zero value otherwise.
 
 ### GetTimeOk
 
-`func (o *NoteDynamoHistory) GetTimeOk() (*string, bool)`
+`func (o *NoteDynamoHistoryResponse) GetTimeOk() (*string, bool)`
 
 GetTimeOk returns a tuple with the Time field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTime
 
-`func (o *NoteDynamoHistory) SetTime(v string)`
+`func (o *NoteDynamoHistoryResponse) SetTime(v string)`
 
 SetTime sets Time field to given value.
 
 
 ### GetMeta
 
-`func (o *NoteDynamoHistory) GetMeta() NoteMeta`
+`func (o *NoteDynamoHistoryResponse) GetMeta() NoteMeta`
 
 GetMeta returns the Meta field if non-nil, zero value otherwise.
 
 ### GetMetaOk
 
-`func (o *NoteDynamoHistory) GetMetaOk() (*NoteMeta, bool)`
+`func (o *NoteDynamoHistoryResponse) GetMetaOk() (*NoteMeta, bool)`
 
 GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMeta
 
-`func (o *NoteDynamoHistory) SetMeta(v NoteMeta)`
+`func (o *NoteDynamoHistoryResponse) SetMeta(v NoteMeta)`
 
 SetMeta sets Meta field to given value.
 
 
 ### GetHistory
 
-`func (o *NoteDynamoHistory) GetHistory() []NoteDynamoResponse`
+`func (o *NoteDynamoHistoryResponse) GetHistory() []NoteDynamoResponse`
 
 GetHistory returns the History field if non-nil, zero value otherwise.
 
 ### GetHistoryOk
 
-`func (o *NoteDynamoHistory) GetHistoryOk() (*[]NoteDynamoResponse, bool)`
+`func (o *NoteDynamoHistoryResponse) GetHistoryOk() (*[]NoteDynamoResponse, bool)`
 
 GetHistoryOk returns a tuple with the History field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHistory
 
-`func (o *NoteDynamoHistory) SetHistory(v []NoteDynamoResponse)`
+`func (o *NoteDynamoHistoryResponse) SetHistory(v []NoteDynamoResponse)`
 
 SetHistory sets History field to given value.
 
 ### HasHistory
 
-`func (o *NoteDynamoHistory) HasHistory() bool`
+`func (o *NoteDynamoHistoryResponse) HasHistory() bool`
 
 HasHistory returns a boolean if a field has been set.
 
