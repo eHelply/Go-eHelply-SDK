@@ -21,13 +21,15 @@ import (
 )
 
 
-// TagApiService TagApi service
-type TagApiService service
+// ReviewsApiService ReviewsApi service
+type ReviewsApiService service
 
-type ApiCreateTagPlacesTagsPostRequest struct {
+type ApiCreateReviewRequest struct {
 	ctx context.Context
-	ApiService *TagApiService
-	tagBase *TagBase
+	ApiService *ReviewsApiService
+	entityType string
+	entityUuid string
+	createReview *CreateReview
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -36,82 +38,86 @@ type ApiCreateTagPlacesTagsPostRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiCreateTagPlacesTagsPostRequest) TagBase(tagBase TagBase) ApiCreateTagPlacesTagsPostRequest {
-	r.tagBase = &tagBase
+func (r ApiCreateReviewRequest) CreateReview(createReview CreateReview) ApiCreateReviewRequest {
+	r.createReview = &createReview
 	return r
 }
 
-func (r ApiCreateTagPlacesTagsPostRequest) XAccessToken(xAccessToken string) ApiCreateTagPlacesTagsPostRequest {
+func (r ApiCreateReviewRequest) XAccessToken(xAccessToken string) ApiCreateReviewRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiCreateTagPlacesTagsPostRequest) XSecretToken(xSecretToken string) ApiCreateTagPlacesTagsPostRequest {
+func (r ApiCreateReviewRequest) XSecretToken(xSecretToken string) ApiCreateReviewRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiCreateTagPlacesTagsPostRequest) Authorization(authorization string) ApiCreateTagPlacesTagsPostRequest {
+func (r ApiCreateReviewRequest) Authorization(authorization string) ApiCreateReviewRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiCreateTagPlacesTagsPostRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiCreateTagPlacesTagsPostRequest {
+func (r ApiCreateReviewRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiCreateReviewRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiCreateTagPlacesTagsPostRequest) EhelplyProject(ehelplyProject string) ApiCreateTagPlacesTagsPostRequest {
+func (r ApiCreateReviewRequest) EhelplyProject(ehelplyProject string) ApiCreateReviewRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiCreateTagPlacesTagsPostRequest) EhelplyData(ehelplyData string) ApiCreateTagPlacesTagsPostRequest {
+func (r ApiCreateReviewRequest) EhelplyData(ehelplyData string) ApiCreateReviewRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiCreateTagPlacesTagsPostRequest) Execute() (*TagDb, *http.Response, error) {
-	return r.ApiService.CreateTagPlacesTagsPostExecute(r)
+func (r ApiCreateReviewRequest) Execute() (interface{}, *http.Response, error) {
+	return r.ApiService.CreateReviewExecute(r)
 }
 
 /*
-CreateTagPlacesTagsPost Create Tag
-
-Creates a tag
+CreateReview Create
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateTagPlacesTagsPostRequest
+ @param entityType
+ @param entityUuid
+ @return ApiCreateReviewRequest
 */
-func (a *TagApiService) CreateTagPlacesTagsPost(ctx context.Context) ApiCreateTagPlacesTagsPostRequest {
-	return ApiCreateTagPlacesTagsPostRequest{
+func (a *ReviewsApiService) CreateReview(ctx context.Context, entityType string, entityUuid string) ApiCreateReviewRequest {
+	return ApiCreateReviewRequest{
 		ApiService: a,
 		ctx: ctx,
+		entityType: entityType,
+		entityUuid: entityUuid,
 	}
 }
 
 // Execute executes the request
-//  @return TagDb
-func (a *TagApiService) CreateTagPlacesTagsPostExecute(r ApiCreateTagPlacesTagsPostRequest) (*TagDb, *http.Response, error) {
+//  @return interface{}
+func (a *ReviewsApiService) CreateReviewExecute(r ApiCreateReviewRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TagDb
+		localVarReturnValue  interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagApiService.CreateTagPlacesTagsPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReviewsApiService.CreateReview")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/places/tags"
+	localVarPath := localBasePath + "/products/reviews/types/{entity_type}/entities/{entity_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"entity_type"+"}", url.PathEscape(parameterToString(r.entityType, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"entity_uuid"+"}", url.PathEscape(parameterToString(r.entityUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.tagBase == nil {
-		return localVarReturnValue, nil, reportError("tagBase is required and must be specified")
+	if r.createReview == nil {
+		return localVarReturnValue, nil, reportError("createReview is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -150,7 +156,7 @@ func (a *TagApiService) CreateTagPlacesTagsPostExecute(r ApiCreateTagPlacesTagsP
 		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
 	}
 	// body params
-	localVarPostBody = r.tagBase
+	localVarPostBody = r.createReview
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -197,10 +203,12 @@ func (a *TagApiService) CreateTagPlacesTagsPostExecute(r ApiCreateTagPlacesTagsP
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteTagPlacesTagsTagUuidDeleteRequest struct {
+type ApiDeleteReviewRequest struct {
 	ctx context.Context
-	ApiService *TagApiService
-	tagUuid string
+	ApiService *ReviewsApiService
+	entityType string
+	entityUuid string
+	reviewUuid string
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -209,60 +217,62 @@ type ApiDeleteTagPlacesTagsTagUuidDeleteRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiDeleteTagPlacesTagsTagUuidDeleteRequest) XAccessToken(xAccessToken string) ApiDeleteTagPlacesTagsTagUuidDeleteRequest {
+func (r ApiDeleteReviewRequest) XAccessToken(xAccessToken string) ApiDeleteReviewRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiDeleteTagPlacesTagsTagUuidDeleteRequest) XSecretToken(xSecretToken string) ApiDeleteTagPlacesTagsTagUuidDeleteRequest {
+func (r ApiDeleteReviewRequest) XSecretToken(xSecretToken string) ApiDeleteReviewRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiDeleteTagPlacesTagsTagUuidDeleteRequest) Authorization(authorization string) ApiDeleteTagPlacesTagsTagUuidDeleteRequest {
+func (r ApiDeleteReviewRequest) Authorization(authorization string) ApiDeleteReviewRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiDeleteTagPlacesTagsTagUuidDeleteRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiDeleteTagPlacesTagsTagUuidDeleteRequest {
+func (r ApiDeleteReviewRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiDeleteReviewRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiDeleteTagPlacesTagsTagUuidDeleteRequest) EhelplyProject(ehelplyProject string) ApiDeleteTagPlacesTagsTagUuidDeleteRequest {
+func (r ApiDeleteReviewRequest) EhelplyProject(ehelplyProject string) ApiDeleteReviewRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiDeleteTagPlacesTagsTagUuidDeleteRequest) EhelplyData(ehelplyData string) ApiDeleteTagPlacesTagsTagUuidDeleteRequest {
+func (r ApiDeleteReviewRequest) EhelplyData(ehelplyData string) ApiDeleteReviewRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiDeleteTagPlacesTagsTagUuidDeleteRequest) Execute() (interface{}, *http.Response, error) {
-	return r.ApiService.DeleteTagPlacesTagsTagUuidDeleteExecute(r)
+func (r ApiDeleteReviewRequest) Execute() (interface{}, *http.Response, error) {
+	return r.ApiService.DeleteReviewExecute(r)
 }
 
 /*
-DeleteTagPlacesTagsTagUuidDelete Delete Tag
-
-Deletes the tag member with the given ID and returns True if successful
+DeleteReview Deletereview
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param tagUuid
- @return ApiDeleteTagPlacesTagsTagUuidDeleteRequest
+ @param entityType
+ @param entityUuid
+ @param reviewUuid
+ @return ApiDeleteReviewRequest
 */
-func (a *TagApiService) DeleteTagPlacesTagsTagUuidDelete(ctx context.Context, tagUuid string) ApiDeleteTagPlacesTagsTagUuidDeleteRequest {
-	return ApiDeleteTagPlacesTagsTagUuidDeleteRequest{
+func (a *ReviewsApiService) DeleteReview(ctx context.Context, entityType string, entityUuid string, reviewUuid string) ApiDeleteReviewRequest {
+	return ApiDeleteReviewRequest{
 		ApiService: a,
 		ctx: ctx,
-		tagUuid: tagUuid,
+		entityType: entityType,
+		entityUuid: entityUuid,
+		reviewUuid: reviewUuid,
 	}
 }
 
 // Execute executes the request
 //  @return interface{}
-func (a *TagApiService) DeleteTagPlacesTagsTagUuidDeleteExecute(r ApiDeleteTagPlacesTagsTagUuidDeleteRequest) (interface{}, *http.Response, error) {
+func (a *ReviewsApiService) DeleteReviewExecute(r ApiDeleteReviewRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -270,13 +280,15 @@ func (a *TagApiService) DeleteTagPlacesTagsTagUuidDeleteExecute(r ApiDeleteTagPl
 		localVarReturnValue  interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagApiService.DeleteTagPlacesTagsTagUuidDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReviewsApiService.DeleteReview")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/places/tags/{tag_uuid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"tag_uuid"+"}", url.PathEscape(parameterToString(r.tagUuid, "")), -1)
+	localVarPath := localBasePath + "/products/reviews/types/{entity_type}/entities/{entity_uuid}/reviews/{review_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"entity_type"+"}", url.PathEscape(parameterToString(r.entityType, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"entity_uuid"+"}", url.PathEscape(parameterToString(r.entityUuid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"review_uuid"+"}", url.PathEscape(parameterToString(r.reviewUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -363,10 +375,12 @@ func (a *TagApiService) DeleteTagPlacesTagsTagUuidDeleteExecute(r ApiDeleteTagPl
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetTagPlacesTagsTagUuidGetRequest struct {
+type ApiGetReviewRequest struct {
 	ctx context.Context
-	ApiService *TagApiService
-	tagUuid string
+	ApiService *ReviewsApiService
+	entityType string
+	entityUuid string
+	reviewUuid string
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -375,74 +389,78 @@ type ApiGetTagPlacesTagsTagUuidGetRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiGetTagPlacesTagsTagUuidGetRequest) XAccessToken(xAccessToken string) ApiGetTagPlacesTagsTagUuidGetRequest {
+func (r ApiGetReviewRequest) XAccessToken(xAccessToken string) ApiGetReviewRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiGetTagPlacesTagsTagUuidGetRequest) XSecretToken(xSecretToken string) ApiGetTagPlacesTagsTagUuidGetRequest {
+func (r ApiGetReviewRequest) XSecretToken(xSecretToken string) ApiGetReviewRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiGetTagPlacesTagsTagUuidGetRequest) Authorization(authorization string) ApiGetTagPlacesTagsTagUuidGetRequest {
+func (r ApiGetReviewRequest) Authorization(authorization string) ApiGetReviewRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiGetTagPlacesTagsTagUuidGetRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiGetTagPlacesTagsTagUuidGetRequest {
+func (r ApiGetReviewRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiGetReviewRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiGetTagPlacesTagsTagUuidGetRequest) EhelplyProject(ehelplyProject string) ApiGetTagPlacesTagsTagUuidGetRequest {
+func (r ApiGetReviewRequest) EhelplyProject(ehelplyProject string) ApiGetReviewRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiGetTagPlacesTagsTagUuidGetRequest) EhelplyData(ehelplyData string) ApiGetTagPlacesTagsTagUuidGetRequest {
+func (r ApiGetReviewRequest) EhelplyData(ehelplyData string) ApiGetReviewRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiGetTagPlacesTagsTagUuidGetRequest) Execute() (*TagBase, *http.Response, error) {
-	return r.ApiService.GetTagPlacesTagsTagUuidGetExecute(r)
+func (r ApiGetReviewRequest) Execute() (interface{}, *http.Response, error) {
+	return r.ApiService.GetReviewExecute(r)
 }
 
 /*
-GetTagPlacesTagsTagUuidGet Get Tag
-
-Gets the tag member information given the tag ID
+GetReview Getreview
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param tagUuid
- @return ApiGetTagPlacesTagsTagUuidGetRequest
+ @param entityType
+ @param entityUuid
+ @param reviewUuid
+ @return ApiGetReviewRequest
 */
-func (a *TagApiService) GetTagPlacesTagsTagUuidGet(ctx context.Context, tagUuid string) ApiGetTagPlacesTagsTagUuidGetRequest {
-	return ApiGetTagPlacesTagsTagUuidGetRequest{
+func (a *ReviewsApiService) GetReview(ctx context.Context, entityType string, entityUuid string, reviewUuid string) ApiGetReviewRequest {
+	return ApiGetReviewRequest{
 		ApiService: a,
 		ctx: ctx,
-		tagUuid: tagUuid,
+		entityType: entityType,
+		entityUuid: entityUuid,
+		reviewUuid: reviewUuid,
 	}
 }
 
 // Execute executes the request
-//  @return TagBase
-func (a *TagApiService) GetTagPlacesTagsTagUuidGetExecute(r ApiGetTagPlacesTagsTagUuidGetRequest) (*TagBase, *http.Response, error) {
+//  @return interface{}
+func (a *ReviewsApiService) GetReviewExecute(r ApiGetReviewRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TagBase
+		localVarReturnValue  interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagApiService.GetTagPlacesTagsTagUuidGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReviewsApiService.GetReview")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/places/tags/{tag_uuid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"tag_uuid"+"}", url.PathEscape(parameterToString(r.tagUuid, "")), -1)
+	localVarPath := localBasePath + "/products/reviews/types/{entity_type}/entities/{entity_uuid}/reviews/{review_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"entity_type"+"}", url.PathEscape(parameterToString(r.entityType, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"entity_uuid"+"}", url.PathEscape(parameterToString(r.entityUuid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"review_uuid"+"}", url.PathEscape(parameterToString(r.reviewUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -529,15 +547,11 @@ func (a *TagApiService) GetTagPlacesTagsTagUuidGetExecute(r ApiGetTagPlacesTagsT
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchTagsPlacesTagsGetRequest struct {
+type ApiSearchReviewsRequest struct {
 	ctx context.Context
-	ApiService *TagApiService
-	projectUuid *string
-	name *string
-	page *int32
-	pageSize *int32
-	sortOn *string
-	sortDesc *bool
+	ApiService *ReviewsApiService
+	entityType string
+	entityUuid string
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -546,142 +560,80 @@ type ApiSearchTagsPlacesTagsGetRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiSearchTagsPlacesTagsGetRequest) ProjectUuid(projectUuid string) ApiSearchTagsPlacesTagsGetRequest {
-	r.projectUuid = &projectUuid
-	return r
-}
-
-func (r ApiSearchTagsPlacesTagsGetRequest) Name(name string) ApiSearchTagsPlacesTagsGetRequest {
-	r.name = &name
-	return r
-}
-
-func (r ApiSearchTagsPlacesTagsGetRequest) Page(page int32) ApiSearchTagsPlacesTagsGetRequest {
-	r.page = &page
-	return r
-}
-
-func (r ApiSearchTagsPlacesTagsGetRequest) PageSize(pageSize int32) ApiSearchTagsPlacesTagsGetRequest {
-	r.pageSize = &pageSize
-	return r
-}
-
-func (r ApiSearchTagsPlacesTagsGetRequest) SortOn(sortOn string) ApiSearchTagsPlacesTagsGetRequest {
-	r.sortOn = &sortOn
-	return r
-}
-
-func (r ApiSearchTagsPlacesTagsGetRequest) SortDesc(sortDesc bool) ApiSearchTagsPlacesTagsGetRequest {
-	r.sortDesc = &sortDesc
-	return r
-}
-
-func (r ApiSearchTagsPlacesTagsGetRequest) XAccessToken(xAccessToken string) ApiSearchTagsPlacesTagsGetRequest {
+func (r ApiSearchReviewsRequest) XAccessToken(xAccessToken string) ApiSearchReviewsRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiSearchTagsPlacesTagsGetRequest) XSecretToken(xSecretToken string) ApiSearchTagsPlacesTagsGetRequest {
+func (r ApiSearchReviewsRequest) XSecretToken(xSecretToken string) ApiSearchReviewsRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiSearchTagsPlacesTagsGetRequest) Authorization(authorization string) ApiSearchTagsPlacesTagsGetRequest {
+func (r ApiSearchReviewsRequest) Authorization(authorization string) ApiSearchReviewsRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiSearchTagsPlacesTagsGetRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiSearchTagsPlacesTagsGetRequest {
+func (r ApiSearchReviewsRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiSearchReviewsRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiSearchTagsPlacesTagsGetRequest) EhelplyProject(ehelplyProject string) ApiSearchTagsPlacesTagsGetRequest {
+func (r ApiSearchReviewsRequest) EhelplyProject(ehelplyProject string) ApiSearchReviewsRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiSearchTagsPlacesTagsGetRequest) EhelplyData(ehelplyData string) ApiSearchTagsPlacesTagsGetRequest {
+func (r ApiSearchReviewsRequest) EhelplyData(ehelplyData string) ApiSearchReviewsRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiSearchTagsPlacesTagsGetRequest) Execute() (*Page, *http.Response, error) {
-	return r.ApiService.SearchTagsPlacesTagsGetExecute(r)
+func (r ApiSearchReviewsRequest) Execute() (interface{}, *http.Response, error) {
+	return r.ApiService.SearchReviewsExecute(r)
 }
 
 /*
-SearchTagsPlacesTagsGet Search Tags
-
-TODO
-Item return format:
-```
-{
-    uuid                                **type:** string
-    project_uuid                        **type:** string or None
-
-    name                                **type:** string or None
-
-    meta                                **type:** dict or None
-
-    created_at                          **type:** string or None
-
-    updated_at                          **type:** string or None
-
-    deleted_at                          **type:** string or None
-
-}
-```
+SearchReviews Searchreview
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchTagsPlacesTagsGetRequest
+ @param entityType
+ @param entityUuid
+ @return ApiSearchReviewsRequest
 */
-func (a *TagApiService) SearchTagsPlacesTagsGet(ctx context.Context) ApiSearchTagsPlacesTagsGetRequest {
-	return ApiSearchTagsPlacesTagsGetRequest{
+func (a *ReviewsApiService) SearchReviews(ctx context.Context, entityType string, entityUuid string) ApiSearchReviewsRequest {
+	return ApiSearchReviewsRequest{
 		ApiService: a,
 		ctx: ctx,
+		entityType: entityType,
+		entityUuid: entityUuid,
 	}
 }
 
 // Execute executes the request
-//  @return Page
-func (a *TagApiService) SearchTagsPlacesTagsGetExecute(r ApiSearchTagsPlacesTagsGetRequest) (*Page, *http.Response, error) {
+//  @return interface{}
+func (a *ReviewsApiService) SearchReviewsExecute(r ApiSearchReviewsRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Page
+		localVarReturnValue  interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagApiService.SearchTagsPlacesTagsGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReviewsApiService.SearchReviews")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/places/tags"
+	localVarPath := localBasePath + "/products/reviews/types/{entity_type}/entities/{entity_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"entity_type"+"}", url.PathEscape(parameterToString(r.entityType, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"entity_uuid"+"}", url.PathEscape(parameterToString(r.entityUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.projectUuid != nil {
-		localVarQueryParams.Add("project_uuid", parameterToString(*r.projectUuid, ""))
-	}
-	if r.name != nil {
-		localVarQueryParams.Add("name", parameterToString(*r.name, ""))
-	}
-	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
-	}
-	if r.pageSize != nil {
-		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
-	}
-	if r.sortOn != nil {
-		localVarQueryParams.Add("sort_on", parameterToString(*r.sortOn, ""))
-	}
-	if r.sortDesc != nil {
-		localVarQueryParams.Add("sort_desc", parameterToString(*r.sortDesc, ""))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -763,11 +715,13 @@ func (a *TagApiService) SearchTagsPlacesTagsGetExecute(r ApiSearchTagsPlacesTags
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateTagPlacesTagsTagUuidPutRequest struct {
+type ApiUpdateReviewRequest struct {
 	ctx context.Context
-	ApiService *TagApiService
-	tagUuid string
-	tagBase *TagBase
+	ApiService *ReviewsApiService
+	entityType string
+	entityUuid string
+	reviewUuid string
+	updateReview *UpdateReview
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -776,85 +730,89 @@ type ApiUpdateTagPlacesTagsTagUuidPutRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiUpdateTagPlacesTagsTagUuidPutRequest) TagBase(tagBase TagBase) ApiUpdateTagPlacesTagsTagUuidPutRequest {
-	r.tagBase = &tagBase
+func (r ApiUpdateReviewRequest) UpdateReview(updateReview UpdateReview) ApiUpdateReviewRequest {
+	r.updateReview = &updateReview
 	return r
 }
 
-func (r ApiUpdateTagPlacesTagsTagUuidPutRequest) XAccessToken(xAccessToken string) ApiUpdateTagPlacesTagsTagUuidPutRequest {
+func (r ApiUpdateReviewRequest) XAccessToken(xAccessToken string) ApiUpdateReviewRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiUpdateTagPlacesTagsTagUuidPutRequest) XSecretToken(xSecretToken string) ApiUpdateTagPlacesTagsTagUuidPutRequest {
+func (r ApiUpdateReviewRequest) XSecretToken(xSecretToken string) ApiUpdateReviewRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiUpdateTagPlacesTagsTagUuidPutRequest) Authorization(authorization string) ApiUpdateTagPlacesTagsTagUuidPutRequest {
+func (r ApiUpdateReviewRequest) Authorization(authorization string) ApiUpdateReviewRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiUpdateTagPlacesTagsTagUuidPutRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiUpdateTagPlacesTagsTagUuidPutRequest {
+func (r ApiUpdateReviewRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiUpdateReviewRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiUpdateTagPlacesTagsTagUuidPutRequest) EhelplyProject(ehelplyProject string) ApiUpdateTagPlacesTagsTagUuidPutRequest {
+func (r ApiUpdateReviewRequest) EhelplyProject(ehelplyProject string) ApiUpdateReviewRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiUpdateTagPlacesTagsTagUuidPutRequest) EhelplyData(ehelplyData string) ApiUpdateTagPlacesTagsTagUuidPutRequest {
+func (r ApiUpdateReviewRequest) EhelplyData(ehelplyData string) ApiUpdateReviewRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiUpdateTagPlacesTagsTagUuidPutRequest) Execute() (*TagBase, *http.Response, error) {
-	return r.ApiService.UpdateTagPlacesTagsTagUuidPutExecute(r)
+func (r ApiUpdateReviewRequest) Execute() (interface{}, *http.Response, error) {
+	return r.ApiService.UpdateReviewExecute(r)
 }
 
 /*
-UpdateTagPlacesTagsTagUuidPut Update Tag
-
-Update tag with given info, only updating the fields supplied. Tag Uuid must be sent however.
+UpdateReview Updatereview
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param tagUuid
- @return ApiUpdateTagPlacesTagsTagUuidPutRequest
+ @param entityType
+ @param entityUuid
+ @param reviewUuid
+ @return ApiUpdateReviewRequest
 */
-func (a *TagApiService) UpdateTagPlacesTagsTagUuidPut(ctx context.Context, tagUuid string) ApiUpdateTagPlacesTagsTagUuidPutRequest {
-	return ApiUpdateTagPlacesTagsTagUuidPutRequest{
+func (a *ReviewsApiService) UpdateReview(ctx context.Context, entityType string, entityUuid string, reviewUuid string) ApiUpdateReviewRequest {
+	return ApiUpdateReviewRequest{
 		ApiService: a,
 		ctx: ctx,
-		tagUuid: tagUuid,
+		entityType: entityType,
+		entityUuid: entityUuid,
+		reviewUuid: reviewUuid,
 	}
 }
 
 // Execute executes the request
-//  @return TagBase
-func (a *TagApiService) UpdateTagPlacesTagsTagUuidPutExecute(r ApiUpdateTagPlacesTagsTagUuidPutRequest) (*TagBase, *http.Response, error) {
+//  @return interface{}
+func (a *ReviewsApiService) UpdateReviewExecute(r ApiUpdateReviewRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TagBase
+		localVarReturnValue  interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagApiService.UpdateTagPlacesTagsTagUuidPut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReviewsApiService.UpdateReview")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/places/tags/{tag_uuid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"tag_uuid"+"}", url.PathEscape(parameterToString(r.tagUuid, "")), -1)
+	localVarPath := localBasePath + "/products/reviews/types/{entity_type}/entities/{entity_uuid}/reviews/{review_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"entity_type"+"}", url.PathEscape(parameterToString(r.entityType, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"entity_uuid"+"}", url.PathEscape(parameterToString(r.entityUuid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"review_uuid"+"}", url.PathEscape(parameterToString(r.reviewUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.tagBase == nil {
-		return localVarReturnValue, nil, reportError("tagBase is required and must be specified")
+	if r.updateReview == nil {
+		return localVarReturnValue, nil, reportError("updateReview is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -893,7 +851,7 @@ func (a *TagApiService) UpdateTagPlacesTagsTagUuidPutExecute(r ApiUpdateTagPlace
 		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
 	}
 	// body params
-	localVarPostBody = r.tagBase
+	localVarPostBody = r.updateReview
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

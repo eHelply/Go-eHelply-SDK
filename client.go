@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.95
+eHelply SDK - 1.1.96
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.95
+API version: 1.1.96
 Contact: support@ehelply.com
 */
 
@@ -42,7 +42,7 @@ var (
 	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 )
 
-// APIClient manages communication with the eHelply SDK - 1.1.95 API v1.1.95
+// APIClient manages communication with the eHelply SDK - 1.1.96 API v1.1.96
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -51,6 +51,8 @@ type APIClient struct {
 	// API Services
 
 	BillingApi *BillingApiService
+
+	CatalogsApi *CatalogsApiService
 
 	CategoryApi *CategoryApiService
 
@@ -68,7 +70,11 @@ type APIClient struct {
 
 	PlacesApi *PlacesApiService
 
+	ProductsApi *ProductsApiService
+
 	ProjectsApi *ProjectsApiService
+
+	ReviewsApi *ReviewsApiService
 
 	SecurityApi *SecurityApiService
 
@@ -98,6 +104,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.BillingApi = (*BillingApiService)(&c.common)
+	c.CatalogsApi = (*CatalogsApiService)(&c.common)
 	c.CategoryApi = (*CategoryApiService)(&c.common)
 	c.CompaniesApi = (*CompaniesApiService)(&c.common)
 	c.DefaultApi = (*DefaultApiService)(&c.common)
@@ -106,7 +113,9 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.MonitorApi = (*MonitorApiService)(&c.common)
 	c.NotesApi = (*NotesApiService)(&c.common)
 	c.PlacesApi = (*PlacesApiService)(&c.common)
+	c.ProductsApi = (*ProductsApiService)(&c.common)
 	c.ProjectsApi = (*ProjectsApiService)(&c.common)
+	c.ReviewsApi = (*ReviewsApiService)(&c.common)
 	c.SecurityApi = (*SecurityApiService)(&c.common)
 	c.StaffApi = (*StaffApiService)(&c.common)
 	c.SupportApi = (*SupportApiService)(&c.common)

@@ -21,14 +21,14 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// CatalogsApiService CatalogsApi service
+type CatalogsApiService service
 
-type ApiAttachEntityToAppointmentRequest struct {
+type ApiAttachProductToCatalogRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
-	appointmentUuid string
-	entityUuid string
+	ApiService *CatalogsApiService
+	catalogUuid string
+	productUuid string
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -37,60 +37,60 @@ type ApiAttachEntityToAppointmentRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiAttachEntityToAppointmentRequest) XAccessToken(xAccessToken string) ApiAttachEntityToAppointmentRequest {
+func (r ApiAttachProductToCatalogRequest) XAccessToken(xAccessToken string) ApiAttachProductToCatalogRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiAttachEntityToAppointmentRequest) XSecretToken(xSecretToken string) ApiAttachEntityToAppointmentRequest {
+func (r ApiAttachProductToCatalogRequest) XSecretToken(xSecretToken string) ApiAttachProductToCatalogRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiAttachEntityToAppointmentRequest) Authorization(authorization string) ApiAttachEntityToAppointmentRequest {
+func (r ApiAttachProductToCatalogRequest) Authorization(authorization string) ApiAttachProductToCatalogRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiAttachEntityToAppointmentRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiAttachEntityToAppointmentRequest {
+func (r ApiAttachProductToCatalogRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiAttachProductToCatalogRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiAttachEntityToAppointmentRequest) EhelplyProject(ehelplyProject string) ApiAttachEntityToAppointmentRequest {
+func (r ApiAttachProductToCatalogRequest) EhelplyProject(ehelplyProject string) ApiAttachProductToCatalogRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiAttachEntityToAppointmentRequest) EhelplyData(ehelplyData string) ApiAttachEntityToAppointmentRequest {
+func (r ApiAttachProductToCatalogRequest) EhelplyData(ehelplyData string) ApiAttachProductToCatalogRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiAttachEntityToAppointmentRequest) Execute() (bool, *http.Response, error) {
-	return r.ApiService.AttachEntityToAppointmentExecute(r)
+func (r ApiAttachProductToCatalogRequest) Execute() (bool, *http.Response, error) {
+	return r.ApiService.AttachProductToCatalogExecute(r)
 }
 
 /*
-AttachEntityToAppointment Attach Entity To Appointment
+AttachProductToCatalog Addproducttocatalog
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param appointmentUuid
- @param entityUuid
- @return ApiAttachEntityToAppointmentRequest
+ @param catalogUuid
+ @param productUuid
+ @return ApiAttachProductToCatalogRequest
 */
-func (a *DefaultApiService) AttachEntityToAppointment(ctx context.Context, appointmentUuid string, entityUuid string) ApiAttachEntityToAppointmentRequest {
-	return ApiAttachEntityToAppointmentRequest{
+func (a *CatalogsApiService) AttachProductToCatalog(ctx context.Context, catalogUuid string, productUuid string) ApiAttachProductToCatalogRequest {
+	return ApiAttachProductToCatalogRequest{
 		ApiService: a,
 		ctx: ctx,
-		appointmentUuid: appointmentUuid,
-		entityUuid: entityUuid,
+		catalogUuid: catalogUuid,
+		productUuid: productUuid,
 	}
 }
 
 // Execute executes the request
 //  @return bool
-func (a *DefaultApiService) AttachEntityToAppointmentExecute(r ApiAttachEntityToAppointmentRequest) (bool, *http.Response, error) {
+func (a *CatalogsApiService) AttachProductToCatalogExecute(r ApiAttachProductToCatalogRequest) (bool, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -98,14 +98,14 @@ func (a *DefaultApiService) AttachEntityToAppointmentExecute(r ApiAttachEntityTo
 		localVarReturnValue  bool
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AttachEntityToAppointment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CatalogsApiService.AttachProductToCatalog")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/appointments/appointments/{appointment_uuid}/entities/{entity_uuid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"appointment_uuid"+"}", url.PathEscape(parameterToString(r.appointmentUuid, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"entity_uuid"+"}", url.PathEscape(parameterToString(r.entityUuid, "")), -1)
+	localVarPath := localBasePath + "/products/catalogs/{catalog_uuid}/products/{product_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"catalog_uuid"+"}", url.PathEscape(parameterToString(r.catalogUuid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"product_uuid"+"}", url.PathEscape(parameterToString(r.productUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -192,10 +192,10 @@ func (a *DefaultApiService) AttachEntityToAppointmentExecute(r ApiAttachEntityTo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiCreateAppointmentRequest struct {
+type ApiCreateCatalogRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
-	appointmentBase *AppointmentBase
+	ApiService *CatalogsApiService
+	catalogBase *CatalogBase
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -204,80 +204,80 @@ type ApiCreateAppointmentRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiCreateAppointmentRequest) AppointmentBase(appointmentBase AppointmentBase) ApiCreateAppointmentRequest {
-	r.appointmentBase = &appointmentBase
+func (r ApiCreateCatalogRequest) CatalogBase(catalogBase CatalogBase) ApiCreateCatalogRequest {
+	r.catalogBase = &catalogBase
 	return r
 }
 
-func (r ApiCreateAppointmentRequest) XAccessToken(xAccessToken string) ApiCreateAppointmentRequest {
+func (r ApiCreateCatalogRequest) XAccessToken(xAccessToken string) ApiCreateCatalogRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiCreateAppointmentRequest) XSecretToken(xSecretToken string) ApiCreateAppointmentRequest {
+func (r ApiCreateCatalogRequest) XSecretToken(xSecretToken string) ApiCreateCatalogRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiCreateAppointmentRequest) Authorization(authorization string) ApiCreateAppointmentRequest {
+func (r ApiCreateCatalogRequest) Authorization(authorization string) ApiCreateCatalogRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiCreateAppointmentRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiCreateAppointmentRequest {
+func (r ApiCreateCatalogRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiCreateCatalogRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiCreateAppointmentRequest) EhelplyProject(ehelplyProject string) ApiCreateAppointmentRequest {
+func (r ApiCreateCatalogRequest) EhelplyProject(ehelplyProject string) ApiCreateCatalogRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiCreateAppointmentRequest) EhelplyData(ehelplyData string) ApiCreateAppointmentRequest {
+func (r ApiCreateCatalogRequest) EhelplyData(ehelplyData string) ApiCreateCatalogRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiCreateAppointmentRequest) Execute() (*AppointmentResponse, *http.Response, error) {
-	return r.ApiService.CreateAppointmentExecute(r)
+func (r ApiCreateCatalogRequest) Execute() (*CatalogReturn, *http.Response, error) {
+	return r.ApiService.CreateCatalogExecute(r)
 }
 
 /*
-CreateAppointment Create Appointment
+CreateCatalog Createcatalog
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateAppointmentRequest
+ @return ApiCreateCatalogRequest
 */
-func (a *DefaultApiService) CreateAppointment(ctx context.Context) ApiCreateAppointmentRequest {
-	return ApiCreateAppointmentRequest{
+func (a *CatalogsApiService) CreateCatalog(ctx context.Context) ApiCreateCatalogRequest {
+	return ApiCreateCatalogRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return AppointmentResponse
-func (a *DefaultApiService) CreateAppointmentExecute(r ApiCreateAppointmentRequest) (*AppointmentResponse, *http.Response, error) {
+//  @return CatalogReturn
+func (a *CatalogsApiService) CreateCatalogExecute(r ApiCreateCatalogRequest) (*CatalogReturn, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AppointmentResponse
+		localVarReturnValue  *CatalogReturn
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAppointment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CatalogsApiService.CreateCatalog")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/appointments/appointments"
+	localVarPath := localBasePath + "/products/catalogs"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.appointmentBase == nil {
-		return localVarReturnValue, nil, reportError("appointmentBase is required and must be specified")
+	if r.catalogBase == nil {
+		return localVarReturnValue, nil, reportError("catalogBase is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -316,7 +316,7 @@ func (a *DefaultApiService) CreateAppointmentExecute(r ApiCreateAppointmentReque
 		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
 	}
 	// body params
-	localVarPostBody = r.appointmentBase
+	localVarPostBody = r.catalogBase
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -363,10 +363,10 @@ func (a *DefaultApiService) CreateAppointmentExecute(r ApiCreateAppointmentReque
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteAppointmentRequest struct {
+type ApiDeleteCatalogRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
-	appointmentUuid string
+	ApiService *CatalogsApiService
+	catalogUuid string
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -375,58 +375,58 @@ type ApiDeleteAppointmentRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiDeleteAppointmentRequest) XAccessToken(xAccessToken string) ApiDeleteAppointmentRequest {
+func (r ApiDeleteCatalogRequest) XAccessToken(xAccessToken string) ApiDeleteCatalogRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiDeleteAppointmentRequest) XSecretToken(xSecretToken string) ApiDeleteAppointmentRequest {
+func (r ApiDeleteCatalogRequest) XSecretToken(xSecretToken string) ApiDeleteCatalogRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiDeleteAppointmentRequest) Authorization(authorization string) ApiDeleteAppointmentRequest {
+func (r ApiDeleteCatalogRequest) Authorization(authorization string) ApiDeleteCatalogRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiDeleteAppointmentRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiDeleteAppointmentRequest {
+func (r ApiDeleteCatalogRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiDeleteCatalogRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiDeleteAppointmentRequest) EhelplyProject(ehelplyProject string) ApiDeleteAppointmentRequest {
+func (r ApiDeleteCatalogRequest) EhelplyProject(ehelplyProject string) ApiDeleteCatalogRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiDeleteAppointmentRequest) EhelplyData(ehelplyData string) ApiDeleteAppointmentRequest {
+func (r ApiDeleteCatalogRequest) EhelplyData(ehelplyData string) ApiDeleteCatalogRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiDeleteAppointmentRequest) Execute() (bool, *http.Response, error) {
-	return r.ApiService.DeleteAppointmentExecute(r)
+func (r ApiDeleteCatalogRequest) Execute() (bool, *http.Response, error) {
+	return r.ApiService.DeleteCatalogExecute(r)
 }
 
 /*
-DeleteAppointment Delete Appointment
+DeleteCatalog Deletecatalog
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param appointmentUuid
- @return ApiDeleteAppointmentRequest
+ @param catalogUuid
+ @return ApiDeleteCatalogRequest
 */
-func (a *DefaultApiService) DeleteAppointment(ctx context.Context, appointmentUuid string) ApiDeleteAppointmentRequest {
-	return ApiDeleteAppointmentRequest{
+func (a *CatalogsApiService) DeleteCatalog(ctx context.Context, catalogUuid string) ApiDeleteCatalogRequest {
+	return ApiDeleteCatalogRequest{
 		ApiService: a,
 		ctx: ctx,
-		appointmentUuid: appointmentUuid,
+		catalogUuid: catalogUuid,
 	}
 }
 
 // Execute executes the request
 //  @return bool
-func (a *DefaultApiService) DeleteAppointmentExecute(r ApiDeleteAppointmentRequest) (bool, *http.Response, error) {
+func (a *CatalogsApiService) DeleteCatalogExecute(r ApiDeleteCatalogRequest) (bool, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -434,13 +434,13 @@ func (a *DefaultApiService) DeleteAppointmentExecute(r ApiDeleteAppointmentReque
 		localVarReturnValue  bool
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAppointment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CatalogsApiService.DeleteCatalog")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/appointments/appointments/{appointment_uuid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"appointment_uuid"+"}", url.PathEscape(parameterToString(r.appointmentUuid, "")), -1)
+	localVarPath := localBasePath + "/products/catalogs/{catalog_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"catalog_uuid"+"}", url.PathEscape(parameterToString(r.catalogUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -527,11 +527,11 @@ func (a *DefaultApiService) DeleteAppointmentExecute(r ApiDeleteAppointmentReque
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDetachEntityFromAppointmentRequest struct {
+type ApiDetachProductFromCatalogRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
-	appointmentUuid string
-	entityUuid string
+	ApiService *CatalogsApiService
+	catalogUuid string
+	productUuid string
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -540,60 +540,60 @@ type ApiDetachEntityFromAppointmentRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiDetachEntityFromAppointmentRequest) XAccessToken(xAccessToken string) ApiDetachEntityFromAppointmentRequest {
+func (r ApiDetachProductFromCatalogRequest) XAccessToken(xAccessToken string) ApiDetachProductFromCatalogRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiDetachEntityFromAppointmentRequest) XSecretToken(xSecretToken string) ApiDetachEntityFromAppointmentRequest {
+func (r ApiDetachProductFromCatalogRequest) XSecretToken(xSecretToken string) ApiDetachProductFromCatalogRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiDetachEntityFromAppointmentRequest) Authorization(authorization string) ApiDetachEntityFromAppointmentRequest {
+func (r ApiDetachProductFromCatalogRequest) Authorization(authorization string) ApiDetachProductFromCatalogRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiDetachEntityFromAppointmentRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiDetachEntityFromAppointmentRequest {
+func (r ApiDetachProductFromCatalogRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiDetachProductFromCatalogRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiDetachEntityFromAppointmentRequest) EhelplyProject(ehelplyProject string) ApiDetachEntityFromAppointmentRequest {
+func (r ApiDetachProductFromCatalogRequest) EhelplyProject(ehelplyProject string) ApiDetachProductFromCatalogRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiDetachEntityFromAppointmentRequest) EhelplyData(ehelplyData string) ApiDetachEntityFromAppointmentRequest {
+func (r ApiDetachProductFromCatalogRequest) EhelplyData(ehelplyData string) ApiDetachProductFromCatalogRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiDetachEntityFromAppointmentRequest) Execute() (bool, *http.Response, error) {
-	return r.ApiService.DetachEntityFromAppointmentExecute(r)
+func (r ApiDetachProductFromCatalogRequest) Execute() (bool, *http.Response, error) {
+	return r.ApiService.DetachProductFromCatalogExecute(r)
 }
 
 /*
-DetachEntityFromAppointment Detach Entity From Appointment
+DetachProductFromCatalog Removeproductfromcatalog
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param appointmentUuid
- @param entityUuid
- @return ApiDetachEntityFromAppointmentRequest
+ @param catalogUuid
+ @param productUuid
+ @return ApiDetachProductFromCatalogRequest
 */
-func (a *DefaultApiService) DetachEntityFromAppointment(ctx context.Context, appointmentUuid string, entityUuid string) ApiDetachEntityFromAppointmentRequest {
-	return ApiDetachEntityFromAppointmentRequest{
+func (a *CatalogsApiService) DetachProductFromCatalog(ctx context.Context, catalogUuid string, productUuid string) ApiDetachProductFromCatalogRequest {
+	return ApiDetachProductFromCatalogRequest{
 		ApiService: a,
 		ctx: ctx,
-		appointmentUuid: appointmentUuid,
-		entityUuid: entityUuid,
+		catalogUuid: catalogUuid,
+		productUuid: productUuid,
 	}
 }
 
 // Execute executes the request
 //  @return bool
-func (a *DefaultApiService) DetachEntityFromAppointmentExecute(r ApiDetachEntityFromAppointmentRequest) (bool, *http.Response, error) {
+func (a *CatalogsApiService) DetachProductFromCatalogExecute(r ApiDetachProductFromCatalogRequest) (bool, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -601,14 +601,14 @@ func (a *DefaultApiService) DetachEntityFromAppointmentExecute(r ApiDetachEntity
 		localVarReturnValue  bool
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DetachEntityFromAppointment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CatalogsApiService.DetachProductFromCatalog")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/appointments/appointments/{appointment_uuid}/entities/{entity_uuid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"appointment_uuid"+"}", url.PathEscape(parameterToString(r.appointmentUuid, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"entity_uuid"+"}", url.PathEscape(parameterToString(r.entityUuid, "")), -1)
+	localVarPath := localBasePath + "/products/catalogs/{catalog_uuid}/products/{product_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"catalog_uuid"+"}", url.PathEscape(parameterToString(r.catalogUuid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"product_uuid"+"}", url.PathEscape(parameterToString(r.productUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -695,10 +695,11 @@ func (a *DefaultApiService) DetachEntityFromAppointmentExecute(r ApiDetachEntity
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetAppointmentRequest struct {
+type ApiGetCatalogRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
-	appointmentUuid string
+	ApiService *CatalogsApiService
+	catalogUuid string
+	withMeta *bool
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -707,77 +708,85 @@ type ApiGetAppointmentRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiGetAppointmentRequest) XAccessToken(xAccessToken string) ApiGetAppointmentRequest {
+func (r ApiGetCatalogRequest) WithMeta(withMeta bool) ApiGetCatalogRequest {
+	r.withMeta = &withMeta
+	return r
+}
+
+func (r ApiGetCatalogRequest) XAccessToken(xAccessToken string) ApiGetCatalogRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiGetAppointmentRequest) XSecretToken(xSecretToken string) ApiGetAppointmentRequest {
+func (r ApiGetCatalogRequest) XSecretToken(xSecretToken string) ApiGetCatalogRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiGetAppointmentRequest) Authorization(authorization string) ApiGetAppointmentRequest {
+func (r ApiGetCatalogRequest) Authorization(authorization string) ApiGetCatalogRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiGetAppointmentRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiGetAppointmentRequest {
+func (r ApiGetCatalogRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiGetCatalogRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiGetAppointmentRequest) EhelplyProject(ehelplyProject string) ApiGetAppointmentRequest {
+func (r ApiGetCatalogRequest) EhelplyProject(ehelplyProject string) ApiGetCatalogRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiGetAppointmentRequest) EhelplyData(ehelplyData string) ApiGetAppointmentRequest {
+func (r ApiGetCatalogRequest) EhelplyData(ehelplyData string) ApiGetCatalogRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiGetAppointmentRequest) Execute() (*AppointmentResponse, *http.Response, error) {
-	return r.ApiService.GetAppointmentExecute(r)
+func (r ApiGetCatalogRequest) Execute() (*CatalogReturn, *http.Response, error) {
+	return r.ApiService.GetCatalogExecute(r)
 }
 
 /*
-GetAppointment Get Appointment
+GetCatalog Getcatalog
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param appointmentUuid
- @return ApiGetAppointmentRequest
+ @param catalogUuid
+ @return ApiGetCatalogRequest
 */
-func (a *DefaultApiService) GetAppointment(ctx context.Context, appointmentUuid string) ApiGetAppointmentRequest {
-	return ApiGetAppointmentRequest{
+func (a *CatalogsApiService) GetCatalog(ctx context.Context, catalogUuid string) ApiGetCatalogRequest {
+	return ApiGetCatalogRequest{
 		ApiService: a,
 		ctx: ctx,
-		appointmentUuid: appointmentUuid,
+		catalogUuid: catalogUuid,
 	}
 }
 
 // Execute executes the request
-//  @return AppointmentResponse
-func (a *DefaultApiService) GetAppointmentExecute(r ApiGetAppointmentRequest) (*AppointmentResponse, *http.Response, error) {
+//  @return CatalogReturn
+func (a *CatalogsApiService) GetCatalogExecute(r ApiGetCatalogRequest) (*CatalogReturn, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AppointmentResponse
+		localVarReturnValue  *CatalogReturn
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAppointment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CatalogsApiService.GetCatalog")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/appointments/appointments/{appointment_uuid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"appointment_uuid"+"}", url.PathEscape(parameterToString(r.appointmentUuid, "")), -1)
+	localVarPath := localBasePath + "/products/catalogs/{catalog_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"catalog_uuid"+"}", url.PathEscape(parameterToString(r.catalogUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.withMeta != nil {
+		localVarQueryParams.Add("with_meta", parameterToString(*r.withMeta, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -835,26 +844,6 @@ func (a *DefaultApiService) GetAppointmentExecute(r ApiGetAppointmentRequest) (*
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetAppointment403Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetAppointment403Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v HTTPValidationError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -879,14 +868,11 @@ func (a *DefaultApiService) GetAppointmentExecute(r ApiGetAppointmentRequest) (*
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchAppointmentRequest struct {
+type ApiSearchCatalogProductsRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
-	placeUuid *string
-	excludeCancelled *bool
-	isDeleted *bool
-	startRange *string
-	endRange *string
+	ApiService *CatalogsApiService
+	catalogUuid string
+	withMeta *bool
 	page *int32
 	pageSize *int32
 	sortOn *string
@@ -899,133 +885,104 @@ type ApiSearchAppointmentRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiSearchAppointmentRequest) PlaceUuid(placeUuid string) ApiSearchAppointmentRequest {
-	r.placeUuid = &placeUuid
+func (r ApiSearchCatalogProductsRequest) WithMeta(withMeta bool) ApiSearchCatalogProductsRequest {
+	r.withMeta = &withMeta
 	return r
 }
 
-func (r ApiSearchAppointmentRequest) ExcludeCancelled(excludeCancelled bool) ApiSearchAppointmentRequest {
-	r.excludeCancelled = &excludeCancelled
-	return r
-}
-
-func (r ApiSearchAppointmentRequest) IsDeleted(isDeleted bool) ApiSearchAppointmentRequest {
-	r.isDeleted = &isDeleted
-	return r
-}
-
-func (r ApiSearchAppointmentRequest) StartRange(startRange string) ApiSearchAppointmentRequest {
-	r.startRange = &startRange
-	return r
-}
-
-func (r ApiSearchAppointmentRequest) EndRange(endRange string) ApiSearchAppointmentRequest {
-	r.endRange = &endRange
-	return r
-}
-
-func (r ApiSearchAppointmentRequest) Page(page int32) ApiSearchAppointmentRequest {
+func (r ApiSearchCatalogProductsRequest) Page(page int32) ApiSearchCatalogProductsRequest {
 	r.page = &page
 	return r
 }
 
-func (r ApiSearchAppointmentRequest) PageSize(pageSize int32) ApiSearchAppointmentRequest {
+func (r ApiSearchCatalogProductsRequest) PageSize(pageSize int32) ApiSearchCatalogProductsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r ApiSearchAppointmentRequest) SortOn(sortOn string) ApiSearchAppointmentRequest {
+func (r ApiSearchCatalogProductsRequest) SortOn(sortOn string) ApiSearchCatalogProductsRequest {
 	r.sortOn = &sortOn
 	return r
 }
 
-func (r ApiSearchAppointmentRequest) SortDesc(sortDesc bool) ApiSearchAppointmentRequest {
+func (r ApiSearchCatalogProductsRequest) SortDesc(sortDesc bool) ApiSearchCatalogProductsRequest {
 	r.sortDesc = &sortDesc
 	return r
 }
 
-func (r ApiSearchAppointmentRequest) XAccessToken(xAccessToken string) ApiSearchAppointmentRequest {
+func (r ApiSearchCatalogProductsRequest) XAccessToken(xAccessToken string) ApiSearchCatalogProductsRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiSearchAppointmentRequest) XSecretToken(xSecretToken string) ApiSearchAppointmentRequest {
+func (r ApiSearchCatalogProductsRequest) XSecretToken(xSecretToken string) ApiSearchCatalogProductsRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiSearchAppointmentRequest) Authorization(authorization string) ApiSearchAppointmentRequest {
+func (r ApiSearchCatalogProductsRequest) Authorization(authorization string) ApiSearchCatalogProductsRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiSearchAppointmentRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiSearchAppointmentRequest {
+func (r ApiSearchCatalogProductsRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiSearchCatalogProductsRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiSearchAppointmentRequest) EhelplyProject(ehelplyProject string) ApiSearchAppointmentRequest {
+func (r ApiSearchCatalogProductsRequest) EhelplyProject(ehelplyProject string) ApiSearchCatalogProductsRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiSearchAppointmentRequest) EhelplyData(ehelplyData string) ApiSearchAppointmentRequest {
+func (r ApiSearchCatalogProductsRequest) EhelplyData(ehelplyData string) ApiSearchCatalogProductsRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiSearchAppointmentRequest) Execute() (interface{}, *http.Response, error) {
-	return r.ApiService.SearchAppointmentExecute(r)
+func (r ApiSearchCatalogProductsRequest) Execute() (*Page, *http.Response, error) {
+	return r.ApiService.SearchCatalogProductsExecute(r)
 }
 
 /*
-SearchAppointment Search Appointment
+SearchCatalogProducts Searchcatalogproducts
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchAppointmentRequest
+ @param catalogUuid
+ @return ApiSearchCatalogProductsRequest
 */
-func (a *DefaultApiService) SearchAppointment(ctx context.Context) ApiSearchAppointmentRequest {
-	return ApiSearchAppointmentRequest{
+func (a *CatalogsApiService) SearchCatalogProducts(ctx context.Context, catalogUuid string) ApiSearchCatalogProductsRequest {
+	return ApiSearchCatalogProductsRequest{
 		ApiService: a,
 		ctx: ctx,
+		catalogUuid: catalogUuid,
 	}
 }
 
 // Execute executes the request
-//  @return interface{}
-func (a *DefaultApiService) SearchAppointmentExecute(r ApiSearchAppointmentRequest) (interface{}, *http.Response, error) {
+//  @return Page
+func (a *CatalogsApiService) SearchCatalogProductsExecute(r ApiSearchCatalogProductsRequest) (*Page, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  interface{}
+		localVarReturnValue  *Page
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.SearchAppointment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CatalogsApiService.SearchCatalogProducts")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/appointments/appointments"
+	localVarPath := localBasePath + "/products/catalogs/{catalog_uuid}/products"
+	localVarPath = strings.Replace(localVarPath, "{"+"catalog_uuid"+"}", url.PathEscape(parameterToString(r.catalogUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.placeUuid != nil {
-		localVarQueryParams.Add("place_uuid", parameterToString(*r.placeUuid, ""))
-	}
-	if r.excludeCancelled != nil {
-		localVarQueryParams.Add("exclude_cancelled", parameterToString(*r.excludeCancelled, ""))
-	}
-	if r.isDeleted != nil {
-		localVarQueryParams.Add("is_deleted", parameterToString(*r.isDeleted, ""))
-	}
-	if r.startRange != nil {
-		localVarQueryParams.Add("start_range", parameterToString(*r.startRange, ""))
-	}
-	if r.endRange != nil {
-		localVarQueryParams.Add("end_range", parameterToString(*r.endRange, ""))
+	if r.withMeta != nil {
+		localVarQueryParams.Add("with_meta", parameterToString(*r.withMeta, ""))
 	}
 	if r.page != nil {
 		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
@@ -1120,16 +1077,15 @@ func (a *DefaultApiService) SearchAppointmentExecute(r ApiSearchAppointmentReque
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchAppointmentEntitiesRequest struct {
+type ApiSearchCatalogsRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
-	appointmentUuid string
+	ApiService *CatalogsApiService
+	withMeta *bool
+	name *string
 	page *int32
 	pageSize *int32
 	sortOn *string
 	sortDesc *bool
-	search *string
-	searchOn *string
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -1138,107 +1094,110 @@ type ApiSearchAppointmentEntitiesRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiSearchAppointmentEntitiesRequest) Page(page int32) ApiSearchAppointmentEntitiesRequest {
+func (r ApiSearchCatalogsRequest) WithMeta(withMeta bool) ApiSearchCatalogsRequest {
+	r.withMeta = &withMeta
+	return r
+}
+
+func (r ApiSearchCatalogsRequest) Name(name string) ApiSearchCatalogsRequest {
+	r.name = &name
+	return r
+}
+
+func (r ApiSearchCatalogsRequest) Page(page int32) ApiSearchCatalogsRequest {
 	r.page = &page
 	return r
 }
 
-func (r ApiSearchAppointmentEntitiesRequest) PageSize(pageSize int32) ApiSearchAppointmentEntitiesRequest {
+func (r ApiSearchCatalogsRequest) PageSize(pageSize int32) ApiSearchCatalogsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r ApiSearchAppointmentEntitiesRequest) SortOn(sortOn string) ApiSearchAppointmentEntitiesRequest {
+func (r ApiSearchCatalogsRequest) SortOn(sortOn string) ApiSearchCatalogsRequest {
 	r.sortOn = &sortOn
 	return r
 }
 
-func (r ApiSearchAppointmentEntitiesRequest) SortDesc(sortDesc bool) ApiSearchAppointmentEntitiesRequest {
+func (r ApiSearchCatalogsRequest) SortDesc(sortDesc bool) ApiSearchCatalogsRequest {
 	r.sortDesc = &sortDesc
 	return r
 }
 
-func (r ApiSearchAppointmentEntitiesRequest) Search(search string) ApiSearchAppointmentEntitiesRequest {
-	r.search = &search
-	return r
-}
-
-func (r ApiSearchAppointmentEntitiesRequest) SearchOn(searchOn string) ApiSearchAppointmentEntitiesRequest {
-	r.searchOn = &searchOn
-	return r
-}
-
-func (r ApiSearchAppointmentEntitiesRequest) XAccessToken(xAccessToken string) ApiSearchAppointmentEntitiesRequest {
+func (r ApiSearchCatalogsRequest) XAccessToken(xAccessToken string) ApiSearchCatalogsRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiSearchAppointmentEntitiesRequest) XSecretToken(xSecretToken string) ApiSearchAppointmentEntitiesRequest {
+func (r ApiSearchCatalogsRequest) XSecretToken(xSecretToken string) ApiSearchCatalogsRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiSearchAppointmentEntitiesRequest) Authorization(authorization string) ApiSearchAppointmentEntitiesRequest {
+func (r ApiSearchCatalogsRequest) Authorization(authorization string) ApiSearchCatalogsRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiSearchAppointmentEntitiesRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiSearchAppointmentEntitiesRequest {
+func (r ApiSearchCatalogsRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiSearchCatalogsRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiSearchAppointmentEntitiesRequest) EhelplyProject(ehelplyProject string) ApiSearchAppointmentEntitiesRequest {
+func (r ApiSearchCatalogsRequest) EhelplyProject(ehelplyProject string) ApiSearchCatalogsRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiSearchAppointmentEntitiesRequest) EhelplyData(ehelplyData string) ApiSearchAppointmentEntitiesRequest {
+func (r ApiSearchCatalogsRequest) EhelplyData(ehelplyData string) ApiSearchCatalogsRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiSearchAppointmentEntitiesRequest) Execute() (interface{}, *http.Response, error) {
-	return r.ApiService.SearchAppointmentEntitiesExecute(r)
+func (r ApiSearchCatalogsRequest) Execute() (*Page, *http.Response, error) {
+	return r.ApiService.SearchCatalogsExecute(r)
 }
 
 /*
-SearchAppointmentEntities Search Appointment Entities
+SearchCatalogs Searchcatalogs
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param appointmentUuid
- @return ApiSearchAppointmentEntitiesRequest
+ @return ApiSearchCatalogsRequest
 */
-func (a *DefaultApiService) SearchAppointmentEntities(ctx context.Context, appointmentUuid string) ApiSearchAppointmentEntitiesRequest {
-	return ApiSearchAppointmentEntitiesRequest{
+func (a *CatalogsApiService) SearchCatalogs(ctx context.Context) ApiSearchCatalogsRequest {
+	return ApiSearchCatalogsRequest{
 		ApiService: a,
 		ctx: ctx,
-		appointmentUuid: appointmentUuid,
 	}
 }
 
 // Execute executes the request
-//  @return interface{}
-func (a *DefaultApiService) SearchAppointmentEntitiesExecute(r ApiSearchAppointmentEntitiesRequest) (interface{}, *http.Response, error) {
+//  @return Page
+func (a *CatalogsApiService) SearchCatalogsExecute(r ApiSearchCatalogsRequest) (*Page, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  interface{}
+		localVarReturnValue  *Page
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.SearchAppointmentEntities")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CatalogsApiService.SearchCatalogs")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/appointments/appointments/{appointment_uuid}/entities"
-	localVarPath = strings.Replace(localVarPath, "{"+"appointment_uuid"+"}", url.PathEscape(parameterToString(r.appointmentUuid, "")), -1)
+	localVarPath := localBasePath + "/products/catalogs"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.withMeta != nil {
+		localVarQueryParams.Add("with_meta", parameterToString(*r.withMeta, ""))
+	}
+	if r.name != nil {
+		localVarQueryParams.Add("name", parameterToString(*r.name, ""))
+	}
 	if r.page != nil {
 		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
 	}
@@ -1251,12 +1210,6 @@ func (a *DefaultApiService) SearchAppointmentEntitiesExecute(r ApiSearchAppointm
 	if r.sortDesc != nil {
 		localVarQueryParams.Add("sort_desc", parameterToString(*r.sortDesc, ""))
 	}
-	if r.search != nil {
-		localVarQueryParams.Add("search", parameterToString(*r.search, ""))
-	}
-	if r.searchOn != nil {
-		localVarQueryParams.Add("search_on", parameterToString(*r.searchOn, ""))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1338,13 +1291,11 @@ func (a *DefaultApiService) SearchAppointmentEntitiesExecute(r ApiSearchAppointm
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchEntityAppointmentsRequest struct {
+type ApiUpdateCatalogRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
-	entityUuid string
-	startDate *string
-	endDate *string
-	excludeCancelled *bool
+	ApiService *CatalogsApiService
+	catalogUuid string
+	catalogBase *CatalogBase
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -1353,272 +1304,83 @@ type ApiSearchEntityAppointmentsRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiSearchEntityAppointmentsRequest) StartDate(startDate string) ApiSearchEntityAppointmentsRequest {
-	r.startDate = &startDate
+func (r ApiUpdateCatalogRequest) CatalogBase(catalogBase CatalogBase) ApiUpdateCatalogRequest {
+	r.catalogBase = &catalogBase
 	return r
 }
 
-func (r ApiSearchEntityAppointmentsRequest) EndDate(endDate string) ApiSearchEntityAppointmentsRequest {
-	r.endDate = &endDate
-	return r
-}
-
-func (r ApiSearchEntityAppointmentsRequest) ExcludeCancelled(excludeCancelled bool) ApiSearchEntityAppointmentsRequest {
-	r.excludeCancelled = &excludeCancelled
-	return r
-}
-
-func (r ApiSearchEntityAppointmentsRequest) XAccessToken(xAccessToken string) ApiSearchEntityAppointmentsRequest {
+func (r ApiUpdateCatalogRequest) XAccessToken(xAccessToken string) ApiUpdateCatalogRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiSearchEntityAppointmentsRequest) XSecretToken(xSecretToken string) ApiSearchEntityAppointmentsRequest {
+func (r ApiUpdateCatalogRequest) XSecretToken(xSecretToken string) ApiUpdateCatalogRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiSearchEntityAppointmentsRequest) Authorization(authorization string) ApiSearchEntityAppointmentsRequest {
+func (r ApiUpdateCatalogRequest) Authorization(authorization string) ApiUpdateCatalogRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiSearchEntityAppointmentsRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiSearchEntityAppointmentsRequest {
+func (r ApiUpdateCatalogRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiUpdateCatalogRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiSearchEntityAppointmentsRequest) EhelplyProject(ehelplyProject string) ApiSearchEntityAppointmentsRequest {
+func (r ApiUpdateCatalogRequest) EhelplyProject(ehelplyProject string) ApiUpdateCatalogRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiSearchEntityAppointmentsRequest) EhelplyData(ehelplyData string) ApiSearchEntityAppointmentsRequest {
+func (r ApiUpdateCatalogRequest) EhelplyData(ehelplyData string) ApiUpdateCatalogRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiSearchEntityAppointmentsRequest) Execute() (interface{}, *http.Response, error) {
-	return r.ApiService.SearchEntityAppointmentsExecute(r)
+func (r ApiUpdateCatalogRequest) Execute() (*CatalogReturn, *http.Response, error) {
+	return r.ApiService.UpdateCatalogExecute(r)
 }
 
 /*
-SearchEntityAppointments Get Entities Appointments
+UpdateCatalog Updatecatalog
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param entityUuid
- @return ApiSearchEntityAppointmentsRequest
+ @param catalogUuid
+ @return ApiUpdateCatalogRequest
 */
-func (a *DefaultApiService) SearchEntityAppointments(ctx context.Context, entityUuid string) ApiSearchEntityAppointmentsRequest {
-	return ApiSearchEntityAppointmentsRequest{
+func (a *CatalogsApiService) UpdateCatalog(ctx context.Context, catalogUuid string) ApiUpdateCatalogRequest {
+	return ApiUpdateCatalogRequest{
 		ApiService: a,
 		ctx: ctx,
-		entityUuid: entityUuid,
+		catalogUuid: catalogUuid,
 	}
 }
 
 // Execute executes the request
-//  @return interface{}
-func (a *DefaultApiService) SearchEntityAppointmentsExecute(r ApiSearchEntityAppointmentsRequest) (interface{}, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  interface{}
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.SearchEntityAppointments")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/appointments/appointments/entities/{entity_uuid}/appointments"
-	localVarPath = strings.Replace(localVarPath, "{"+"entity_uuid"+"}", url.PathEscape(parameterToString(r.entityUuid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.startDate != nil {
-		localVarQueryParams.Add("start_date", parameterToString(*r.startDate, ""))
-	}
-	if r.endDate != nil {
-		localVarQueryParams.Add("end_date", parameterToString(*r.endDate, ""))
-	}
-	if r.excludeCancelled != nil {
-		localVarQueryParams.Add("exclude_cancelled", parameterToString(*r.excludeCancelled, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xAccessToken != nil {
-		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
-	}
-	if r.xSecretToken != nil {
-		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
-	}
-	if r.authorization != nil {
-		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
-	}
-	if r.ehelplyActiveParticipant != nil {
-		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
-	}
-	if r.ehelplyProject != nil {
-		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
-	}
-	if r.ehelplyData != nil {
-		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v HTTPValidationError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiUpdateAppointmentRequest struct {
-	ctx context.Context
-	ApiService *DefaultApiService
-	appointmentUuid string
-	appointmentBase *AppointmentBase
-	xAccessToken *string
-	xSecretToken *string
-	authorization *string
-	ehelplyActiveParticipant *string
-	ehelplyProject *string
-	ehelplyData *string
-}
-
-func (r ApiUpdateAppointmentRequest) AppointmentBase(appointmentBase AppointmentBase) ApiUpdateAppointmentRequest {
-	r.appointmentBase = &appointmentBase
-	return r
-}
-
-func (r ApiUpdateAppointmentRequest) XAccessToken(xAccessToken string) ApiUpdateAppointmentRequest {
-	r.xAccessToken = &xAccessToken
-	return r
-}
-
-func (r ApiUpdateAppointmentRequest) XSecretToken(xSecretToken string) ApiUpdateAppointmentRequest {
-	r.xSecretToken = &xSecretToken
-	return r
-}
-
-func (r ApiUpdateAppointmentRequest) Authorization(authorization string) ApiUpdateAppointmentRequest {
-	r.authorization = &authorization
-	return r
-}
-
-func (r ApiUpdateAppointmentRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiUpdateAppointmentRequest {
-	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
-	return r
-}
-
-func (r ApiUpdateAppointmentRequest) EhelplyProject(ehelplyProject string) ApiUpdateAppointmentRequest {
-	r.ehelplyProject = &ehelplyProject
-	return r
-}
-
-func (r ApiUpdateAppointmentRequest) EhelplyData(ehelplyData string) ApiUpdateAppointmentRequest {
-	r.ehelplyData = &ehelplyData
-	return r
-}
-
-func (r ApiUpdateAppointmentRequest) Execute() (*AppointmentResponse, *http.Response, error) {
-	return r.ApiService.UpdateAppointmentExecute(r)
-}
-
-/*
-UpdateAppointment Update Appointment
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param appointmentUuid
- @return ApiUpdateAppointmentRequest
-*/
-func (a *DefaultApiService) UpdateAppointment(ctx context.Context, appointmentUuid string) ApiUpdateAppointmentRequest {
-	return ApiUpdateAppointmentRequest{
-		ApiService: a,
-		ctx: ctx,
-		appointmentUuid: appointmentUuid,
-	}
-}
-
-// Execute executes the request
-//  @return AppointmentResponse
-func (a *DefaultApiService) UpdateAppointmentExecute(r ApiUpdateAppointmentRequest) (*AppointmentResponse, *http.Response, error) {
+//  @return CatalogReturn
+func (a *CatalogsApiService) UpdateCatalogExecute(r ApiUpdateCatalogRequest) (*CatalogReturn, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AppointmentResponse
+		localVarReturnValue  *CatalogReturn
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateAppointment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CatalogsApiService.UpdateCatalog")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/appointments/appointments/{appointment_uuid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"appointment_uuid"+"}", url.PathEscape(parameterToString(r.appointmentUuid, "")), -1)
+	localVarPath := localBasePath + "/products/catalogs/{catalog_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"catalog_uuid"+"}", url.PathEscape(parameterToString(r.catalogUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.appointmentBase == nil {
-		return localVarReturnValue, nil, reportError("appointmentBase is required and must be specified")
+	if r.catalogBase == nil {
+		return localVarReturnValue, nil, reportError("catalogBase is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1657,7 +1419,7 @@ func (a *DefaultApiService) UpdateAppointmentExecute(r ApiUpdateAppointmentReque
 		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
 	}
 	// body params
-	localVarPostBody = r.appointmentBase
+	localVarPostBody = r.catalogBase
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1679,26 +1441,6 @@ func (a *DefaultApiService) UpdateAppointmentExecute(r ApiUpdateAppointmentReque
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetAppointment403Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetAppointment403Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v HTTPValidationError
