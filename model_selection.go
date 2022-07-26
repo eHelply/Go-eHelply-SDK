@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.94
+eHelply SDK - 1.1.95
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.94
+API version: 1.1.95
 Contact: support@ehelply.com
 */
 
@@ -15,7 +15,7 @@ import (
 	"encoding/json"
 )
 
-// Selection struct for Selection
+// Selection Selection Model
 type Selection struct {
 	Name *string `json:"name,omitempty"`
 	Value *float32 `json:"value,omitempty"`

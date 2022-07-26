@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.94
+eHelply SDK - 1.1.95
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.94
+API version: 1.1.95
 Contact: support@ehelply.com
 */
 
@@ -15,7 +15,7 @@ import (
 	"encoding/json"
 )
 
-// Options struct for Options
+// Options Options
 type Options struct {
 	Required *bool `json:"required,omitempty"`
 	Label *string `json:"label,omitempty"`

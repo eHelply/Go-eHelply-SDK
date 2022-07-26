@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.94
+eHelply SDK - 1.1.95
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.94
+API version: 1.1.95
 Contact: support@ehelply.com
 */
 
@@ -1119,7 +1119,7 @@ func (r ApiGetMetaRequest) EhelplyData(ehelplyData string) ApiGetMetaRequest {
 	return r
 }
 
-func (r ApiGetMetaRequest) Execute() (*MetaDynamo, *http.Response, error) {
+func (r ApiGetMetaRequest) Execute() (*MetaGet, *http.Response, error) {
 	return r.ApiService.GetMetaExecute(r)
 }
 
@@ -1143,13 +1143,13 @@ func (a *MetaApiService) GetMeta(ctx context.Context, service string, typeStr st
 }
 
 // Execute executes the request
-//  @return MetaDynamo
-func (a *MetaApiService) GetMetaExecute(r ApiGetMetaRequest) (*MetaDynamo, *http.Response, error) {
+//  @return MetaGet
+func (a *MetaApiService) GetMetaExecute(r ApiGetMetaRequest) (*MetaGet, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *MetaDynamo
+		localVarReturnValue  *MetaGet
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetaApiService.GetMeta")
@@ -1325,7 +1325,7 @@ func (r ApiGetMetaFromUuidRequest) EhelplyData(ehelplyData string) ApiGetMetaFro
 	return r
 }
 
-func (r ApiGetMetaFromUuidRequest) Execute() (*MetaDynamo, *http.Response, error) {
+func (r ApiGetMetaFromUuidRequest) Execute() (*MetaGet, *http.Response, error) {
 	return r.ApiService.GetMetaFromUuidExecute(r)
 }
 
@@ -1345,13 +1345,13 @@ func (a *MetaApiService) GetMetaFromUuid(ctx context.Context, metaUuid string) A
 }
 
 // Execute executes the request
-//  @return MetaDynamo
-func (a *MetaApiService) GetMetaFromUuidExecute(r ApiGetMetaFromUuidRequest) (*MetaDynamo, *http.Response, error) {
+//  @return MetaGet
+func (a *MetaApiService) GetMetaFromUuidExecute(r ApiGetMetaFromUuidRequest) (*MetaGet, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *MetaDynamo
+		localVarReturnValue  *MetaGet
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetaApiService.GetMetaFromUuid")

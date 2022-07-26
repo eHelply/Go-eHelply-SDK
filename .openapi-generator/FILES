@@ -58,6 +58,7 @@ docs/DefaultApi.md
 docs/Detailed.md
 docs/DetailedMeta.md
 docs/DetailedMetaCreate.md
+docs/DetailedMetaGet.md
 docs/Email.md
 docs/Field.md
 docs/FieldDynamo.md
@@ -75,6 +76,7 @@ docs/MetaChildren.md
 docs/MetaCreate.md
 docs/MetaCustom.md
 docs/MetaDynamo.md
+docs/MetaGet.md
 docs/MetaSlugger.md
 docs/MonitorApi.md
 docs/NoteBase.md
@@ -193,6 +195,7 @@ model_dates_meta.go
 model_detailed.go
 model_detailed_meta.go
 model_detailed_meta_create.go
+model_detailed_meta_get.go
 model_email.go
 model_field.go
 model_field_dynamo.go
@@ -208,6 +211,7 @@ model_meta_children.go
 model_meta_create.go
 model_meta_custom.go
 model_meta_dynamo.go
+model_meta_get.go
 model_meta_slugger.go
 model_note_base.go
 model_note_dynamo_history_response.go
