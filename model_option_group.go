@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.99
+eHelply SDK - 1.1.100
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.99
+API version: 1.1.100
 Contact: support@ehelply.com
 */
 
@@ -15,7 +15,7 @@ import (
 	"encoding/json"
 )
 
-// OptionGroup struct for OptionGroup
+// OptionGroup Option Group
 type OptionGroup struct {
 	Name *string `json:"name,omitempty"`
 	Type *string `json:"type,omitempty"`

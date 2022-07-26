@@ -9,8 +9,8 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://superstack.ehelply.com/support/legal/terms
-  title: eHelply SDK - 1.1.99
-  version: 1.1.99
+  title: eHelply SDK - 1.1.100
+  version: 1.1.100
 servers:
 - description: eHelply / SuperStack Production
   url: https://api.prod.ehelply.com
@@ -1109,7 +1109,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MetaDynamo'
+                $ref: '#/components/schemas/MetaGet'
           description: Successful Response
         "404":
           description: Not found
@@ -1497,7 +1497,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MetaDynamo'
+                $ref: '#/components/schemas/MetaGet'
           description: Successful Response
         "404":
           description: Not found
@@ -13422,6 +13422,9 @@ components:
       type: object
     BasicMeta:
       description: Basic meta
+      example:
+        name: name
+        slug: slug
       properties:
         name:
           title: Name
@@ -13497,6 +13500,36 @@ components:
           title: Description
           type: string
       title: DetailedMetaCreate
+      type: object
+    DetailedMetaGet:
+      description: Detailed meta based on Notes
+      example:
+        summary: summary
+        summary_history:
+        - summary_history
+        - summary_history
+        description: description
+        description_history:
+        - description_history
+        - description_history
+      properties:
+        summary:
+          title: Summary
+          type: string
+        description:
+          title: Description
+          type: string
+        summary_history:
+          items:
+            type: string
+          title: Summary History
+          type: array
+        description_history:
+          items:
+            type: string
+          title: Description History
+          type: array
+      title: DetailedMetaGet
       type: object
     Field:
       description: Field
@@ -13958,6 +13991,159 @@ components:
       - uuid
       title: MetaDynamo
       type: object
+    MetaGet:
+      description: Meta
+      example:
+        parent_uuid: parent_uuid
+        detailed:
+          summary: summary
+          summary_history:
+          - summary_history
+          - summary_history
+          description: description
+          description_history:
+          - description_history
+          - description_history
+        children:
+        - child_uuid: child_uuid
+          child_description: child_description
+          child_name: child_name
+        - child_uuid: child_uuid
+          child_description: child_description
+          child_name: child_name
+        custom:
+          name: name
+          description: description
+          list:
+          - name: name
+            description: description
+          - name: name
+            description: description
+        dates:
+          updated_at: updated_at
+          created_at: created_at
+        basic:
+          name: name
+          slug: slug
+        fields:
+        - hint: hint
+          icon: icon
+          options:
+            color: color
+            insetLabel: insetLabel
+            icon: icon
+            caption: caption
+            label: label
+            counter: true
+            type: type
+            required: true
+            selections:
+            - selections:
+              - name: name
+                icon: icon
+                value: 1.4658129805029452
+              - name: name
+                icon: icon
+                value: 1.4658129805029452
+              name: name
+              type: type
+            - selections:
+              - name: name
+                icon: icon
+                value: 1.4658129805029452
+              - name: name
+                icon: icon
+                value: 1.4658129805029452
+              name: name
+              type: type
+            size: size
+            hint: hint
+            iconPosition: iconPosition
+            placeholder: placeholder
+            maxLength: 6.027456183070403
+          placeholder: placeholder
+          validations:
+            value:
+            - value
+            - value
+          label: label
+          type: 0
+          uuid: uuid
+        - hint: hint
+          icon: icon
+          options:
+            color: color
+            insetLabel: insetLabel
+            icon: icon
+            caption: caption
+            label: label
+            counter: true
+            type: type
+            required: true
+            selections:
+            - selections:
+              - name: name
+                icon: icon
+                value: 1.4658129805029452
+              - name: name
+                icon: icon
+                value: 1.4658129805029452
+              name: name
+              type: type
+            - selections:
+              - name: name
+                icon: icon
+                value: 1.4658129805029452
+              - name: name
+                icon: icon
+                value: 1.4658129805029452
+              name: name
+              type: type
+            size: size
+            hint: hint
+            iconPosition: iconPosition
+            placeholder: placeholder
+            maxLength: 6.027456183070403
+          placeholder: placeholder
+          validations:
+            value:
+            - value
+            - value
+          label: label
+          type: 0
+          uuid: uuid
+        uuid: uuid
+      properties:
+        uuid:
+          title: Uuid
+          type: string
+        basic:
+          $ref: '#/components/schemas/BasicMeta'
+        detailed:
+          $ref: '#/components/schemas/DetailedMetaGet'
+        custom:
+          $ref: '#/components/schemas/MetaCustom'
+        dates:
+          $ref: '#/components/schemas/DatesMeta'
+        fields:
+          items:
+            $ref: '#/components/schemas/Field'
+          title: Fields
+          type: array
+        children:
+          items:
+            $ref: '#/components/schemas/MetaChildren'
+          title: Children
+          type: array
+        parent_uuid:
+          title: Parent Uuid
+          type: string
+      required:
+      - basic
+      - detailed
+      - uuid
+      title: MetaGet
+      type: object
     MetaSlugger:
       description: Meta slugger
       example:
@@ -13971,6 +14157,7 @@ components:
       title: MetaSlugger
       type: object
     OptionGroup:
+      description: Option Group
       example:
         selections:
         - name: name
@@ -13996,6 +14183,7 @@ components:
       title: OptionGroup
       type: object
     Options:
+      description: Options
       example:
         color: color
         insetLabel: insetLabel
@@ -14077,6 +14265,7 @@ components:
       title: Options
       type: object
     Selection:
+      description: Selection Model
       example:
         name: name
         icon: icon
@@ -14094,6 +14283,7 @@ components:
       title: Selection
       type: object
     Validations:
+      description: Validations
       example:
         value:
         - value

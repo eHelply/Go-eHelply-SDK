@@ -514,7 +514,7 @@ No authorization required
 
 ## GetMeta
 
-> MetaDynamo GetMeta(ctx, service, typeStr, entityUuid).Detailed(detailed).Custom(custom).Dates(dates).History(history).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> MetaGet GetMeta(ctx, service, typeStr, entityUuid).Detailed(detailed).Custom(custom).Dates(dates).History(history).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Get Meta
 
@@ -552,7 +552,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `MetaApi.GetMeta``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetMeta`: MetaDynamo
+    // response from `GetMeta`: MetaGet
     fmt.Fprintf(os.Stdout, "Response from `MetaApi.GetMeta`: %v\n", resp)
 }
 ```
@@ -590,7 +590,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**MetaDynamo**](MetaDynamo.md)
+[**MetaGet**](MetaGet.md)
 
 ### Authorization
 
@@ -608,7 +608,7 @@ No authorization required
 
 ## GetMetaFromUuid
 
-> MetaDynamo GetMetaFromUuid(ctx, metaUuid).Detailed(detailed).Custom(custom).Dates(dates).History(history).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> MetaGet GetMetaFromUuid(ctx, metaUuid).Detailed(detailed).Custom(custom).Dates(dates).History(history).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Get Meta From Uuid
 
@@ -644,7 +644,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `MetaApi.GetMetaFromUuid``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetMetaFromUuid`: MetaDynamo
+    // response from `GetMetaFromUuid`: MetaGet
     fmt.Fprintf(os.Stdout, "Response from `MetaApi.GetMetaFromUuid`: %v\n", resp)
 }
 ```
@@ -678,7 +678,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**MetaDynamo**](MetaDynamo.md)
+[**MetaGet**](MetaGet.md)
 
 ### Authorization
 
