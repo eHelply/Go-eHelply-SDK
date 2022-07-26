@@ -21,13 +21,15 @@ import (
 )
 
 
-// SupportApiService SupportApi service
-type SupportApiService service
+// ReviewsApiService ReviewsApi service
+type ReviewsApiService service
 
-type ApiCreateContactRequest struct {
+type ApiCreateReviewRequest struct {
 	ctx context.Context
-	ApiService *SupportApiService
-	contact *Contact
+	ApiService *ReviewsApiService
+	entityType string
+	entityUuid string
+	createReview *CreateReview
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -36,80 +38,86 @@ type ApiCreateContactRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiCreateContactRequest) Contact(contact Contact) ApiCreateContactRequest {
-	r.contact = &contact
+func (r ApiCreateReviewRequest) CreateReview(createReview CreateReview) ApiCreateReviewRequest {
+	r.createReview = &createReview
 	return r
 }
 
-func (r ApiCreateContactRequest) XAccessToken(xAccessToken string) ApiCreateContactRequest {
+func (r ApiCreateReviewRequest) XAccessToken(xAccessToken string) ApiCreateReviewRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiCreateContactRequest) XSecretToken(xSecretToken string) ApiCreateContactRequest {
+func (r ApiCreateReviewRequest) XSecretToken(xSecretToken string) ApiCreateReviewRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiCreateContactRequest) Authorization(authorization string) ApiCreateContactRequest {
+func (r ApiCreateReviewRequest) Authorization(authorization string) ApiCreateReviewRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiCreateContactRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiCreateContactRequest {
+func (r ApiCreateReviewRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiCreateReviewRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiCreateContactRequest) EhelplyProject(ehelplyProject string) ApiCreateContactRequest {
+func (r ApiCreateReviewRequest) EhelplyProject(ehelplyProject string) ApiCreateReviewRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiCreateContactRequest) EhelplyData(ehelplyData string) ApiCreateContactRequest {
+func (r ApiCreateReviewRequest) EhelplyData(ehelplyData string) ApiCreateReviewRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiCreateContactRequest) Execute() (*ContactResponse, *http.Response, error) {
-	return r.ApiService.CreateContactExecute(r)
+func (r ApiCreateReviewRequest) Execute() (interface{}, *http.Response, error) {
+	return r.ApiService.CreateReviewExecute(r)
 }
 
 /*
-CreateContact Createcontact
+CreateReview Create
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateContactRequest
+ @param entityType
+ @param entityUuid
+ @return ApiCreateReviewRequest
 */
-func (a *SupportApiService) CreateContact(ctx context.Context) ApiCreateContactRequest {
-	return ApiCreateContactRequest{
+func (a *ReviewsApiService) CreateReview(ctx context.Context, entityType string, entityUuid string) ApiCreateReviewRequest {
+	return ApiCreateReviewRequest{
 		ApiService: a,
 		ctx: ctx,
+		entityType: entityType,
+		entityUuid: entityUuid,
 	}
 }
 
 // Execute executes the request
-//  @return ContactResponse
-func (a *SupportApiService) CreateContactExecute(r ApiCreateContactRequest) (*ContactResponse, *http.Response, error) {
+//  @return interface{}
+func (a *ReviewsApiService) CreateReviewExecute(r ApiCreateReviewRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ContactResponse
+		localVarReturnValue  interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SupportApiService.CreateContact")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReviewsApiService.CreateReview")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/sam/support/contact"
+	localVarPath := localBasePath + "/products/reviews/types/{entity_type}/entities/{entity_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"entity_type"+"}", url.PathEscape(parameterToString(r.entityType, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"entity_uuid"+"}", url.PathEscape(parameterToString(r.entityUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.contact == nil {
-		return localVarReturnValue, nil, reportError("contact is required and must be specified")
+	if r.createReview == nil {
+		return localVarReturnValue, nil, reportError("createReview is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -148,7 +156,7 @@ func (a *SupportApiService) CreateContactExecute(r ApiCreateContactRequest) (*Co
 		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
 	}
 	// body params
-	localVarPostBody = r.contact
+	localVarPostBody = r.createReview
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -170,16 +178,6 @@ func (a *SupportApiService) CreateContactExecute(r ApiCreateContactRequest) (*Co
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v HTTPValidationError
@@ -205,12 +203,12 @@ func (a *SupportApiService) CreateContactExecute(r ApiCreateContactRequest) (*Co
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiCreateTicketRequest struct {
+type ApiDeleteReviewRequest struct {
 	ctx context.Context
-	ApiService *SupportApiService
-	projectUuid string
-	memberUuid string
-	createTicket *CreateTicket
+	ApiService *ReviewsApiService
+	entityType string
+	entityUuid string
+	reviewUuid string
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -219,263 +217,78 @@ type ApiCreateTicketRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiCreateTicketRequest) CreateTicket(createTicket CreateTicket) ApiCreateTicketRequest {
-	r.createTicket = &createTicket
-	return r
-}
-
-func (r ApiCreateTicketRequest) XAccessToken(xAccessToken string) ApiCreateTicketRequest {
+func (r ApiDeleteReviewRequest) XAccessToken(xAccessToken string) ApiDeleteReviewRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiCreateTicketRequest) XSecretToken(xSecretToken string) ApiCreateTicketRequest {
+func (r ApiDeleteReviewRequest) XSecretToken(xSecretToken string) ApiDeleteReviewRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiCreateTicketRequest) Authorization(authorization string) ApiCreateTicketRequest {
+func (r ApiDeleteReviewRequest) Authorization(authorization string) ApiDeleteReviewRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiCreateTicketRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiCreateTicketRequest {
+func (r ApiDeleteReviewRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiDeleteReviewRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiCreateTicketRequest) EhelplyProject(ehelplyProject string) ApiCreateTicketRequest {
+func (r ApiDeleteReviewRequest) EhelplyProject(ehelplyProject string) ApiDeleteReviewRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiCreateTicketRequest) EhelplyData(ehelplyData string) ApiCreateTicketRequest {
+func (r ApiDeleteReviewRequest) EhelplyData(ehelplyData string) ApiDeleteReviewRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiCreateTicketRequest) Execute() (*TicketResponse, *http.Response, error) {
-	return r.ApiService.CreateTicketExecute(r)
+func (r ApiDeleteReviewRequest) Execute() (interface{}, *http.Response, error) {
+	return r.ApiService.DeleteReviewExecute(r)
 }
 
 /*
-CreateTicket Createticket
+DeleteReview Deletereview
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param projectUuid
- @param memberUuid
- @return ApiCreateTicketRequest
+ @param entityType
+ @param entityUuid
+ @param reviewUuid
+ @return ApiDeleteReviewRequest
 */
-func (a *SupportApiService) CreateTicket(ctx context.Context, projectUuid string, memberUuid string) ApiCreateTicketRequest {
-	return ApiCreateTicketRequest{
+func (a *ReviewsApiService) DeleteReview(ctx context.Context, entityType string, entityUuid string, reviewUuid string) ApiDeleteReviewRequest {
+	return ApiDeleteReviewRequest{
 		ApiService: a,
 		ctx: ctx,
-		projectUuid: projectUuid,
-		memberUuid: memberUuid,
+		entityType: entityType,
+		entityUuid: entityUuid,
+		reviewUuid: reviewUuid,
 	}
 }
 
 // Execute executes the request
-//  @return TicketResponse
-func (a *SupportApiService) CreateTicketExecute(r ApiCreateTicketRequest) (*TicketResponse, *http.Response, error) {
+//  @return interface{}
+func (a *ReviewsApiService) DeleteReviewExecute(r ApiDeleteReviewRequest) (interface{}, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TicketResponse
+		localVarReturnValue  interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SupportApiService.CreateTicket")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReviewsApiService.DeleteReview")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/sam/support/projects/{project_uuid}/members/{member_uuid}/tickets"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_uuid"+"}", url.PathEscape(parameterToString(r.projectUuid, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"member_uuid"+"}", url.PathEscape(parameterToString(r.memberUuid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.createTicket == nil {
-		return localVarReturnValue, nil, reportError("createTicket is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xAccessToken != nil {
-		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
-	}
-	if r.xSecretToken != nil {
-		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
-	}
-	if r.authorization != nil {
-		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
-	}
-	if r.ehelplyActiveParticipant != nil {
-		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
-	}
-	if r.ehelplyProject != nil {
-		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
-	}
-	if r.ehelplyData != nil {
-		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
-	}
-	// body params
-	localVarPostBody = r.createTicket
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v HTTPValidationError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiListTicketsRequest struct {
-	ctx context.Context
-	ApiService *SupportApiService
-	projectUuid string
-	memberUuid string
-	xAccessToken *string
-	xSecretToken *string
-	authorization *string
-	ehelplyActiveParticipant *string
-	ehelplyProject *string
-	ehelplyData *string
-}
-
-func (r ApiListTicketsRequest) XAccessToken(xAccessToken string) ApiListTicketsRequest {
-	r.xAccessToken = &xAccessToken
-	return r
-}
-
-func (r ApiListTicketsRequest) XSecretToken(xSecretToken string) ApiListTicketsRequest {
-	r.xSecretToken = &xSecretToken
-	return r
-}
-
-func (r ApiListTicketsRequest) Authorization(authorization string) ApiListTicketsRequest {
-	r.authorization = &authorization
-	return r
-}
-
-func (r ApiListTicketsRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiListTicketsRequest {
-	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
-	return r
-}
-
-func (r ApiListTicketsRequest) EhelplyProject(ehelplyProject string) ApiListTicketsRequest {
-	r.ehelplyProject = &ehelplyProject
-	return r
-}
-
-func (r ApiListTicketsRequest) EhelplyData(ehelplyData string) ApiListTicketsRequest {
-	r.ehelplyData = &ehelplyData
-	return r
-}
-
-func (r ApiListTicketsRequest) Execute() ([]TicketsResponse, *http.Response, error) {
-	return r.ApiService.ListTicketsExecute(r)
-}
-
-/*
-ListTickets Listtickets
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param projectUuid
- @param memberUuid
- @return ApiListTicketsRequest
-*/
-func (a *SupportApiService) ListTickets(ctx context.Context, projectUuid string, memberUuid string) ApiListTicketsRequest {
-	return ApiListTicketsRequest{
-		ApiService: a,
-		ctx: ctx,
-		projectUuid: projectUuid,
-		memberUuid: memberUuid,
-	}
-}
-
-// Execute executes the request
-//  @return []TicketsResponse
-func (a *SupportApiService) ListTicketsExecute(r ApiListTicketsRequest) ([]TicketsResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []TicketsResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SupportApiService.ListTickets")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/sam/support/projects/{project_uuid}/members/{member_uuid}/tickets"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_uuid"+"}", url.PathEscape(parameterToString(r.projectUuid, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"member_uuid"+"}", url.PathEscape(parameterToString(r.memberUuid, "")), -1)
+	localVarPath := localBasePath + "/products/reviews/types/{entity_type}/entities/{entity_uuid}/reviews/{review_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"entity_type"+"}", url.PathEscape(parameterToString(r.entityType, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"entity_uuid"+"}", url.PathEscape(parameterToString(r.entityUuid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"review_uuid"+"}", url.PathEscape(parameterToString(r.reviewUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -538,25 +351,177 @@ func (a *SupportApiService) ListTicketsExecute(r ApiListTicketsRequest) ([]Ticke
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetServicesWithSpecs403Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetReviewRequest struct {
+	ctx context.Context
+	ApiService *ReviewsApiService
+	entityType string
+	entityUuid string
+	reviewUuid string
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
+}
+
+func (r ApiGetReviewRequest) XAccessToken(xAccessToken string) ApiGetReviewRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiGetReviewRequest) XSecretToken(xSecretToken string) ApiGetReviewRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiGetReviewRequest) Authorization(authorization string) ApiGetReviewRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiGetReviewRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiGetReviewRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiGetReviewRequest) EhelplyProject(ehelplyProject string) ApiGetReviewRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiGetReviewRequest) EhelplyData(ehelplyData string) ApiGetReviewRequest {
+	r.ehelplyData = &ehelplyData
+	return r
+}
+
+func (r ApiGetReviewRequest) Execute() (interface{}, *http.Response, error) {
+	return r.ApiService.GetReviewExecute(r)
+}
+
+/*
+GetReview Getreview
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param entityType
+ @param entityUuid
+ @param reviewUuid
+ @return ApiGetReviewRequest
+*/
+func (a *ReviewsApiService) GetReview(ctx context.Context, entityType string, entityUuid string, reviewUuid string) ApiGetReviewRequest {
+	return ApiGetReviewRequest{
+		ApiService: a,
+		ctx: ctx,
+		entityType: entityType,
+		entityUuid: entityUuid,
+		reviewUuid: reviewUuid,
+	}
+}
+
+// Execute executes the request
+//  @return interface{}
+func (a *ReviewsApiService) GetReviewExecute(r ApiGetReviewRequest) (interface{}, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  interface{}
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReviewsApiService.GetReview")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/products/reviews/types/{entity_type}/entities/{entity_uuid}/reviews/{review_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"entity_type"+"}", url.PathEscape(parameterToString(r.entityType, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"entity_uuid"+"}", url.PathEscape(parameterToString(r.entityUuid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"review_uuid"+"}", url.PathEscape(parameterToString(r.reviewUuid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v HTTPValidationError
@@ -582,13 +547,11 @@ func (a *SupportApiService) ListTicketsExecute(r ApiListTicketsRequest) ([]Ticke
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateTicketRequest struct {
+type ApiSearchReviewsRequest struct {
 	ctx context.Context
-	ApiService *SupportApiService
-	projectUuid string
-	memberUuid string
-	ticketId string
-	createTicket *CreateTicket
+	ApiService *ReviewsApiService
+	entityType string
+	entityUuid string
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -597,89 +560,259 @@ type ApiUpdateTicketRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiUpdateTicketRequest) CreateTicket(createTicket CreateTicket) ApiUpdateTicketRequest {
-	r.createTicket = &createTicket
-	return r
-}
-
-func (r ApiUpdateTicketRequest) XAccessToken(xAccessToken string) ApiUpdateTicketRequest {
+func (r ApiSearchReviewsRequest) XAccessToken(xAccessToken string) ApiSearchReviewsRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiUpdateTicketRequest) XSecretToken(xSecretToken string) ApiUpdateTicketRequest {
+func (r ApiSearchReviewsRequest) XSecretToken(xSecretToken string) ApiSearchReviewsRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiUpdateTicketRequest) Authorization(authorization string) ApiUpdateTicketRequest {
+func (r ApiSearchReviewsRequest) Authorization(authorization string) ApiSearchReviewsRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiUpdateTicketRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiUpdateTicketRequest {
+func (r ApiSearchReviewsRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiSearchReviewsRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiUpdateTicketRequest) EhelplyProject(ehelplyProject string) ApiUpdateTicketRequest {
+func (r ApiSearchReviewsRequest) EhelplyProject(ehelplyProject string) ApiSearchReviewsRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiUpdateTicketRequest) EhelplyData(ehelplyData string) ApiUpdateTicketRequest {
+func (r ApiSearchReviewsRequest) EhelplyData(ehelplyData string) ApiSearchReviewsRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiUpdateTicketRequest) Execute() (*TicketResponse, *http.Response, error) {
-	return r.ApiService.UpdateTicketExecute(r)
+func (r ApiSearchReviewsRequest) Execute() (interface{}, *http.Response, error) {
+	return r.ApiService.SearchReviewsExecute(r)
 }
 
 /*
-UpdateTicket Updateticket
+SearchReviews Searchreview
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param projectUuid
- @param memberUuid
- @param ticketId
- @return ApiUpdateTicketRequest
+ @param entityType
+ @param entityUuid
+ @return ApiSearchReviewsRequest
 */
-func (a *SupportApiService) UpdateTicket(ctx context.Context, projectUuid string, memberUuid string, ticketId string) ApiUpdateTicketRequest {
-	return ApiUpdateTicketRequest{
+func (a *ReviewsApiService) SearchReviews(ctx context.Context, entityType string, entityUuid string) ApiSearchReviewsRequest {
+	return ApiSearchReviewsRequest{
 		ApiService: a,
 		ctx: ctx,
-		projectUuid: projectUuid,
-		memberUuid: memberUuid,
-		ticketId: ticketId,
+		entityType: entityType,
+		entityUuid: entityUuid,
 	}
 }
 
 // Execute executes the request
-//  @return TicketResponse
-func (a *SupportApiService) UpdateTicketExecute(r ApiUpdateTicketRequest) (*TicketResponse, *http.Response, error) {
+//  @return interface{}
+func (a *ReviewsApiService) SearchReviewsExecute(r ApiSearchReviewsRequest) (interface{}, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  interface{}
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReviewsApiService.SearchReviews")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/products/reviews/types/{entity_type}/entities/{entity_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"entity_type"+"}", url.PathEscape(parameterToString(r.entityType, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"entity_uuid"+"}", url.PathEscape(parameterToString(r.entityUuid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiUpdateReviewRequest struct {
+	ctx context.Context
+	ApiService *ReviewsApiService
+	entityType string
+	entityUuid string
+	reviewUuid string
+	updateReview *UpdateReview
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
+}
+
+func (r ApiUpdateReviewRequest) UpdateReview(updateReview UpdateReview) ApiUpdateReviewRequest {
+	r.updateReview = &updateReview
+	return r
+}
+
+func (r ApiUpdateReviewRequest) XAccessToken(xAccessToken string) ApiUpdateReviewRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiUpdateReviewRequest) XSecretToken(xSecretToken string) ApiUpdateReviewRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiUpdateReviewRequest) Authorization(authorization string) ApiUpdateReviewRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiUpdateReviewRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiUpdateReviewRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiUpdateReviewRequest) EhelplyProject(ehelplyProject string) ApiUpdateReviewRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiUpdateReviewRequest) EhelplyData(ehelplyData string) ApiUpdateReviewRequest {
+	r.ehelplyData = &ehelplyData
+	return r
+}
+
+func (r ApiUpdateReviewRequest) Execute() (interface{}, *http.Response, error) {
+	return r.ApiService.UpdateReviewExecute(r)
+}
+
+/*
+UpdateReview Updatereview
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param entityType
+ @param entityUuid
+ @param reviewUuid
+ @return ApiUpdateReviewRequest
+*/
+func (a *ReviewsApiService) UpdateReview(ctx context.Context, entityType string, entityUuid string, reviewUuid string) ApiUpdateReviewRequest {
+	return ApiUpdateReviewRequest{
+		ApiService: a,
+		ctx: ctx,
+		entityType: entityType,
+		entityUuid: entityUuid,
+		reviewUuid: reviewUuid,
+	}
+}
+
+// Execute executes the request
+//  @return interface{}
+func (a *ReviewsApiService) UpdateReviewExecute(r ApiUpdateReviewRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TicketResponse
+		localVarReturnValue  interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SupportApiService.UpdateTicket")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReviewsApiService.UpdateReview")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/sam/support/projects/{project_uuid}/members/{member_uuid}/tickets/{ticket_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_uuid"+"}", url.PathEscape(parameterToString(r.projectUuid, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"member_uuid"+"}", url.PathEscape(parameterToString(r.memberUuid, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"ticket_id"+"}", url.PathEscape(parameterToString(r.ticketId, "")), -1)
+	localVarPath := localBasePath + "/products/reviews/types/{entity_type}/entities/{entity_uuid}/reviews/{review_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"entity_type"+"}", url.PathEscape(parameterToString(r.entityType, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"entity_uuid"+"}", url.PathEscape(parameterToString(r.entityUuid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"review_uuid"+"}", url.PathEscape(parameterToString(r.reviewUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createTicket == nil {
-		return localVarReturnValue, nil, reportError("createTicket is required and must be specified")
+	if r.updateReview == nil {
+		return localVarReturnValue, nil, reportError("updateReview is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -718,7 +851,7 @@ func (a *SupportApiService) UpdateTicketExecute(r ApiUpdateTicketRequest) (*Tick
 		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
 	}
 	// body params
-	localVarPostBody = r.createTicket
+	localVarPostBody = r.updateReview
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -740,198 +873,6 @@ func (a *SupportApiService) UpdateTicketExecute(r ApiUpdateTicketRequest) (*Tick
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v HTTPValidationError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiViewTicketRequest struct {
-	ctx context.Context
-	ApiService *SupportApiService
-	projectUuid string
-	memberUuid string
-	ticketId string
-	xAccessToken *string
-	xSecretToken *string
-	authorization *string
-	ehelplyActiveParticipant *string
-	ehelplyProject *string
-	ehelplyData *string
-}
-
-func (r ApiViewTicketRequest) XAccessToken(xAccessToken string) ApiViewTicketRequest {
-	r.xAccessToken = &xAccessToken
-	return r
-}
-
-func (r ApiViewTicketRequest) XSecretToken(xSecretToken string) ApiViewTicketRequest {
-	r.xSecretToken = &xSecretToken
-	return r
-}
-
-func (r ApiViewTicketRequest) Authorization(authorization string) ApiViewTicketRequest {
-	r.authorization = &authorization
-	return r
-}
-
-func (r ApiViewTicketRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiViewTicketRequest {
-	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
-	return r
-}
-
-func (r ApiViewTicketRequest) EhelplyProject(ehelplyProject string) ApiViewTicketRequest {
-	r.ehelplyProject = &ehelplyProject
-	return r
-}
-
-func (r ApiViewTicketRequest) EhelplyData(ehelplyData string) ApiViewTicketRequest {
-	r.ehelplyData = &ehelplyData
-	return r
-}
-
-func (r ApiViewTicketRequest) Execute() (*TicketResponse, *http.Response, error) {
-	return r.ApiService.ViewTicketExecute(r)
-}
-
-/*
-ViewTicket Viewticket
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param projectUuid
- @param memberUuid
- @param ticketId
- @return ApiViewTicketRequest
-*/
-func (a *SupportApiService) ViewTicket(ctx context.Context, projectUuid string, memberUuid string, ticketId string) ApiViewTicketRequest {
-	return ApiViewTicketRequest{
-		ApiService: a,
-		ctx: ctx,
-		projectUuid: projectUuid,
-		memberUuid: memberUuid,
-		ticketId: ticketId,
-	}
-}
-
-// Execute executes the request
-//  @return TicketResponse
-func (a *SupportApiService) ViewTicketExecute(r ApiViewTicketRequest) (*TicketResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *TicketResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SupportApiService.ViewTicket")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/sam/support/projects/{project_uuid}/members/{member_uuid}/tickets/{ticket_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"project_uuid"+"}", url.PathEscape(parameterToString(r.projectUuid, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"member_uuid"+"}", url.PathEscape(parameterToString(r.memberUuid, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"ticket_id"+"}", url.PathEscape(parameterToString(r.ticketId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xAccessToken != nil {
-		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
-	}
-	if r.xSecretToken != nil {
-		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
-	}
-	if r.authorization != nil {
-		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
-	}
-	if r.ehelplyActiveParticipant != nil {
-		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
-	}
-	if r.ehelplyProject != nil {
-		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
-	}
-	if r.ehelplyData != nil {
-		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v HTTPValidationError

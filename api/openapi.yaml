@@ -9,8 +9,8 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://superstack.ehelply.com/support/legal/terms
-  title: eHelply SDK - 1.1.100
-  version: 1.1.100
+  title: eHelply SDK - 1.1.101
+  version: 1.1.101
 servers:
 - description: eHelply / SuperStack Production
   url: https://api.prod.ehelply.com
@@ -5492,7 +5492,7 @@ paths:
       - places
   /products/products:
     get:
-      operationId: searchProduct
+      operationId: searchProducts
       parameters:
       - explode: true
         in: query
@@ -5653,7 +5653,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Search Products
+      summary: Searchproducts
+      tags:
+      - products
     post:
       operationId: createProduct
       parameters:
@@ -5726,7 +5728,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Create Product
+      summary: Createproduct
+      tags:
+      - products
   /products/products/{product_uuid}:
     delete:
       operationId: deleteProduct
@@ -5803,7 +5807,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Delete Product
+      summary: Deleteproduct
+      tags:
+      - products
     get:
       operationId: getProduct
       parameters:
@@ -5896,7 +5902,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Get Product
+      summary: Getproduct
+      tags:
+      - products
     put:
       operationId: updateProduct
       parameters:
@@ -5977,7 +5985,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Update Product
+      summary: Updateproduct
+      tags:
+      - products
   /products/products/{product_uuid}/catalogs:
     get:
       operationId: searchProductCatalog
@@ -6097,7 +6107,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Search Product Catalogs
+      summary: Searchproductcatalog
+      tags:
+      - products
   /products/catalogs:
     get:
       operationId: searchCatalogs
@@ -6217,7 +6229,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Search Catalogs
+      summary: Searchcatalogs
+      tags:
+      - catalogs
     post:
       operationId: createCatalog
       parameters:
@@ -6290,7 +6304,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Create Catalog
+      summary: Createcatalog
+      tags:
+      - catalogs
   /products/catalogs/{catalog_uuid}:
     delete:
       operationId: deleteCatalog
@@ -6367,7 +6383,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Delete Catalog
+      summary: Deletecatalog
+      tags:
+      - catalogs
     get:
       operationId: getCatalog
       parameters:
@@ -6451,7 +6469,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Get Catalog
+      summary: Getcatalog
+      tags:
+      - catalogs
     put:
       operationId: updateCatalog
       parameters:
@@ -6532,7 +6552,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Update Catalog
+      summary: Updatecatalog
+      tags:
+      - catalogs
   /products/catalogs/{catalog_uuid}/products:
     get:
       operationId: searchCatalogProducts
@@ -6652,7 +6674,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Search Catalog Products
+      summary: Searchcatalogproducts
+      tags:
+      - catalogs
   /products/catalogs/{catalog_uuid}/products/{product_uuid}:
     delete:
       operationId: detachProductFromCatalog
@@ -6737,7 +6761,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Detach Product From Catalog
+      summary: Removeproductfromcatalog
+      tags:
+      - catalogs
     post:
       operationId: attachProductToCatalog
       parameters:
@@ -6821,10 +6847,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Attach Product To Catalog
+      summary: Addproducttocatalog
+      tags:
+      - catalogs
   /products/reviews/types/{entity_type}/entities/{entity_uuid}:
     get:
-      operationId: search_reviews
+      operationId: searchReviews
       parameters:
       - explode: false
         in: path
@@ -6904,9 +6932,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Search Review
+      summary: Searchreview
+      tags:
+      - reviews
     post:
-      operationId: create_review
+      operationId: createReview
       parameters:
       - explode: false
         in: path
@@ -6992,7 +7022,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Create Review
+      summary: Create
+      tags:
+      - reviews
   /products/reviews/types/{entity_type}/entities/{entity_uuid}/reviews/{review_uuid}:
     delete:
       operationId: delete_review
@@ -7083,9 +7115,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Delete Review
+      summary: Deletereview
+      tags:
+      - reviews
     get:
-      operationId: get_review
+      operationId: getReview
       parameters:
       - explode: false
         in: path
@@ -7173,9 +7207,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Get Review
+      summary: Getreview
+      tags:
+      - reviews
     put:
-      operationId: update_review
+      operationId: updateReview
       parameters:
       - explode: false
         in: path
@@ -7269,7 +7305,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Update Review
+      summary: Updatereview
+      tags:
+      - reviews
   /sam/logging/logs:
     get:
       operationId: getLogs

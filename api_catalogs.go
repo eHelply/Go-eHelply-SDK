@@ -17,15 +17,18 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"strings"
 )
 
 
-// BillingApiService BillingApi service
-type BillingApiService service
+// CatalogsApiService CatalogsApi service
+type CatalogsApiService service
 
-type ApiCreateBillingAccountRequest struct {
+type ApiAttachProductToCatalogRequest struct {
 	ctx context.Context
-	ApiService *BillingApiService
+	ApiService *CatalogsApiService
+	catalogUuid string
+	productUuid string
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -34,389 +37,75 @@ type ApiCreateBillingAccountRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiCreateBillingAccountRequest) XAccessToken(xAccessToken string) ApiCreateBillingAccountRequest {
+func (r ApiAttachProductToCatalogRequest) XAccessToken(xAccessToken string) ApiAttachProductToCatalogRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiCreateBillingAccountRequest) XSecretToken(xSecretToken string) ApiCreateBillingAccountRequest {
+func (r ApiAttachProductToCatalogRequest) XSecretToken(xSecretToken string) ApiAttachProductToCatalogRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiCreateBillingAccountRequest) Authorization(authorization string) ApiCreateBillingAccountRequest {
+func (r ApiAttachProductToCatalogRequest) Authorization(authorization string) ApiAttachProductToCatalogRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiCreateBillingAccountRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiCreateBillingAccountRequest {
+func (r ApiAttachProductToCatalogRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiAttachProductToCatalogRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiCreateBillingAccountRequest) EhelplyProject(ehelplyProject string) ApiCreateBillingAccountRequest {
+func (r ApiAttachProductToCatalogRequest) EhelplyProject(ehelplyProject string) ApiAttachProductToCatalogRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiCreateBillingAccountRequest) EhelplyData(ehelplyData string) ApiCreateBillingAccountRequest {
+func (r ApiAttachProductToCatalogRequest) EhelplyData(ehelplyData string) ApiAttachProductToCatalogRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiCreateBillingAccountRequest) Execute() (*StripeAccountResponse, *http.Response, error) {
-	return r.ApiService.CreateBillingAccountExecute(r)
+func (r ApiAttachProductToCatalogRequest) Execute() (bool, *http.Response, error) {
+	return r.ApiService.AttachProductToCatalogExecute(r)
 }
 
 /*
-CreateBillingAccount Createbillingaccount
+AttachProductToCatalog Addproducttocatalog
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateBillingAccountRequest
+ @param catalogUuid
+ @param productUuid
+ @return ApiAttachProductToCatalogRequest
 */
-func (a *BillingApiService) CreateBillingAccount(ctx context.Context) ApiCreateBillingAccountRequest {
-	return ApiCreateBillingAccountRequest{
+func (a *CatalogsApiService) AttachProductToCatalog(ctx context.Context, catalogUuid string, productUuid string) ApiAttachProductToCatalogRequest {
+	return ApiAttachProductToCatalogRequest{
 		ApiService: a,
 		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return StripeAccountResponse
-func (a *BillingApiService) CreateBillingAccountExecute(r ApiCreateBillingAccountRequest) (*StripeAccountResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *StripeAccountResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BillingApiService.CreateBillingAccount")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/sam/billing/create_billing_account"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xAccessToken != nil {
-		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
-	}
-	if r.xSecretToken != nil {
-		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
-	}
-	if r.authorization != nil {
-		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
-	}
-	if r.ehelplyActiveParticipant != nil {
-		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
-	}
-	if r.ehelplyProject != nil {
-		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
-	}
-	if r.ehelplyData != nil {
-		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v HTTPValidationError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetClientSecretRequest struct {
-	ctx context.Context
-	ApiService *BillingApiService
-	xAccessToken *string
-	xSecretToken *string
-	authorization *string
-	ehelplyActiveParticipant *string
-	ehelplyProject *string
-	ehelplyData *string
-}
-
-func (r ApiGetClientSecretRequest) XAccessToken(xAccessToken string) ApiGetClientSecretRequest {
-	r.xAccessToken = &xAccessToken
-	return r
-}
-
-func (r ApiGetClientSecretRequest) XSecretToken(xSecretToken string) ApiGetClientSecretRequest {
-	r.xSecretToken = &xSecretToken
-	return r
-}
-
-func (r ApiGetClientSecretRequest) Authorization(authorization string) ApiGetClientSecretRequest {
-	r.authorization = &authorization
-	return r
-}
-
-func (r ApiGetClientSecretRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiGetClientSecretRequest {
-	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
-	return r
-}
-
-func (r ApiGetClientSecretRequest) EhelplyProject(ehelplyProject string) ApiGetClientSecretRequest {
-	r.ehelplyProject = &ehelplyProject
-	return r
-}
-
-func (r ApiGetClientSecretRequest) EhelplyData(ehelplyData string) ApiGetClientSecretRequest {
-	r.ehelplyData = &ehelplyData
-	return r
-}
-
-func (r ApiGetClientSecretRequest) Execute() (*StripeCustomerSecretResponse, *http.Response, error) {
-	return r.ApiService.GetClientSecretExecute(r)
-}
-
-/*
-GetClientSecret Getclientsecret
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetClientSecretRequest
-*/
-func (a *BillingApiService) GetClientSecret(ctx context.Context) ApiGetClientSecretRequest {
-	return ApiGetClientSecretRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return StripeCustomerSecretResponse
-func (a *BillingApiService) GetClientSecretExecute(r ApiGetClientSecretRequest) (*StripeCustomerSecretResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *StripeCustomerSecretResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BillingApiService.GetClientSecret")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/sam/billing/retrieve_secret"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xAccessToken != nil {
-		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
-	}
-	if r.xSecretToken != nil {
-		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
-	}
-	if r.authorization != nil {
-		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
-	}
-	if r.ehelplyActiveParticipant != nil {
-		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
-	}
-	if r.ehelplyProject != nil {
-		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
-	}
-	if r.ehelplyData != nil {
-		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v HTTPValidationError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiHasPaymentRequest struct {
-	ctx context.Context
-	ApiService *BillingApiService
-	xAccessToken *string
-	xSecretToken *string
-	authorization *string
-	ehelplyActiveParticipant *string
-	ehelplyProject *string
-	ehelplyData *string
-}
-
-func (r ApiHasPaymentRequest) XAccessToken(xAccessToken string) ApiHasPaymentRequest {
-	r.xAccessToken = &xAccessToken
-	return r
-}
-
-func (r ApiHasPaymentRequest) XSecretToken(xSecretToken string) ApiHasPaymentRequest {
-	r.xSecretToken = &xSecretToken
-	return r
-}
-
-func (r ApiHasPaymentRequest) Authorization(authorization string) ApiHasPaymentRequest {
-	r.authorization = &authorization
-	return r
-}
-
-func (r ApiHasPaymentRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiHasPaymentRequest {
-	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
-	return r
-}
-
-func (r ApiHasPaymentRequest) EhelplyProject(ehelplyProject string) ApiHasPaymentRequest {
-	r.ehelplyProject = &ehelplyProject
-	return r
-}
-
-func (r ApiHasPaymentRequest) EhelplyData(ehelplyData string) ApiHasPaymentRequest {
-	r.ehelplyData = &ehelplyData
-	return r
-}
-
-func (r ApiHasPaymentRequest) Execute() (bool, *http.Response, error) {
-	return r.ApiService.HasPaymentExecute(r)
-}
-
-/*
-HasPayment Haspayment
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiHasPaymentRequest
-*/
-func (a *BillingApiService) HasPayment(ctx context.Context) ApiHasPaymentRequest {
-	return ApiHasPaymentRequest{
-		ApiService: a,
-		ctx: ctx,
+		catalogUuid: catalogUuid,
+		productUuid: productUuid,
 	}
 }
 
 // Execute executes the request
 //  @return bool
-func (a *BillingApiService) HasPaymentExecute(r ApiHasPaymentRequest) (bool, *http.Response, error) {
+func (a *CatalogsApiService) AttachProductToCatalogExecute(r ApiAttachProductToCatalogRequest) (bool, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 		localVarReturnValue  bool
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BillingApiService.HasPayment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CatalogsApiService.AttachProductToCatalog")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/sam/billing/has_payment"
+	localVarPath := localBasePath + "/products/catalogs/{catalog_uuid}/products/{product_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"catalog_uuid"+"}", url.PathEscape(parameterToString(r.catalogUuid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"product_uuid"+"}", url.PathEscape(parameterToString(r.productUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -503,9 +192,10 @@ func (a *BillingApiService) HasPaymentExecute(r ApiHasPaymentRequest) (bool, *ht
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListPaymentMethodsRequest struct {
+type ApiCreateCatalogRequest struct {
 	ctx context.Context
-	ApiService *BillingApiService
+	ApiService *CatalogsApiService
+	catalogBase *CatalogBase
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -514,241 +204,80 @@ type ApiListPaymentMethodsRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiListPaymentMethodsRequest) XAccessToken(xAccessToken string) ApiListPaymentMethodsRequest {
+func (r ApiCreateCatalogRequest) CatalogBase(catalogBase CatalogBase) ApiCreateCatalogRequest {
+	r.catalogBase = &catalogBase
+	return r
+}
+
+func (r ApiCreateCatalogRequest) XAccessToken(xAccessToken string) ApiCreateCatalogRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiListPaymentMethodsRequest) XSecretToken(xSecretToken string) ApiListPaymentMethodsRequest {
+func (r ApiCreateCatalogRequest) XSecretToken(xSecretToken string) ApiCreateCatalogRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiListPaymentMethodsRequest) Authorization(authorization string) ApiListPaymentMethodsRequest {
+func (r ApiCreateCatalogRequest) Authorization(authorization string) ApiCreateCatalogRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiListPaymentMethodsRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiListPaymentMethodsRequest {
+func (r ApiCreateCatalogRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiCreateCatalogRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiListPaymentMethodsRequest) EhelplyProject(ehelplyProject string) ApiListPaymentMethodsRequest {
+func (r ApiCreateCatalogRequest) EhelplyProject(ehelplyProject string) ApiCreateCatalogRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiListPaymentMethodsRequest) EhelplyData(ehelplyData string) ApiListPaymentMethodsRequest {
+func (r ApiCreateCatalogRequest) EhelplyData(ehelplyData string) ApiCreateCatalogRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiListPaymentMethodsRequest) Execute() ([]PaymentMethodResponse, *http.Response, error) {
-	return r.ApiService.ListPaymentMethodsExecute(r)
+func (r ApiCreateCatalogRequest) Execute() (*CatalogReturn, *http.Response, error) {
+	return r.ApiService.CreateCatalogExecute(r)
 }
 
 /*
-ListPaymentMethods Listpaymentmethods
+CreateCatalog Createcatalog
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListPaymentMethodsRequest
+ @return ApiCreateCatalogRequest
 */
-func (a *BillingApiService) ListPaymentMethods(ctx context.Context) ApiListPaymentMethodsRequest {
-	return ApiListPaymentMethodsRequest{
+func (a *CatalogsApiService) CreateCatalog(ctx context.Context) ApiCreateCatalogRequest {
+	return ApiCreateCatalogRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []PaymentMethodResponse
-func (a *BillingApiService) ListPaymentMethodsExecute(r ApiListPaymentMethodsRequest) ([]PaymentMethodResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []PaymentMethodResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BillingApiService.ListPaymentMethods")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/sam/billing/view_payment_method"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xAccessToken != nil {
-		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
-	}
-	if r.xSecretToken != nil {
-		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
-	}
-	if r.authorization != nil {
-		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
-	}
-	if r.ehelplyActiveParticipant != nil {
-		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
-	}
-	if r.ehelplyProject != nil {
-		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
-	}
-	if r.ehelplyData != nil {
-		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v HTTPValidationError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiProcessPaymentRequest struct {
-	ctx context.Context
-	ApiService *BillingApiService
-	payment *Payment
-	xAccessToken *string
-	xSecretToken *string
-	authorization *string
-	ehelplyActiveParticipant *string
-	ehelplyProject *string
-	ehelplyData *string
-}
-
-func (r ApiProcessPaymentRequest) Payment(payment Payment) ApiProcessPaymentRequest {
-	r.payment = &payment
-	return r
-}
-
-func (r ApiProcessPaymentRequest) XAccessToken(xAccessToken string) ApiProcessPaymentRequest {
-	r.xAccessToken = &xAccessToken
-	return r
-}
-
-func (r ApiProcessPaymentRequest) XSecretToken(xSecretToken string) ApiProcessPaymentRequest {
-	r.xSecretToken = &xSecretToken
-	return r
-}
-
-func (r ApiProcessPaymentRequest) Authorization(authorization string) ApiProcessPaymentRequest {
-	r.authorization = &authorization
-	return r
-}
-
-func (r ApiProcessPaymentRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiProcessPaymentRequest {
-	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
-	return r
-}
-
-func (r ApiProcessPaymentRequest) EhelplyProject(ehelplyProject string) ApiProcessPaymentRequest {
-	r.ehelplyProject = &ehelplyProject
-	return r
-}
-
-func (r ApiProcessPaymentRequest) EhelplyData(ehelplyData string) ApiProcessPaymentRequest {
-	r.ehelplyData = &ehelplyData
-	return r
-}
-
-func (r ApiProcessPaymentRequest) Execute() (string, *http.Response, error) {
-	return r.ApiService.ProcessPaymentExecute(r)
-}
-
-/*
-ProcessPayment Processpayment
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiProcessPaymentRequest
-*/
-func (a *BillingApiService) ProcessPayment(ctx context.Context) ApiProcessPaymentRequest {
-	return ApiProcessPaymentRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return string
-func (a *BillingApiService) ProcessPaymentExecute(r ApiProcessPaymentRequest) (string, *http.Response, error) {
+//  @return CatalogReturn
+func (a *CatalogsApiService) CreateCatalogExecute(r ApiCreateCatalogRequest) (*CatalogReturn, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  string
+		localVarReturnValue  *CatalogReturn
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BillingApiService.ProcessPayment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CatalogsApiService.CreateCatalog")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/sam/billing/process_payment"
+	localVarPath := localBasePath + "/products/catalogs"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.payment == nil {
-		return localVarReturnValue, nil, reportError("payment is required and must be specified")
+	if r.catalogBase == nil {
+		return localVarReturnValue, nil, reportError("catalogBase is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -787,7 +316,7 @@ func (a *BillingApiService) ProcessPaymentExecute(r ApiProcessPaymentRequest) (s
 		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
 	}
 	// body params
-	localVarPostBody = r.payment
+	localVarPostBody = r.catalogBase
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -834,9 +363,10 @@ func (a *BillingApiService) ProcessPaymentExecute(r ApiProcessPaymentRequest) (s
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiReconcilePaymentMethodRequest struct {
+type ApiDeleteCatalogRequest struct {
 	ctx context.Context
-	ApiService *BillingApiService
+	ApiService *CatalogsApiService
+	catalogUuid string
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -845,69 +375,72 @@ type ApiReconcilePaymentMethodRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiReconcilePaymentMethodRequest) XAccessToken(xAccessToken string) ApiReconcilePaymentMethodRequest {
+func (r ApiDeleteCatalogRequest) XAccessToken(xAccessToken string) ApiDeleteCatalogRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiReconcilePaymentMethodRequest) XSecretToken(xSecretToken string) ApiReconcilePaymentMethodRequest {
+func (r ApiDeleteCatalogRequest) XSecretToken(xSecretToken string) ApiDeleteCatalogRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiReconcilePaymentMethodRequest) Authorization(authorization string) ApiReconcilePaymentMethodRequest {
+func (r ApiDeleteCatalogRequest) Authorization(authorization string) ApiDeleteCatalogRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiReconcilePaymentMethodRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiReconcilePaymentMethodRequest {
+func (r ApiDeleteCatalogRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiDeleteCatalogRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiReconcilePaymentMethodRequest) EhelplyProject(ehelplyProject string) ApiReconcilePaymentMethodRequest {
+func (r ApiDeleteCatalogRequest) EhelplyProject(ehelplyProject string) ApiDeleteCatalogRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiReconcilePaymentMethodRequest) EhelplyData(ehelplyData string) ApiReconcilePaymentMethodRequest {
+func (r ApiDeleteCatalogRequest) EhelplyData(ehelplyData string) ApiDeleteCatalogRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiReconcilePaymentMethodRequest) Execute() (bool, *http.Response, error) {
-	return r.ApiService.ReconcilePaymentMethodExecute(r)
+func (r ApiDeleteCatalogRequest) Execute() (bool, *http.Response, error) {
+	return r.ApiService.DeleteCatalogExecute(r)
 }
 
 /*
-ReconcilePaymentMethod Reconcilepaymentmethod
+DeleteCatalog Deletecatalog
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiReconcilePaymentMethodRequest
+ @param catalogUuid
+ @return ApiDeleteCatalogRequest
 */
-func (a *BillingApiService) ReconcilePaymentMethod(ctx context.Context) ApiReconcilePaymentMethodRequest {
-	return ApiReconcilePaymentMethodRequest{
+func (a *CatalogsApiService) DeleteCatalog(ctx context.Context, catalogUuid string) ApiDeleteCatalogRequest {
+	return ApiDeleteCatalogRequest{
 		ApiService: a,
 		ctx: ctx,
+		catalogUuid: catalogUuid,
 	}
 }
 
 // Execute executes the request
 //  @return bool
-func (a *BillingApiService) ReconcilePaymentMethodExecute(r ApiReconcilePaymentMethodRequest) (bool, *http.Response, error) {
+func (a *CatalogsApiService) DeleteCatalogExecute(r ApiDeleteCatalogRequest) (bool, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 		localVarReturnValue  bool
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BillingApiService.ReconcilePaymentMethod")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CatalogsApiService.DeleteCatalog")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/sam/billing/reconcile_payment"
+	localVarPath := localBasePath + "/products/catalogs/{catalog_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"catalog_uuid"+"}", url.PathEscape(parameterToString(r.catalogUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -994,9 +527,11 @@ func (a *BillingApiService) ReconcilePaymentMethodExecute(r ApiReconcilePaymentM
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiRemovePaymentMethodRequest struct {
+type ApiDetachProductFromCatalogRequest struct {
 	ctx context.Context
-	ApiService *BillingApiService
+	ApiService *CatalogsApiService
+	catalogUuid string
+	productUuid string
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -1005,69 +540,75 @@ type ApiRemovePaymentMethodRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiRemovePaymentMethodRequest) XAccessToken(xAccessToken string) ApiRemovePaymentMethodRequest {
+func (r ApiDetachProductFromCatalogRequest) XAccessToken(xAccessToken string) ApiDetachProductFromCatalogRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiRemovePaymentMethodRequest) XSecretToken(xSecretToken string) ApiRemovePaymentMethodRequest {
+func (r ApiDetachProductFromCatalogRequest) XSecretToken(xSecretToken string) ApiDetachProductFromCatalogRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiRemovePaymentMethodRequest) Authorization(authorization string) ApiRemovePaymentMethodRequest {
+func (r ApiDetachProductFromCatalogRequest) Authorization(authorization string) ApiDetachProductFromCatalogRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiRemovePaymentMethodRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiRemovePaymentMethodRequest {
+func (r ApiDetachProductFromCatalogRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiDetachProductFromCatalogRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiRemovePaymentMethodRequest) EhelplyProject(ehelplyProject string) ApiRemovePaymentMethodRequest {
+func (r ApiDetachProductFromCatalogRequest) EhelplyProject(ehelplyProject string) ApiDetachProductFromCatalogRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiRemovePaymentMethodRequest) EhelplyData(ehelplyData string) ApiRemovePaymentMethodRequest {
+func (r ApiDetachProductFromCatalogRequest) EhelplyData(ehelplyData string) ApiDetachProductFromCatalogRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiRemovePaymentMethodRequest) Execute() (string, *http.Response, error) {
-	return r.ApiService.RemovePaymentMethodExecute(r)
+func (r ApiDetachProductFromCatalogRequest) Execute() (bool, *http.Response, error) {
+	return r.ApiService.DetachProductFromCatalogExecute(r)
 }
 
 /*
-RemovePaymentMethod Removepaymentmethod
+DetachProductFromCatalog Removeproductfromcatalog
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiRemovePaymentMethodRequest
+ @param catalogUuid
+ @param productUuid
+ @return ApiDetachProductFromCatalogRequest
 */
-func (a *BillingApiService) RemovePaymentMethod(ctx context.Context) ApiRemovePaymentMethodRequest {
-	return ApiRemovePaymentMethodRequest{
+func (a *CatalogsApiService) DetachProductFromCatalog(ctx context.Context, catalogUuid string, productUuid string) ApiDetachProductFromCatalogRequest {
+	return ApiDetachProductFromCatalogRequest{
 		ApiService: a,
 		ctx: ctx,
+		catalogUuid: catalogUuid,
+		productUuid: productUuid,
 	}
 }
 
 // Execute executes the request
-//  @return string
-func (a *BillingApiService) RemovePaymentMethodExecute(r ApiRemovePaymentMethodRequest) (string, *http.Response, error) {
+//  @return bool
+func (a *CatalogsApiService) DetachProductFromCatalogExecute(r ApiDetachProductFromCatalogRequest) (bool, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  string
+		localVarReturnValue  bool
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BillingApiService.RemovePaymentMethod")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CatalogsApiService.DetachProductFromCatalog")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/sam/billing/remove_payment_method"
+	localVarPath := localBasePath + "/products/catalogs/{catalog_uuid}/products/{product_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"catalog_uuid"+"}", url.PathEscape(parameterToString(r.catalogUuid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"product_uuid"+"}", url.PathEscape(parameterToString(r.productUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1108,6 +649,777 @@ func (a *BillingApiService) RemovePaymentMethodExecute(r ApiRemovePaymentMethodR
 	if r.ehelplyData != nil {
 		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
 	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetCatalogRequest struct {
+	ctx context.Context
+	ApiService *CatalogsApiService
+	catalogUuid string
+	withMeta *bool
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
+}
+
+func (r ApiGetCatalogRequest) WithMeta(withMeta bool) ApiGetCatalogRequest {
+	r.withMeta = &withMeta
+	return r
+}
+
+func (r ApiGetCatalogRequest) XAccessToken(xAccessToken string) ApiGetCatalogRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiGetCatalogRequest) XSecretToken(xSecretToken string) ApiGetCatalogRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiGetCatalogRequest) Authorization(authorization string) ApiGetCatalogRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiGetCatalogRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiGetCatalogRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiGetCatalogRequest) EhelplyProject(ehelplyProject string) ApiGetCatalogRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiGetCatalogRequest) EhelplyData(ehelplyData string) ApiGetCatalogRequest {
+	r.ehelplyData = &ehelplyData
+	return r
+}
+
+func (r ApiGetCatalogRequest) Execute() (*CatalogReturn, *http.Response, error) {
+	return r.ApiService.GetCatalogExecute(r)
+}
+
+/*
+GetCatalog Getcatalog
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param catalogUuid
+ @return ApiGetCatalogRequest
+*/
+func (a *CatalogsApiService) GetCatalog(ctx context.Context, catalogUuid string) ApiGetCatalogRequest {
+	return ApiGetCatalogRequest{
+		ApiService: a,
+		ctx: ctx,
+		catalogUuid: catalogUuid,
+	}
+}
+
+// Execute executes the request
+//  @return CatalogReturn
+func (a *CatalogsApiService) GetCatalogExecute(r ApiGetCatalogRequest) (*CatalogReturn, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CatalogReturn
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CatalogsApiService.GetCatalog")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/products/catalogs/{catalog_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"catalog_uuid"+"}", url.PathEscape(parameterToString(r.catalogUuid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.withMeta != nil {
+		localVarQueryParams.Add("with_meta", parameterToString(*r.withMeta, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSearchCatalogProductsRequest struct {
+	ctx context.Context
+	ApiService *CatalogsApiService
+	catalogUuid string
+	withMeta *bool
+	page *int32
+	pageSize *int32
+	sortOn *string
+	sortDesc *bool
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
+}
+
+func (r ApiSearchCatalogProductsRequest) WithMeta(withMeta bool) ApiSearchCatalogProductsRequest {
+	r.withMeta = &withMeta
+	return r
+}
+
+func (r ApiSearchCatalogProductsRequest) Page(page int32) ApiSearchCatalogProductsRequest {
+	r.page = &page
+	return r
+}
+
+func (r ApiSearchCatalogProductsRequest) PageSize(pageSize int32) ApiSearchCatalogProductsRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+func (r ApiSearchCatalogProductsRequest) SortOn(sortOn string) ApiSearchCatalogProductsRequest {
+	r.sortOn = &sortOn
+	return r
+}
+
+func (r ApiSearchCatalogProductsRequest) SortDesc(sortDesc bool) ApiSearchCatalogProductsRequest {
+	r.sortDesc = &sortDesc
+	return r
+}
+
+func (r ApiSearchCatalogProductsRequest) XAccessToken(xAccessToken string) ApiSearchCatalogProductsRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiSearchCatalogProductsRequest) XSecretToken(xSecretToken string) ApiSearchCatalogProductsRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiSearchCatalogProductsRequest) Authorization(authorization string) ApiSearchCatalogProductsRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiSearchCatalogProductsRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiSearchCatalogProductsRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiSearchCatalogProductsRequest) EhelplyProject(ehelplyProject string) ApiSearchCatalogProductsRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiSearchCatalogProductsRequest) EhelplyData(ehelplyData string) ApiSearchCatalogProductsRequest {
+	r.ehelplyData = &ehelplyData
+	return r
+}
+
+func (r ApiSearchCatalogProductsRequest) Execute() (*Page, *http.Response, error) {
+	return r.ApiService.SearchCatalogProductsExecute(r)
+}
+
+/*
+SearchCatalogProducts Searchcatalogproducts
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param catalogUuid
+ @return ApiSearchCatalogProductsRequest
+*/
+func (a *CatalogsApiService) SearchCatalogProducts(ctx context.Context, catalogUuid string) ApiSearchCatalogProductsRequest {
+	return ApiSearchCatalogProductsRequest{
+		ApiService: a,
+		ctx: ctx,
+		catalogUuid: catalogUuid,
+	}
+}
+
+// Execute executes the request
+//  @return Page
+func (a *CatalogsApiService) SearchCatalogProductsExecute(r ApiSearchCatalogProductsRequest) (*Page, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *Page
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CatalogsApiService.SearchCatalogProducts")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/products/catalogs/{catalog_uuid}/products"
+	localVarPath = strings.Replace(localVarPath, "{"+"catalog_uuid"+"}", url.PathEscape(parameterToString(r.catalogUuid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.withMeta != nil {
+		localVarQueryParams.Add("with_meta", parameterToString(*r.withMeta, ""))
+	}
+	if r.page != nil {
+		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	if r.pageSize != nil {
+		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
+	}
+	if r.sortOn != nil {
+		localVarQueryParams.Add("sort_on", parameterToString(*r.sortOn, ""))
+	}
+	if r.sortDesc != nil {
+		localVarQueryParams.Add("sort_desc", parameterToString(*r.sortDesc, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSearchCatalogsRequest struct {
+	ctx context.Context
+	ApiService *CatalogsApiService
+	withMeta *bool
+	name *string
+	page *int32
+	pageSize *int32
+	sortOn *string
+	sortDesc *bool
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
+}
+
+func (r ApiSearchCatalogsRequest) WithMeta(withMeta bool) ApiSearchCatalogsRequest {
+	r.withMeta = &withMeta
+	return r
+}
+
+func (r ApiSearchCatalogsRequest) Name(name string) ApiSearchCatalogsRequest {
+	r.name = &name
+	return r
+}
+
+func (r ApiSearchCatalogsRequest) Page(page int32) ApiSearchCatalogsRequest {
+	r.page = &page
+	return r
+}
+
+func (r ApiSearchCatalogsRequest) PageSize(pageSize int32) ApiSearchCatalogsRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+func (r ApiSearchCatalogsRequest) SortOn(sortOn string) ApiSearchCatalogsRequest {
+	r.sortOn = &sortOn
+	return r
+}
+
+func (r ApiSearchCatalogsRequest) SortDesc(sortDesc bool) ApiSearchCatalogsRequest {
+	r.sortDesc = &sortDesc
+	return r
+}
+
+func (r ApiSearchCatalogsRequest) XAccessToken(xAccessToken string) ApiSearchCatalogsRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiSearchCatalogsRequest) XSecretToken(xSecretToken string) ApiSearchCatalogsRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiSearchCatalogsRequest) Authorization(authorization string) ApiSearchCatalogsRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiSearchCatalogsRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiSearchCatalogsRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiSearchCatalogsRequest) EhelplyProject(ehelplyProject string) ApiSearchCatalogsRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiSearchCatalogsRequest) EhelplyData(ehelplyData string) ApiSearchCatalogsRequest {
+	r.ehelplyData = &ehelplyData
+	return r
+}
+
+func (r ApiSearchCatalogsRequest) Execute() (*Page, *http.Response, error) {
+	return r.ApiService.SearchCatalogsExecute(r)
+}
+
+/*
+SearchCatalogs Searchcatalogs
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiSearchCatalogsRequest
+*/
+func (a *CatalogsApiService) SearchCatalogs(ctx context.Context) ApiSearchCatalogsRequest {
+	return ApiSearchCatalogsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return Page
+func (a *CatalogsApiService) SearchCatalogsExecute(r ApiSearchCatalogsRequest) (*Page, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *Page
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CatalogsApiService.SearchCatalogs")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/products/catalogs"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.withMeta != nil {
+		localVarQueryParams.Add("with_meta", parameterToString(*r.withMeta, ""))
+	}
+	if r.name != nil {
+		localVarQueryParams.Add("name", parameterToString(*r.name, ""))
+	}
+	if r.page != nil {
+		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	if r.pageSize != nil {
+		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
+	}
+	if r.sortOn != nil {
+		localVarQueryParams.Add("sort_on", parameterToString(*r.sortOn, ""))
+	}
+	if r.sortDesc != nil {
+		localVarQueryParams.Add("sort_desc", parameterToString(*r.sortDesc, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiUpdateCatalogRequest struct {
+	ctx context.Context
+	ApiService *CatalogsApiService
+	catalogUuid string
+	catalogBase *CatalogBase
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
+}
+
+func (r ApiUpdateCatalogRequest) CatalogBase(catalogBase CatalogBase) ApiUpdateCatalogRequest {
+	r.catalogBase = &catalogBase
+	return r
+}
+
+func (r ApiUpdateCatalogRequest) XAccessToken(xAccessToken string) ApiUpdateCatalogRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiUpdateCatalogRequest) XSecretToken(xSecretToken string) ApiUpdateCatalogRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiUpdateCatalogRequest) Authorization(authorization string) ApiUpdateCatalogRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiUpdateCatalogRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiUpdateCatalogRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiUpdateCatalogRequest) EhelplyProject(ehelplyProject string) ApiUpdateCatalogRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiUpdateCatalogRequest) EhelplyData(ehelplyData string) ApiUpdateCatalogRequest {
+	r.ehelplyData = &ehelplyData
+	return r
+}
+
+func (r ApiUpdateCatalogRequest) Execute() (*CatalogReturn, *http.Response, error) {
+	return r.ApiService.UpdateCatalogExecute(r)
+}
+
+/*
+UpdateCatalog Updatecatalog
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param catalogUuid
+ @return ApiUpdateCatalogRequest
+*/
+func (a *CatalogsApiService) UpdateCatalog(ctx context.Context, catalogUuid string) ApiUpdateCatalogRequest {
+	return ApiUpdateCatalogRequest{
+		ApiService: a,
+		ctx: ctx,
+		catalogUuid: catalogUuid,
+	}
+}
+
+// Execute executes the request
+//  @return CatalogReturn
+func (a *CatalogsApiService) UpdateCatalogExecute(r ApiUpdateCatalogRequest) (*CatalogReturn, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CatalogReturn
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CatalogsApiService.UpdateCatalog")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/products/catalogs/{catalog_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"catalog_uuid"+"}", url.PathEscape(parameterToString(r.catalogUuid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.catalogBase == nil {
+		return localVarReturnValue, nil, reportError("catalogBase is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
+	// body params
+	localVarPostBody = r.catalogBase
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

@@ -4,6 +4,7 @@
 README.md
 api/openapi.yaml
 api_billing.go
+api_catalogs.go
 api_category.go
 api_companies.go
 api_default.go
@@ -12,7 +13,9 @@ api_meta.go
 api_monitor.go
 api_notes.go
 api_places.go
+api_products.go
 api_projects.go
+api_reviews.go
 api_security.go
 api_staff.go
 api_support.go
@@ -38,6 +41,7 @@ docs/BasicMetaCreate.md
 docs/BillingApi.md
 docs/CatalogBase.md
 docs/CatalogReturn.md
+docs/CatalogsApi.md
 docs/CategoryApi.md
 docs/CategoryBase.md
 docs/CategoryDb.md
@@ -102,6 +106,7 @@ docs/PlaceResponse.md
 docs/PlacesApi.md
 docs/ProductBase.md
 docs/ProductReturn.md
+docs/ProductsApi.md
 docs/ProjectDB.md
 docs/ProjectsApi.md
 docs/ProjectsProjectCreate.md
@@ -124,6 +129,7 @@ docs/ResponseDeleteusagetype.md
 docs/ResponseGeneratetoken.md
 docs/ResponseRemovememberfromproject.md
 docs/ResponseUpdateprojectcredential.md
+docs/ReviewsApi.md
 docs/SecurityApi.md
 docs/SecurityCreateToken.md
 docs/SecurityEncryptionKeyGet.md
