@@ -9,8 +9,8 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://superstack.ehelply.com/support/legal/terms
-  title: eHelply SDK - 1.1.96
-  version: 1.1.96
+  title: eHelply SDK - 1.1.97
+  version: 1.1.97
 servers:
 - description: eHelply / SuperStack Production
   url: https://api.prod.ehelply.com
