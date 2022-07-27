@@ -4,19 +4,19 @@ All URIs are relative to *https://api.prod.ehelply.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateStaffPlacesStaffPost**](StaffApi.md#CreateStaffPlacesStaffPost) | **Post** /places/staff | Create Staff
-[**DeleteStaffPlacesStaffStaffUuidDelete**](StaffApi.md#DeleteStaffPlacesStaffStaffUuidDelete) | **Delete** /places/staff/{staff_uuid} | Delete Staff
-[**GetStaffPlacesStaffStaffUuidGet**](StaffApi.md#GetStaffPlacesStaffStaffUuidGet) | **Get** /places/staff/{staff_uuid} | Get Staff
-[**SearchStaffPlacesStaffGet**](StaffApi.md#SearchStaffPlacesStaffGet) | **Get** /places/staff | Search Staff
-[**UpdateStaffPlacesStaffStaffUuidPut**](StaffApi.md#UpdateStaffPlacesStaffStaffUuidPut) | **Put** /places/staff/{staff_uuid} | Update Staff
+[**CreateStaff**](StaffApi.md#CreateStaff) | **Post** /places/staff | Createstaff
+[**DeleteStaff**](StaffApi.md#DeleteStaff) | **Delete** /places/staff/{staff_uuid} | Deletestaff
+[**GetStaff**](StaffApi.md#GetStaff) | **Get** /places/staff/{staff_uuid} | Getstaff
+[**SearchStaff**](StaffApi.md#SearchStaff) | **Get** /places/staff | Searchstaff
+[**UpdateStaff**](StaffApi.md#UpdateStaff) | **Put** /places/staff/{staff_uuid} | Updatestaff
 
 
 
-## CreateStaffPlacesStaffPost
+## CreateStaff
 
-> StaffDb CreateStaffPlacesStaffPost(ctx).StaffCreate(staffCreate).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> StaffDb CreateStaff(ctx).StaffCreate(staffCreate).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
-Create Staff
+Createstaff
 
 
 
@@ -43,13 +43,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StaffApi.CreateStaffPlacesStaffPost(context.Background()).StaffCreate(staffCreate).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.StaffApi.CreateStaff(context.Background()).StaffCreate(staffCreate).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StaffApi.CreateStaffPlacesStaffPost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StaffApi.CreateStaff``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateStaffPlacesStaffPost`: StaffDb
-    fmt.Fprintf(os.Stdout, "Response from `StaffApi.CreateStaffPlacesStaffPost`: %v\n", resp)
+    // response from `CreateStaff`: StaffDb
+    fmt.Fprintf(os.Stdout, "Response from `StaffApi.CreateStaff`: %v\n", resp)
 }
 ```
 
@@ -59,7 +59,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateStaffPlacesStaffPostRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateStaffRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -90,11 +90,11 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## DeleteStaffPlacesStaffStaffUuidDelete
+## DeleteStaff
 
-> interface{} DeleteStaffPlacesStaffStaffUuidDelete(ctx, staffUuid).SoftDelete(softDelete).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> interface{} DeleteStaff(ctx, staffUuid).SoftDelete(softDelete).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
-Delete Staff
+Deletestaff
 
 
 
@@ -122,13 +122,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StaffApi.DeleteStaffPlacesStaffStaffUuidDelete(context.Background(), staffUuid).SoftDelete(softDelete).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.StaffApi.DeleteStaff(context.Background(), staffUuid).SoftDelete(softDelete).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StaffApi.DeleteStaffPlacesStaffStaffUuidDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StaffApi.DeleteStaff``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteStaffPlacesStaffStaffUuidDelete`: interface{}
-    fmt.Fprintf(os.Stdout, "Response from `StaffApi.DeleteStaffPlacesStaffStaffUuidDelete`: %v\n", resp)
+    // response from `DeleteStaff`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `StaffApi.DeleteStaff`: %v\n", resp)
 }
 ```
 
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeleteStaffPlacesStaffStaffUuidDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteStaffRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -174,11 +174,11 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## GetStaffPlacesStaffStaffUuidGet
+## GetStaff
 
-> StaffResponse GetStaffPlacesStaffStaffUuidGet(ctx, staffUuid).WithPlaces(withPlaces).WithCompanies(withCompanies).WithCatalog(withCatalog).WithSchedule(withSchedule).WithRoles(withRoles).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> StaffResponse GetStaff(ctx, staffUuid).WithPlaces(withPlaces).WithCompanies(withCompanies).WithCatalog(withCatalog).WithSchedule(withSchedule).WithRoles(withRoles).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
-Get Staff
+Getstaff
 
 
 
@@ -210,13 +210,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StaffApi.GetStaffPlacesStaffStaffUuidGet(context.Background(), staffUuid).WithPlaces(withPlaces).WithCompanies(withCompanies).WithCatalog(withCatalog).WithSchedule(withSchedule).WithRoles(withRoles).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.StaffApi.GetStaff(context.Background(), staffUuid).WithPlaces(withPlaces).WithCompanies(withCompanies).WithCatalog(withCatalog).WithSchedule(withSchedule).WithRoles(withRoles).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StaffApi.GetStaffPlacesStaffStaffUuidGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StaffApi.GetStaff``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetStaffPlacesStaffStaffUuidGet`: StaffResponse
-    fmt.Fprintf(os.Stdout, "Response from `StaffApi.GetStaffPlacesStaffStaffUuidGet`: %v\n", resp)
+    // response from `GetStaff`: StaffResponse
+    fmt.Fprintf(os.Stdout, "Response from `StaffApi.GetStaff`: %v\n", resp)
 }
 ```
 
@@ -230,7 +230,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetStaffPlacesStaffStaffUuidGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetStaffRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -266,11 +266,11 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## SearchStaffPlacesStaffGet
+## SearchStaff
 
-> Page SearchStaffPlacesStaffGet(ctx).ProjectUuid(projectUuid).FirstName(firstName).LastName(lastName).IsDeleted(isDeleted).WithCompanies(withCompanies).WithPlaces(withPlaces).WithSchedule(withSchedule).WithCatalog(withCatalog).WithReviews(withReviews).WithRoles(withRoles).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> Page SearchStaff(ctx).ProjectUuid(projectUuid).FirstName(firstName).LastName(lastName).IsDeleted(isDeleted).WithCompanies(withCompanies).WithPlaces(withPlaces).WithSchedule(withSchedule).WithCatalog(withCatalog).WithReviews(withReviews).WithRoles(withRoles).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
-Search Staff
+Searchstaff
 
 
 
@@ -310,13 +310,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StaffApi.SearchStaffPlacesStaffGet(context.Background()).ProjectUuid(projectUuid).FirstName(firstName).LastName(lastName).IsDeleted(isDeleted).WithCompanies(withCompanies).WithPlaces(withPlaces).WithSchedule(withSchedule).WithCatalog(withCatalog).WithReviews(withReviews).WithRoles(withRoles).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.StaffApi.SearchStaff(context.Background()).ProjectUuid(projectUuid).FirstName(firstName).LastName(lastName).IsDeleted(isDeleted).WithCompanies(withCompanies).WithPlaces(withPlaces).WithSchedule(withSchedule).WithCatalog(withCatalog).WithReviews(withReviews).WithRoles(withRoles).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StaffApi.SearchStaffPlacesStaffGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StaffApi.SearchStaff``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `SearchStaffPlacesStaffGet`: Page
-    fmt.Fprintf(os.Stdout, "Response from `StaffApi.SearchStaffPlacesStaffGet`: %v\n", resp)
+    // response from `SearchStaff`: Page
+    fmt.Fprintf(os.Stdout, "Response from `StaffApi.SearchStaff`: %v\n", resp)
 }
 ```
 
@@ -326,7 +326,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSearchStaffPlacesStaffGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiSearchStaffRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -370,11 +370,11 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## UpdateStaffPlacesStaffStaffUuidPut
+## UpdateStaff
 
-> StaffResponse UpdateStaffPlacesStaffStaffUuidPut(ctx, staffUuid).StaffCreate(staffCreate).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> StaffResponse UpdateStaff(ctx, staffUuid).StaffCreate(staffCreate).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
-Update Staff
+Updatestaff
 
 
 
@@ -402,13 +402,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StaffApi.UpdateStaffPlacesStaffStaffUuidPut(context.Background(), staffUuid).StaffCreate(staffCreate).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.StaffApi.UpdateStaff(context.Background(), staffUuid).StaffCreate(staffCreate).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StaffApi.UpdateStaffPlacesStaffStaffUuidPut``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StaffApi.UpdateStaff``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateStaffPlacesStaffStaffUuidPut`: StaffResponse
-    fmt.Fprintf(os.Stdout, "Response from `StaffApi.UpdateStaffPlacesStaffStaffUuidPut`: %v\n", resp)
+    // response from `UpdateStaff`: StaffResponse
+    fmt.Fprintf(os.Stdout, "Response from `StaffApi.UpdateStaff`: %v\n", resp)
 }
 ```
 
@@ -422,7 +422,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateStaffPlacesStaffStaffUuidPutRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateStaffRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

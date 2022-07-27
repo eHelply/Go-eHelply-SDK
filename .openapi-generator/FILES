@@ -20,6 +20,7 @@ api_security.go
 api_staff.go
 api_support.go
 api_tag.go
+api_tags.go
 api_users.go
 client.go
 configuration.go
@@ -145,6 +146,7 @@ docs/SupportApi.md
 docs/TagApi.md
 docs/TagBase.md
 docs/TagDb.md
+docs/TagsApi.md
 docs/TicketResponse.md
 docs/TicketsResponse.md
 docs/UpdateReview.md

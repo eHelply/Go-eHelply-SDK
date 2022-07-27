@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.97
+eHelply SDK - 1.1.98
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.97
+API version: 1.1.98
 Contact: support@ehelply.com
 */
 
@@ -42,7 +42,7 @@ var (
 	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 )
 
-// APIClient manages communication with the eHelply SDK - 1.1.97 API v1.1.97
+// APIClient manages communication with the eHelply SDK - 1.1.98 API v1.1.98
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -84,6 +84,8 @@ type APIClient struct {
 
 	TagApi *TagApiService
 
+	TagsApi *TagsApiService
+
 	UsersApi *UsersApiService
 }
 
@@ -120,6 +122,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.StaffApi = (*StaffApiService)(&c.common)
 	c.SupportApi = (*SupportApiService)(&c.common)
 	c.TagApi = (*TagApiService)(&c.common)
+	c.TagsApi = (*TagsApiService)(&c.common)
 	c.UsersApi = (*UsersApiService)(&c.common)
 
 	return c

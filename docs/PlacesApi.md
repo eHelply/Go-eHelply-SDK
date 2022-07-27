@@ -4,15 +4,101 @@ All URIs are relative to *https://api.prod.ehelply.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**AdvancedSearchPlaces**](PlacesApi.md#AdvancedSearchPlaces) | **Get** /places/search/places/string | Advancedsearchplaces
 [**CreatePlacePlacesPlacesPost**](PlacesApi.md#CreatePlacePlacesPlacesPost) | **Post** /places/places | Create Place
-[**DeletePlacePlacesPlacesPlaceUuidDelete**](PlacesApi.md#DeletePlacePlacesPlacesPlaceUuidDelete) | **Delete** /places/places/{place_uuid} | Delete Place
+[**DeletePlace**](PlacesApi.md#DeletePlace) | **Delete** /places/places/{place_uuid} | Deleteplace
 [**ForwardGeocodingPlacesGeocodingForwardGet**](PlacesApi.md#ForwardGeocodingPlacesGeocodingForwardGet) | **Get** /places/geocoding/forward | Forward Geocoding
-[**GetPlacePlacesPlacesPlaceUuidGet**](PlacesApi.md#GetPlacePlacesPlacesPlaceUuidGet) | **Get** /places/places/{place_uuid} | Get Place
+[**GetPlace**](PlacesApi.md#GetPlace) | **Get** /places/places/{place_uuid} | Getplace
 [**ReverseGeocodingPlacesGeocodingReverseGet**](PlacesApi.md#ReverseGeocodingPlacesGeocodingReverseGet) | **Get** /places/geocoding/reverse | Reverse Geocoding
-[**SearchPlacesBySearchStringPlacesSearchPlacesStringGet**](PlacesApi.md#SearchPlacesBySearchStringPlacesSearchPlacesStringGet) | **Get** /places/search/places/string | Search Places By Search String
-[**SearchPlacesPlacesPlacesGet**](PlacesApi.md#SearchPlacesPlacesPlacesGet) | **Get** /places/places | Search Places
-[**UpdatePlacePlacesPlacesPlaceUuidPut**](PlacesApi.md#UpdatePlacePlacesPlacesPlaceUuidPut) | **Put** /places/places/{place_uuid} | Update Place
+[**SearchPlaces**](PlacesApi.md#SearchPlaces) | **Get** /places/places | Searchplaces
+[**UpdatePlace**](PlacesApi.md#UpdatePlace) | **Put** /places/places/{place_uuid} | Updateplace
 
+
+
+## AdvancedSearchPlaces
+
+> Page AdvancedSearchPlaces(ctx).SearchString(searchString).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+
+Advancedsearchplaces
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    searchString := "searchString_example" // string |  (optional) (default to "")
+    page := int32(56) // int32 |  (optional) (default to 1)
+    pageSize := int32(56) // int32 |  (optional) (default to 25)
+    sortOn := "sortOn_example" // string |  (optional)
+    sortDesc := true // bool |  (optional) (default to false)
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PlacesApi.AdvancedSearchPlaces(context.Background()).SearchString(searchString).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PlacesApi.AdvancedSearchPlaces``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AdvancedSearchPlaces`: Page
+    fmt.Fprintf(os.Stdout, "Response from `PlacesApi.AdvancedSearchPlaces`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAdvancedSearchPlacesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **searchString** | **string** |  | [default to &quot;&quot;]
+ **page** | **int32** |  | [default to 1]
+ **pageSize** | **int32** |  | [default to 25]
+ **sortOn** | **string** |  | 
+ **sortDesc** | **bool** |  | [default to false]
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
+
+### Return type
+
+[**Page**](Page.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CreatePlacePlacesPlacesPost
@@ -93,11 +179,11 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## DeletePlacePlacesPlacesPlaceUuidDelete
+## DeletePlace
 
-> interface{} DeletePlacePlacesPlacesPlaceUuidDelete(ctx, placeUuid).SoftDelete(softDelete).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> interface{} DeletePlace(ctx, placeUuid).SoftDelete(softDelete).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
-Delete Place
+Deleteplace
 
 
 
@@ -125,13 +211,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PlacesApi.DeletePlacePlacesPlacesPlaceUuidDelete(context.Background(), placeUuid).SoftDelete(softDelete).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.PlacesApi.DeletePlace(context.Background(), placeUuid).SoftDelete(softDelete).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PlacesApi.DeletePlacePlacesPlacesPlaceUuidDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PlacesApi.DeletePlace``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeletePlacePlacesPlacesPlaceUuidDelete`: interface{}
-    fmt.Fprintf(os.Stdout, "Response from `PlacesApi.DeletePlacePlacesPlacesPlaceUuidDelete`: %v\n", resp)
+    // response from `DeletePlace`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `PlacesApi.DeletePlace`: %v\n", resp)
 }
 ```
 
@@ -145,7 +231,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeletePlacePlacesPlacesPlaceUuidDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeletePlaceRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -253,11 +339,11 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## GetPlacePlacesPlacesPlaceUuidGet
+## GetPlace
 
-> PlaceResponse GetPlacePlacesPlacesPlaceUuidGet(ctx, placeUuid).WithMeta(withMeta).WithCatalog(withCatalog).WithReviews(withReviews).WithSchedule(withSchedule).WithCollection(withCollection).WithBlog(withBlog).WithTags(withTags).WithCategories(withCategories).WithCompany(withCompany).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> PlaceResponse GetPlace(ctx, placeUuid).WithMeta(withMeta).WithCatalog(withCatalog).WithReviews(withReviews).WithSchedule(withSchedule).WithCollection(withCollection).WithBlog(withBlog).WithTags(withTags).WithCategories(withCategories).WithCompany(withCompany).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
-Get Place
+Getplace
 
 
 
@@ -293,13 +379,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PlacesApi.GetPlacePlacesPlacesPlaceUuidGet(context.Background(), placeUuid).WithMeta(withMeta).WithCatalog(withCatalog).WithReviews(withReviews).WithSchedule(withSchedule).WithCollection(withCollection).WithBlog(withBlog).WithTags(withTags).WithCategories(withCategories).WithCompany(withCompany).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.PlacesApi.GetPlace(context.Background(), placeUuid).WithMeta(withMeta).WithCatalog(withCatalog).WithReviews(withReviews).WithSchedule(withSchedule).WithCollection(withCollection).WithBlog(withBlog).WithTags(withTags).WithCategories(withCategories).WithCompany(withCompany).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PlacesApi.GetPlacePlacesPlacesPlaceUuidGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PlacesApi.GetPlace``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetPlacePlacesPlacesPlaceUuidGet`: PlaceResponse
-    fmt.Fprintf(os.Stdout, "Response from `PlacesApi.GetPlacePlacesPlacesPlaceUuidGet`: %v\n", resp)
+    // response from `GetPlace`: PlaceResponse
+    fmt.Fprintf(os.Stdout, "Response from `PlacesApi.GetPlace`: %v\n", resp)
 }
 ```
 
@@ -313,7 +399,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetPlacePlacesPlacesPlaceUuidGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetPlaceRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -431,97 +517,11 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## SearchPlacesBySearchStringPlacesSearchPlacesStringGet
+## SearchPlaces
 
-> Page SearchPlacesBySearchStringPlacesSearchPlacesStringGet(ctx).SearchString(searchString).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> Page SearchPlaces(ctx).ProjectUuid(projectUuid).Name(name).AddressLine1(addressLine1).AddressLine2(addressLine2).City(city).ProvinceState(provinceState).Country(country).PostalZipCode(postalZipCode).Lat(lat).Lng(lng).Email(email).IsPublic(isPublic).IsDeleted(isDeleted).WithCompany(withCompany).WithMeta(withMeta).WithCatalog(withCatalog).WithReviews(withReviews).WithSchedule(withSchedule).WithCollection(withCollection).WithBlog(withBlog).WithTags(withTags).WithCategories(withCategories).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
-Search Places By Search String
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    searchString := "searchString_example" // string |  (optional) (default to "")
-    page := int32(56) // int32 |  (optional) (default to 1)
-    pageSize := int32(56) // int32 |  (optional) (default to 25)
-    sortOn := "sortOn_example" // string |  (optional)
-    sortDesc := true // bool |  (optional) (default to false)
-    xAccessToken := "xAccessToken_example" // string |  (optional)
-    xSecretToken := "xSecretToken_example" // string |  (optional)
-    authorization := "authorization_example" // string |  (optional)
-    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
-    ehelplyProject := "ehelplyProject_example" // string |  (optional)
-    ehelplyData := "ehelplyData_example" // string |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PlacesApi.SearchPlacesBySearchStringPlacesSearchPlacesStringGet(context.Background()).SearchString(searchString).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PlacesApi.SearchPlacesBySearchStringPlacesSearchPlacesStringGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SearchPlacesBySearchStringPlacesSearchPlacesStringGet`: Page
-    fmt.Fprintf(os.Stdout, "Response from `PlacesApi.SearchPlacesBySearchStringPlacesSearchPlacesStringGet`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **searchString** | **string** |  | [default to &quot;&quot;]
- **page** | **int32** |  | [default to 1]
- **pageSize** | **int32** |  | [default to 25]
- **sortOn** | **string** |  | 
- **sortDesc** | **bool** |  | [default to false]
- **xAccessToken** | **string** |  | 
- **xSecretToken** | **string** |  | 
- **authorization** | **string** |  | 
- **ehelplyActiveParticipant** | **string** |  | 
- **ehelplyProject** | **string** |  | 
- **ehelplyData** | **string** |  | 
-
-### Return type
-
-[**Page**](Page.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## SearchPlacesPlacesPlacesGet
-
-> Page SearchPlacesPlacesPlacesGet(ctx).ProjectUuid(projectUuid).Name(name).AddressLine1(addressLine1).AddressLine2(addressLine2).City(city).ProvinceState(provinceState).Country(country).PostalZipCode(postalZipCode).Lat(lat).Lng(lng).Email(email).IsPublic(isPublic).IsDeleted(isDeleted).WithCompany(withCompany).WithMeta(withMeta).WithCatalog(withCatalog).WithReviews(withReviews).WithSchedule(withSchedule).WithCollection(withCollection).WithBlog(withBlog).WithTags(withTags).WithCategories(withCategories).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
-
-Search Places
+Searchplaces
 
 
 
@@ -573,13 +573,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PlacesApi.SearchPlacesPlacesPlacesGet(context.Background()).ProjectUuid(projectUuid).Name(name).AddressLine1(addressLine1).AddressLine2(addressLine2).City(city).ProvinceState(provinceState).Country(country).PostalZipCode(postalZipCode).Lat(lat).Lng(lng).Email(email).IsPublic(isPublic).IsDeleted(isDeleted).WithCompany(withCompany).WithMeta(withMeta).WithCatalog(withCatalog).WithReviews(withReviews).WithSchedule(withSchedule).WithCollection(withCollection).WithBlog(withBlog).WithTags(withTags).WithCategories(withCategories).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.PlacesApi.SearchPlaces(context.Background()).ProjectUuid(projectUuid).Name(name).AddressLine1(addressLine1).AddressLine2(addressLine2).City(city).ProvinceState(provinceState).Country(country).PostalZipCode(postalZipCode).Lat(lat).Lng(lng).Email(email).IsPublic(isPublic).IsDeleted(isDeleted).WithCompany(withCompany).WithMeta(withMeta).WithCatalog(withCatalog).WithReviews(withReviews).WithSchedule(withSchedule).WithCollection(withCollection).WithBlog(withBlog).WithTags(withTags).WithCategories(withCategories).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PlacesApi.SearchPlacesPlacesPlacesGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PlacesApi.SearchPlaces``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `SearchPlacesPlacesPlacesGet`: Page
-    fmt.Fprintf(os.Stdout, "Response from `PlacesApi.SearchPlacesPlacesPlacesGet`: %v\n", resp)
+    // response from `SearchPlaces`: Page
+    fmt.Fprintf(os.Stdout, "Response from `PlacesApi.SearchPlaces`: %v\n", resp)
 }
 ```
 
@@ -589,7 +589,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSearchPlacesPlacesPlacesGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiSearchPlacesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -645,11 +645,11 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## UpdatePlacePlacesPlacesPlaceUuidPut
+## UpdatePlace
 
-> PlaceResponse UpdatePlacePlacesPlacesPlaceUuidPut(ctx, placeUuid).PlaceBase(placeBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> PlaceResponse UpdatePlace(ctx, placeUuid).PlaceBase(placeBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
-Update Place
+Updateplace
 
 
 
@@ -677,13 +677,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PlacesApi.UpdatePlacePlacesPlacesPlaceUuidPut(context.Background(), placeUuid).PlaceBase(placeBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.PlacesApi.UpdatePlace(context.Background(), placeUuid).PlaceBase(placeBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PlacesApi.UpdatePlacePlacesPlacesPlaceUuidPut``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PlacesApi.UpdatePlace``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdatePlacePlacesPlacesPlaceUuidPut`: PlaceResponse
-    fmt.Fprintf(os.Stdout, "Response from `PlacesApi.UpdatePlacePlacesPlacesPlaceUuidPut`: %v\n", resp)
+    // response from `UpdatePlace`: PlaceResponse
+    fmt.Fprintf(os.Stdout, "Response from `PlacesApi.UpdatePlace`: %v\n", resp)
 }
 ```
 
@@ -697,7 +697,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdatePlacePlacesPlacesPlaceUuidPutRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdatePlaceRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

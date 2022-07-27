@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.97
+eHelply SDK - 1.1.98
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.97
+API version: 1.1.98
 Contact: support@ehelply.com
 */
 
@@ -23,6 +23,213 @@ import (
 
 // PlacesApiService PlacesApi service
 type PlacesApiService service
+
+type ApiAdvancedSearchPlacesRequest struct {
+	ctx context.Context
+	ApiService *PlacesApiService
+	searchString *string
+	page *int32
+	pageSize *int32
+	sortOn *string
+	sortDesc *bool
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
+}
+
+func (r ApiAdvancedSearchPlacesRequest) SearchString(searchString string) ApiAdvancedSearchPlacesRequest {
+	r.searchString = &searchString
+	return r
+}
+
+func (r ApiAdvancedSearchPlacesRequest) Page(page int32) ApiAdvancedSearchPlacesRequest {
+	r.page = &page
+	return r
+}
+
+func (r ApiAdvancedSearchPlacesRequest) PageSize(pageSize int32) ApiAdvancedSearchPlacesRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+func (r ApiAdvancedSearchPlacesRequest) SortOn(sortOn string) ApiAdvancedSearchPlacesRequest {
+	r.sortOn = &sortOn
+	return r
+}
+
+func (r ApiAdvancedSearchPlacesRequest) SortDesc(sortDesc bool) ApiAdvancedSearchPlacesRequest {
+	r.sortDesc = &sortDesc
+	return r
+}
+
+func (r ApiAdvancedSearchPlacesRequest) XAccessToken(xAccessToken string) ApiAdvancedSearchPlacesRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiAdvancedSearchPlacesRequest) XSecretToken(xSecretToken string) ApiAdvancedSearchPlacesRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiAdvancedSearchPlacesRequest) Authorization(authorization string) ApiAdvancedSearchPlacesRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiAdvancedSearchPlacesRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiAdvancedSearchPlacesRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiAdvancedSearchPlacesRequest) EhelplyProject(ehelplyProject string) ApiAdvancedSearchPlacesRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiAdvancedSearchPlacesRequest) EhelplyData(ehelplyData string) ApiAdvancedSearchPlacesRequest {
+	r.ehelplyData = &ehelplyData
+	return r
+}
+
+func (r ApiAdvancedSearchPlacesRequest) Execute() (*Page, *http.Response, error) {
+	return r.ApiService.AdvancedSearchPlacesExecute(r)
+}
+
+/*
+AdvancedSearchPlaces Advancedsearchplaces
+
+Search places by a search string
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiAdvancedSearchPlacesRequest
+*/
+func (a *PlacesApiService) AdvancedSearchPlaces(ctx context.Context) ApiAdvancedSearchPlacesRequest {
+	return ApiAdvancedSearchPlacesRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return Page
+func (a *PlacesApiService) AdvancedSearchPlacesExecute(r ApiAdvancedSearchPlacesRequest) (*Page, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *Page
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlacesApiService.AdvancedSearchPlaces")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/places/search/places/string"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.searchString != nil {
+		localVarQueryParams.Add("search_string", parameterToString(*r.searchString, ""))
+	}
+	if r.page != nil {
+		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	if r.pageSize != nil {
+		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
+	}
+	if r.sortOn != nil {
+		localVarQueryParams.Add("sort_on", parameterToString(*r.sortOn, ""))
+	}
+	if r.sortDesc != nil {
+		localVarQueryParams.Add("sort_desc", parameterToString(*r.sortDesc, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type ApiCreatePlacePlacesPlacesPostRequest struct {
 	ctx context.Context
@@ -197,7 +404,7 @@ func (a *PlacesApiService) CreatePlacePlacesPlacesPostExecute(r ApiCreatePlacePl
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeletePlacePlacesPlacesPlaceUuidDeleteRequest struct {
+type ApiDeletePlaceRequest struct {
 	ctx context.Context
 	ApiService *PlacesApiService
 	placeUuid string
@@ -210,56 +417,56 @@ type ApiDeletePlacePlacesPlacesPlaceUuidDeleteRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiDeletePlacePlacesPlacesPlaceUuidDeleteRequest) SoftDelete(softDelete bool) ApiDeletePlacePlacesPlacesPlaceUuidDeleteRequest {
+func (r ApiDeletePlaceRequest) SoftDelete(softDelete bool) ApiDeletePlaceRequest {
 	r.softDelete = &softDelete
 	return r
 }
 
-func (r ApiDeletePlacePlacesPlacesPlaceUuidDeleteRequest) XAccessToken(xAccessToken string) ApiDeletePlacePlacesPlacesPlaceUuidDeleteRequest {
+func (r ApiDeletePlaceRequest) XAccessToken(xAccessToken string) ApiDeletePlaceRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiDeletePlacePlacesPlacesPlaceUuidDeleteRequest) XSecretToken(xSecretToken string) ApiDeletePlacePlacesPlacesPlaceUuidDeleteRequest {
+func (r ApiDeletePlaceRequest) XSecretToken(xSecretToken string) ApiDeletePlaceRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiDeletePlacePlacesPlacesPlaceUuidDeleteRequest) Authorization(authorization string) ApiDeletePlacePlacesPlacesPlaceUuidDeleteRequest {
+func (r ApiDeletePlaceRequest) Authorization(authorization string) ApiDeletePlaceRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiDeletePlacePlacesPlacesPlaceUuidDeleteRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiDeletePlacePlacesPlacesPlaceUuidDeleteRequest {
+func (r ApiDeletePlaceRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiDeletePlaceRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiDeletePlacePlacesPlacesPlaceUuidDeleteRequest) EhelplyProject(ehelplyProject string) ApiDeletePlacePlacesPlacesPlaceUuidDeleteRequest {
+func (r ApiDeletePlaceRequest) EhelplyProject(ehelplyProject string) ApiDeletePlaceRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiDeletePlacePlacesPlacesPlaceUuidDeleteRequest) EhelplyData(ehelplyData string) ApiDeletePlacePlacesPlacesPlaceUuidDeleteRequest {
+func (r ApiDeletePlaceRequest) EhelplyData(ehelplyData string) ApiDeletePlaceRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiDeletePlacePlacesPlacesPlaceUuidDeleteRequest) Execute() (interface{}, *http.Response, error) {
-	return r.ApiService.DeletePlacePlacesPlacesPlaceUuidDeleteExecute(r)
+func (r ApiDeletePlaceRequest) Execute() (interface{}, *http.Response, error) {
+	return r.ApiService.DeletePlaceExecute(r)
 }
 
 /*
-DeletePlacePlacesPlacesPlaceUuidDelete Delete Place
+DeletePlace Deleteplace
 
 Deletes the place with the given ID and returns True if successful
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param placeUuid
- @return ApiDeletePlacePlacesPlacesPlaceUuidDeleteRequest
+ @return ApiDeletePlaceRequest
 */
-func (a *PlacesApiService) DeletePlacePlacesPlacesPlaceUuidDelete(ctx context.Context, placeUuid string) ApiDeletePlacePlacesPlacesPlaceUuidDeleteRequest {
-	return ApiDeletePlacePlacesPlacesPlaceUuidDeleteRequest{
+func (a *PlacesApiService) DeletePlace(ctx context.Context, placeUuid string) ApiDeletePlaceRequest {
+	return ApiDeletePlaceRequest{
 		ApiService: a,
 		ctx: ctx,
 		placeUuid: placeUuid,
@@ -268,7 +475,7 @@ func (a *PlacesApiService) DeletePlacePlacesPlacesPlaceUuidDelete(ctx context.Co
 
 // Execute executes the request
 //  @return interface{}
-func (a *PlacesApiService) DeletePlacePlacesPlacesPlaceUuidDeleteExecute(r ApiDeletePlacePlacesPlacesPlaceUuidDeleteRequest) (interface{}, *http.Response, error) {
+func (a *PlacesApiService) DeletePlaceExecute(r ApiDeletePlaceRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -276,7 +483,7 @@ func (a *PlacesApiService) DeletePlacePlacesPlacesPlaceUuidDeleteExecute(r ApiDe
 		localVarReturnValue  interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlacesApiService.DeletePlacePlacesPlacesPlaceUuidDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlacesApiService.DeletePlace")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -542,7 +749,7 @@ func (a *PlacesApiService) ForwardGeocodingPlacesGeocodingForwardGetExecute(r Ap
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetPlacePlacesPlacesPlaceUuidGetRequest struct {
+type ApiGetPlaceRequest struct {
 	ctx context.Context
 	ApiService *PlacesApiService
 	placeUuid string
@@ -563,96 +770,96 @@ type ApiGetPlacePlacesPlacesPlaceUuidGetRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiGetPlacePlacesPlacesPlaceUuidGetRequest) WithMeta(withMeta bool) ApiGetPlacePlacesPlacesPlaceUuidGetRequest {
+func (r ApiGetPlaceRequest) WithMeta(withMeta bool) ApiGetPlaceRequest {
 	r.withMeta = &withMeta
 	return r
 }
 
-func (r ApiGetPlacePlacesPlacesPlaceUuidGetRequest) WithCatalog(withCatalog bool) ApiGetPlacePlacesPlacesPlaceUuidGetRequest {
+func (r ApiGetPlaceRequest) WithCatalog(withCatalog bool) ApiGetPlaceRequest {
 	r.withCatalog = &withCatalog
 	return r
 }
 
-func (r ApiGetPlacePlacesPlacesPlaceUuidGetRequest) WithReviews(withReviews bool) ApiGetPlacePlacesPlacesPlaceUuidGetRequest {
+func (r ApiGetPlaceRequest) WithReviews(withReviews bool) ApiGetPlaceRequest {
 	r.withReviews = &withReviews
 	return r
 }
 
-func (r ApiGetPlacePlacesPlacesPlaceUuidGetRequest) WithSchedule(withSchedule bool) ApiGetPlacePlacesPlacesPlaceUuidGetRequest {
+func (r ApiGetPlaceRequest) WithSchedule(withSchedule bool) ApiGetPlaceRequest {
 	r.withSchedule = &withSchedule
 	return r
 }
 
-func (r ApiGetPlacePlacesPlacesPlaceUuidGetRequest) WithCollection(withCollection bool) ApiGetPlacePlacesPlacesPlaceUuidGetRequest {
+func (r ApiGetPlaceRequest) WithCollection(withCollection bool) ApiGetPlaceRequest {
 	r.withCollection = &withCollection
 	return r
 }
 
-func (r ApiGetPlacePlacesPlacesPlaceUuidGetRequest) WithBlog(withBlog bool) ApiGetPlacePlacesPlacesPlaceUuidGetRequest {
+func (r ApiGetPlaceRequest) WithBlog(withBlog bool) ApiGetPlaceRequest {
 	r.withBlog = &withBlog
 	return r
 }
 
-func (r ApiGetPlacePlacesPlacesPlaceUuidGetRequest) WithTags(withTags bool) ApiGetPlacePlacesPlacesPlaceUuidGetRequest {
+func (r ApiGetPlaceRequest) WithTags(withTags bool) ApiGetPlaceRequest {
 	r.withTags = &withTags
 	return r
 }
 
-func (r ApiGetPlacePlacesPlacesPlaceUuidGetRequest) WithCategories(withCategories bool) ApiGetPlacePlacesPlacesPlaceUuidGetRequest {
+func (r ApiGetPlaceRequest) WithCategories(withCategories bool) ApiGetPlaceRequest {
 	r.withCategories = &withCategories
 	return r
 }
 
-func (r ApiGetPlacePlacesPlacesPlaceUuidGetRequest) WithCompany(withCompany bool) ApiGetPlacePlacesPlacesPlaceUuidGetRequest {
+func (r ApiGetPlaceRequest) WithCompany(withCompany bool) ApiGetPlaceRequest {
 	r.withCompany = &withCompany
 	return r
 }
 
-func (r ApiGetPlacePlacesPlacesPlaceUuidGetRequest) XAccessToken(xAccessToken string) ApiGetPlacePlacesPlacesPlaceUuidGetRequest {
+func (r ApiGetPlaceRequest) XAccessToken(xAccessToken string) ApiGetPlaceRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiGetPlacePlacesPlacesPlaceUuidGetRequest) XSecretToken(xSecretToken string) ApiGetPlacePlacesPlacesPlaceUuidGetRequest {
+func (r ApiGetPlaceRequest) XSecretToken(xSecretToken string) ApiGetPlaceRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiGetPlacePlacesPlacesPlaceUuidGetRequest) Authorization(authorization string) ApiGetPlacePlacesPlacesPlaceUuidGetRequest {
+func (r ApiGetPlaceRequest) Authorization(authorization string) ApiGetPlaceRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiGetPlacePlacesPlacesPlaceUuidGetRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiGetPlacePlacesPlacesPlaceUuidGetRequest {
+func (r ApiGetPlaceRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiGetPlaceRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiGetPlacePlacesPlacesPlaceUuidGetRequest) EhelplyProject(ehelplyProject string) ApiGetPlacePlacesPlacesPlaceUuidGetRequest {
+func (r ApiGetPlaceRequest) EhelplyProject(ehelplyProject string) ApiGetPlaceRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiGetPlacePlacesPlacesPlaceUuidGetRequest) EhelplyData(ehelplyData string) ApiGetPlacePlacesPlacesPlaceUuidGetRequest {
+func (r ApiGetPlaceRequest) EhelplyData(ehelplyData string) ApiGetPlaceRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiGetPlacePlacesPlacesPlaceUuidGetRequest) Execute() (*PlaceResponse, *http.Response, error) {
-	return r.ApiService.GetPlacePlacesPlacesPlaceUuidGetExecute(r)
+func (r ApiGetPlaceRequest) Execute() (*PlaceResponse, *http.Response, error) {
+	return r.ApiService.GetPlaceExecute(r)
 }
 
 /*
-GetPlacePlacesPlacesPlaceUuidGet Get Place
+GetPlace Getplace
 
 Gets the place information given the Place ID
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param placeUuid
- @return ApiGetPlacePlacesPlacesPlaceUuidGetRequest
+ @return ApiGetPlaceRequest
 */
-func (a *PlacesApiService) GetPlacePlacesPlacesPlaceUuidGet(ctx context.Context, placeUuid string) ApiGetPlacePlacesPlacesPlaceUuidGetRequest {
-	return ApiGetPlacePlacesPlacesPlaceUuidGetRequest{
+func (a *PlacesApiService) GetPlace(ctx context.Context, placeUuid string) ApiGetPlaceRequest {
+	return ApiGetPlaceRequest{
 		ApiService: a,
 		ctx: ctx,
 		placeUuid: placeUuid,
@@ -661,7 +868,7 @@ func (a *PlacesApiService) GetPlacePlacesPlacesPlaceUuidGet(ctx context.Context,
 
 // Execute executes the request
 //  @return PlaceResponse
-func (a *PlacesApiService) GetPlacePlacesPlacesPlaceUuidGetExecute(r ApiGetPlacePlacesPlacesPlaceUuidGetRequest) (*PlaceResponse, *http.Response, error) {
+func (a *PlacesApiService) GetPlaceExecute(r ApiGetPlaceRequest) (*PlaceResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -669,7 +876,7 @@ func (a *PlacesApiService) GetPlacePlacesPlacesPlaceUuidGetExecute(r ApiGetPlace
 		localVarReturnValue  *PlaceResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlacesApiService.GetPlacePlacesPlacesPlaceUuidGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlacesApiService.GetPlace")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -969,214 +1176,7 @@ func (a *PlacesApiService) ReverseGeocodingPlacesGeocodingReverseGetExecute(r Ap
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest struct {
-	ctx context.Context
-	ApiService *PlacesApiService
-	searchString *string
-	page *int32
-	pageSize *int32
-	sortOn *string
-	sortDesc *bool
-	xAccessToken *string
-	xSecretToken *string
-	authorization *string
-	ehelplyActiveParticipant *string
-	ehelplyProject *string
-	ehelplyData *string
-}
-
-func (r ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest) SearchString(searchString string) ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest {
-	r.searchString = &searchString
-	return r
-}
-
-func (r ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest) Page(page int32) ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest {
-	r.page = &page
-	return r
-}
-
-func (r ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest) PageSize(pageSize int32) ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest {
-	r.pageSize = &pageSize
-	return r
-}
-
-func (r ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest) SortOn(sortOn string) ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest {
-	r.sortOn = &sortOn
-	return r
-}
-
-func (r ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest) SortDesc(sortDesc bool) ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest {
-	r.sortDesc = &sortDesc
-	return r
-}
-
-func (r ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest) XAccessToken(xAccessToken string) ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest {
-	r.xAccessToken = &xAccessToken
-	return r
-}
-
-func (r ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest) XSecretToken(xSecretToken string) ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest {
-	r.xSecretToken = &xSecretToken
-	return r
-}
-
-func (r ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest) Authorization(authorization string) ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest {
-	r.authorization = &authorization
-	return r
-}
-
-func (r ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest {
-	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
-	return r
-}
-
-func (r ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest) EhelplyProject(ehelplyProject string) ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest {
-	r.ehelplyProject = &ehelplyProject
-	return r
-}
-
-func (r ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest) EhelplyData(ehelplyData string) ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest {
-	r.ehelplyData = &ehelplyData
-	return r
-}
-
-func (r ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest) Execute() (*Page, *http.Response, error) {
-	return r.ApiService.SearchPlacesBySearchStringPlacesSearchPlacesStringGetExecute(r)
-}
-
-/*
-SearchPlacesBySearchStringPlacesSearchPlacesStringGet Search Places By Search String
-
-Search places by a search string
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest
-*/
-func (a *PlacesApiService) SearchPlacesBySearchStringPlacesSearchPlacesStringGet(ctx context.Context) ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest {
-	return ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return Page
-func (a *PlacesApiService) SearchPlacesBySearchStringPlacesSearchPlacesStringGetExecute(r ApiSearchPlacesBySearchStringPlacesSearchPlacesStringGetRequest) (*Page, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Page
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlacesApiService.SearchPlacesBySearchStringPlacesSearchPlacesStringGet")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/places/search/places/string"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.searchString != nil {
-		localVarQueryParams.Add("search_string", parameterToString(*r.searchString, ""))
-	}
-	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
-	}
-	if r.pageSize != nil {
-		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
-	}
-	if r.sortOn != nil {
-		localVarQueryParams.Add("sort_on", parameterToString(*r.sortOn, ""))
-	}
-	if r.sortDesc != nil {
-		localVarQueryParams.Add("sort_desc", parameterToString(*r.sortDesc, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xAccessToken != nil {
-		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
-	}
-	if r.xSecretToken != nil {
-		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
-	}
-	if r.authorization != nil {
-		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
-	}
-	if r.ehelplyActiveParticipant != nil {
-		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
-	}
-	if r.ehelplyProject != nil {
-		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
-	}
-	if r.ehelplyData != nil {
-		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v HTTPValidationError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiSearchPlacesPlacesPlacesGetRequest struct {
+type ApiSearchPlacesRequest struct {
 	ctx context.Context
 	ApiService *PlacesApiService
 	projectUuid *string
@@ -1213,172 +1213,172 @@ type ApiSearchPlacesPlacesPlacesGetRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) ProjectUuid(projectUuid string) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) ProjectUuid(projectUuid string) ApiSearchPlacesRequest {
 	r.projectUuid = &projectUuid
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) Name(name string) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) Name(name string) ApiSearchPlacesRequest {
 	r.name = &name
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) AddressLine1(addressLine1 string) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) AddressLine1(addressLine1 string) ApiSearchPlacesRequest {
 	r.addressLine1 = &addressLine1
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) AddressLine2(addressLine2 string) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) AddressLine2(addressLine2 string) ApiSearchPlacesRequest {
 	r.addressLine2 = &addressLine2
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) City(city string) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) City(city string) ApiSearchPlacesRequest {
 	r.city = &city
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) ProvinceState(provinceState string) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) ProvinceState(provinceState string) ApiSearchPlacesRequest {
 	r.provinceState = &provinceState
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) Country(country string) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) Country(country string) ApiSearchPlacesRequest {
 	r.country = &country
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) PostalZipCode(postalZipCode string) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) PostalZipCode(postalZipCode string) ApiSearchPlacesRequest {
 	r.postalZipCode = &postalZipCode
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) Lat(lat string) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) Lat(lat string) ApiSearchPlacesRequest {
 	r.lat = &lat
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) Lng(lng string) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) Lng(lng string) ApiSearchPlacesRequest {
 	r.lng = &lng
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) Email(email string) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) Email(email string) ApiSearchPlacesRequest {
 	r.email = &email
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) IsPublic(isPublic bool) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) IsPublic(isPublic bool) ApiSearchPlacesRequest {
 	r.isPublic = &isPublic
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) IsDeleted(isDeleted bool) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) IsDeleted(isDeleted bool) ApiSearchPlacesRequest {
 	r.isDeleted = &isDeleted
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) WithCompany(withCompany bool) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) WithCompany(withCompany bool) ApiSearchPlacesRequest {
 	r.withCompany = &withCompany
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) WithMeta(withMeta bool) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) WithMeta(withMeta bool) ApiSearchPlacesRequest {
 	r.withMeta = &withMeta
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) WithCatalog(withCatalog bool) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) WithCatalog(withCatalog bool) ApiSearchPlacesRequest {
 	r.withCatalog = &withCatalog
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) WithReviews(withReviews bool) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) WithReviews(withReviews bool) ApiSearchPlacesRequest {
 	r.withReviews = &withReviews
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) WithSchedule(withSchedule bool) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) WithSchedule(withSchedule bool) ApiSearchPlacesRequest {
 	r.withSchedule = &withSchedule
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) WithCollection(withCollection bool) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) WithCollection(withCollection bool) ApiSearchPlacesRequest {
 	r.withCollection = &withCollection
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) WithBlog(withBlog bool) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) WithBlog(withBlog bool) ApiSearchPlacesRequest {
 	r.withBlog = &withBlog
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) WithTags(withTags bool) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) WithTags(withTags bool) ApiSearchPlacesRequest {
 	r.withTags = &withTags
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) WithCategories(withCategories bool) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) WithCategories(withCategories bool) ApiSearchPlacesRequest {
 	r.withCategories = &withCategories
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) Page(page int32) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) Page(page int32) ApiSearchPlacesRequest {
 	r.page = &page
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) PageSize(pageSize int32) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) PageSize(pageSize int32) ApiSearchPlacesRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) SortOn(sortOn string) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) SortOn(sortOn string) ApiSearchPlacesRequest {
 	r.sortOn = &sortOn
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) SortDesc(sortDesc bool) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) SortDesc(sortDesc bool) ApiSearchPlacesRequest {
 	r.sortDesc = &sortDesc
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) XAccessToken(xAccessToken string) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) XAccessToken(xAccessToken string) ApiSearchPlacesRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) XSecretToken(xSecretToken string) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) XSecretToken(xSecretToken string) ApiSearchPlacesRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) Authorization(authorization string) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) Authorization(authorization string) ApiSearchPlacesRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiSearchPlacesRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) EhelplyProject(ehelplyProject string) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) EhelplyProject(ehelplyProject string) ApiSearchPlacesRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) EhelplyData(ehelplyData string) ApiSearchPlacesPlacesPlacesGetRequest {
+func (r ApiSearchPlacesRequest) EhelplyData(ehelplyData string) ApiSearchPlacesRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiSearchPlacesPlacesPlacesGetRequest) Execute() (*Page, *http.Response, error) {
-	return r.ApiService.SearchPlacesPlacesPlacesGetExecute(r)
+func (r ApiSearchPlacesRequest) Execute() (*Page, *http.Response, error) {
+	return r.ApiService.SearchPlacesExecute(r)
 }
 
 /*
-SearchPlacesPlacesPlacesGet Search Places
+SearchPlaces Searchplaces
 
 Search all places and returns paginated results with Places being stored in items field.
 Can search by `project_uuid, name, address, address_line_2, city, province_state, country, postal_zip_code, lat, lng
@@ -1419,10 +1419,10 @@ Item return format:
 ```
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchPlacesPlacesPlacesGetRequest
+ @return ApiSearchPlacesRequest
 */
-func (a *PlacesApiService) SearchPlacesPlacesPlacesGet(ctx context.Context) ApiSearchPlacesPlacesPlacesGetRequest {
-	return ApiSearchPlacesPlacesPlacesGetRequest{
+func (a *PlacesApiService) SearchPlaces(ctx context.Context) ApiSearchPlacesRequest {
+	return ApiSearchPlacesRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -1430,7 +1430,7 @@ func (a *PlacesApiService) SearchPlacesPlacesPlacesGet(ctx context.Context) ApiS
 
 // Execute executes the request
 //  @return Page
-func (a *PlacesApiService) SearchPlacesPlacesPlacesGetExecute(r ApiSearchPlacesPlacesPlacesGetRequest) (*Page, *http.Response, error) {
+func (a *PlacesApiService) SearchPlacesExecute(r ApiSearchPlacesRequest) (*Page, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1438,7 +1438,7 @@ func (a *PlacesApiService) SearchPlacesPlacesPlacesGetExecute(r ApiSearchPlacesP
 		localVarReturnValue  *Page
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlacesApiService.SearchPlacesPlacesPlacesGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlacesApiService.SearchPlaces")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1608,7 +1608,7 @@ func (a *PlacesApiService) SearchPlacesPlacesPlacesGetExecute(r ApiSearchPlacesP
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdatePlacePlacesPlacesPlaceUuidPutRequest struct {
+type ApiUpdatePlaceRequest struct {
 	ctx context.Context
 	ApiService *PlacesApiService
 	placeUuid string
@@ -1621,56 +1621,56 @@ type ApiUpdatePlacePlacesPlacesPlaceUuidPutRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiUpdatePlacePlacesPlacesPlaceUuidPutRequest) PlaceBase(placeBase PlaceBase) ApiUpdatePlacePlacesPlacesPlaceUuidPutRequest {
+func (r ApiUpdatePlaceRequest) PlaceBase(placeBase PlaceBase) ApiUpdatePlaceRequest {
 	r.placeBase = &placeBase
 	return r
 }
 
-func (r ApiUpdatePlacePlacesPlacesPlaceUuidPutRequest) XAccessToken(xAccessToken string) ApiUpdatePlacePlacesPlacesPlaceUuidPutRequest {
+func (r ApiUpdatePlaceRequest) XAccessToken(xAccessToken string) ApiUpdatePlaceRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiUpdatePlacePlacesPlacesPlaceUuidPutRequest) XSecretToken(xSecretToken string) ApiUpdatePlacePlacesPlacesPlaceUuidPutRequest {
+func (r ApiUpdatePlaceRequest) XSecretToken(xSecretToken string) ApiUpdatePlaceRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiUpdatePlacePlacesPlacesPlaceUuidPutRequest) Authorization(authorization string) ApiUpdatePlacePlacesPlacesPlaceUuidPutRequest {
+func (r ApiUpdatePlaceRequest) Authorization(authorization string) ApiUpdatePlaceRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiUpdatePlacePlacesPlacesPlaceUuidPutRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiUpdatePlacePlacesPlacesPlaceUuidPutRequest {
+func (r ApiUpdatePlaceRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiUpdatePlaceRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiUpdatePlacePlacesPlacesPlaceUuidPutRequest) EhelplyProject(ehelplyProject string) ApiUpdatePlacePlacesPlacesPlaceUuidPutRequest {
+func (r ApiUpdatePlaceRequest) EhelplyProject(ehelplyProject string) ApiUpdatePlaceRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiUpdatePlacePlacesPlacesPlaceUuidPutRequest) EhelplyData(ehelplyData string) ApiUpdatePlacePlacesPlacesPlaceUuidPutRequest {
+func (r ApiUpdatePlaceRequest) EhelplyData(ehelplyData string) ApiUpdatePlaceRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiUpdatePlacePlacesPlacesPlaceUuidPutRequest) Execute() (*PlaceResponse, *http.Response, error) {
-	return r.ApiService.UpdatePlacePlacesPlacesPlaceUuidPutExecute(r)
+func (r ApiUpdatePlaceRequest) Execute() (*PlaceResponse, *http.Response, error) {
+	return r.ApiService.UpdatePlaceExecute(r)
 }
 
 /*
-UpdatePlacePlacesPlacesPlaceUuidPut Update Place
+UpdatePlace Updateplace
 
 Update Place with given info, only updating the fields supplied. Place Uuid must be sent however.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param placeUuid
- @return ApiUpdatePlacePlacesPlacesPlaceUuidPutRequest
+ @return ApiUpdatePlaceRequest
 */
-func (a *PlacesApiService) UpdatePlacePlacesPlacesPlaceUuidPut(ctx context.Context, placeUuid string) ApiUpdatePlacePlacesPlacesPlaceUuidPutRequest {
-	return ApiUpdatePlacePlacesPlacesPlaceUuidPutRequest{
+func (a *PlacesApiService) UpdatePlace(ctx context.Context, placeUuid string) ApiUpdatePlaceRequest {
+	return ApiUpdatePlaceRequest{
 		ApiService: a,
 		ctx: ctx,
 		placeUuid: placeUuid,
@@ -1679,7 +1679,7 @@ func (a *PlacesApiService) UpdatePlacePlacesPlacesPlaceUuidPut(ctx context.Conte
 
 // Execute executes the request
 //  @return PlaceResponse
-func (a *PlacesApiService) UpdatePlacePlacesPlacesPlaceUuidPutExecute(r ApiUpdatePlacePlacesPlacesPlaceUuidPutRequest) (*PlaceResponse, *http.Response, error) {
+func (a *PlacesApiService) UpdatePlaceExecute(r ApiUpdatePlaceRequest) (*PlaceResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -1687,7 +1687,7 @@ func (a *PlacesApiService) UpdatePlacePlacesPlacesPlaceUuidPutExecute(r ApiUpdat
 		localVarReturnValue  *PlaceResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlacesApiService.UpdatePlacePlacesPlacesPlaceUuidPut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PlacesApiService.UpdatePlace")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
