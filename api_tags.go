@@ -21,13 +21,13 @@ import (
 )
 
 
-// StaffApiService StaffApi service
-type StaffApiService service
+// TagsApiService TagsApi service
+type TagsApiService service
 
-type ApiCreateStaffRequest struct {
+type ApiCreateTagRequest struct {
 	ctx context.Context
-	ApiService *StaffApiService
-	staffCreate *StaffCreate
+	ApiService *TagsApiService
+	tagBase *TagBase
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -36,82 +36,82 @@ type ApiCreateStaffRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiCreateStaffRequest) StaffCreate(staffCreate StaffCreate) ApiCreateStaffRequest {
-	r.staffCreate = &staffCreate
+func (r ApiCreateTagRequest) TagBase(tagBase TagBase) ApiCreateTagRequest {
+	r.tagBase = &tagBase
 	return r
 }
 
-func (r ApiCreateStaffRequest) XAccessToken(xAccessToken string) ApiCreateStaffRequest {
+func (r ApiCreateTagRequest) XAccessToken(xAccessToken string) ApiCreateTagRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiCreateStaffRequest) XSecretToken(xSecretToken string) ApiCreateStaffRequest {
+func (r ApiCreateTagRequest) XSecretToken(xSecretToken string) ApiCreateTagRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiCreateStaffRequest) Authorization(authorization string) ApiCreateStaffRequest {
+func (r ApiCreateTagRequest) Authorization(authorization string) ApiCreateTagRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiCreateStaffRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiCreateStaffRequest {
+func (r ApiCreateTagRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiCreateTagRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiCreateStaffRequest) EhelplyProject(ehelplyProject string) ApiCreateStaffRequest {
+func (r ApiCreateTagRequest) EhelplyProject(ehelplyProject string) ApiCreateTagRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiCreateStaffRequest) EhelplyData(ehelplyData string) ApiCreateStaffRequest {
+func (r ApiCreateTagRequest) EhelplyData(ehelplyData string) ApiCreateTagRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiCreateStaffRequest) Execute() (*StaffDb, *http.Response, error) {
-	return r.ApiService.CreateStaffExecute(r)
+func (r ApiCreateTagRequest) Execute() (*TagDb, *http.Response, error) {
+	return r.ApiService.CreateTagExecute(r)
 }
 
 /*
-CreateStaff Createstaff
+CreateTag Createtag
 
-Creates a staff member
+Creates a tag
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateStaffRequest
+ @return ApiCreateTagRequest
 */
-func (a *StaffApiService) CreateStaff(ctx context.Context) ApiCreateStaffRequest {
-	return ApiCreateStaffRequest{
+func (a *TagsApiService) CreateTag(ctx context.Context) ApiCreateTagRequest {
+	return ApiCreateTagRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return StaffDb
-func (a *StaffApiService) CreateStaffExecute(r ApiCreateStaffRequest) (*StaffDb, *http.Response, error) {
+//  @return TagDb
+func (a *TagsApiService) CreateTagExecute(r ApiCreateTagRequest) (*TagDb, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *StaffDb
+		localVarReturnValue  *TagDb
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StaffApiService.CreateStaff")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagsApiService.CreateTag")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/places/staff"
+	localVarPath := localBasePath + "/places/tags"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.staffCreate == nil {
-		return localVarReturnValue, nil, reportError("staffCreate is required and must be specified")
+	if r.tagBase == nil {
+		return localVarReturnValue, nil, reportError("tagBase is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -150,7 +150,7 @@ func (a *StaffApiService) CreateStaffExecute(r ApiCreateStaffRequest) (*StaffDb,
 		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
 	}
 	// body params
-	localVarPostBody = r.staffCreate
+	localVarPostBody = r.tagBase
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -197,11 +197,10 @@ func (a *StaffApiService) CreateStaffExecute(r ApiCreateStaffRequest) (*StaffDb,
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteStaffRequest struct {
+type ApiGetTagRequest struct {
 	ctx context.Context
-	ApiService *StaffApiService
-	staffUuid string
-	softDelete *bool
+	ApiService *TagsApiService
+	tagUuid string
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -210,298 +209,79 @@ type ApiDeleteStaffRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiDeleteStaffRequest) SoftDelete(softDelete bool) ApiDeleteStaffRequest {
-	r.softDelete = &softDelete
-	return r
-}
-
-func (r ApiDeleteStaffRequest) XAccessToken(xAccessToken string) ApiDeleteStaffRequest {
+func (r ApiGetTagRequest) XAccessToken(xAccessToken string) ApiGetTagRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiDeleteStaffRequest) XSecretToken(xSecretToken string) ApiDeleteStaffRequest {
+func (r ApiGetTagRequest) XSecretToken(xSecretToken string) ApiGetTagRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiDeleteStaffRequest) Authorization(authorization string) ApiDeleteStaffRequest {
+func (r ApiGetTagRequest) Authorization(authorization string) ApiGetTagRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiDeleteStaffRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiDeleteStaffRequest {
+func (r ApiGetTagRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiGetTagRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiDeleteStaffRequest) EhelplyProject(ehelplyProject string) ApiDeleteStaffRequest {
+func (r ApiGetTagRequest) EhelplyProject(ehelplyProject string) ApiGetTagRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiDeleteStaffRequest) EhelplyData(ehelplyData string) ApiDeleteStaffRequest {
+func (r ApiGetTagRequest) EhelplyData(ehelplyData string) ApiGetTagRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiDeleteStaffRequest) Execute() (interface{}, *http.Response, error) {
-	return r.ApiService.DeleteStaffExecute(r)
+func (r ApiGetTagRequest) Execute() (*TagBase, *http.Response, error) {
+	return r.ApiService.GetTagExecute(r)
 }
 
 /*
-DeleteStaff Deletestaff
+GetTag Gettag
 
-Deletes the staff member with the given ID and returns True if successful
+Gets the tag member information given the tag ID
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param staffUuid
- @return ApiDeleteStaffRequest
+ @param tagUuid
+ @return ApiGetTagRequest
 */
-func (a *StaffApiService) DeleteStaff(ctx context.Context, staffUuid string) ApiDeleteStaffRequest {
-	return ApiDeleteStaffRequest{
+func (a *TagsApiService) GetTag(ctx context.Context, tagUuid string) ApiGetTagRequest {
+	return ApiGetTagRequest{
 		ApiService: a,
 		ctx: ctx,
-		staffUuid: staffUuid,
+		tagUuid: tagUuid,
 	}
 }
 
 // Execute executes the request
-//  @return interface{}
-func (a *StaffApiService) DeleteStaffExecute(r ApiDeleteStaffRequest) (interface{}, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  interface{}
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StaffApiService.DeleteStaff")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/places/staff/{staff_uuid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"staff_uuid"+"}", url.PathEscape(parameterToString(r.staffUuid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.softDelete != nil {
-		localVarQueryParams.Add("soft_delete", parameterToString(*r.softDelete, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xAccessToken != nil {
-		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
-	}
-	if r.xSecretToken != nil {
-		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
-	}
-	if r.authorization != nil {
-		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
-	}
-	if r.ehelplyActiveParticipant != nil {
-		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
-	}
-	if r.ehelplyProject != nil {
-		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
-	}
-	if r.ehelplyData != nil {
-		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v HTTPValidationError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetStaffRequest struct {
-	ctx context.Context
-	ApiService *StaffApiService
-	staffUuid string
-	withPlaces *bool
-	withCompanies *bool
-	withCatalog *bool
-	withSchedule *bool
-	withRoles *bool
-	xAccessToken *string
-	xSecretToken *string
-	authorization *string
-	ehelplyActiveParticipant *string
-	ehelplyProject *string
-	ehelplyData *string
-}
-
-func (r ApiGetStaffRequest) WithPlaces(withPlaces bool) ApiGetStaffRequest {
-	r.withPlaces = &withPlaces
-	return r
-}
-
-func (r ApiGetStaffRequest) WithCompanies(withCompanies bool) ApiGetStaffRequest {
-	r.withCompanies = &withCompanies
-	return r
-}
-
-func (r ApiGetStaffRequest) WithCatalog(withCatalog bool) ApiGetStaffRequest {
-	r.withCatalog = &withCatalog
-	return r
-}
-
-func (r ApiGetStaffRequest) WithSchedule(withSchedule bool) ApiGetStaffRequest {
-	r.withSchedule = &withSchedule
-	return r
-}
-
-func (r ApiGetStaffRequest) WithRoles(withRoles bool) ApiGetStaffRequest {
-	r.withRoles = &withRoles
-	return r
-}
-
-func (r ApiGetStaffRequest) XAccessToken(xAccessToken string) ApiGetStaffRequest {
-	r.xAccessToken = &xAccessToken
-	return r
-}
-
-func (r ApiGetStaffRequest) XSecretToken(xSecretToken string) ApiGetStaffRequest {
-	r.xSecretToken = &xSecretToken
-	return r
-}
-
-func (r ApiGetStaffRequest) Authorization(authorization string) ApiGetStaffRequest {
-	r.authorization = &authorization
-	return r
-}
-
-func (r ApiGetStaffRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiGetStaffRequest {
-	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
-	return r
-}
-
-func (r ApiGetStaffRequest) EhelplyProject(ehelplyProject string) ApiGetStaffRequest {
-	r.ehelplyProject = &ehelplyProject
-	return r
-}
-
-func (r ApiGetStaffRequest) EhelplyData(ehelplyData string) ApiGetStaffRequest {
-	r.ehelplyData = &ehelplyData
-	return r
-}
-
-func (r ApiGetStaffRequest) Execute() (*StaffResponse, *http.Response, error) {
-	return r.ApiService.GetStaffExecute(r)
-}
-
-/*
-GetStaff Getstaff
-
-Gets the staff member information given the staff ID
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param staffUuid
- @return ApiGetStaffRequest
-*/
-func (a *StaffApiService) GetStaff(ctx context.Context, staffUuid string) ApiGetStaffRequest {
-	return ApiGetStaffRequest{
-		ApiService: a,
-		ctx: ctx,
-		staffUuid: staffUuid,
-	}
-}
-
-// Execute executes the request
-//  @return StaffResponse
-func (a *StaffApiService) GetStaffExecute(r ApiGetStaffRequest) (*StaffResponse, *http.Response, error) {
+//  @return TagBase
+func (a *TagsApiService) GetTagExecute(r ApiGetTagRequest) (*TagBase, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *StaffResponse
+		localVarReturnValue  *TagBase
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StaffApiService.GetStaff")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagsApiService.GetTag")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/places/staff/{staff_uuid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"staff_uuid"+"}", url.PathEscape(parameterToString(r.staffUuid, "")), -1)
+	localVarPath := localBasePath + "/places/tags/{tag_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"tag_uuid"+"}", url.PathEscape(parameterToString(r.tagUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.withPlaces != nil {
-		localVarQueryParams.Add("with_places", parameterToString(*r.withPlaces, ""))
-	}
-	if r.withCompanies != nil {
-		localVarQueryParams.Add("with_companies", parameterToString(*r.withCompanies, ""))
-	}
-	if r.withCatalog != nil {
-		localVarQueryParams.Add("with_catalog", parameterToString(*r.withCatalog, ""))
-	}
-	if r.withSchedule != nil {
-		localVarQueryParams.Add("with_schedule", parameterToString(*r.withSchedule, ""))
-	}
-	if r.withRoles != nil {
-		localVarQueryParams.Add("with_roles", parameterToString(*r.withRoles, ""))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -583,19 +363,11 @@ func (a *StaffApiService) GetStaffExecute(r ApiGetStaffRequest) (*StaffResponse,
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSearchStaffRequest struct {
+type ApiSearchTagRequest struct {
 	ctx context.Context
-	ApiService *StaffApiService
+	ApiService *TagsApiService
 	projectUuid *string
-	firstName *string
-	lastName *string
-	isDeleted *bool
-	withCompanies *bool
-	withPlaces *bool
-	withSchedule *bool
-	withCatalog *bool
-	withReviews *bool
-	withRoles *bool
+	name *string
 	page *int32
 	pageSize *int32
 	sortOn *string
@@ -608,112 +380,72 @@ type ApiSearchStaffRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiSearchStaffRequest) ProjectUuid(projectUuid string) ApiSearchStaffRequest {
+func (r ApiSearchTagRequest) ProjectUuid(projectUuid string) ApiSearchTagRequest {
 	r.projectUuid = &projectUuid
 	return r
 }
 
-func (r ApiSearchStaffRequest) FirstName(firstName string) ApiSearchStaffRequest {
-	r.firstName = &firstName
+func (r ApiSearchTagRequest) Name(name string) ApiSearchTagRequest {
+	r.name = &name
 	return r
 }
 
-func (r ApiSearchStaffRequest) LastName(lastName string) ApiSearchStaffRequest {
-	r.lastName = &lastName
-	return r
-}
-
-func (r ApiSearchStaffRequest) IsDeleted(isDeleted bool) ApiSearchStaffRequest {
-	r.isDeleted = &isDeleted
-	return r
-}
-
-func (r ApiSearchStaffRequest) WithCompanies(withCompanies bool) ApiSearchStaffRequest {
-	r.withCompanies = &withCompanies
-	return r
-}
-
-func (r ApiSearchStaffRequest) WithPlaces(withPlaces bool) ApiSearchStaffRequest {
-	r.withPlaces = &withPlaces
-	return r
-}
-
-func (r ApiSearchStaffRequest) WithSchedule(withSchedule bool) ApiSearchStaffRequest {
-	r.withSchedule = &withSchedule
-	return r
-}
-
-func (r ApiSearchStaffRequest) WithCatalog(withCatalog bool) ApiSearchStaffRequest {
-	r.withCatalog = &withCatalog
-	return r
-}
-
-func (r ApiSearchStaffRequest) WithReviews(withReviews bool) ApiSearchStaffRequest {
-	r.withReviews = &withReviews
-	return r
-}
-
-func (r ApiSearchStaffRequest) WithRoles(withRoles bool) ApiSearchStaffRequest {
-	r.withRoles = &withRoles
-	return r
-}
-
-func (r ApiSearchStaffRequest) Page(page int32) ApiSearchStaffRequest {
+func (r ApiSearchTagRequest) Page(page int32) ApiSearchTagRequest {
 	r.page = &page
 	return r
 }
 
-func (r ApiSearchStaffRequest) PageSize(pageSize int32) ApiSearchStaffRequest {
+func (r ApiSearchTagRequest) PageSize(pageSize int32) ApiSearchTagRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r ApiSearchStaffRequest) SortOn(sortOn string) ApiSearchStaffRequest {
+func (r ApiSearchTagRequest) SortOn(sortOn string) ApiSearchTagRequest {
 	r.sortOn = &sortOn
 	return r
 }
 
-func (r ApiSearchStaffRequest) SortDesc(sortDesc bool) ApiSearchStaffRequest {
+func (r ApiSearchTagRequest) SortDesc(sortDesc bool) ApiSearchTagRequest {
 	r.sortDesc = &sortDesc
 	return r
 }
 
-func (r ApiSearchStaffRequest) XAccessToken(xAccessToken string) ApiSearchStaffRequest {
+func (r ApiSearchTagRequest) XAccessToken(xAccessToken string) ApiSearchTagRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiSearchStaffRequest) XSecretToken(xSecretToken string) ApiSearchStaffRequest {
+func (r ApiSearchTagRequest) XSecretToken(xSecretToken string) ApiSearchTagRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiSearchStaffRequest) Authorization(authorization string) ApiSearchStaffRequest {
+func (r ApiSearchTagRequest) Authorization(authorization string) ApiSearchTagRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiSearchStaffRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiSearchStaffRequest {
+func (r ApiSearchTagRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiSearchTagRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiSearchStaffRequest) EhelplyProject(ehelplyProject string) ApiSearchStaffRequest {
+func (r ApiSearchTagRequest) EhelplyProject(ehelplyProject string) ApiSearchTagRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiSearchStaffRequest) EhelplyData(ehelplyData string) ApiSearchStaffRequest {
+func (r ApiSearchTagRequest) EhelplyData(ehelplyData string) ApiSearchTagRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiSearchStaffRequest) Execute() (*Page, *http.Response, error) {
-	return r.ApiService.SearchStaffExecute(r)
+func (r ApiSearchTagRequest) Execute() (*Page, *http.Response, error) {
+	return r.ApiService.SearchTagExecute(r)
 }
 
 /*
-SearchStaff Searchstaff
+SearchTag Searchtag
 
 TODO
 Item return format:
@@ -722,17 +454,9 @@ Item return format:
     uuid                                **type:** string
     project_uuid                        **type:** string or None
 
-    entity                              **type:** string or None
+    name                                **type:** string or None
 
-    place                               **type:** dict or None
-
-    company                             **type:** dict or None
-
-    schedule                            **type:** dict or None
-
-    catalog                             **type:** dict or None
-
-    reviews                             **type:** dict or None
+    meta                                **type:** dict or None
 
     created_at                          **type:** string or None
 
@@ -744,10 +468,10 @@ Item return format:
 ```
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchStaffRequest
+ @return ApiSearchTagRequest
 */
-func (a *StaffApiService) SearchStaff(ctx context.Context) ApiSearchStaffRequest {
-	return ApiSearchStaffRequest{
+func (a *TagsApiService) SearchTag(ctx context.Context) ApiSearchTagRequest {
+	return ApiSearchTagRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -755,7 +479,7 @@ func (a *StaffApiService) SearchStaff(ctx context.Context) ApiSearchStaffRequest
 
 // Execute executes the request
 //  @return Page
-func (a *StaffApiService) SearchStaffExecute(r ApiSearchStaffRequest) (*Page, *http.Response, error) {
+func (a *TagsApiService) SearchTagExecute(r ApiSearchTagRequest) (*Page, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -763,12 +487,12 @@ func (a *StaffApiService) SearchStaffExecute(r ApiSearchStaffRequest) (*Page, *h
 		localVarReturnValue  *Page
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StaffApiService.SearchStaff")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagsApiService.SearchTag")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/places/staff"
+	localVarPath := localBasePath + "/places/tags"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -777,32 +501,8 @@ func (a *StaffApiService) SearchStaffExecute(r ApiSearchStaffRequest) (*Page, *h
 	if r.projectUuid != nil {
 		localVarQueryParams.Add("project_uuid", parameterToString(*r.projectUuid, ""))
 	}
-	if r.firstName != nil {
-		localVarQueryParams.Add("first_name", parameterToString(*r.firstName, ""))
-	}
-	if r.lastName != nil {
-		localVarQueryParams.Add("last_name", parameterToString(*r.lastName, ""))
-	}
-	if r.isDeleted != nil {
-		localVarQueryParams.Add("is_deleted", parameterToString(*r.isDeleted, ""))
-	}
-	if r.withCompanies != nil {
-		localVarQueryParams.Add("with_companies", parameterToString(*r.withCompanies, ""))
-	}
-	if r.withPlaces != nil {
-		localVarQueryParams.Add("with_places", parameterToString(*r.withPlaces, ""))
-	}
-	if r.withSchedule != nil {
-		localVarQueryParams.Add("with_schedule", parameterToString(*r.withSchedule, ""))
-	}
-	if r.withCatalog != nil {
-		localVarQueryParams.Add("with_catalog", parameterToString(*r.withCatalog, ""))
-	}
-	if r.withReviews != nil {
-		localVarQueryParams.Add("with_reviews", parameterToString(*r.withReviews, ""))
-	}
-	if r.withRoles != nil {
-		localVarQueryParams.Add("with_roles", parameterToString(*r.withRoles, ""))
+	if r.name != nil {
+		localVarQueryParams.Add("name", parameterToString(*r.name, ""))
 	}
 	if r.page != nil {
 		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
@@ -897,11 +597,11 @@ func (a *StaffApiService) SearchStaffExecute(r ApiSearchStaffRequest) (*Page, *h
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateStaffRequest struct {
+type ApiUpdateTagRequest struct {
 	ctx context.Context
-	ApiService *StaffApiService
-	staffUuid string
-	staffCreate *StaffCreate
+	ApiService *TagsApiService
+	tagUuid string
+	tagBase *TagBase
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -910,85 +610,85 @@ type ApiUpdateStaffRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiUpdateStaffRequest) StaffCreate(staffCreate StaffCreate) ApiUpdateStaffRequest {
-	r.staffCreate = &staffCreate
+func (r ApiUpdateTagRequest) TagBase(tagBase TagBase) ApiUpdateTagRequest {
+	r.tagBase = &tagBase
 	return r
 }
 
-func (r ApiUpdateStaffRequest) XAccessToken(xAccessToken string) ApiUpdateStaffRequest {
+func (r ApiUpdateTagRequest) XAccessToken(xAccessToken string) ApiUpdateTagRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiUpdateStaffRequest) XSecretToken(xSecretToken string) ApiUpdateStaffRequest {
+func (r ApiUpdateTagRequest) XSecretToken(xSecretToken string) ApiUpdateTagRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiUpdateStaffRequest) Authorization(authorization string) ApiUpdateStaffRequest {
+func (r ApiUpdateTagRequest) Authorization(authorization string) ApiUpdateTagRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiUpdateStaffRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiUpdateStaffRequest {
+func (r ApiUpdateTagRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiUpdateTagRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiUpdateStaffRequest) EhelplyProject(ehelplyProject string) ApiUpdateStaffRequest {
+func (r ApiUpdateTagRequest) EhelplyProject(ehelplyProject string) ApiUpdateTagRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiUpdateStaffRequest) EhelplyData(ehelplyData string) ApiUpdateStaffRequest {
+func (r ApiUpdateTagRequest) EhelplyData(ehelplyData string) ApiUpdateTagRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiUpdateStaffRequest) Execute() (*StaffResponse, *http.Response, error) {
-	return r.ApiService.UpdateStaffExecute(r)
+func (r ApiUpdateTagRequest) Execute() (*TagBase, *http.Response, error) {
+	return r.ApiService.UpdateTagExecute(r)
 }
 
 /*
-UpdateStaff Updatestaff
+UpdateTag Updatetag
 
-Update staff with given info, only updating the fields supplied. Staff Uuid must be sent however.
+Update tag with given info, only updating the fields supplied. Tag Uuid must be sent however.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param staffUuid
- @return ApiUpdateStaffRequest
+ @param tagUuid
+ @return ApiUpdateTagRequest
 */
-func (a *StaffApiService) UpdateStaff(ctx context.Context, staffUuid string) ApiUpdateStaffRequest {
-	return ApiUpdateStaffRequest{
+func (a *TagsApiService) UpdateTag(ctx context.Context, tagUuid string) ApiUpdateTagRequest {
+	return ApiUpdateTagRequest{
 		ApiService: a,
 		ctx: ctx,
-		staffUuid: staffUuid,
+		tagUuid: tagUuid,
 	}
 }
 
 // Execute executes the request
-//  @return StaffResponse
-func (a *StaffApiService) UpdateStaffExecute(r ApiUpdateStaffRequest) (*StaffResponse, *http.Response, error) {
+//  @return TagBase
+func (a *TagsApiService) UpdateTagExecute(r ApiUpdateTagRequest) (*TagBase, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *StaffResponse
+		localVarReturnValue  *TagBase
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StaffApiService.UpdateStaff")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagsApiService.UpdateTag")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/places/staff/{staff_uuid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"staff_uuid"+"}", url.PathEscape(parameterToString(r.staffUuid, "")), -1)
+	localVarPath := localBasePath + "/places/tags/{tag_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"tag_uuid"+"}", url.PathEscape(parameterToString(r.tagUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.staffCreate == nil {
-		return localVarReturnValue, nil, reportError("staffCreate is required and must be specified")
+	if r.tagBase == nil {
+		return localVarReturnValue, nil, reportError("tagBase is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1027,7 +727,7 @@ func (a *StaffApiService) UpdateStaffExecute(r ApiUpdateStaffRequest) (*StaffRes
 		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
 	}
 	// body params
-	localVarPostBody = r.staffCreate
+	localVarPostBody = r.tagBase
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
