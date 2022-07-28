@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.98
+eHelply SDK - 1.1.99
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.98
+API version: 1.1.99
 Contact: support@ehelply.com
 */
 
@@ -18,7 +18,8 @@ import (
 // ProjectsProjectUpdate Used for update endpoint
 type ProjectsProjectUpdate struct {
 	MaxSpend *int32 `json:"max_spend,omitempty"`
-	Status *string `json:"status,omitempty"`
+	AddStatus *string `json:"add_status,omitempty"`
+	RemoveStatus *string `json:"remove_status,omitempty"`
 }
 
 // NewProjectsProjectUpdate instantiates a new ProjectsProjectUpdate object
@@ -70,36 +71,68 @@ func (o *ProjectsProjectUpdate) SetMaxSpend(v int32) {
 	o.MaxSpend = &v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *ProjectsProjectUpdate) GetStatus() string {
-	if o == nil || o.Status == nil {
+// GetAddStatus returns the AddStatus field value if set, zero value otherwise.
+func (o *ProjectsProjectUpdate) GetAddStatus() string {
+	if o == nil || o.AddStatus == nil {
 		var ret string
 		return ret
 	}
-	return *o.Status
+	return *o.AddStatus
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// GetAddStatusOk returns a tuple with the AddStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectsProjectUpdate) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+func (o *ProjectsProjectUpdate) GetAddStatusOk() (*string, bool) {
+	if o == nil || o.AddStatus == nil {
 		return nil, false
 	}
-	return o.Status, true
+	return o.AddStatus, true
 }
 
-// HasStatus returns a boolean if a field has been set.
-func (o *ProjectsProjectUpdate) HasStatus() bool {
-	if o != nil && o.Status != nil {
+// HasAddStatus returns a boolean if a field has been set.
+func (o *ProjectsProjectUpdate) HasAddStatus() bool {
+	if o != nil && o.AddStatus != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *ProjectsProjectUpdate) SetStatus(v string) {
-	o.Status = &v
+// SetAddStatus gets a reference to the given string and assigns it to the AddStatus field.
+func (o *ProjectsProjectUpdate) SetAddStatus(v string) {
+	o.AddStatus = &v
+}
+
+// GetRemoveStatus returns the RemoveStatus field value if set, zero value otherwise.
+func (o *ProjectsProjectUpdate) GetRemoveStatus() string {
+	if o == nil || o.RemoveStatus == nil {
+		var ret string
+		return ret
+	}
+	return *o.RemoveStatus
+}
+
+// GetRemoveStatusOk returns a tuple with the RemoveStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectsProjectUpdate) GetRemoveStatusOk() (*string, bool) {
+	if o == nil || o.RemoveStatus == nil {
+		return nil, false
+	}
+	return o.RemoveStatus, true
+}
+
+// HasRemoveStatus returns a boolean if a field has been set.
+func (o *ProjectsProjectUpdate) HasRemoveStatus() bool {
+	if o != nil && o.RemoveStatus != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoveStatus gets a reference to the given string and assigns it to the RemoveStatus field.
+func (o *ProjectsProjectUpdate) SetRemoveStatus(v string) {
+	o.RemoveStatus = &v
 }
 
 func (o ProjectsProjectUpdate) MarshalJSON() ([]byte, error) {
@@ -107,8 +140,11 @@ func (o ProjectsProjectUpdate) MarshalJSON() ([]byte, error) {
 	if o.MaxSpend != nil {
 		toSerialize["max_spend"] = o.MaxSpend
 	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
+	if o.AddStatus != nil {
+		toSerialize["add_status"] = o.AddStatus
+	}
+	if o.RemoveStatus != nil {
+		toSerialize["remove_status"] = o.RemoveStatus
 	}
 	return json.Marshal(toSerialize)
 }

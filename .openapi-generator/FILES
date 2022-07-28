@@ -55,8 +55,10 @@ docs/ContactBase.md
 docs/ContactMethod.md
 docs/ContactResponse.md
 docs/CreateKeyResponse.md
+docs/CreateProjectCredential.md
 docs/CreateReview.md
 docs/CreateTicket.md
+docs/Credential.md
 docs/CustomList.md
 docs/DatesMeta.md
 docs/DefaultApi.md
@@ -68,6 +70,8 @@ docs/Email.md
 docs/Field.md
 docs/FieldDynamo.md
 docs/GetAppointment403Response.md
+docs/GetProjectCredential.md
+docs/GetSecret.md
 docs/GetServiceServiceWithSpecsResponse.md
 docs/GetServiceSpecResponse.md
 docs/GetServiceSpecsResponse.md
@@ -119,10 +123,13 @@ docs/ProjectsUsageTypeUpdate.md
 docs/ResponseAddmembertoproject.md
 docs/ResponseArchiveproject.md
 docs/ResponseCreatekey.md
+docs/ResponseCreateprojectcredential.md
 docs/ResponseDeletekey.md
+docs/ResponseDeleteprojectcredential.md
 docs/ResponseDeleteusagetype.md
 docs/ResponseGeneratetoken.md
 docs/ResponseRemovememberfromproject.md
+docs/ResponseUpdateprojectcredential.md
 docs/ReviewsApi.md
 docs/SecurityApi.md
 docs/SecurityCreateToken.md
@@ -149,6 +156,7 @@ docs/TagDb.md
 docs/TagsApi.md
 docs/TicketResponse.md
 docs/TicketsResponse.md
+docs/UpdateProjectCredentialRequest.md
 docs/UpdateReview.md
 docs/User.md
 docs/UserConfirmation.md
@@ -196,8 +204,10 @@ model_contact_base.go
 model_contact_method.go
 model_contact_response.go
 model_create_key_response.go
+model_create_project_credential.go
 model_create_review.go
 model_create_ticket.go
+model_credential.go
 model_custom_list.go
 model_dates_meta.go
 model_detailed.go
@@ -208,6 +218,8 @@ model_email.go
 model_field.go
 model_field_dynamo.go
 model_get_appointment_403_response.go
+model_get_project_credential.go
+model_get_secret.go
 model_get_service_service_with_specs_response.go
 model_get_service_spec_response.go
 model_get_service_specs_response.go
@@ -252,10 +264,13 @@ model_projects_usage_type_update.go
 model_response_addmembertoproject.go
 model_response_archiveproject.go
 model_response_createkey.go
+model_response_createprojectcredential.go
 model_response_deletekey.go
+model_response_deleteprojectcredential.go
 model_response_deleteusagetype.go
 model_response_generatetoken.go
 model_response_removememberfromproject.go
+model_response_updateprojectcredential.go
 model_security_create_token.go
 model_security_encryption_key_get.go
 model_security_encryption_key_response.go
@@ -276,6 +291,7 @@ model_tag_base.go
 model_tag_db.go
 model_ticket_response.go
 model_tickets_response.go
+model_update_project_credential_request.go
 model_update_review.go
 model_user.go
 model_user_confirmation.go

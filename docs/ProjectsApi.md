@@ -7,21 +7,26 @@ Method | HTTP request | Description
 [**AddMemberToProject**](ProjectsApi.md#AddMemberToProject) | **Post** /sam/projects/projects/{project_uuid}/members/{entity_uuid} | Addmembertoproject
 [**ArchiveProject**](ProjectsApi.md#ArchiveProject) | **Delete** /sam/projects/projects/{project_uuid} | Archiveproject
 [**CreateProject**](ProjectsApi.md#CreateProject) | **Post** /sam/projects/projects | Createproject
+[**CreateProjectCredential**](ProjectsApi.md#CreateProjectCredential) | **Post** /sam/projects/projects/{project_uuid}/credentials | Createprojectcredential
 [**CreateProjectKey**](ProjectsApi.md#CreateProjectKey) | **Post** /sam/projects/projects/{project_uuid}/keys | Createprojectkey
 [**CreateUsageType**](ProjectsApi.md#CreateUsageType) | **Post** /sam/projects/usage/types | Createusagetype
+[**DeleteProjectCredential**](ProjectsApi.md#DeleteProjectCredential) | **Delete** /sam/projects/projects/{project_uuid}/credentials/{service_name} | Deleteprojectcredential
 [**DeleteProjectKey**](ProjectsApi.md#DeleteProjectKey) | **Delete** /sam/projects/projects/{project_uuid}/keys | Deleteprojectkey
 [**DeleteUsageType**](ProjectsApi.md#DeleteUsageType) | **Delete** /sam/projects/usage/types/{usage_type_key} | Deleteusagetype
+[**GetAllProjectCredentials**](ProjectsApi.md#GetAllProjectCredentials) | **Get** /sam/projects/projects/{project_uuid}/credentials | Getallprojectcredentials
 [**GetAllProjectUsage**](ProjectsApi.md#GetAllProjectUsage) | **Get** /sam/projects/projects/{project_uuid}/usage | Getallprojectusage
 [**GetMemberProjects**](ProjectsApi.md#GetMemberProjects) | **Get** /sam/projects/members/{entity_uuid}/projects | Getmemberprojects
 [**GetProject**](ProjectsApi.md#GetProject) | **Get** /sam/projects/projects/{project_uuid} | Getproject
 [**GetProjectKeys**](ProjectsApi.md#GetProjectKeys) | **Get** /sam/projects/projects/{project_uuid}/keys | Getprojectkeys
 [**GetProjectMembers**](ProjectsApi.md#GetProjectMembers) | **Get** /sam/projects/projects/{project_uuid}/members | Getprojectmembers
+[**GetSpecificProjectCredential**](ProjectsApi.md#GetSpecificProjectCredential) | **Get** /sam/projects/projects/{project_uuid}/credentials/{service_name} | Getspecificprojectcredential
 [**GetSpecificProjectUsage**](ProjectsApi.md#GetSpecificProjectUsage) | **Get** /sam/projects/projects/{project_uuid}/usage/{usage_type_key} | Getspecificprojectusage
 [**GetUsageType**](ProjectsApi.md#GetUsageType) | **Get** /sam/projects/usage/types/{usage_type_key} | Getusagetype
 [**RemoveMemberFromProject**](ProjectsApi.md#RemoveMemberFromProject) | **Delete** /sam/projects/projects/{project_uuid}/members/{entity_uuid} | Removememberfromproject
 [**SearchProjects**](ProjectsApi.md#SearchProjects) | **Get** /sam/projects/projects | Searchprojects
 [**SearchUsageType**](ProjectsApi.md#SearchUsageType) | **Get** /sam/projects/usage/types | Searchusagetype
 [**UpdateProject**](ProjectsApi.md#UpdateProject) | **Put** /sam/projects/projects/{project_uuid} | Updateproject
+[**UpdateProjectCredential**](ProjectsApi.md#UpdateProjectCredential) | **Put** /sam/projects/projects/{project_uuid}/credentials/{service_name} | Updateprojectcredential
 [**UpdateUsageType**](ProjectsApi.md#UpdateUsageType) | **Put** /sam/projects/usage/types/{usage_type_key} | Updateusagetype
 
 
@@ -267,6 +272,88 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## CreateProjectCredential
+
+> ResponseCreateprojectcredential CreateProjectCredential(ctx, projectUuid).CreateProjectCredential(createProjectCredential).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+
+Createprojectcredential
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    projectUuid := "projectUuid_example" // string | 
+    createProjectCredential := *openapiclient.NewCreateProjectCredential("ServiceName_example", []openapiclient.Credential{*openapiclient.NewCredential("Name_example", "Value_example")}) // CreateProjectCredential | 
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.CreateProjectCredential(context.Background(), projectUuid).CreateProjectCredential(createProjectCredential).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.CreateProjectCredential``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateProjectCredential`: ResponseCreateprojectcredential
+    fmt.Fprintf(os.Stdout, "Response from `ProjectsApi.CreateProjectCredential`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectUuid** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateProjectCredentialRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **createProjectCredential** | [**CreateProjectCredential**](CreateProjectCredential.md) |  | 
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
+
+### Return type
+
+[**ResponseCreateprojectcredential**](ResponseCreateprojectcredential.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CreateProjectKey
 
 > CreateKeyResponse CreateProjectKey(ctx, projectUuid).SecurityKeyCreate(securityKeyCreate).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
@@ -425,6 +512,89 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## DeleteProjectCredential
+
+> ResponseDeleteprojectcredential DeleteProjectCredential(ctx, projectUuid, serviceName).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+
+Deleteprojectcredential
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    projectUuid := "projectUuid_example" // string | 
+    serviceName := "serviceName_example" // string | 
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.DeleteProjectCredential(context.Background(), projectUuid, serviceName).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.DeleteProjectCredential``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteProjectCredential`: ResponseDeleteprojectcredential
+    fmt.Fprintf(os.Stdout, "Response from `ProjectsApi.DeleteProjectCredential`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectUuid** | **string** |  | 
+**serviceName** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteProjectCredentialRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
+
+### Return type
+
+[**ResponseDeleteprojectcredential**](ResponseDeleteprojectcredential.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteProjectKey
 
 > string DeleteProjectKey(ctx, projectUuid).AccessToken(accessToken).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
@@ -572,6 +742,86 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ResponseDeleteusagetype**](ResponseDeleteusagetype.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetAllProjectCredentials
+
+> []GetProjectCredential GetAllProjectCredentials(ctx, projectUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+
+Getallprojectcredentials
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    projectUuid := "projectUuid_example" // string | 
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.GetAllProjectCredentials(context.Background(), projectUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.GetAllProjectCredentials``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetAllProjectCredentials`: []GetProjectCredential
+    fmt.Fprintf(os.Stdout, "Response from `ProjectsApi.GetAllProjectCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectUuid** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAllProjectCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
+
+### Return type
+
+[**[]GetProjectCredential**](GetProjectCredential.md)
 
 ### Authorization
 
@@ -982,6 +1232,89 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[]ProjectsProjectMemberDB**](ProjectsProjectMemberDB.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetSpecificProjectCredential
+
+> GetProjectCredential GetSpecificProjectCredential(ctx, projectUuid, serviceName).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+
+Getspecificprojectcredential
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    projectUuid := "projectUuid_example" // string | 
+    serviceName := "serviceName_example" // string | 
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.GetSpecificProjectCredential(context.Background(), projectUuid, serviceName).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.GetSpecificProjectCredential``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetSpecificProjectCredential`: GetProjectCredential
+    fmt.Fprintf(os.Stdout, "Response from `ProjectsApi.GetSpecificProjectCredential`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectUuid** | **string** |  | 
+**serviceName** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetSpecificProjectCredentialRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
+
+### Return type
+
+[**GetProjectCredential**](GetProjectCredential.md)
 
 ### Authorization
 
@@ -1464,6 +1797,91 @@ Name | Type | Description  | Notes
 ### Return type
 
 **map[string]interface{}**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateProjectCredential
+
+> ResponseUpdateprojectcredential UpdateProjectCredential(ctx, projectUuid, serviceName).UpdateProjectCredentialRequest(updateProjectCredentialRequest).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+
+Updateprojectcredential
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    projectUuid := "projectUuid_example" // string | 
+    serviceName := "serviceName_example" // string | 
+    updateProjectCredentialRequest := *openapiclient.NewUpdateProjectCredentialRequest([]openapiclient.Credential{*openapiclient.NewCredential("Name_example", "Value_example")}) // UpdateProjectCredentialRequest | 
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.UpdateProjectCredential(context.Background(), projectUuid, serviceName).UpdateProjectCredentialRequest(updateProjectCredentialRequest).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.UpdateProjectCredential``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateProjectCredential`: ResponseUpdateprojectcredential
+    fmt.Fprintf(os.Stdout, "Response from `ProjectsApi.UpdateProjectCredential`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectUuid** | **string** |  | 
+**serviceName** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateProjectCredentialRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **updateProjectCredentialRequest** | [**UpdateProjectCredentialRequest**](UpdateProjectCredentialRequest.md) |  | 
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
+
+### Return type
+
+[**ResponseUpdateprojectcredential**](ResponseUpdateprojectcredential.md)
 
 ### Authorization
 
