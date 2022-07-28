@@ -15,30 +15,30 @@ import (
 	"encoding/json"
 )
 
-// ResponseRemovememberfromproject struct for ResponseRemovememberfromproject
-type ResponseRemovememberfromproject struct {
+// GetAppointment403Response struct for GetAppointment403Response
+type GetAppointment403Response struct {
 	Message *string `json:"message,omitempty"`
 }
 
-// NewResponseRemovememberfromproject instantiates a new ResponseRemovememberfromproject object
+// NewGetAppointment403Response instantiates a new GetAppointment403Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResponseRemovememberfromproject() *ResponseRemovememberfromproject {
-	this := ResponseRemovememberfromproject{}
+func NewGetAppointment403Response() *GetAppointment403Response {
+	this := GetAppointment403Response{}
 	return &this
 }
 
-// NewResponseRemovememberfromprojectWithDefaults instantiates a new ResponseRemovememberfromproject object
+// NewGetAppointment403ResponseWithDefaults instantiates a new GetAppointment403Response object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewResponseRemovememberfromprojectWithDefaults() *ResponseRemovememberfromproject {
-	this := ResponseRemovememberfromproject{}
+func NewGetAppointment403ResponseWithDefaults() *GetAppointment403Response {
+	this := GetAppointment403Response{}
 	return &this
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *ResponseRemovememberfromproject) GetMessage() string {
+func (o *GetAppointment403Response) GetMessage() string {
 	if o == nil || o.Message == nil {
 		var ret string
 		return ret
@@ -48,7 +48,7 @@ func (o *ResponseRemovememberfromproject) GetMessage() string {
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ResponseRemovememberfromproject) GetMessageOk() (*string, bool) {
+func (o *GetAppointment403Response) GetMessageOk() (*string, bool) {
 	if o == nil || o.Message == nil {
 		return nil, false
 	}
@@ -56,7 +56,7 @@ func (o *ResponseRemovememberfromproject) GetMessageOk() (*string, bool) {
 }
 
 // HasMessage returns a boolean if a field has been set.
-func (o *ResponseRemovememberfromproject) HasMessage() bool {
+func (o *GetAppointment403Response) HasMessage() bool {
 	if o != nil && o.Message != nil {
 		return true
 	}
@@ -65,11 +65,11 @@ func (o *ResponseRemovememberfromproject) HasMessage() bool {
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *ResponseRemovememberfromproject) SetMessage(v string) {
+func (o *GetAppointment403Response) SetMessage(v string) {
 	o.Message = &v
 }
 
-func (o ResponseRemovememberfromproject) MarshalJSON() ([]byte, error) {
+func (o GetAppointment403Response) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Message != nil {
 		toSerialize["message"] = o.Message
@@ -77,38 +77,38 @@ func (o ResponseRemovememberfromproject) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableResponseRemovememberfromproject struct {
-	value *ResponseRemovememberfromproject
+type NullableGetAppointment403Response struct {
+	value *GetAppointment403Response
 	isSet bool
 }
 
-func (v NullableResponseRemovememberfromproject) Get() *ResponseRemovememberfromproject {
+func (v NullableGetAppointment403Response) Get() *GetAppointment403Response {
 	return v.value
 }
 
-func (v *NullableResponseRemovememberfromproject) Set(val *ResponseRemovememberfromproject) {
+func (v *NullableGetAppointment403Response) Set(val *GetAppointment403Response) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableResponseRemovememberfromproject) IsSet() bool {
+func (v NullableGetAppointment403Response) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableResponseRemovememberfromproject) Unset() {
+func (v *NullableGetAppointment403Response) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableResponseRemovememberfromproject(val *ResponseRemovememberfromproject) *NullableResponseRemovememberfromproject {
-	return &NullableResponseRemovememberfromproject{value: val, isSet: true}
+func NewNullableGetAppointment403Response(val *GetAppointment403Response) *NullableGetAppointment403Response {
+	return &NullableGetAppointment403Response{value: val, isSet: true}
 }
 
-func (v NullableResponseRemovememberfromproject) MarshalJSON() ([]byte, error) {
+func (v NullableGetAppointment403Response) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableResponseRemovememberfromproject) UnmarshalJSON(src []byte) error {
+func (v *NullableGetAppointment403Response) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

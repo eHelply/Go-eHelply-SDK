@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.105
+eHelply SDK - 1.1.106
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.105
+API version: 1.1.106
 Contact: support@ehelply.com
 */
 
@@ -169,7 +169,7 @@ func (a *ProjectsApiService) AddMemberToProjectExecute(r ApiAddMemberToProjectRe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -179,7 +179,7 @@ func (a *ProjectsApiService) AddMemberToProjectExecute(r ApiAddMemberToProjectRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -353,7 +353,7 @@ func (a *ProjectsApiService) ArchiveProjectExecute(r ApiArchiveProjectRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -536,7 +536,7 @@ func (a *ProjectsApiService) CreateProjectExecute(r ApiCreateProjectRequest) (*P
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -721,7 +721,7 @@ func (a *ProjectsApiService) CreateProjectCredentialExecute(r ApiCreateProjectCr
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -731,7 +731,7 @@ func (a *ProjectsApiService) CreateProjectCredentialExecute(r ApiCreateProjectCr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -916,7 +916,7 @@ func (a *ProjectsApiService) CreateProjectKeyExecute(r ApiCreateProjectKeyReques
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -926,7 +926,7 @@ func (a *ProjectsApiService) CreateProjectKeyExecute(r ApiCreateProjectKeyReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1107,7 +1107,7 @@ func (a *ProjectsApiService) CreateUsageTypeExecute(r ApiCreateUsageTypeRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1285,7 +1285,7 @@ func (a *ProjectsApiService) DeleteProjectCredentialExecute(r ApiDeleteProjectCr
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1295,7 +1295,7 @@ func (a *ProjectsApiService) DeleteProjectCredentialExecute(r ApiDeleteProjectCr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1478,7 +1478,7 @@ func (a *ProjectsApiService) DeleteProjectKeyExecute(r ApiDeleteProjectKeyReques
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1488,7 +1488,7 @@ func (a *ProjectsApiService) DeleteProjectKeyExecute(r ApiDeleteProjectKeyReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1662,7 +1662,7 @@ func (a *ProjectsApiService) DeleteUsageTypeExecute(r ApiDeleteUsageTypeRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1836,7 +1836,7 @@ func (a *ProjectsApiService) GetAllProjectCredentialsExecute(r ApiGetAllProjectC
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1846,7 +1846,7 @@ func (a *ProjectsApiService) GetAllProjectCredentialsExecute(r ApiGetAllProjectC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2038,7 +2038,7 @@ func (a *ProjectsApiService) GetAllProjectUsageExecute(r ApiGetAllProjectUsageRe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2048,7 +2048,7 @@ func (a *ProjectsApiService) GetAllProjectUsageExecute(r ApiGetAllProjectUsageRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2231,7 +2231,7 @@ func (a *ProjectsApiService) GetMemberProjectsExecute(r ApiGetMemberProjectsRequ
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2241,7 +2241,7 @@ func (a *ProjectsApiService) GetMemberProjectsExecute(r ApiGetMemberProjectsRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2417,7 +2417,7 @@ func (a *ProjectsApiService) GetProjectExecute(r ApiGetProjectRequest) (*Project
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2427,7 +2427,7 @@ func (a *ProjectsApiService) GetProjectExecute(r ApiGetProjectRequest) (*Project
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2601,7 +2601,7 @@ func (a *ProjectsApiService) GetProjectKeysExecute(r ApiGetProjectKeysRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2611,7 +2611,7 @@ func (a *ProjectsApiService) GetProjectKeysExecute(r ApiGetProjectKeysRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2794,7 +2794,7 @@ func (a *ProjectsApiService) GetProjectMembersExecute(r ApiGetProjectMembersRequ
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2804,7 +2804,7 @@ func (a *ProjectsApiService) GetProjectMembersExecute(r ApiGetProjectMembersRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2982,7 +2982,7 @@ func (a *ProjectsApiService) GetSpecificProjectCredentialExecute(r ApiGetSpecifi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2992,7 +2992,7 @@ func (a *ProjectsApiService) GetSpecificProjectCredentialExecute(r ApiGetSpecifi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3170,7 +3170,7 @@ func (a *ProjectsApiService) GetSpecificProjectUsageExecute(r ApiGetSpecificProj
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3180,7 +3180,7 @@ func (a *ProjectsApiService) GetSpecificProjectUsageExecute(r ApiGetSpecificProj
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3304,7 +3304,7 @@ func (a *ProjectsApiService) GetUsageTypeExecute(r ApiGetUsageTypeRequest) (*Pro
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3314,7 +3314,7 @@ func (a *ProjectsApiService) GetUsageTypeExecute(r ApiGetUsageTypeRequest) (*Pro
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3492,7 +3492,7 @@ func (a *ProjectsApiService) RemoveMemberFromProjectExecute(r ApiRemoveMemberFro
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3502,7 +3502,7 @@ func (a *ProjectsApiService) RemoveMemberFromProjectExecute(r ApiRemoveMemberFro
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3728,7 +3728,7 @@ func (a *ProjectsApiService) SearchProjectsExecute(r ApiSearchProjectsRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3902,7 +3902,7 @@ func (a *ProjectsApiService) SearchUsageTypeExecute(r ApiSearchUsageTypeRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4087,7 +4087,7 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (ma
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4097,7 +4097,7 @@ func (a *ProjectsApiService) UpdateProjectExecute(r ApiUpdateProjectRequest) (ma
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4286,7 +4286,7 @@ func (a *ProjectsApiService) UpdateProjectCredentialExecute(r ApiUpdateProjectCr
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4296,7 +4296,7 @@ func (a *ProjectsApiService) UpdateProjectCredentialExecute(r ApiUpdateProjectCr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4481,7 +4481,7 @@ func (a *ProjectsApiService) UpdateUsageTypeExecute(r ApiUpdateUsageTypeRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4491,7 +4491,7 @@ func (a *ProjectsApiService) UpdateUsageTypeExecute(r ApiUpdateUsageTypeRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetServicesWithSpecs403Response
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

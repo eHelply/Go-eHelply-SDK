@@ -69,12 +69,12 @@ docs/DetailedMetaGet.md
 docs/Email.md
 docs/Field.md
 docs/FieldDynamo.md
+docs/GetAppointment403Response.md
 docs/GetProjectCredential.md
 docs/GetSecret.md
 docs/GetServiceServiceWithSpecsResponse.md
 docs/GetServiceSpecResponse.md
 docs/GetServiceSpecsResponse.md
-docs/GetServicesWithSpecs403Response.md
 docs/HTTPValidationError.md
 docs/HeartbeatResponse.md
 docs/KpiResponse.md
@@ -217,12 +217,12 @@ model_detailed_meta_get.go
 model_email.go
 model_field.go
 model_field_dynamo.go
+model_get_appointment_403_response.go
 model_get_project_credential.go
 model_get_secret.go
 model_get_service_service_with_specs_response.go
 model_get_service_spec_response.go
 model_get_service_specs_response.go
-model_get_services_with_specs_403_response.go
 model_heartbeat_response.go
 model_http_validation_error.go
 model_kpi_response.go
