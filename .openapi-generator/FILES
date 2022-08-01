@@ -3,11 +3,11 @@
 .travis.yml
 README.md
 api/openapi.yaml
+api_appointments.go
 api_billing.go
 api_catalogs.go
 api_category.go
 api_companies.go
-api_default.go
 api_logging.go
 api_meta.go
 api_monitor.go
@@ -35,6 +35,7 @@ docs/AlarmTerminate.md
 docs/AlarmTicket.md
 docs/AppointmentBase.md
 docs/AppointmentResponse.md
+docs/AppointmentsApi.md
 docs/AttachPaymentToProject.md
 docs/Basic.md
 docs/BasicMeta.md
@@ -61,7 +62,6 @@ docs/CreateTicket.md
 docs/Credential.md
 docs/CustomList.md
 docs/DatesMeta.md
-docs/DefaultApi.md
 docs/Detailed.md
 docs/DetailedMeta.md
 docs/DetailedMetaCreate.md

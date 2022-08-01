@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.99
+eHelply SDK - 1.1.100
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.99
+API version: 1.1.100
 Contact: support@ehelply.com
 */
 
@@ -21,12 +21,12 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// AppointmentsApiService AppointmentsApi service
+type AppointmentsApiService service
 
-type ApiAttachEntityToAppointmentRequest struct {
+type ApiAddEntityToAppointmentRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *AppointmentsApiService
 	appointmentUuid string
 	entityUuid string
 	xAccessToken *string
@@ -37,50 +37,50 @@ type ApiAttachEntityToAppointmentRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiAttachEntityToAppointmentRequest) XAccessToken(xAccessToken string) ApiAttachEntityToAppointmentRequest {
+func (r ApiAddEntityToAppointmentRequest) XAccessToken(xAccessToken string) ApiAddEntityToAppointmentRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiAttachEntityToAppointmentRequest) XSecretToken(xSecretToken string) ApiAttachEntityToAppointmentRequest {
+func (r ApiAddEntityToAppointmentRequest) XSecretToken(xSecretToken string) ApiAddEntityToAppointmentRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiAttachEntityToAppointmentRequest) Authorization(authorization string) ApiAttachEntityToAppointmentRequest {
+func (r ApiAddEntityToAppointmentRequest) Authorization(authorization string) ApiAddEntityToAppointmentRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiAttachEntityToAppointmentRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiAttachEntityToAppointmentRequest {
+func (r ApiAddEntityToAppointmentRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiAddEntityToAppointmentRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiAttachEntityToAppointmentRequest) EhelplyProject(ehelplyProject string) ApiAttachEntityToAppointmentRequest {
+func (r ApiAddEntityToAppointmentRequest) EhelplyProject(ehelplyProject string) ApiAddEntityToAppointmentRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiAttachEntityToAppointmentRequest) EhelplyData(ehelplyData string) ApiAttachEntityToAppointmentRequest {
+func (r ApiAddEntityToAppointmentRequest) EhelplyData(ehelplyData string) ApiAddEntityToAppointmentRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiAttachEntityToAppointmentRequest) Execute() (bool, *http.Response, error) {
-	return r.ApiService.AttachEntityToAppointmentExecute(r)
+func (r ApiAddEntityToAppointmentRequest) Execute() (bool, *http.Response, error) {
+	return r.ApiService.AddEntityToAppointmentExecute(r)
 }
 
 /*
-AttachEntityToAppointment Attach Entity To Appointment
+AddEntityToAppointment Addentitytoappointment
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param appointmentUuid
  @param entityUuid
- @return ApiAttachEntityToAppointmentRequest
+ @return ApiAddEntityToAppointmentRequest
 */
-func (a *DefaultApiService) AttachEntityToAppointment(ctx context.Context, appointmentUuid string, entityUuid string) ApiAttachEntityToAppointmentRequest {
-	return ApiAttachEntityToAppointmentRequest{
+func (a *AppointmentsApiService) AddEntityToAppointment(ctx context.Context, appointmentUuid string, entityUuid string) ApiAddEntityToAppointmentRequest {
+	return ApiAddEntityToAppointmentRequest{
 		ApiService: a,
 		ctx: ctx,
 		appointmentUuid: appointmentUuid,
@@ -90,7 +90,7 @@ func (a *DefaultApiService) AttachEntityToAppointment(ctx context.Context, appoi
 
 // Execute executes the request
 //  @return bool
-func (a *DefaultApiService) AttachEntityToAppointmentExecute(r ApiAttachEntityToAppointmentRequest) (bool, *http.Response, error) {
+func (a *AppointmentsApiService) AddEntityToAppointmentExecute(r ApiAddEntityToAppointmentRequest) (bool, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -98,7 +98,7 @@ func (a *DefaultApiService) AttachEntityToAppointmentExecute(r ApiAttachEntityTo
 		localVarReturnValue  bool
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AttachEntityToAppointment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppointmentsApiService.AddEntityToAppointment")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -194,7 +194,7 @@ func (a *DefaultApiService) AttachEntityToAppointmentExecute(r ApiAttachEntityTo
 
 type ApiCreateAppointmentRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *AppointmentsApiService
 	appointmentBase *AppointmentBase
 	xAccessToken *string
 	xSecretToken *string
@@ -244,12 +244,12 @@ func (r ApiCreateAppointmentRequest) Execute() (*AppointmentResponse, *http.Resp
 }
 
 /*
-CreateAppointment Create Appointment
+CreateAppointment Createappointment
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateAppointmentRequest
 */
-func (a *DefaultApiService) CreateAppointment(ctx context.Context) ApiCreateAppointmentRequest {
+func (a *AppointmentsApiService) CreateAppointment(ctx context.Context) ApiCreateAppointmentRequest {
 	return ApiCreateAppointmentRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -258,7 +258,7 @@ func (a *DefaultApiService) CreateAppointment(ctx context.Context) ApiCreateAppo
 
 // Execute executes the request
 //  @return AppointmentResponse
-func (a *DefaultApiService) CreateAppointmentExecute(r ApiCreateAppointmentRequest) (*AppointmentResponse, *http.Response, error) {
+func (a *AppointmentsApiService) CreateAppointmentExecute(r ApiCreateAppointmentRequest) (*AppointmentResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -266,7 +266,7 @@ func (a *DefaultApiService) CreateAppointmentExecute(r ApiCreateAppointmentReque
 		localVarReturnValue  *AppointmentResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAppointment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppointmentsApiService.CreateAppointment")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -365,7 +365,7 @@ func (a *DefaultApiService) CreateAppointmentExecute(r ApiCreateAppointmentReque
 
 type ApiDeleteAppointmentRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *AppointmentsApiService
 	appointmentUuid string
 	xAccessToken *string
 	xSecretToken *string
@@ -410,13 +410,13 @@ func (r ApiDeleteAppointmentRequest) Execute() (bool, *http.Response, error) {
 }
 
 /*
-DeleteAppointment Delete Appointment
+DeleteAppointment Deleteappointment
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param appointmentUuid
  @return ApiDeleteAppointmentRequest
 */
-func (a *DefaultApiService) DeleteAppointment(ctx context.Context, appointmentUuid string) ApiDeleteAppointmentRequest {
+func (a *AppointmentsApiService) DeleteAppointment(ctx context.Context, appointmentUuid string) ApiDeleteAppointmentRequest {
 	return ApiDeleteAppointmentRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -426,7 +426,7 @@ func (a *DefaultApiService) DeleteAppointment(ctx context.Context, appointmentUu
 
 // Execute executes the request
 //  @return bool
-func (a *DefaultApiService) DeleteAppointmentExecute(r ApiDeleteAppointmentRequest) (bool, *http.Response, error) {
+func (a *AppointmentsApiService) DeleteAppointmentExecute(r ApiDeleteAppointmentRequest) (bool, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -434,7 +434,7 @@ func (a *DefaultApiService) DeleteAppointmentExecute(r ApiDeleteAppointmentReque
 		localVarReturnValue  bool
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAppointment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppointmentsApiService.DeleteAppointment")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -529,7 +529,7 @@ func (a *DefaultApiService) DeleteAppointmentExecute(r ApiDeleteAppointmentReque
 
 type ApiDetachEntityFromAppointmentRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *AppointmentsApiService
 	appointmentUuid string
 	entityUuid string
 	xAccessToken *string
@@ -575,14 +575,14 @@ func (r ApiDetachEntityFromAppointmentRequest) Execute() (bool, *http.Response, 
 }
 
 /*
-DetachEntityFromAppointment Detach Entity From Appointment
+DetachEntityFromAppointment Removeentityfromappointment
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param appointmentUuid
  @param entityUuid
  @return ApiDetachEntityFromAppointmentRequest
 */
-func (a *DefaultApiService) DetachEntityFromAppointment(ctx context.Context, appointmentUuid string, entityUuid string) ApiDetachEntityFromAppointmentRequest {
+func (a *AppointmentsApiService) DetachEntityFromAppointment(ctx context.Context, appointmentUuid string, entityUuid string) ApiDetachEntityFromAppointmentRequest {
 	return ApiDetachEntityFromAppointmentRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -593,7 +593,7 @@ func (a *DefaultApiService) DetachEntityFromAppointment(ctx context.Context, app
 
 // Execute executes the request
 //  @return bool
-func (a *DefaultApiService) DetachEntityFromAppointmentExecute(r ApiDetachEntityFromAppointmentRequest) (bool, *http.Response, error) {
+func (a *AppointmentsApiService) DetachEntityFromAppointmentExecute(r ApiDetachEntityFromAppointmentRequest) (bool, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -601,7 +601,7 @@ func (a *DefaultApiService) DetachEntityFromAppointmentExecute(r ApiDetachEntity
 		localVarReturnValue  bool
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DetachEntityFromAppointment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppointmentsApiService.DetachEntityFromAppointment")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -697,7 +697,7 @@ func (a *DefaultApiService) DetachEntityFromAppointmentExecute(r ApiDetachEntity
 
 type ApiGetAppointmentRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *AppointmentsApiService
 	appointmentUuid string
 	xAccessToken *string
 	xSecretToken *string
@@ -742,13 +742,13 @@ func (r ApiGetAppointmentRequest) Execute() (*AppointmentResponse, *http.Respons
 }
 
 /*
-GetAppointment Get Appointment
+GetAppointment Getappointment
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param appointmentUuid
  @return ApiGetAppointmentRequest
 */
-func (a *DefaultApiService) GetAppointment(ctx context.Context, appointmentUuid string) ApiGetAppointmentRequest {
+func (a *AppointmentsApiService) GetAppointment(ctx context.Context, appointmentUuid string) ApiGetAppointmentRequest {
 	return ApiGetAppointmentRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -758,7 +758,7 @@ func (a *DefaultApiService) GetAppointment(ctx context.Context, appointmentUuid 
 
 // Execute executes the request
 //  @return AppointmentResponse
-func (a *DefaultApiService) GetAppointmentExecute(r ApiGetAppointmentRequest) (*AppointmentResponse, *http.Response, error) {
+func (a *AppointmentsApiService) GetAppointmentExecute(r ApiGetAppointmentRequest) (*AppointmentResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -766,7 +766,7 @@ func (a *DefaultApiService) GetAppointmentExecute(r ApiGetAppointmentRequest) (*
 		localVarReturnValue  *AppointmentResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAppointment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppointmentsApiService.GetAppointment")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -881,7 +881,7 @@ func (a *DefaultApiService) GetAppointmentExecute(r ApiGetAppointmentRequest) (*
 
 type ApiSearchAppointmentRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *AppointmentsApiService
 	placeUuid *string
 	excludeCancelled *bool
 	isDeleted *bool
@@ -979,12 +979,12 @@ func (r ApiSearchAppointmentRequest) Execute() (interface{}, *http.Response, err
 }
 
 /*
-SearchAppointment Search Appointment
+SearchAppointment Searchappointments
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSearchAppointmentRequest
 */
-func (a *DefaultApiService) SearchAppointment(ctx context.Context) ApiSearchAppointmentRequest {
+func (a *AppointmentsApiService) SearchAppointment(ctx context.Context) ApiSearchAppointmentRequest {
 	return ApiSearchAppointmentRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -993,7 +993,7 @@ func (a *DefaultApiService) SearchAppointment(ctx context.Context) ApiSearchAppo
 
 // Execute executes the request
 //  @return interface{}
-func (a *DefaultApiService) SearchAppointmentExecute(r ApiSearchAppointmentRequest) (interface{}, *http.Response, error) {
+func (a *AppointmentsApiService) SearchAppointmentExecute(r ApiSearchAppointmentRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1001,7 +1001,7 @@ func (a *DefaultApiService) SearchAppointmentExecute(r ApiSearchAppointmentReque
 		localVarReturnValue  interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.SearchAppointment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppointmentsApiService.SearchAppointment")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1122,7 +1122,7 @@ func (a *DefaultApiService) SearchAppointmentExecute(r ApiSearchAppointmentReque
 
 type ApiSearchAppointmentEntitiesRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *AppointmentsApiService
 	appointmentUuid string
 	page *int32
 	pageSize *int32
@@ -1203,13 +1203,13 @@ func (r ApiSearchAppointmentEntitiesRequest) Execute() (interface{}, *http.Respo
 }
 
 /*
-SearchAppointmentEntities Search Appointment Entities
+SearchAppointmentEntities Searchappointmententities
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param appointmentUuid
  @return ApiSearchAppointmentEntitiesRequest
 */
-func (a *DefaultApiService) SearchAppointmentEntities(ctx context.Context, appointmentUuid string) ApiSearchAppointmentEntitiesRequest {
+func (a *AppointmentsApiService) SearchAppointmentEntities(ctx context.Context, appointmentUuid string) ApiSearchAppointmentEntitiesRequest {
 	return ApiSearchAppointmentEntitiesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1219,7 +1219,7 @@ func (a *DefaultApiService) SearchAppointmentEntities(ctx context.Context, appoi
 
 // Execute executes the request
 //  @return interface{}
-func (a *DefaultApiService) SearchAppointmentEntitiesExecute(r ApiSearchAppointmentEntitiesRequest) (interface{}, *http.Response, error) {
+func (a *AppointmentsApiService) SearchAppointmentEntitiesExecute(r ApiSearchAppointmentEntitiesRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1227,7 +1227,7 @@ func (a *DefaultApiService) SearchAppointmentEntitiesExecute(r ApiSearchAppointm
 		localVarReturnValue  interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.SearchAppointmentEntities")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppointmentsApiService.SearchAppointmentEntities")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1340,7 +1340,7 @@ func (a *DefaultApiService) SearchAppointmentEntitiesExecute(r ApiSearchAppointm
 
 type ApiSearchEntityAppointmentsRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *AppointmentsApiService
 	entityUuid string
 	startDate *string
 	endDate *string
@@ -1403,13 +1403,13 @@ func (r ApiSearchEntityAppointmentsRequest) Execute() (interface{}, *http.Respon
 }
 
 /*
-SearchEntityAppointments Get Entities Appointments
+SearchEntityAppointments Getentityappointments
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param entityUuid
  @return ApiSearchEntityAppointmentsRequest
 */
-func (a *DefaultApiService) SearchEntityAppointments(ctx context.Context, entityUuid string) ApiSearchEntityAppointmentsRequest {
+func (a *AppointmentsApiService) SearchEntityAppointments(ctx context.Context, entityUuid string) ApiSearchEntityAppointmentsRequest {
 	return ApiSearchEntityAppointmentsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1419,7 +1419,7 @@ func (a *DefaultApiService) SearchEntityAppointments(ctx context.Context, entity
 
 // Execute executes the request
 //  @return interface{}
-func (a *DefaultApiService) SearchEntityAppointmentsExecute(r ApiSearchEntityAppointmentsRequest) (interface{}, *http.Response, error) {
+func (a *AppointmentsApiService) SearchEntityAppointmentsExecute(r ApiSearchEntityAppointmentsRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1427,7 +1427,7 @@ func (a *DefaultApiService) SearchEntityAppointmentsExecute(r ApiSearchEntityApp
 		localVarReturnValue  interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.SearchEntityAppointments")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppointmentsApiService.SearchEntityAppointments")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1531,7 +1531,7 @@ func (a *DefaultApiService) SearchEntityAppointmentsExecute(r ApiSearchEntityApp
 
 type ApiUpdateAppointmentRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *AppointmentsApiService
 	appointmentUuid string
 	appointmentBase *AppointmentBase
 	xAccessToken *string
@@ -1582,13 +1582,13 @@ func (r ApiUpdateAppointmentRequest) Execute() (*AppointmentResponse, *http.Resp
 }
 
 /*
-UpdateAppointment Update Appointment
+UpdateAppointment Updateappointment
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param appointmentUuid
  @return ApiUpdateAppointmentRequest
 */
-func (a *DefaultApiService) UpdateAppointment(ctx context.Context, appointmentUuid string) ApiUpdateAppointmentRequest {
+func (a *AppointmentsApiService) UpdateAppointment(ctx context.Context, appointmentUuid string) ApiUpdateAppointmentRequest {
 	return ApiUpdateAppointmentRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1598,7 +1598,7 @@ func (a *DefaultApiService) UpdateAppointment(ctx context.Context, appointmentUu
 
 // Execute executes the request
 //  @return AppointmentResponse
-func (a *DefaultApiService) UpdateAppointmentExecute(r ApiUpdateAppointmentRequest) (*AppointmentResponse, *http.Response, error) {
+func (a *AppointmentsApiService) UpdateAppointmentExecute(r ApiUpdateAppointmentRequest) (*AppointmentResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -1606,7 +1606,7 @@ func (a *DefaultApiService) UpdateAppointmentExecute(r ApiUpdateAppointmentReque
 		localVarReturnValue  *AppointmentResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateAppointment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppointmentsApiService.UpdateAppointment")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
