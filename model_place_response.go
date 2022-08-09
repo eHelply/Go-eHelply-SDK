@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.100
+eHelply SDK - 1.1.101
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.100
+API version: 1.1.101
 Contact: support@ehelply.com
 */
 
@@ -23,6 +23,7 @@ type PlaceResponse struct {
 	Meta map[string]interface{} `json:"meta,omitempty"`
 	Addresses []AddressBase `json:"addresses,omitempty"`
 	Contact *ContactBase `json:"contact,omitempty"`
+	Picture *string `json:"picture,omitempty"`
 	Uuid string `json:"uuid"`
 	ProjectUuid *string `json:"project_uuid,omitempty"`
 	MetaUuid *string `json:"meta_uuid,omitempty"`
@@ -239,6 +240,38 @@ func (o *PlaceResponse) HasContact() bool {
 // SetContact gets a reference to the given ContactBase and assigns it to the Contact field.
 func (o *PlaceResponse) SetContact(v ContactBase) {
 	o.Contact = &v
+}
+
+// GetPicture returns the Picture field value if set, zero value otherwise.
+func (o *PlaceResponse) GetPicture() string {
+	if o == nil || o.Picture == nil {
+		var ret string
+		return ret
+	}
+	return *o.Picture
+}
+
+// GetPictureOk returns a tuple with the Picture field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlaceResponse) GetPictureOk() (*string, bool) {
+	if o == nil || o.Picture == nil {
+		return nil, false
+	}
+	return o.Picture, true
+}
+
+// HasPicture returns a boolean if a field has been set.
+func (o *PlaceResponse) HasPicture() bool {
+	if o != nil && o.Picture != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPicture gets a reference to the given string and assigns it to the Picture field.
+func (o *PlaceResponse) SetPicture(v string) {
+	o.Picture = &v
 }
 
 // GetUuid returns the Uuid field value
@@ -540,6 +573,9 @@ func (o PlaceResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Contact != nil {
 		toSerialize["contact"] = o.Contact
+	}
+	if o.Picture != nil {
+		toSerialize["picture"] = o.Picture
 	}
 	if true {
 		toSerialize["uuid"] = o.Uuid

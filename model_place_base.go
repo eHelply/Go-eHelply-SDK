@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.100
+eHelply SDK - 1.1.101
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.100
+API version: 1.1.101
 Contact: support@ehelply.com
 */
 
@@ -23,6 +23,7 @@ type PlaceBase struct {
 	Meta map[string]interface{} `json:"meta,omitempty"`
 	Addresses []AddressBase `json:"addresses,omitempty"`
 	Contact *ContactBase `json:"contact,omitempty"`
+	Picture *string `json:"picture,omitempty"`
 }
 
 // NewPlaceBase instantiates a new PlaceBase object
@@ -231,6 +232,38 @@ func (o *PlaceBase) SetContact(v ContactBase) {
 	o.Contact = &v
 }
 
+// GetPicture returns the Picture field value if set, zero value otherwise.
+func (o *PlaceBase) GetPicture() string {
+	if o == nil || o.Picture == nil {
+		var ret string
+		return ret
+	}
+	return *o.Picture
+}
+
+// GetPictureOk returns a tuple with the Picture field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlaceBase) GetPictureOk() (*string, bool) {
+	if o == nil || o.Picture == nil {
+		return nil, false
+	}
+	return o.Picture, true
+}
+
+// HasPicture returns a boolean if a field has been set.
+func (o *PlaceBase) HasPicture() bool {
+	if o != nil && o.Picture != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPicture gets a reference to the given string and assigns it to the Picture field.
+func (o *PlaceBase) SetPicture(v string) {
+	o.Picture = &v
+}
+
 func (o PlaceBase) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -250,6 +283,9 @@ func (o PlaceBase) MarshalJSON() ([]byte, error) {
 	}
 	if o.Contact != nil {
 		toSerialize["contact"] = o.Contact
+	}
+	if o.Picture != nil {
+		toSerialize["picture"] = o.Picture
 	}
 	return json.Marshal(toSerialize)
 }
