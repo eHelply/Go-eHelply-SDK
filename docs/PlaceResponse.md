@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Meta** | Pointer to **map[string]interface{}** |  | [optional] 
 **Addresses** | Pointer to [**[]AddressBase**](AddressBase.md) |  | [optional] 
 **Contact** | Pointer to [**ContactBase**](ContactBase.md) |  | [optional] 
+**Picture** | Pointer to **string** |  | [optional] 
 **Uuid** | **string** |  | 
 **ProjectUuid** | Pointer to **string** |  | [optional] 
 **MetaUuid** | Pointer to **string** |  | [optional] 
@@ -183,6 +184,31 @@ SetContact sets Contact field to given value.
 `func (o *PlaceResponse) HasContact() bool`
 
 HasContact returns a boolean if a field has been set.
+
+### GetPicture
+
+`func (o *PlaceResponse) GetPicture() string`
+
+GetPicture returns the Picture field if non-nil, zero value otherwise.
+
+### GetPictureOk
+
+`func (o *PlaceResponse) GetPictureOk() (*string, bool)`
+
+GetPictureOk returns a tuple with the Picture field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPicture
+
+`func (o *PlaceResponse) SetPicture(v string)`
+
+SetPicture sets Picture field to given value.
+
+### HasPicture
+
+`func (o *PlaceResponse) HasPicture() bool`
+
+HasPicture returns a boolean if a field has been set.
 
 ### GetUuid
 
