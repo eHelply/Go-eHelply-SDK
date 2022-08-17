@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**ArchiveProject**](ProjectsApi.md#ArchiveProject) | **Delete** /sam/projects/projects/{project_uuid} | Archiveproject
 [**CreateProject**](ProjectsApi.md#CreateProject) | **Post** /sam/projects/projects | Createproject
 [**CreateProjectCredential**](ProjectsApi.md#CreateProjectCredential) | **Post** /sam/projects/projects/{project_uuid}/credentials | Createprojectcredential
+[**CreateProjectInvoice**](ProjectsApi.md#CreateProjectInvoice) | **Post** /sam/projects/projects/{project_uuid}/invoices | Createprojectinvoice
 [**CreateProjectKey**](ProjectsApi.md#CreateProjectKey) | **Post** /sam/projects/projects/{project_uuid}/keys | Createprojectkey
 [**CreateUsageType**](ProjectsApi.md#CreateUsageType) | **Post** /sam/projects/usage/types | Createusagetype
 [**DeleteProjectCredential**](ProjectsApi.md#DeleteProjectCredential) | **Delete** /sam/projects/projects/{project_uuid}/credentials/{service_name} | Deleteprojectcredential
@@ -17,6 +18,8 @@ Method | HTTP request | Description
 [**GetAllProjectUsage**](ProjectsApi.md#GetAllProjectUsage) | **Get** /sam/projects/projects/{project_uuid}/usage | Getallprojectusage
 [**GetMemberProjects**](ProjectsApi.md#GetMemberProjects) | **Get** /sam/projects/members/{entity_uuid}/projects | Getmemberprojects
 [**GetProject**](ProjectsApi.md#GetProject) | **Get** /sam/projects/projects/{project_uuid} | Getproject
+[**GetProjectInvoice**](ProjectsApi.md#GetProjectInvoice) | **Get** /sam/projects/projects/{project_uuid}/invoices | Getprojectinvoice
+[**GetProjectInvoiceHistory**](ProjectsApi.md#GetProjectInvoiceHistory) | **Get** /sam/projects/projects/{project_uuid}/invoices/history | Getprojectinvoicehistory
 [**GetProjectKeys**](ProjectsApi.md#GetProjectKeys) | **Get** /sam/projects/projects/{project_uuid}/keys | Getprojectkeys
 [**GetProjectMembers**](ProjectsApi.md#GetProjectMembers) | **Get** /sam/projects/projects/{project_uuid}/members | Getprojectmembers
 [**GetSpecificProjectCredential**](ProjectsApi.md#GetSpecificProjectCredential) | **Get** /sam/projects/projects/{project_uuid}/credentials/{service_name} | Getspecificprojectcredential
@@ -339,6 +342,88 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ResponseCreateprojectcredential**](ResponseCreateprojectcredential.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateProjectInvoice
+
+> ResponseCreateprojectinvoice CreateProjectInvoice(ctx, projectUuid).CreateProjectInvoice(createProjectInvoice).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+
+Createprojectinvoice
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    projectUuid := "projectUuid_example" // string | 
+    createProjectInvoice := *openapiclient.NewCreateProjectInvoice(int32(123), int32(123)) // CreateProjectInvoice | 
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.CreateProjectInvoice(context.Background(), projectUuid).CreateProjectInvoice(createProjectInvoice).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.CreateProjectInvoice``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateProjectInvoice`: ResponseCreateprojectinvoice
+    fmt.Fprintf(os.Stdout, "Response from `ProjectsApi.CreateProjectInvoice`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectUuid** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateProjectInvoiceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **createProjectInvoice** | [**CreateProjectInvoice**](CreateProjectInvoice.md) |  | 
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
+
+### Return type
+
+[**ResponseCreateprojectinvoice**](ResponseCreateprojectinvoice.md)
 
 ### Authorization
 
@@ -1085,6 +1170,172 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## GetProjectInvoice
+
+> GetProjectInvoiceResponse GetProjectInvoice(ctx, projectUuid).WithInvoice(withInvoice).Year(year).Month(month).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+
+Getprojectinvoice
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    projectUuid := "projectUuid_example" // string | 
+    withInvoice := true // bool |  (optional) (default to false)
+    year := int32(56) // int32 |  (optional)
+    month := int32(56) // int32 |  (optional)
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.GetProjectInvoice(context.Background(), projectUuid).WithInvoice(withInvoice).Year(year).Month(month).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.GetProjectInvoice``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetProjectInvoice`: GetProjectInvoiceResponse
+    fmt.Fprintf(os.Stdout, "Response from `ProjectsApi.GetProjectInvoice`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectUuid** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetProjectInvoiceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **withInvoice** | **bool** |  | [default to false]
+ **year** | **int32** |  | 
+ **month** | **int32** |  | 
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
+
+### Return type
+
+[**GetProjectInvoiceResponse**](GetProjectInvoiceResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetProjectInvoiceHistory
+
+> GetProjectInvoiceHistory GetProjectInvoiceHistory(ctx, projectUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+
+Getprojectinvoicehistory
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    projectUuid := "projectUuid_example" // string | 
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.GetProjectInvoiceHistory(context.Background(), projectUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.GetProjectInvoiceHistory``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetProjectInvoiceHistory`: GetProjectInvoiceHistory
+    fmt.Fprintf(os.Stdout, "Response from `ProjectsApi.GetProjectInvoiceHistory`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectUuid** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetProjectInvoiceHistoryRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
+
+### Return type
+
+[**GetProjectInvoiceHistory**](GetProjectInvoiceHistory.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetProjectKeys
 
 > []ProjectsProjectMemberDB GetProjectKeys(ctx, projectUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
@@ -1568,7 +1819,7 @@ No authorization required
 
 ## SearchProjects
 
-> Page SearchProjects(ctx).Page(page).PageSize(pageSize).Search(search).SearchOn(searchOn).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> Page SearchProjects(ctx).IsActive(isActive).Page(page).PageSize(pageSize).Search(search).SearchOn(searchOn).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Searchprojects
 
@@ -1587,6 +1838,7 @@ import (
 )
 
 func main() {
+    isActive := true // bool |  (optional) (default to false)
     page := int32(56) // int32 |  (optional) (default to 1)
     pageSize := int32(56) // int32 |  (optional) (default to 25)
     search := "search_example" // string |  (optional)
@@ -1602,7 +1854,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectsApi.SearchProjects(context.Background()).Page(page).PageSize(pageSize).Search(search).SearchOn(searchOn).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.ProjectsApi.SearchProjects(context.Background()).IsActive(isActive).Page(page).PageSize(pageSize).Search(search).SearchOn(searchOn).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.SearchProjects``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1623,6 +1875,7 @@ Other parameters are passed through a pointer to a apiSearchProjectsRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **isActive** | **bool** |  | [default to false]
  **page** | **int32** |  | [default to 1]
  **pageSize** | **int32** |  | [default to 25]
  **search** | **string** |  | 
