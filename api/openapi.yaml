@@ -9,8 +9,8 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://superstack.ehelply.com/support/legal/terms
-  title: eHelply SDK - 1.1.107
-  version: 1.1.107
+  title: eHelply SDK - 1.1.108
+  version: 1.1.108
 servers:
 - description: eHelply / SuperStack Production
   url: https://api.prod.ehelply.com
@@ -8742,6 +8742,15 @@ paths:
       parameters:
       - explode: true
         in: query
+        name: is_active
+        required: false
+        schema:
+          default: false
+          title: Is Active
+          type: boolean
+        style: form
+      - explode: true
+        in: query
         name: page
         required: false
         schema:
@@ -10263,6 +10272,12 @@ paths:
                 title: Response Deleteprojectkey
                 type: string
           description: Successful Response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Access token is a required query parameter
         "403":
           content:
             application/json:
@@ -10270,11 +10285,7 @@ paths:
                 $ref: '#/components/schemas/getAppointment_403_response'
           description: Unauthorized - Denied by eHelply
         "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
-          description: "Project, Entity, or Key does not exist"
+          description: Not found
         "422":
           content:
             application/json:
@@ -10548,7 +10559,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/getAppointment_403_response'
-          description: Project credential not found does not exist
+          description: Project credential does not exist
         "422":
           content:
             application/json:
@@ -10630,6 +10641,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Response_Createprojectcredential'
           description: Successful Response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Failed to create project credential
         "403":
           content:
             application/json:
@@ -10643,7 +10660,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/getAppointment_403_response'
-          description: Project credential already exits already exists
+          description: Project credential already exists
         "422":
           content:
             application/json:
@@ -10834,7 +10851,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/getAppointment_403_response'
-          description: Project credential not found does not exist
+          description: Project credential does not exist
         "422":
           content:
             application/json:
@@ -10943,6 +10960,306 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
       summary: Updateprojectcredential
+      tags:
+      - projects
+  /sam/projects/projects/{project_uuid}/invoices:
+    get:
+      operationId: getProjectInvoice
+      parameters:
+      - explode: false
+        in: path
+        name: project_uuid
+        required: true
+        schema:
+          title: Project Uuid
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: with_invoice
+        required: false
+        schema:
+          default: false
+          title: With Invoice
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: year
+        required: false
+        schema:
+          title: Year
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: month
+        required: false
+        schema:
+          title: Month
+          type: integer
+        style: form
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetProjectInvoiceResponse'
+          description: Successful Response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: The query parameters year and month are required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Project credential not found does not exist
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Getprojectinvoice
+      tags:
+      - projects
+    post:
+      operationId: createProjectInvoice
+      parameters:
+      - explode: false
+        in: path
+        name: project_uuid
+        required: true
+        schema:
+          title: Project Uuid
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectInvoice'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response_Createprojectinvoice'
+          description: Successful Response
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Project credential not found does not exist
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Createprojectinvoice
+      tags:
+      - projects
+  /sam/projects/projects/{project_uuid}/invoices/history:
+    get:
+      operationId: getProjectInvoiceHistory
+      parameters:
+      - explode: false
+        in: path
+        name: project_uuid
+        required: true
+        schema:
+          title: Project Uuid
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetProjectInvoiceHistory'
+          description: Successful Response
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: project invoice history does not exist
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Getprojectinvoicehistory
       tags:
       - projects
   /sam/security/tokens:
@@ -15872,6 +16189,22 @@ components:
       - service_name
       title: CreateProjectCredential
       type: object
+    CreateProjectInvoice:
+      example:
+        month: 6
+        year: 0
+      properties:
+        year:
+          title: Year
+          type: integer
+        month:
+          title: Month
+          type: integer
+      required:
+      - month
+      - year
+      title: CreateProjectInvoice
+      type: object
     CreateTicket:
       example:
         subject: subject
@@ -15904,6 +16237,126 @@ components:
       - value
       title: Credential
       type: object
+    Discount:
+      example:
+        rate: 7
+        flat: 9
+        name: name
+        description: description
+      properties:
+        name:
+          title: Name
+          type: string
+        description:
+          title: Description
+          type: string
+        rate:
+          title: Rate
+          type: integer
+        flat:
+          title: Flat
+          type: integer
+      required:
+      - description
+      - flat
+      - name
+      - rate
+      title: Discount
+      type: object
+    GetInvoiceResponse:
+      example:
+        total: 2
+        notes:
+        - created_at: created_at
+          content: content
+          participant_uuid: participant_uuid
+        - created_at: created_at
+          content: content
+          participant_uuid: participant_uuid
+        discounts:
+        - rate: 7
+          flat: 9
+          name: name
+          description: description
+        - rate: 7
+          flat: 9
+          name: name
+          description: description
+        subtotal: 2
+        paid: false
+        update_at: update_at
+        taxes:
+        - rate: 3
+          name: name
+        - rate: 3
+          name: name
+        created_at: created_at
+        invoice_uuid: invoice_uuid
+        line_items:
+        - total: 5
+          quantity: 1
+          name: name
+          unit_price: 5
+        - total: 5
+          quantity: 1
+          name: name
+          unit_price: 5
+        deleted_at: deleted_at
+      properties:
+        invoice_uuid:
+          title: Invoice Uuid
+          type: string
+        line_items:
+          items:
+            $ref: '#/components/schemas/LineItem'
+          title: Line Items
+          type: array
+        subtotal:
+          title: Subtotal
+          type: integer
+        discounts:
+          items:
+            $ref: '#/components/schemas/Discount'
+          title: Discounts
+          type: array
+        taxes:
+          items:
+            $ref: '#/components/schemas/Tax'
+          title: Taxes
+          type: array
+        total:
+          title: Total
+          type: integer
+        notes:
+          items:
+            $ref: '#/components/schemas/Note'
+          title: Notes
+          type: array
+        paid:
+          default: false
+          title: Paid
+          type: boolean
+        created_at:
+          title: Created At
+          type: string
+        update_at:
+          title: Update At
+          type: string
+        deleted_at:
+          title: Deleted At
+          type: string
+      required:
+      - created_at
+      - discounts
+      - invoice_uuid
+      - line_items
+      - notes
+      - subtotal
+      - taxes
+      - total
+      - update_at
+      title: GetInvoiceResponse
+      type: object
     GetProjectCredential:
       example:
         service_name: service_name
@@ -15923,6 +16376,99 @@ components:
       - secrets
       - service_name
       title: GetProjectCredential
+      type: object
+    GetProjectInvoiceHistory:
+      example:
+        project_uuid: project_uuid
+        invoice_history:
+        - month: 6
+          year: 0
+        - month: 6
+          year: 0
+      properties:
+        project_uuid:
+          title: Project Uuid
+          type: string
+        invoice_history:
+          default: []
+          items:
+            $ref: '#/components/schemas/History'
+          title: Invoice History
+          type: array
+      required:
+      - project_uuid
+      title: GetProjectInvoiceHistory
+      type: object
+    GetProjectInvoiceResponse:
+      example:
+        project_uuid: project_uuid
+        month: 6
+        year: 0
+        invoice_uuid: invoice_uuid
+        invoice:
+          total: 2
+          notes:
+          - created_at: created_at
+            content: content
+            participant_uuid: participant_uuid
+          - created_at: created_at
+            content: content
+            participant_uuid: participant_uuid
+          discounts:
+          - rate: 7
+            flat: 9
+            name: name
+            description: description
+          - rate: 7
+            flat: 9
+            name: name
+            description: description
+          subtotal: 2
+          paid: false
+          update_at: update_at
+          taxes:
+          - rate: 3
+            name: name
+          - rate: 3
+            name: name
+          created_at: created_at
+          invoice_uuid: invoice_uuid
+          line_items:
+          - total: 5
+            quantity: 1
+            name: name
+            unit_price: 5
+          - total: 5
+            quantity: 1
+            name: name
+            unit_price: 5
+          deleted_at: deleted_at
+        created_by: created_by
+      properties:
+        project_uuid:
+          title: Project Uuid
+          type: string
+        invoice_uuid:
+          title: Invoice Uuid
+          type: string
+        year:
+          title: Year
+          type: integer
+        month:
+          title: Month
+          type: integer
+        created_by:
+          title: Created By
+          type: string
+        invoice:
+          $ref: '#/components/schemas/GetInvoiceResponse'
+      required:
+      - created_by
+      - invoice_uuid
+      - month
+      - project_uuid
+      - year
+      title: GetProjectInvoiceResponse
       type: object
     GetSecret:
       example:
@@ -15976,6 +16522,33 @@ components:
       - specs
       title: GetServiceSpecsResponse
       type: object
+    GetTransactionResponse:
+      properties:
+        invoice:
+          $ref: '#/components/schemas/GetInvoiceResponse'
+        transaction_uuid:
+          title: Transaction Uuid
+          type: string
+        stripe_id:
+          title: Stripe Id
+          type: string
+        credit:
+          title: Credit
+          type: integer
+        debit:
+          title: Debit
+          type: integer
+        created_at:
+          title: Created At
+          type: string
+      required:
+      - created_at
+      - credit
+      - debit
+      - stripe_id
+      - transaction_uuid
+      title: GetTransactionResponse
+      type: object
     HeartbeatResponse:
       example:
         process: process
@@ -16015,6 +16588,22 @@ components:
       - stage
       title: HeartbeatResponse
       type: object
+    History:
+      example:
+        month: 6
+        year: 0
+      properties:
+        year:
+          title: Year
+          type: integer
+        month:
+          title: Month
+          type: integer
+      required:
+      - month
+      - year
+      title: History
+      type: object
     KpiResponse:
       example:
         service_uuid: service_uuid
@@ -16046,6 +16635,32 @@ components:
       - service_uuid
       title: KpiResponse
       type: object
+    LineItem:
+      example:
+        total: 5
+        quantity: 1
+        name: name
+        unit_price: 5
+      properties:
+        name:
+          title: Name
+          type: string
+        quantity:
+          title: Quantity
+          type: integer
+        unit_price:
+          title: Unit Price
+          type: integer
+        total:
+          title: Total
+          type: integer
+      required:
+      - name
+      - quantity
+      - total
+      - unit_price
+      title: LineItem
+      type: object
     LoggingDynamo:
       example:
         severity: severity
@@ -16076,6 +16691,27 @@ components:
       - subject
       - time
       title: LoggingDynamo
+      type: object
+    Note:
+      example:
+        created_at: created_at
+        content: content
+        participant_uuid: participant_uuid
+      properties:
+        participant_uuid:
+          title: Participant Uuid
+          type: string
+        content:
+          title: Content
+          type: string
+        created_at:
+          title: Created At
+          type: string
+      required:
+      - content
+      - created_at
+      - participant_uuid
+      title: Note
       type: object
     ParticipantCreate:
       description: Contains field for when we create a participant only
@@ -16989,6 +17625,22 @@ components:
       - secret
       title: StripeCustomerSecretResponse
       type: object
+    Tax:
+      example:
+        rate: 3
+        name: name
+      properties:
+        name:
+          title: Name
+          type: string
+        rate:
+          title: Rate
+          type: integer
+      required:
+      - name
+      - rate
+      title: Tax
+      type: object
     TicketResponse:
       example:
         subject: subject
@@ -17549,6 +18201,14 @@ components:
         message:
           type: string
       title: Response Deleteprojectcredential
+      type: object
+    Response_Createprojectinvoice:
+      example:
+        message: Project invoice created
+      properties:
+        message:
+          type: string
+      title: Response Createprojectinvoice
       type: object
     Response_Generatetoken:
       example:
