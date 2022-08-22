@@ -15,9 +15,11 @@ Method | HTTP request | Description
 [**DeleteProjectKey**](ProjectsApi.md#DeleteProjectKey) | **Delete** /sam/projects/projects/{project_uuid}/keys | Deleteprojectkey
 [**DeleteUsageType**](ProjectsApi.md#DeleteUsageType) | **Delete** /sam/projects/usage/types/{usage_type_key} | Deleteusagetype
 [**GetAllProjectCredentials**](ProjectsApi.md#GetAllProjectCredentials) | **Get** /sam/projects/projects/{project_uuid}/credentials | Getallprojectcredentials
+[**GetAllProjectCredits**](ProjectsApi.md#GetAllProjectCredits) | **Get** /sam/projects/projects/{project_uuid}/credits | Getallprojectcredits
 [**GetAllProjectUsage**](ProjectsApi.md#GetAllProjectUsage) | **Get** /sam/projects/projects/{project_uuid}/usage | Getallprojectusage
 [**GetMemberProjects**](ProjectsApi.md#GetMemberProjects) | **Get** /sam/projects/members/{entity_uuid}/projects | Getmemberprojects
 [**GetProject**](ProjectsApi.md#GetProject) | **Get** /sam/projects/projects/{project_uuid} | Getproject
+[**GetProjectCreditTransactions**](ProjectsApi.md#GetProjectCreditTransactions) | **Get** /sam/projects/projects/{project_uuid}/credits/{credit_uuid}/transactions | Getprojectcredittransactions
 [**GetProjectInvoice**](ProjectsApi.md#GetProjectInvoice) | **Get** /sam/projects/projects/{project_uuid}/invoices | Getprojectinvoice
 [**GetProjectInvoiceHistory**](ProjectsApi.md#GetProjectInvoiceHistory) | **Get** /sam/projects/projects/{project_uuid}/invoices/history | Getprojectinvoicehistory
 [**GetProjectKeys**](ProjectsApi.md#GetProjectKeys) | **Get** /sam/projects/projects/{project_uuid}/keys | Getprojectkeys
@@ -922,6 +924,94 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## GetAllProjectCredits
+
+> Page GetAllProjectCredits(ctx, projectUuid).FullyConsumed(fullyConsumed).Revoked(revoked).Page(page).PageSize(pageSize).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+
+Getallprojectcredits
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    projectUuid := "projectUuid_example" // string | 
+    fullyConsumed := true // bool |  (optional) (default to false)
+    revoked := true // bool |  (optional) (default to false)
+    page := int32(56) // int32 |  (optional) (default to 1)
+    pageSize := int32(56) // int32 |  (optional) (default to 25)
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.GetAllProjectCredits(context.Background(), projectUuid).FullyConsumed(fullyConsumed).Revoked(revoked).Page(page).PageSize(pageSize).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.GetAllProjectCredits``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetAllProjectCredits`: Page
+    fmt.Fprintf(os.Stdout, "Response from `ProjectsApi.GetAllProjectCredits`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectUuid** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAllProjectCreditsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **fullyConsumed** | **bool** |  | [default to false]
+ **revoked** | **bool** |  | [default to false]
+ **page** | **int32** |  | [default to 1]
+ **pageSize** | **int32** |  | [default to 25]
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
+
+### Return type
+
+[**Page**](Page.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetAllProjectUsage
 
 > []ProjectsProjectUsageDB GetAllProjectUsage(ctx, projectUuid).Year(year).Month(month).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
@@ -1155,6 +1245,93 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ProjectDB**](ProjectDB.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetProjectCreditTransactions
+
+> Page GetProjectCreditTransactions(ctx, projectUuid, creditUuid).Page(page).PageSize(pageSize).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+
+Getprojectcredittransactions
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    projectUuid := "projectUuid_example" // string | 
+    creditUuid := "creditUuid_example" // string | 
+    page := int32(56) // int32 |  (optional) (default to 1)
+    pageSize := int32(56) // int32 |  (optional) (default to 25)
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.GetProjectCreditTransactions(context.Background(), projectUuid, creditUuid).Page(page).PageSize(pageSize).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.GetProjectCreditTransactions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetProjectCreditTransactions`: Page
+    fmt.Fprintf(os.Stdout, "Response from `ProjectsApi.GetProjectCreditTransactions`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectUuid** | **string** |  | 
+**creditUuid** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetProjectCreditTransactionsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **page** | **int32** |  | [default to 1]
+ **pageSize** | **int32** |  | [default to 25]
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
+
+### Return type
+
+[**Page**](Page.md)
 
 ### Authorization
 

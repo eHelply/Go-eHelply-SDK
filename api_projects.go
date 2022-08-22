@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.102
+eHelply SDK - 1.1.103
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.102
+API version: 1.1.103
 Contact: support@ehelply.com
 */
 
@@ -2084,6 +2084,226 @@ func (a *ProjectsApiService) GetAllProjectCredentialsExecute(r ApiGetAllProjectC
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiGetAllProjectCreditsRequest struct {
+	ctx context.Context
+	ApiService *ProjectsApiService
+	projectUuid string
+	fullyConsumed *bool
+	revoked *bool
+	page *int32
+	pageSize *int32
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
+}
+
+func (r ApiGetAllProjectCreditsRequest) FullyConsumed(fullyConsumed bool) ApiGetAllProjectCreditsRequest {
+	r.fullyConsumed = &fullyConsumed
+	return r
+}
+
+func (r ApiGetAllProjectCreditsRequest) Revoked(revoked bool) ApiGetAllProjectCreditsRequest {
+	r.revoked = &revoked
+	return r
+}
+
+func (r ApiGetAllProjectCreditsRequest) Page(page int32) ApiGetAllProjectCreditsRequest {
+	r.page = &page
+	return r
+}
+
+func (r ApiGetAllProjectCreditsRequest) PageSize(pageSize int32) ApiGetAllProjectCreditsRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+func (r ApiGetAllProjectCreditsRequest) XAccessToken(xAccessToken string) ApiGetAllProjectCreditsRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiGetAllProjectCreditsRequest) XSecretToken(xSecretToken string) ApiGetAllProjectCreditsRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiGetAllProjectCreditsRequest) Authorization(authorization string) ApiGetAllProjectCreditsRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiGetAllProjectCreditsRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiGetAllProjectCreditsRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiGetAllProjectCreditsRequest) EhelplyProject(ehelplyProject string) ApiGetAllProjectCreditsRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiGetAllProjectCreditsRequest) EhelplyData(ehelplyData string) ApiGetAllProjectCreditsRequest {
+	r.ehelplyData = &ehelplyData
+	return r
+}
+
+func (r ApiGetAllProjectCreditsRequest) Execute() (*Page, *http.Response, error) {
+	return r.ApiService.GetAllProjectCreditsExecute(r)
+}
+
+/*
+GetAllProjectCredits Getallprojectcredits
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param projectUuid
+ @return ApiGetAllProjectCreditsRequest
+*/
+func (a *ProjectsApiService) GetAllProjectCredits(ctx context.Context, projectUuid string) ApiGetAllProjectCreditsRequest {
+	return ApiGetAllProjectCreditsRequest{
+		ApiService: a,
+		ctx: ctx,
+		projectUuid: projectUuid,
+	}
+}
+
+// Execute executes the request
+//  @return Page
+func (a *ProjectsApiService) GetAllProjectCreditsExecute(r ApiGetAllProjectCreditsRequest) (*Page, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *Page
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.GetAllProjectCredits")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/sam/projects/projects/{project_uuid}/credits"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_uuid"+"}", url.PathEscape(parameterToString(r.projectUuid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.fullyConsumed != nil {
+		localVarQueryParams.Add("fully_consumed", parameterToString(*r.fullyConsumed, ""))
+	}
+	if r.revoked != nil {
+		localVarQueryParams.Add("revoked", parameterToString(*r.revoked, ""))
+	}
+	if r.page != nil {
+		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	if r.pageSize != nil {
+		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiGetAllProjectUsageRequest struct {
 	ctx context.Context
 	ApiService *ProjectsApiService
@@ -2564,6 +2784,212 @@ func (a *ProjectsApiService) GetProjectExecute(r ApiGetProjectRequest) (*Project
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetProjectCreditTransactionsRequest struct {
+	ctx context.Context
+	ApiService *ProjectsApiService
+	projectUuid string
+	creditUuid string
+	page *int32
+	pageSize *int32
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
+}
+
+func (r ApiGetProjectCreditTransactionsRequest) Page(page int32) ApiGetProjectCreditTransactionsRequest {
+	r.page = &page
+	return r
+}
+
+func (r ApiGetProjectCreditTransactionsRequest) PageSize(pageSize int32) ApiGetProjectCreditTransactionsRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+func (r ApiGetProjectCreditTransactionsRequest) XAccessToken(xAccessToken string) ApiGetProjectCreditTransactionsRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiGetProjectCreditTransactionsRequest) XSecretToken(xSecretToken string) ApiGetProjectCreditTransactionsRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiGetProjectCreditTransactionsRequest) Authorization(authorization string) ApiGetProjectCreditTransactionsRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiGetProjectCreditTransactionsRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiGetProjectCreditTransactionsRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiGetProjectCreditTransactionsRequest) EhelplyProject(ehelplyProject string) ApiGetProjectCreditTransactionsRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiGetProjectCreditTransactionsRequest) EhelplyData(ehelplyData string) ApiGetProjectCreditTransactionsRequest {
+	r.ehelplyData = &ehelplyData
+	return r
+}
+
+func (r ApiGetProjectCreditTransactionsRequest) Execute() (*Page, *http.Response, error) {
+	return r.ApiService.GetProjectCreditTransactionsExecute(r)
+}
+
+/*
+GetProjectCreditTransactions Getprojectcredittransactions
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param projectUuid
+ @param creditUuid
+ @return ApiGetProjectCreditTransactionsRequest
+*/
+func (a *ProjectsApiService) GetProjectCreditTransactions(ctx context.Context, projectUuid string, creditUuid string) ApiGetProjectCreditTransactionsRequest {
+	return ApiGetProjectCreditTransactionsRequest{
+		ApiService: a,
+		ctx: ctx,
+		projectUuid: projectUuid,
+		creditUuid: creditUuid,
+	}
+}
+
+// Execute executes the request
+//  @return Page
+func (a *ProjectsApiService) GetProjectCreditTransactionsExecute(r ApiGetProjectCreditTransactionsRequest) (*Page, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *Page
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.GetProjectCreditTransactions")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/sam/projects/projects/{project_uuid}/credits/{credit_uuid}/transactions"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_uuid"+"}", url.PathEscape(parameterToString(r.projectUuid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"credit_uuid"+"}", url.PathEscape(parameterToString(r.creditUuid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.page != nil {
+		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	if r.pageSize != nil {
+		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

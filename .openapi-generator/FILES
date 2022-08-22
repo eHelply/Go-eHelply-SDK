@@ -57,6 +57,7 @@ docs/ContactMethod.md
 docs/ContactResponse.md
 docs/CreateKeyResponse.md
 docs/CreateProjectCredential.md
+docs/CreateProjectCredit.md
 docs/CreateProjectInvoice.md
 docs/CreateReview.md
 docs/CreateTicket.md
@@ -117,6 +118,7 @@ docs/PlacesApi.md
 docs/ProductBase.md
 docs/ProductReturn.md
 docs/ProductsApi.md
+docs/ProjectCreditResponse.md
 docs/ProjectDB.md
 docs/ProjectsApi.md
 docs/ProjectsProjectCreate.md
@@ -216,6 +218,7 @@ model_contact_method.go
 model_contact_response.go
 model_create_key_response.go
 model_create_project_credential.go
+model_create_project_credit.go
 model_create_project_invoice.go
 model_create_review.go
 model_create_ticket.go
@@ -270,6 +273,7 @@ model_place_base.go
 model_place_response.go
 model_product_base.go
 model_product_return.go
+model_project_credit_response.go
 model_project_db.go
 model_projects_project_create.go
 model_projects_project_get.go
