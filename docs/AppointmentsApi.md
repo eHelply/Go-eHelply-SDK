@@ -1,26 +1,26 @@
-# \DefaultApi
+# \AppointmentsApi
 
 All URIs are relative to *https://api.prod.ehelply.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AttachEntityToAppointment**](DefaultApi.md#AttachEntityToAppointment) | **Post** /appointments/appointments/{appointment_uuid}/entities/{entity_uuid} | Attach Entity To Appointment
-[**CreateAppointment**](DefaultApi.md#CreateAppointment) | **Post** /appointments/appointments | Create Appointment
-[**DeleteAppointment**](DefaultApi.md#DeleteAppointment) | **Delete** /appointments/appointments/{appointment_uuid} | Delete Appointment
-[**DetachEntityFromAppointment**](DefaultApi.md#DetachEntityFromAppointment) | **Delete** /appointments/appointments/{appointment_uuid}/entities/{entity_uuid} | Detach Entity From Appointment
-[**GetAppointment**](DefaultApi.md#GetAppointment) | **Get** /appointments/appointments/{appointment_uuid} | Get Appointment
-[**SearchAppointment**](DefaultApi.md#SearchAppointment) | **Get** /appointments/appointments | Search Appointment
-[**SearchAppointmentEntities**](DefaultApi.md#SearchAppointmentEntities) | **Get** /appointments/appointments/{appointment_uuid}/entities | Search Appointment Entities
-[**SearchEntityAppointments**](DefaultApi.md#SearchEntityAppointments) | **Get** /appointments/appointments/entities/{entity_uuid}/appointments | Get Entities Appointments
-[**UpdateAppointment**](DefaultApi.md#UpdateAppointment) | **Put** /appointments/appointments/{appointment_uuid} | Update Appointment
+[**AddEntityToAppointment**](AppointmentsApi.md#AddEntityToAppointment) | **Post** /appointments/appointments/{appointment_uuid}/entities/{entity_uuid} | Addentitytoappointment
+[**CreateAppointment**](AppointmentsApi.md#CreateAppointment) | **Post** /appointments/appointments | Createappointment
+[**DeleteAppointment**](AppointmentsApi.md#DeleteAppointment) | **Delete** /appointments/appointments/{appointment_uuid} | Deleteappointment
+[**DetachEntityFromAppointment**](AppointmentsApi.md#DetachEntityFromAppointment) | **Delete** /appointments/appointments/{appointment_uuid}/entities/{entity_uuid} | Removeentityfromappointment
+[**GetAppointment**](AppointmentsApi.md#GetAppointment) | **Get** /appointments/appointments/{appointment_uuid} | Getappointment
+[**SearchAppointment**](AppointmentsApi.md#SearchAppointment) | **Get** /appointments/appointments | Searchappointments
+[**SearchAppointmentEntities**](AppointmentsApi.md#SearchAppointmentEntities) | **Get** /appointments/appointments/{appointment_uuid}/entities | Searchappointmententities
+[**SearchEntityAppointments**](AppointmentsApi.md#SearchEntityAppointments) | **Get** /appointments/appointments/entities/{entity_uuid}/appointments | Getentityappointments
+[**UpdateAppointment**](AppointmentsApi.md#UpdateAppointment) | **Put** /appointments/appointments/{appointment_uuid} | Updateappointment
 
 
 
-## AttachEntityToAppointment
+## AddEntityToAppointment
 
-> bool AttachEntityToAppointment(ctx, appointmentUuid, entityUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> bool AddEntityToAppointment(ctx, appointmentUuid, entityUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
-Attach Entity To Appointment
+Addentitytoappointment
 
 ### Example
 
@@ -46,13 +46,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.AttachEntityToAppointment(context.Background(), appointmentUuid, entityUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.AppointmentsApi.AddEntityToAppointment(context.Background(), appointmentUuid, entityUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.AttachEntityToAppointment``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AppointmentsApi.AddEntityToAppointment``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AttachEntityToAppointment`: bool
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.AttachEntityToAppointment`: %v\n", resp)
+    // response from `AddEntityToAppointment`: bool
+    fmt.Fprintf(os.Stdout, "Response from `AppointmentsApi.AddEntityToAppointment`: %v\n", resp)
 }
 ```
 
@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAttachEntityToAppointmentRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAddEntityToAppointmentRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -103,7 +103,7 @@ No authorization required
 
 > AppointmentResponse CreateAppointment(ctx).AppointmentBase(appointmentBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
-Create Appointment
+Createappointment
 
 ### Example
 
@@ -128,13 +128,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.CreateAppointment(context.Background()).AppointmentBase(appointmentBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.AppointmentsApi.CreateAppointment(context.Background()).AppointmentBase(appointmentBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CreateAppointment``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AppointmentsApi.CreateAppointment``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateAppointment`: AppointmentResponse
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CreateAppointment`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AppointmentsApi.CreateAppointment`: %v\n", resp)
 }
 ```
 
@@ -179,7 +179,7 @@ No authorization required
 
 > bool DeleteAppointment(ctx, appointmentUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
-Delete Appointment
+Deleteappointment
 
 ### Example
 
@@ -204,13 +204,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.DeleteAppointment(context.Background(), appointmentUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.AppointmentsApi.DeleteAppointment(context.Background(), appointmentUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DeleteAppointment``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AppointmentsApi.DeleteAppointment``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteAppointment`: bool
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.DeleteAppointment`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AppointmentsApi.DeleteAppointment`: %v\n", resp)
 }
 ```
 
@@ -259,7 +259,7 @@ No authorization required
 
 > bool DetachEntityFromAppointment(ctx, appointmentUuid, entityUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
-Detach Entity From Appointment
+Removeentityfromappointment
 
 ### Example
 
@@ -285,13 +285,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.DetachEntityFromAppointment(context.Background(), appointmentUuid, entityUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.AppointmentsApi.DetachEntityFromAppointment(context.Background(), appointmentUuid, entityUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DetachEntityFromAppointment``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AppointmentsApi.DetachEntityFromAppointment``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DetachEntityFromAppointment`: bool
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.DetachEntityFromAppointment`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AppointmentsApi.DetachEntityFromAppointment`: %v\n", resp)
 }
 ```
 
@@ -342,7 +342,7 @@ No authorization required
 
 > AppointmentResponse GetAppointment(ctx, appointmentUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
-Get Appointment
+Getappointment
 
 ### Example
 
@@ -367,13 +367,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.GetAppointment(context.Background(), appointmentUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.AppointmentsApi.GetAppointment(context.Background(), appointmentUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetAppointment``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AppointmentsApi.GetAppointment``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetAppointment`: AppointmentResponse
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.GetAppointment`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AppointmentsApi.GetAppointment`: %v\n", resp)
 }
 ```
 
@@ -422,7 +422,7 @@ No authorization required
 
 > interface{} SearchAppointment(ctx).PlaceUuid(placeUuid).ExcludeCancelled(excludeCancelled).IsDeleted(isDeleted).StartRange(startRange).EndRange(endRange).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
-Search Appointment
+Searchappointments
 
 ### Example
 
@@ -455,13 +455,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.SearchAppointment(context.Background()).PlaceUuid(placeUuid).ExcludeCancelled(excludeCancelled).IsDeleted(isDeleted).StartRange(startRange).EndRange(endRange).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.AppointmentsApi.SearchAppointment(context.Background()).PlaceUuid(placeUuid).ExcludeCancelled(excludeCancelled).IsDeleted(isDeleted).StartRange(startRange).EndRange(endRange).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SearchAppointment``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AppointmentsApi.SearchAppointment``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `SearchAppointment`: interface{}
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.SearchAppointment`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AppointmentsApi.SearchAppointment`: %v\n", resp)
 }
 ```
 
@@ -514,7 +514,7 @@ No authorization required
 
 > interface{} SearchAppointmentEntities(ctx, appointmentUuid).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).Search(search).SearchOn(searchOn).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
-Search Appointment Entities
+Searchappointmententities
 
 ### Example
 
@@ -545,13 +545,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.SearchAppointmentEntities(context.Background(), appointmentUuid).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).Search(search).SearchOn(searchOn).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.AppointmentsApi.SearchAppointmentEntities(context.Background(), appointmentUuid).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).Search(search).SearchOn(searchOn).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SearchAppointmentEntities``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AppointmentsApi.SearchAppointmentEntities``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `SearchAppointmentEntities`: interface{}
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.SearchAppointmentEntities`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AppointmentsApi.SearchAppointmentEntities`: %v\n", resp)
 }
 ```
 
@@ -606,7 +606,7 @@ No authorization required
 
 > interface{} SearchEntityAppointments(ctx, entityUuid).StartDate(startDate).EndDate(endDate).ExcludeCancelled(excludeCancelled).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
-Get Entities Appointments
+Getentityappointments
 
 ### Example
 
@@ -634,13 +634,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.SearchEntityAppointments(context.Background(), entityUuid).StartDate(startDate).EndDate(endDate).ExcludeCancelled(excludeCancelled).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.AppointmentsApi.SearchEntityAppointments(context.Background(), entityUuid).StartDate(startDate).EndDate(endDate).ExcludeCancelled(excludeCancelled).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SearchEntityAppointments``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AppointmentsApi.SearchEntityAppointments``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `SearchEntityAppointments`: interface{}
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.SearchEntityAppointments`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AppointmentsApi.SearchEntityAppointments`: %v\n", resp)
 }
 ```
 
@@ -692,7 +692,7 @@ No authorization required
 
 > AppointmentResponse UpdateAppointment(ctx, appointmentUuid).AppointmentBase(appointmentBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
-Update Appointment
+Updateappointment
 
 ### Example
 
@@ -718,13 +718,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.UpdateAppointment(context.Background(), appointmentUuid).AppointmentBase(appointmentBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.AppointmentsApi.UpdateAppointment(context.Background(), appointmentUuid).AppointmentBase(appointmentBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.UpdateAppointment``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AppointmentsApi.UpdateAppointment``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateAppointment`: AppointmentResponse
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.UpdateAppointment`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AppointmentsApi.UpdateAppointment`: %v\n", resp)
 }
 ```
 
