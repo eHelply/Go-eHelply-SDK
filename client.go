@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.103
+eHelply SDK - 1.1.104
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.103
+API version: 1.1.104
 Contact: support@ehelply.com
 */
 
@@ -42,7 +42,7 @@ var (
 	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 )
 
-// APIClient manages communication with the eHelply SDK - 1.1.103 API v1.1.103
+// APIClient manages communication with the eHelply SDK - 1.1.104 API v1.1.104
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -159,7 +159,7 @@ func selectHeaderAccept(accepts []string) string {
 // contains is a case insensitive match, finding needle in a haystack
 func contains(haystack []string, needle string) bool {
 	for _, a := range haystack {
-		if strings.EqualFold(a, needle) {
+		if strings.ToLower(a) == strings.ToLower(needle) {
 			return true
 		}
 	}
@@ -457,14 +457,11 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 
 // Add a file to the multipart request
 func addFile(w *multipart.Writer, fieldName, path string) error {
-	file, err := os.Open(filepath.Clean(path))
+	file, err := os.Open(path)
 	if err != nil {
 		return err
 	}
-	err = file.Close()
-	if err != nil {
-		return err
-	}
+	defer file.Close()
 
 	part, err := w.CreateFormFile(fieldName, filepath.Base(path))
 	if err != nil {
