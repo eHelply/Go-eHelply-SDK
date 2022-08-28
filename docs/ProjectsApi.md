@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**ArchiveProject**](ProjectsApi.md#ArchiveProject) | **Delete** /sam/projects/projects/{project_uuid} | Archiveproject
 [**CreateProject**](ProjectsApi.md#CreateProject) | **Post** /sam/projects/projects | Createproject
 [**CreateProjectCredential**](ProjectsApi.md#CreateProjectCredential) | **Post** /sam/projects/projects/{project_uuid}/credentials | Createprojectcredential
+[**CreateProjectCredit**](ProjectsApi.md#CreateProjectCredit) | **Post** /sam/projects/projects/{project_uuid}/credits | Createprojectcredit
 [**CreateProjectInvoice**](ProjectsApi.md#CreateProjectInvoice) | **Post** /sam/projects/projects/{project_uuid}/invoices | Createprojectinvoice
 [**CreateProjectKey**](ProjectsApi.md#CreateProjectKey) | **Post** /sam/projects/projects/{project_uuid}/keys | Createprojectkey
 [**CreateUsageType**](ProjectsApi.md#CreateUsageType) | **Post** /sam/projects/usage/types | Createusagetype
@@ -28,6 +29,7 @@ Method | HTTP request | Description
 [**GetSpecificProjectUsage**](ProjectsApi.md#GetSpecificProjectUsage) | **Get** /sam/projects/projects/{project_uuid}/usage/{usage_type_key} | Getspecificprojectusage
 [**GetUsageType**](ProjectsApi.md#GetUsageType) | **Get** /sam/projects/usage/types/{usage_type_key} | Getusagetype
 [**RemoveMemberFromProject**](ProjectsApi.md#RemoveMemberFromProject) | **Delete** /sam/projects/projects/{project_uuid}/members/{entity_uuid} | Removememberfromproject
+[**RevokeProjectCredit**](ProjectsApi.md#RevokeProjectCredit) | **Delete** /sam/projects/projects/{project_uuid}/credits/{credit_uuid} | Revokeprojectcredit
 [**SearchProjects**](ProjectsApi.md#SearchProjects) | **Get** /sam/projects/projects | Searchprojects
 [**SearchUsageType**](ProjectsApi.md#SearchUsageType) | **Get** /sam/projects/usage/types | Searchusagetype
 [**UpdateProject**](ProjectsApi.md#UpdateProject) | **Put** /sam/projects/projects/{project_uuid} | Updateproject
@@ -344,6 +346,88 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ResponseCreateprojectcredential**](ResponseCreateprojectcredential.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateProjectCredit
+
+> ProjectCreditResponse CreateProjectCredit(ctx, projectUuid).CreateProjectCredit(createProjectCredit).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+
+Createprojectcredit
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    projectUuid := "projectUuid_example" // string | 
+    createProjectCredit := *openapiclient.NewCreateProjectCredit(int32(123), "GrantedReason_example") // CreateProjectCredit | 
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.CreateProjectCredit(context.Background(), projectUuid).CreateProjectCredit(createProjectCredit).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.CreateProjectCredit``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateProjectCredit`: ProjectCreditResponse
+    fmt.Fprintf(os.Stdout, "Response from `ProjectsApi.CreateProjectCredit`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectUuid** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateProjectCreditRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **createProjectCredit** | [**CreateProjectCredit**](CreateProjectCredit.md) |  | 
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
+
+### Return type
+
+[**ProjectCreditResponse**](ProjectCreditResponse.md)
 
 ### Authorization
 
@@ -1979,6 +2063,91 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ResponseRemovememberfromproject**](ResponseRemovememberfromproject.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RevokeProjectCredit
+
+> ResponseRevokeprojectcredit RevokeProjectCredit(ctx, projectUuid, creditUuid).RevokedReason(revokedReason).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+
+Revokeprojectcredit
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    projectUuid := "projectUuid_example" // string | 
+    creditUuid := "creditUuid_example" // string | 
+    revokedReason := "revokedReason_example" // string | 
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProjectsApi.RevokeProjectCredit(context.Background(), projectUuid, creditUuid).RevokedReason(revokedReason).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.RevokeProjectCredit``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `RevokeProjectCredit`: ResponseRevokeprojectcredit
+    fmt.Fprintf(os.Stdout, "Response from `ProjectsApi.RevokeProjectCredit`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectUuid** | **string** |  | 
+**creditUuid** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRevokeProjectCreditRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **revokedReason** | **string** |  | 
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
+
+### Return type
+
+[**ResponseRevokeprojectcredit**](ResponseRevokeprojectcredit.md)
 
 ### Authorization
 

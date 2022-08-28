@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.104
+eHelply SDK - 1.1.105
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.104
+API version: 1.1.105
 Contact: support@ehelply.com
 */
 
@@ -741,6 +741,191 @@ func (a *ProjectsApiService) CreateProjectCredentialExecute(r ApiCreateProjectCr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiCreateProjectCreditRequest struct {
+	ctx context.Context
+	ApiService *ProjectsApiService
+	projectUuid string
+	createProjectCredit *CreateProjectCredit
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
+}
+
+func (r ApiCreateProjectCreditRequest) CreateProjectCredit(createProjectCredit CreateProjectCredit) ApiCreateProjectCreditRequest {
+	r.createProjectCredit = &createProjectCredit
+	return r
+}
+
+func (r ApiCreateProjectCreditRequest) XAccessToken(xAccessToken string) ApiCreateProjectCreditRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiCreateProjectCreditRequest) XSecretToken(xSecretToken string) ApiCreateProjectCreditRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiCreateProjectCreditRequest) Authorization(authorization string) ApiCreateProjectCreditRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiCreateProjectCreditRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiCreateProjectCreditRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiCreateProjectCreditRequest) EhelplyProject(ehelplyProject string) ApiCreateProjectCreditRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiCreateProjectCreditRequest) EhelplyData(ehelplyData string) ApiCreateProjectCreditRequest {
+	r.ehelplyData = &ehelplyData
+	return r
+}
+
+func (r ApiCreateProjectCreditRequest) Execute() (*ProjectCreditResponse, *http.Response, error) {
+	return r.ApiService.CreateProjectCreditExecute(r)
+}
+
+/*
+CreateProjectCredit Createprojectcredit
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param projectUuid
+ @return ApiCreateProjectCreditRequest
+*/
+func (a *ProjectsApiService) CreateProjectCredit(ctx context.Context, projectUuid string) ApiCreateProjectCreditRequest {
+	return ApiCreateProjectCreditRequest{
+		ApiService: a,
+		ctx: ctx,
+		projectUuid: projectUuid,
+	}
+}
+
+// Execute executes the request
+//  @return ProjectCreditResponse
+func (a *ProjectsApiService) CreateProjectCreditExecute(r ApiCreateProjectCreditRequest) (*ProjectCreditResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ProjectCreditResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.CreateProjectCredit")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/sam/projects/projects/{project_uuid}/credits"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_uuid"+"}", url.PathEscape(parameterToString(r.projectUuid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createProjectCredit == nil {
+		return localVarReturnValue, nil, reportError("createProjectCredit is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
+	// body params
+	localVarPostBody = r.createProjectCredit
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2260,26 +2445,6 @@ func (a *ProjectsApiService) GetAllProjectCreditsExecute(r ApiGetAllProjectCredi
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetAppointment403Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetAppointment403Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v HTTPValidationError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -3046,26 +3211,6 @@ func (a *ProjectsApiService) GetProjectCreditTransactionsExecute(r ApiGetProject
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v GetAppointment403Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetAppointment403Response
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v HTTPValidationError
@@ -4538,6 +4683,194 @@ func (a *ProjectsApiService) RemoveMemberFromProjectExecute(r ApiRemoveMemberFro
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiRevokeProjectCreditRequest struct {
+	ctx context.Context
+	ApiService *ProjectsApiService
+	projectUuid string
+	creditUuid string
+	revokedReason *string
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
+}
+
+func (r ApiRevokeProjectCreditRequest) RevokedReason(revokedReason string) ApiRevokeProjectCreditRequest {
+	r.revokedReason = &revokedReason
+	return r
+}
+
+func (r ApiRevokeProjectCreditRequest) XAccessToken(xAccessToken string) ApiRevokeProjectCreditRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiRevokeProjectCreditRequest) XSecretToken(xSecretToken string) ApiRevokeProjectCreditRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiRevokeProjectCreditRequest) Authorization(authorization string) ApiRevokeProjectCreditRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiRevokeProjectCreditRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiRevokeProjectCreditRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiRevokeProjectCreditRequest) EhelplyProject(ehelplyProject string) ApiRevokeProjectCreditRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiRevokeProjectCreditRequest) EhelplyData(ehelplyData string) ApiRevokeProjectCreditRequest {
+	r.ehelplyData = &ehelplyData
+	return r
+}
+
+func (r ApiRevokeProjectCreditRequest) Execute() (*ResponseRevokeprojectcredit, *http.Response, error) {
+	return r.ApiService.RevokeProjectCreditExecute(r)
+}
+
+/*
+RevokeProjectCredit Revokeprojectcredit
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param projectUuid
+ @param creditUuid
+ @return ApiRevokeProjectCreditRequest
+*/
+func (a *ProjectsApiService) RevokeProjectCredit(ctx context.Context, projectUuid string, creditUuid string) ApiRevokeProjectCreditRequest {
+	return ApiRevokeProjectCreditRequest{
+		ApiService: a,
+		ctx: ctx,
+		projectUuid: projectUuid,
+		creditUuid: creditUuid,
+	}
+}
+
+// Execute executes the request
+//  @return ResponseRevokeprojectcredit
+func (a *ProjectsApiService) RevokeProjectCreditExecute(r ApiRevokeProjectCreditRequest) (*ResponseRevokeprojectcredit, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ResponseRevokeprojectcredit
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsApiService.RevokeProjectCredit")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/sam/projects/projects/{project_uuid}/credits/{credit_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_uuid"+"}", url.PathEscape(parameterToString(r.projectUuid, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"credit_uuid"+"}", url.PathEscape(parameterToString(r.creditUuid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.revokedReason == nil {
+		return localVarReturnValue, nil, reportError("revokedReason is required and must be specified")
+	}
+
+	localVarQueryParams.Add("revoked_reason", parameterToString(*r.revokedReason, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
