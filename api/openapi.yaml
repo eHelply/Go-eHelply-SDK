@@ -9,8 +9,8 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://superstack.ehelply.com/support/legal/terms
-  title: eHelply SDK - 1.1.111
-  version: 1.1.111
+  title: eHelply SDK - 1.1.112
+  version: 1.1.112
 servers:
 - description: eHelply / SuperStack Production
   url: https://api.prod.ehelply.com
@@ -12842,6 +12842,20 @@ paths:
                 title: Response Listpaymentmethods
                 type: array
           description: Successful Response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: No billing account exists for this project yet. A billing account
+            will need to be created before payment methods can be viewed. || Unable
+            to view payment method.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
         "404":
           description: Not found
         "422":
