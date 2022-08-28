@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.110
+eHelply SDK - 1.1.111
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.110
+API version: 1.1.111
 Contact: support@ehelply.com
 */
 
@@ -346,12 +346,18 @@ func (a *BillingApiService) GetClientSecretExecute(r ApiGetClientSecretRequest) 
 type ApiHasPaymentRequest struct {
 	ctx context.Context
 	ApiService *BillingApiService
+	projectUuid *interface{}
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
 	ehelplyActiveParticipant *string
 	ehelplyProject *string
 	ehelplyData *string
+}
+
+func (r ApiHasPaymentRequest) ProjectUuid(projectUuid interface{}) ApiHasPaymentRequest {
+	r.projectUuid = &projectUuid
+	return r
 }
 
 func (r ApiHasPaymentRequest) XAccessToken(xAccessToken string) ApiHasPaymentRequest {
@@ -422,6 +428,9 @@ func (a *BillingApiService) HasPaymentExecute(r ApiHasPaymentRequest) (bool, *ht
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.projectUuid != nil {
+		localVarQueryParams.Add("project_uuid", parameterToString(*r.projectUuid, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -506,12 +515,18 @@ func (a *BillingApiService) HasPaymentExecute(r ApiHasPaymentRequest) (bool, *ht
 type ApiListPaymentMethodsRequest struct {
 	ctx context.Context
 	ApiService *BillingApiService
+	projectUuid *interface{}
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
 	ehelplyActiveParticipant *string
 	ehelplyProject *string
 	ehelplyData *string
+}
+
+func (r ApiListPaymentMethodsRequest) ProjectUuid(projectUuid interface{}) ApiListPaymentMethodsRequest {
+	r.projectUuid = &projectUuid
+	return r
 }
 
 func (r ApiListPaymentMethodsRequest) XAccessToken(xAccessToken string) ApiListPaymentMethodsRequest {
@@ -582,6 +597,9 @@ func (a *BillingApiService) ListPaymentMethodsExecute(r ApiListPaymentMethodsReq
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.projectUuid != nil {
+		localVarQueryParams.Add("project_uuid", parameterToString(*r.projectUuid, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -997,12 +1015,18 @@ func (a *BillingApiService) ReconcilePaymentMethodExecute(r ApiReconcilePaymentM
 type ApiRemovePaymentMethodRequest struct {
 	ctx context.Context
 	ApiService *BillingApiService
+	projectUuid *interface{}
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
 	ehelplyActiveParticipant *string
 	ehelplyProject *string
 	ehelplyData *string
+}
+
+func (r ApiRemovePaymentMethodRequest) ProjectUuid(projectUuid interface{}) ApiRemovePaymentMethodRequest {
+	r.projectUuid = &projectUuid
+	return r
 }
 
 func (r ApiRemovePaymentMethodRequest) XAccessToken(xAccessToken string) ApiRemovePaymentMethodRequest {
@@ -1073,6 +1097,9 @@ func (a *BillingApiService) RemovePaymentMethodExecute(r ApiRemovePaymentMethodR
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.projectUuid != nil {
+		localVarQueryParams.Add("project_uuid", parameterToString(*r.projectUuid, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

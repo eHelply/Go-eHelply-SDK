@@ -9,8 +9,8 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://superstack.ehelply.com/support/legal/terms
-  title: eHelply SDK - 1.1.110
-  version: 1.1.110
+  title: eHelply SDK - 1.1.111
+  version: 1.1.111
 servers:
 - description: eHelply / SuperStack Production
   url: https://api.prod.ehelply.com
@@ -11383,18 +11383,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Page'
           description: Successful Response
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
-          description: Unauthorized - Denied by eHelply
         "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
-          description: Project credits not found does not exist
+          description: Not found
         "422":
           content:
             application/json:
@@ -11402,6 +11392,195 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
       summary: Getallprojectcredits
+      tags:
+      - projects
+    post:
+      operationId: createProjectCredit
+      parameters:
+      - explode: false
+        in: path
+        name: project_uuid
+        required: true
+        schema:
+          title: Project Uuid
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectCredit'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectCreditResponse'
+          description: Successful Response
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          description: Not found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Createprojectcredit
+      tags:
+      - projects
+  /sam/projects/projects/{project_uuid}/credits/{credit_uuid}:
+    delete:
+      operationId: revokeProjectCredit
+      parameters:
+      - explode: false
+        in: path
+        name: project_uuid
+        required: true
+        schema:
+          title: Project Uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: credit_uuid
+        required: true
+        schema:
+          title: Credit Uuid
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: revoked_reason
+        required: true
+        schema:
+          title: Revoked Reason
+          type: string
+        style: form
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response_Revokeprojectcredit'
+          description: Successful Response
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          description: Not found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Revokeprojectcredit
       tags:
       - projects
   /sam/projects/projects/{project_uuid}/credits/{credit_uuid}/transactions:
@@ -11497,18 +11676,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Page'
           description: Successful Response
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
-          description: Unauthorized - Denied by eHelply
         "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/getAppointment_403_response'
-          description: Project credential not found does not exist
+          description: Not found
         "422":
           content:
             application/json:
@@ -12530,6 +12699,13 @@ paths:
     delete:
       operationId: removePaymentMethod
       parameters:
+      - explode: true
+        in: query
+        name: project_uuid
+        required: false
+        schema:
+          title: Project Uuid
+        style: form
       - explode: false
         in: header
         name: x-access-token
@@ -12601,6 +12777,13 @@ paths:
     get:
       operationId: listPaymentMethods
       parameters:
+      - explode: true
+        in: query
+        name: project_uuid
+        required: false
+        schema:
+          title: Project Uuid
+        style: form
       - explode: false
         in: header
         name: x-access-token
@@ -12674,6 +12857,13 @@ paths:
     get:
       operationId: hasPayment
       parameters:
+      - explode: true
+        in: query
+        name: project_uuid
+        required: false
+        schema:
+          title: Project Uuid
+        style: form
       - explode: false
         in: header
         name: x-access-token
@@ -16446,6 +16636,9 @@ components:
       title: CreateProjectCredential
       type: object
     CreateProjectCredit:
+      example:
+        granted_reason: granted_reason
+        credits_granted: 0
       properties:
         credits_granted:
           title: Credits Granted
@@ -17140,6 +17333,17 @@ components:
       title: PaymentMethodResponse
       type: object
     ProjectCreditResponse:
+      example:
+        project_uuid: project_uuid
+        fully_consumed_at: fully_consumed_at
+        granted_at: granted_at
+        granted_reason: granted_reason
+        revoked_at: revoked_at
+        credits_consumed: 6
+        revoked_reason: revoked_reason
+        uuid: uuid
+        credits_granted: 0
+        granted_by: granted_by
       properties:
         uuid:
           title: Uuid
@@ -18519,6 +18723,14 @@ components:
         message:
           type: string
       title: Response Createprojectinvoice
+      type: object
+    Response_Revokeprojectcredit:
+      example:
+        message: Credit revoked
+      properties:
+        message:
+          type: string
+      title: Response Revokeprojectcredit
       type: object
     Response_Generatetoken:
       example:

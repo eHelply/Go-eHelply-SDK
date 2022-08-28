@@ -15,30 +15,30 @@ import (
 	"encoding/json"
 )
 
-// ResponseDeleteprojectcredential struct for ResponseDeleteprojectcredential
-type ResponseDeleteprojectcredential struct {
+// ResponseRevokeprojectcredit struct for ResponseRevokeprojectcredit
+type ResponseRevokeprojectcredit struct {
 	Message *string `json:"message,omitempty"`
 }
 
-// NewResponseDeleteprojectcredential instantiates a new ResponseDeleteprojectcredential object
+// NewResponseRevokeprojectcredit instantiates a new ResponseRevokeprojectcredit object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResponseDeleteprojectcredential() *ResponseDeleteprojectcredential {
-	this := ResponseDeleteprojectcredential{}
+func NewResponseRevokeprojectcredit() *ResponseRevokeprojectcredit {
+	this := ResponseRevokeprojectcredit{}
 	return &this
 }
 
-// NewResponseDeleteprojectcredentialWithDefaults instantiates a new ResponseDeleteprojectcredential object
+// NewResponseRevokeprojectcreditWithDefaults instantiates a new ResponseRevokeprojectcredit object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewResponseDeleteprojectcredentialWithDefaults() *ResponseDeleteprojectcredential {
-	this := ResponseDeleteprojectcredential{}
+func NewResponseRevokeprojectcreditWithDefaults() *ResponseRevokeprojectcredit {
+	this := ResponseRevokeprojectcredit{}
 	return &this
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *ResponseDeleteprojectcredential) GetMessage() string {
+func (o *ResponseRevokeprojectcredit) GetMessage() string {
 	if o == nil || o.Message == nil {
 		var ret string
 		return ret
@@ -48,7 +48,7 @@ func (o *ResponseDeleteprojectcredential) GetMessage() string {
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ResponseDeleteprojectcredential) GetMessageOk() (*string, bool) {
+func (o *ResponseRevokeprojectcredit) GetMessageOk() (*string, bool) {
 	if o == nil || o.Message == nil {
 		return nil, false
 	}
@@ -56,7 +56,7 @@ func (o *ResponseDeleteprojectcredential) GetMessageOk() (*string, bool) {
 }
 
 // HasMessage returns a boolean if a field has been set.
-func (o *ResponseDeleteprojectcredential) HasMessage() bool {
+func (o *ResponseRevokeprojectcredit) HasMessage() bool {
 	if o != nil && o.Message != nil {
 		return true
 	}
@@ -65,11 +65,11 @@ func (o *ResponseDeleteprojectcredential) HasMessage() bool {
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *ResponseDeleteprojectcredential) SetMessage(v string) {
+func (o *ResponseRevokeprojectcredit) SetMessage(v string) {
 	o.Message = &v
 }
 
-func (o ResponseDeleteprojectcredential) MarshalJSON() ([]byte, error) {
+func (o ResponseRevokeprojectcredit) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Message != nil {
 		toSerialize["message"] = o.Message
@@ -77,38 +77,38 @@ func (o ResponseDeleteprojectcredential) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableResponseDeleteprojectcredential struct {
-	value *ResponseDeleteprojectcredential
+type NullableResponseRevokeprojectcredit struct {
+	value *ResponseRevokeprojectcredit
 	isSet bool
 }
 
-func (v NullableResponseDeleteprojectcredential) Get() *ResponseDeleteprojectcredential {
+func (v NullableResponseRevokeprojectcredit) Get() *ResponseRevokeprojectcredit {
 	return v.value
 }
 
-func (v *NullableResponseDeleteprojectcredential) Set(val *ResponseDeleteprojectcredential) {
+func (v *NullableResponseRevokeprojectcredit) Set(val *ResponseRevokeprojectcredit) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableResponseDeleteprojectcredential) IsSet() bool {
+func (v NullableResponseRevokeprojectcredit) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableResponseDeleteprojectcredential) Unset() {
+func (v *NullableResponseRevokeprojectcredit) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableResponseDeleteprojectcredential(val *ResponseDeleteprojectcredential) *NullableResponseDeleteprojectcredential {
-	return &NullableResponseDeleteprojectcredential{value: val, isSet: true}
+func NewNullableResponseRevokeprojectcredit(val *ResponseRevokeprojectcredit) *NullableResponseRevokeprojectcredit {
+	return &NullableResponseRevokeprojectcredit{value: val, isSet: true}
 }
 
-func (v NullableResponseDeleteprojectcredential) MarshalJSON() ([]byte, error) {
+func (v NullableResponseRevokeprojectcredit) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableResponseDeleteprojectcredential) UnmarshalJSON(src []byte) error {
+func (v *NullableResponseRevokeprojectcredit) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

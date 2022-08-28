@@ -141,6 +141,7 @@ docs/ResponseDeleteprojectcredential.md
 docs/ResponseDeleteusagetype.md
 docs/ResponseGeneratetoken.md
 docs/ResponseRemovememberfromproject.md
+docs/ResponseRevokeprojectcredit.md
 docs/ResponseUpdateprojectcredential.md
 docs/ReviewsApi.md
 docs/SecurityApi.md
@@ -295,6 +296,7 @@ model_response_deleteprojectcredential.go
 model_response_deleteusagetype.go
 model_response_generatetoken.go
 model_response_removememberfromproject.go
+model_response_revokeprojectcredit.go
 model_response_updateprojectcredential.go
 model_security_create_token.go
 model_security_encryption_key_get.go
