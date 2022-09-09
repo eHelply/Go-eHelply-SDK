@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateCategoryPlacesCategoriesPost
 
-> CategoryDb CreateCategoryPlacesCategoriesPost(ctx).CategoryBase(categoryBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> CategoryResponse CreateCategoryPlacesCategoriesPost(ctx).CategoryBase(categoryBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Create Category
 
@@ -48,7 +48,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `CategoryApi.CreateCategoryPlacesCategoriesPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateCategoryPlacesCategoriesPost`: CategoryDb
+    // response from `CreateCategoryPlacesCategoriesPost`: CategoryResponse
     fmt.Fprintf(os.Stdout, "Response from `CategoryApi.CreateCategoryPlacesCategoriesPost`: %v\n", resp)
 }
 ```
@@ -74,7 +74,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CategoryDb**](CategoryDb.md)
+[**CategoryResponse**](CategoryResponse.md)
 
 ### Authorization
 
@@ -174,7 +174,7 @@ No authorization required
 
 ## GetCategoryPlacesCategoriesCategoryUuidGet
 
-> CategoryBase GetCategoryPlacesCategoriesCategoryUuidGet(ctx, categoryUuid).WithMeta(withMeta).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> CategoryResponse GetCategoryPlacesCategoriesCategoryUuidGet(ctx, categoryUuid).WithMeta(withMeta).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Get Category
 
@@ -209,7 +209,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `CategoryApi.GetCategoryPlacesCategoriesCategoryUuidGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetCategoryPlacesCategoriesCategoryUuidGet`: CategoryBase
+    // response from `GetCategoryPlacesCategoriesCategoryUuidGet`: CategoryResponse
     fmt.Fprintf(os.Stdout, "Response from `CategoryApi.GetCategoryPlacesCategoriesCategoryUuidGet`: %v\n", resp)
 }
 ```
@@ -240,7 +240,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CategoryBase**](CategoryBase.md)
+[**CategoryResponse**](CategoryResponse.md)
 
 ### Authorization
 

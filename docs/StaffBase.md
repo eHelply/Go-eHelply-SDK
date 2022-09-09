@@ -1,4 +1,4 @@
-# StaffCreate
+# StaffBase
 
 ## Properties
 
@@ -12,140 +12,140 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewStaffCreate
+### NewStaffBase
 
-`func NewStaffCreate(entityUuid string, ) *StaffCreate`
+`func NewStaffBase(entityUuid string, ) *StaffBase`
 
-NewStaffCreate instantiates a new StaffCreate object
+NewStaffBase instantiates a new StaffBase object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewStaffCreateWithDefaults
+### NewStaffBaseWithDefaults
 
-`func NewStaffCreateWithDefaults() *StaffCreate`
+`func NewStaffBaseWithDefaults() *StaffBase`
 
-NewStaffCreateWithDefaults instantiates a new StaffCreate object
+NewStaffBaseWithDefaults instantiates a new StaffBase object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetEntityUuid
 
-`func (o *StaffCreate) GetEntityUuid() string`
+`func (o *StaffBase) GetEntityUuid() string`
 
 GetEntityUuid returns the EntityUuid field if non-nil, zero value otherwise.
 
 ### GetEntityUuidOk
 
-`func (o *StaffCreate) GetEntityUuidOk() (*string, bool)`
+`func (o *StaffBase) GetEntityUuidOk() (*string, bool)`
 
 GetEntityUuidOk returns a tuple with the EntityUuid field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEntityUuid
 
-`func (o *StaffCreate) SetEntityUuid(v string)`
+`func (o *StaffBase) SetEntityUuid(v string)`
 
 SetEntityUuid sets EntityUuid field to given value.
 
 
 ### GetProjectUuid
 
-`func (o *StaffCreate) GetProjectUuid() string`
+`func (o *StaffBase) GetProjectUuid() string`
 
 GetProjectUuid returns the ProjectUuid field if non-nil, zero value otherwise.
 
 ### GetProjectUuidOk
 
-`func (o *StaffCreate) GetProjectUuidOk() (*string, bool)`
+`func (o *StaffBase) GetProjectUuidOk() (*string, bool)`
 
 GetProjectUuidOk returns a tuple with the ProjectUuid field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProjectUuid
 
-`func (o *StaffCreate) SetProjectUuid(v string)`
+`func (o *StaffBase) SetProjectUuid(v string)`
 
 SetProjectUuid sets ProjectUuid field to given value.
 
 ### HasProjectUuid
 
-`func (o *StaffCreate) HasProjectUuid() bool`
+`func (o *StaffBase) HasProjectUuid() bool`
 
 HasProjectUuid returns a boolean if a field has been set.
 
 ### GetScheduleUuid
 
-`func (o *StaffCreate) GetScheduleUuid() string`
+`func (o *StaffBase) GetScheduleUuid() string`
 
 GetScheduleUuid returns the ScheduleUuid field if non-nil, zero value otherwise.
 
 ### GetScheduleUuidOk
 
-`func (o *StaffCreate) GetScheduleUuidOk() (*string, bool)`
+`func (o *StaffBase) GetScheduleUuidOk() (*string, bool)`
 
 GetScheduleUuidOk returns a tuple with the ScheduleUuid field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetScheduleUuid
 
-`func (o *StaffCreate) SetScheduleUuid(v string)`
+`func (o *StaffBase) SetScheduleUuid(v string)`
 
 SetScheduleUuid sets ScheduleUuid field to given value.
 
 ### HasScheduleUuid
 
-`func (o *StaffCreate) HasScheduleUuid() bool`
+`func (o *StaffBase) HasScheduleUuid() bool`
 
 HasScheduleUuid returns a boolean if a field has been set.
 
 ### GetCatalogUuid
 
-`func (o *StaffCreate) GetCatalogUuid() string`
+`func (o *StaffBase) GetCatalogUuid() string`
 
 GetCatalogUuid returns the CatalogUuid field if non-nil, zero value otherwise.
 
 ### GetCatalogUuidOk
 
-`func (o *StaffCreate) GetCatalogUuidOk() (*string, bool)`
+`func (o *StaffBase) GetCatalogUuidOk() (*string, bool)`
 
 GetCatalogUuidOk returns a tuple with the CatalogUuid field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCatalogUuid
 
-`func (o *StaffCreate) SetCatalogUuid(v string)`
+`func (o *StaffBase) SetCatalogUuid(v string)`
 
 SetCatalogUuid sets CatalogUuid field to given value.
 
 ### HasCatalogUuid
 
-`func (o *StaffCreate) HasCatalogUuid() bool`
+`func (o *StaffBase) HasCatalogUuid() bool`
 
 HasCatalogUuid returns a boolean if a field has been set.
 
 ### GetReviewGroupUuid
 
-`func (o *StaffCreate) GetReviewGroupUuid() string`
+`func (o *StaffBase) GetReviewGroupUuid() string`
 
 GetReviewGroupUuid returns the ReviewGroupUuid field if non-nil, zero value otherwise.
 
 ### GetReviewGroupUuidOk
 
-`func (o *StaffCreate) GetReviewGroupUuidOk() (*string, bool)`
+`func (o *StaffBase) GetReviewGroupUuidOk() (*string, bool)`
 
 GetReviewGroupUuidOk returns a tuple with the ReviewGroupUuid field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReviewGroupUuid
 
-`func (o *StaffCreate) SetReviewGroupUuid(v string)`
+`func (o *StaffBase) SetReviewGroupUuid(v string)`
 
 SetReviewGroupUuid sets ReviewGroupUuid field to given value.
 
 ### HasReviewGroupUuid
 
-`func (o *StaffCreate) HasReviewGroupUuid() bool`
+`func (o *StaffBase) HasReviewGroupUuid() bool`
 
 HasReviewGroupUuid returns a boolean if a field has been set.
 

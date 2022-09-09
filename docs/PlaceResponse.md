@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ProjectUuid** | Pointer to **string** |  | [optional] 
 **Name** | **string** |  | 
 **Summary** | Pointer to **string** |  | [optional] 
 **Public** | Pointer to **bool** |  | [optional] [default to true]
@@ -12,7 +13,6 @@ Name | Type | Description | Notes
 **Contact** | Pointer to [**ContactBase**](ContactBase.md) |  | [optional] 
 **Picture** | Pointer to **string** |  | [optional] 
 **Uuid** | **string** |  | 
-**ProjectUuid** | Pointer to **string** |  | [optional] 
 **MetaUuid** | Pointer to **string** |  | [optional] 
 **Tags** | Pointer to [**[]TagBase**](TagBase.md) |  | [optional] 
 **Categories** | Pointer to [**[]CategoryBase**](CategoryBase.md) |  | [optional] 
@@ -39,6 +39,31 @@ will change when the set of required properties is changed
 NewPlaceResponseWithDefaults instantiates a new PlaceResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetProjectUuid
+
+`func (o *PlaceResponse) GetProjectUuid() string`
+
+GetProjectUuid returns the ProjectUuid field if non-nil, zero value otherwise.
+
+### GetProjectUuidOk
+
+`func (o *PlaceResponse) GetProjectUuidOk() (*string, bool)`
+
+GetProjectUuidOk returns a tuple with the ProjectUuid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProjectUuid
+
+`func (o *PlaceResponse) SetProjectUuid(v string)`
+
+SetProjectUuid sets ProjectUuid field to given value.
+
+### HasProjectUuid
+
+`func (o *PlaceResponse) HasProjectUuid() bool`
+
+HasProjectUuid returns a boolean if a field has been set.
 
 ### GetName
 
@@ -229,31 +254,6 @@ and a boolean to check if the value has been set.
 
 SetUuid sets Uuid field to given value.
 
-
-### GetProjectUuid
-
-`func (o *PlaceResponse) GetProjectUuid() string`
-
-GetProjectUuid returns the ProjectUuid field if non-nil, zero value otherwise.
-
-### GetProjectUuidOk
-
-`func (o *PlaceResponse) GetProjectUuidOk() (*string, bool)`
-
-GetProjectUuidOk returns a tuple with the ProjectUuid field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProjectUuid
-
-`func (o *PlaceResponse) SetProjectUuid(v string)`
-
-SetProjectUuid sets ProjectUuid field to given value.
-
-### HasProjectUuid
-
-`func (o *PlaceResponse) HasProjectUuid() bool`
-
-HasProjectUuid returns a boolean if a field has been set.
 
 ### GetMetaUuid
 

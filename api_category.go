@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.112
+eHelply SDK - 1.1.113
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.112
+API version: 1.1.113
 Contact: support@ehelply.com
 */
 
@@ -71,7 +71,7 @@ func (r ApiCreateCategoryPlacesCategoriesPostRequest) EhelplyData(ehelplyData st
 	return r
 }
 
-func (r ApiCreateCategoryPlacesCategoriesPostRequest) Execute() (*CategoryDb, *http.Response, error) {
+func (r ApiCreateCategoryPlacesCategoriesPostRequest) Execute() (*CategoryResponse, *http.Response, error) {
 	return r.ApiService.CreateCategoryPlacesCategoriesPostExecute(r)
 }
 
@@ -91,13 +91,13 @@ func (a *CategoryApiService) CreateCategoryPlacesCategoriesPost(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return CategoryDb
-func (a *CategoryApiService) CreateCategoryPlacesCategoriesPostExecute(r ApiCreateCategoryPlacesCategoriesPostRequest) (*CategoryDb, *http.Response, error) {
+//  @return CategoryResponse
+func (a *CategoryApiService) CreateCategoryPlacesCategoriesPostExecute(r ApiCreateCategoryPlacesCategoriesPostRequest) (*CategoryResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CategoryDb
+		localVarReturnValue  *CategoryResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CategoryApiService.CreateCategoryPlacesCategoriesPost")
@@ -411,7 +411,7 @@ func (r ApiGetCategoryPlacesCategoriesCategoryUuidGetRequest) EhelplyData(ehelpl
 	return r
 }
 
-func (r ApiGetCategoryPlacesCategoriesCategoryUuidGetRequest) Execute() (*CategoryBase, *http.Response, error) {
+func (r ApiGetCategoryPlacesCategoriesCategoryUuidGetRequest) Execute() (*CategoryResponse, *http.Response, error) {
 	return r.ApiService.GetCategoryPlacesCategoriesCategoryUuidGetExecute(r)
 }
 
@@ -433,13 +433,13 @@ func (a *CategoryApiService) GetCategoryPlacesCategoriesCategoryUuidGet(ctx cont
 }
 
 // Execute executes the request
-//  @return CategoryBase
-func (a *CategoryApiService) GetCategoryPlacesCategoriesCategoryUuidGetExecute(r ApiGetCategoryPlacesCategoriesCategoryUuidGetRequest) (*CategoryBase, *http.Response, error) {
+//  @return CategoryResponse
+func (a *CategoryApiService) GetCategoryPlacesCategoriesCategoryUuidGetExecute(r ApiGetCategoryPlacesCategoriesCategoryUuidGetRequest) (*CategoryResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CategoryBase
+		localVarReturnValue  *CategoryResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CategoryApiService.GetCategoryPlacesCategoriesCategoryUuidGet")

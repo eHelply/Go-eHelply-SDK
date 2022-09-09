@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.112
+eHelply SDK - 1.1.113
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.112
+API version: 1.1.113
 Contact: support@ehelply.com
 */
 
@@ -27,7 +27,7 @@ type StaffApiService service
 type ApiCreateStaffRequest struct {
 	ctx context.Context
 	ApiService *StaffApiService
-	staffCreate *StaffCreate
+	staffBase *StaffBase
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -36,8 +36,8 @@ type ApiCreateStaffRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiCreateStaffRequest) StaffCreate(staffCreate StaffCreate) ApiCreateStaffRequest {
-	r.staffCreate = &staffCreate
+func (r ApiCreateStaffRequest) StaffBase(staffBase StaffBase) ApiCreateStaffRequest {
+	r.staffBase = &staffBase
 	return r
 }
 
@@ -71,7 +71,7 @@ func (r ApiCreateStaffRequest) EhelplyData(ehelplyData string) ApiCreateStaffReq
 	return r
 }
 
-func (r ApiCreateStaffRequest) Execute() (*StaffDb, *http.Response, error) {
+func (r ApiCreateStaffRequest) Execute() (*StaffResponse, *http.Response, error) {
 	return r.ApiService.CreateStaffExecute(r)
 }
 
@@ -91,13 +91,13 @@ func (a *StaffApiService) CreateStaff(ctx context.Context) ApiCreateStaffRequest
 }
 
 // Execute executes the request
-//  @return StaffDb
-func (a *StaffApiService) CreateStaffExecute(r ApiCreateStaffRequest) (*StaffDb, *http.Response, error) {
+//  @return StaffResponse
+func (a *StaffApiService) CreateStaffExecute(r ApiCreateStaffRequest) (*StaffResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *StaffDb
+		localVarReturnValue  *StaffResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StaffApiService.CreateStaff")
@@ -110,8 +110,8 @@ func (a *StaffApiService) CreateStaffExecute(r ApiCreateStaffRequest) (*StaffDb,
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.staffCreate == nil {
-		return localVarReturnValue, nil, reportError("staffCreate is required and must be specified")
+	if r.staffBase == nil {
+		return localVarReturnValue, nil, reportError("staffBase is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -150,7 +150,7 @@ func (a *StaffApiService) CreateStaffExecute(r ApiCreateStaffRequest) (*StaffDb,
 		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
 	}
 	// body params
-	localVarPostBody = r.staffCreate
+	localVarPostBody = r.staffBase
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -901,7 +901,7 @@ type ApiUpdateStaffRequest struct {
 	ctx context.Context
 	ApiService *StaffApiService
 	staffUuid string
-	staffCreate *StaffCreate
+	staffBase *StaffBase
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -910,8 +910,8 @@ type ApiUpdateStaffRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiUpdateStaffRequest) StaffCreate(staffCreate StaffCreate) ApiUpdateStaffRequest {
-	r.staffCreate = &staffCreate
+func (r ApiUpdateStaffRequest) StaffBase(staffBase StaffBase) ApiUpdateStaffRequest {
+	r.staffBase = &staffBase
 	return r
 }
 
@@ -987,8 +987,8 @@ func (a *StaffApiService) UpdateStaffExecute(r ApiUpdateStaffRequest) (*StaffRes
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.staffCreate == nil {
-		return localVarReturnValue, nil, reportError("staffCreate is required and must be specified")
+	if r.staffBase == nil {
+		return localVarReturnValue, nil, reportError("staffBase is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1027,7 +1027,7 @@ func (a *StaffApiService) UpdateStaffExecute(r ApiUpdateStaffRequest) (*StaffRes
 		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
 	}
 	// body params
-	localVarPostBody = r.staffCreate
+	localVarPostBody = r.staffBase
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.112
+eHelply SDK - 1.1.113
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.112
+API version: 1.1.113
 Contact: support@ehelply.com
 */
 
@@ -15,11 +15,15 @@ import (
 	"encoding/json"
 )
 
-// StaffResponse **:param** uuid                                **type:** string **:param** project_uuid                        **type:** string or None  **:param** entity                              **type:** string or None  **:param** place                               **type:** string or None  **:param** company                             **type:** string or None  **:param** schedule                            **type:** string or None  **:param** catalog                             **type:** string or None  **:param** reviews                             **type:** string or None  **:param** created_at                          **type:** string or None  **:param** updated_at                          **type:** string or None  **:param** deleted_at                          **type:** string or None
+// StaffResponse struct for StaffResponse
 type StaffResponse struct {
-	Uuid string `json:"uuid"`
+	EntityUuid string `json:"entity_uuid"`
 	ProjectUuid *string `json:"project_uuid,omitempty"`
-	Entity map[string]interface{} `json:"entity,omitempty"`
+	ScheduleUuid *string `json:"schedule_uuid,omitempty"`
+	CatalogUuid *string `json:"catalog_uuid,omitempty"`
+	ReviewGroupUuid *string `json:"review_group_uuid,omitempty"`
+	Uuid string `json:"uuid"`
+	Entity *string `json:"entity,omitempty"`
 	Place map[string]interface{} `json:"place,omitempty"`
 	PlaceRoles []string `json:"place_roles,omitempty"`
 	Company map[string]interface{} `json:"company,omitempty"`
@@ -36,8 +40,9 @@ type StaffResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStaffResponse(uuid string) *StaffResponse {
+func NewStaffResponse(entityUuid string, uuid string) *StaffResponse {
 	this := StaffResponse{}
+	this.EntityUuid = entityUuid
 	this.Uuid = uuid
 	return &this
 }
@@ -50,28 +55,28 @@ func NewStaffResponseWithDefaults() *StaffResponse {
 	return &this
 }
 
-// GetUuid returns the Uuid field value
-func (o *StaffResponse) GetUuid() string {
+// GetEntityUuid returns the EntityUuid field value
+func (o *StaffResponse) GetEntityUuid() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Uuid
+	return o.EntityUuid
 }
 
-// GetUuidOk returns a tuple with the Uuid field value
+// GetEntityUuidOk returns a tuple with the EntityUuid field value
 // and a boolean to check if the value has been set.
-func (o *StaffResponse) GetUuidOk() (*string, bool) {
+func (o *StaffResponse) GetEntityUuidOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Uuid, true
+	return &o.EntityUuid, true
 }
 
-// SetUuid sets field value
-func (o *StaffResponse) SetUuid(v string) {
-	o.Uuid = v
+// SetEntityUuid sets field value
+func (o *StaffResponse) SetEntityUuid(v string) {
+	o.EntityUuid = v
 }
 
 // GetProjectUuid returns the ProjectUuid field value if set, zero value otherwise.
@@ -106,18 +111,138 @@ func (o *StaffResponse) SetProjectUuid(v string) {
 	o.ProjectUuid = &v
 }
 
-// GetEntity returns the Entity field value if set, zero value otherwise.
-func (o *StaffResponse) GetEntity() map[string]interface{} {
-	if o == nil || o.Entity == nil {
-		var ret map[string]interface{}
+// GetScheduleUuid returns the ScheduleUuid field value if set, zero value otherwise.
+func (o *StaffResponse) GetScheduleUuid() string {
+	if o == nil || o.ScheduleUuid == nil {
+		var ret string
 		return ret
 	}
-	return o.Entity
+	return *o.ScheduleUuid
+}
+
+// GetScheduleUuidOk returns a tuple with the ScheduleUuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StaffResponse) GetScheduleUuidOk() (*string, bool) {
+	if o == nil || o.ScheduleUuid == nil {
+		return nil, false
+	}
+	return o.ScheduleUuid, true
+}
+
+// HasScheduleUuid returns a boolean if a field has been set.
+func (o *StaffResponse) HasScheduleUuid() bool {
+	if o != nil && o.ScheduleUuid != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetScheduleUuid gets a reference to the given string and assigns it to the ScheduleUuid field.
+func (o *StaffResponse) SetScheduleUuid(v string) {
+	o.ScheduleUuid = &v
+}
+
+// GetCatalogUuid returns the CatalogUuid field value if set, zero value otherwise.
+func (o *StaffResponse) GetCatalogUuid() string {
+	if o == nil || o.CatalogUuid == nil {
+		var ret string
+		return ret
+	}
+	return *o.CatalogUuid
+}
+
+// GetCatalogUuidOk returns a tuple with the CatalogUuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StaffResponse) GetCatalogUuidOk() (*string, bool) {
+	if o == nil || o.CatalogUuid == nil {
+		return nil, false
+	}
+	return o.CatalogUuid, true
+}
+
+// HasCatalogUuid returns a boolean if a field has been set.
+func (o *StaffResponse) HasCatalogUuid() bool {
+	if o != nil && o.CatalogUuid != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCatalogUuid gets a reference to the given string and assigns it to the CatalogUuid field.
+func (o *StaffResponse) SetCatalogUuid(v string) {
+	o.CatalogUuid = &v
+}
+
+// GetReviewGroupUuid returns the ReviewGroupUuid field value if set, zero value otherwise.
+func (o *StaffResponse) GetReviewGroupUuid() string {
+	if o == nil || o.ReviewGroupUuid == nil {
+		var ret string
+		return ret
+	}
+	return *o.ReviewGroupUuid
+}
+
+// GetReviewGroupUuidOk returns a tuple with the ReviewGroupUuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StaffResponse) GetReviewGroupUuidOk() (*string, bool) {
+	if o == nil || o.ReviewGroupUuid == nil {
+		return nil, false
+	}
+	return o.ReviewGroupUuid, true
+}
+
+// HasReviewGroupUuid returns a boolean if a field has been set.
+func (o *StaffResponse) HasReviewGroupUuid() bool {
+	if o != nil && o.ReviewGroupUuid != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetReviewGroupUuid gets a reference to the given string and assigns it to the ReviewGroupUuid field.
+func (o *StaffResponse) SetReviewGroupUuid(v string) {
+	o.ReviewGroupUuid = &v
+}
+
+// GetUuid returns the Uuid field value
+func (o *StaffResponse) GetUuid() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Uuid
+}
+
+// GetUuidOk returns a tuple with the Uuid field value
+// and a boolean to check if the value has been set.
+func (o *StaffResponse) GetUuidOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Uuid, true
+}
+
+// SetUuid sets field value
+func (o *StaffResponse) SetUuid(v string) {
+	o.Uuid = v
+}
+
+// GetEntity returns the Entity field value if set, zero value otherwise.
+func (o *StaffResponse) GetEntity() string {
+	if o == nil || o.Entity == nil {
+		var ret string
+		return ret
+	}
+	return *o.Entity
 }
 
 // GetEntityOk returns a tuple with the Entity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StaffResponse) GetEntityOk() (map[string]interface{}, bool) {
+func (o *StaffResponse) GetEntityOk() (*string, bool) {
 	if o == nil || o.Entity == nil {
 		return nil, false
 	}
@@ -133,9 +258,9 @@ func (o *StaffResponse) HasEntity() bool {
 	return false
 }
 
-// SetEntity gets a reference to the given map[string]interface{} and assigns it to the Entity field.
-func (o *StaffResponse) SetEntity(v map[string]interface{}) {
-	o.Entity = v
+// SetEntity gets a reference to the given string and assigns it to the Entity field.
+func (o *StaffResponse) SetEntity(v string) {
+	o.Entity = &v
 }
 
 // GetPlace returns the Place field value if set, zero value otherwise.
@@ -461,10 +586,22 @@ func (o *StaffResponse) SetDeletedAt(v string) {
 func (o StaffResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["uuid"] = o.Uuid
+		toSerialize["entity_uuid"] = o.EntityUuid
 	}
 	if o.ProjectUuid != nil {
 		toSerialize["project_uuid"] = o.ProjectUuid
+	}
+	if o.ScheduleUuid != nil {
+		toSerialize["schedule_uuid"] = o.ScheduleUuid
+	}
+	if o.CatalogUuid != nil {
+		toSerialize["catalog_uuid"] = o.CatalogUuid
+	}
+	if o.ReviewGroupUuid != nil {
+		toSerialize["review_group_uuid"] = o.ReviewGroupUuid
+	}
+	if true {
+		toSerialize["uuid"] = o.Uuid
 	}
 	if o.Entity != nil {
 		toSerialize["entity"] = o.Entity

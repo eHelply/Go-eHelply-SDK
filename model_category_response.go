@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.112
+eHelply SDK - 1.1.113
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.112
+API version: 1.1.113
 Contact: support@ehelply.com
 */
 
@@ -15,35 +15,36 @@ import (
 	"encoding/json"
 )
 
-// CategoryDb **:param** uuid                                **type:** string **:param** name                                **type:** string **:param** project_uuid                        **type:** string or None  **:param** meta_uuid                           **type:** string or None
-type CategoryDb struct {
+// CategoryResponse **:param** uuid                                **type:** string **:param** name                                **type:** string **:param** project_uuid                        **type:** string or None  **:param** meta_uuid                           **type:** string or None
+type CategoryResponse struct {
 	Uuid string `json:"uuid"`
 	Name string `json:"name"`
 	ProjectUuid *string `json:"project_uuid,omitempty"`
 	MetaUuid *string `json:"meta_uuid,omitempty"`
+	Meta map[string]interface{} `json:"meta,omitempty"`
 }
 
-// NewCategoryDb instantiates a new CategoryDb object
+// NewCategoryResponse instantiates a new CategoryResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCategoryDb(uuid string, name string) *CategoryDb {
-	this := CategoryDb{}
+func NewCategoryResponse(uuid string, name string) *CategoryResponse {
+	this := CategoryResponse{}
 	this.Uuid = uuid
 	this.Name = name
 	return &this
 }
 
-// NewCategoryDbWithDefaults instantiates a new CategoryDb object
+// NewCategoryResponseWithDefaults instantiates a new CategoryResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCategoryDbWithDefaults() *CategoryDb {
-	this := CategoryDb{}
+func NewCategoryResponseWithDefaults() *CategoryResponse {
+	this := CategoryResponse{}
 	return &this
 }
 
 // GetUuid returns the Uuid field value
-func (o *CategoryDb) GetUuid() string {
+func (o *CategoryResponse) GetUuid() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -54,7 +55,7 @@ func (o *CategoryDb) GetUuid() string {
 
 // GetUuidOk returns a tuple with the Uuid field value
 // and a boolean to check if the value has been set.
-func (o *CategoryDb) GetUuidOk() (*string, bool) {
+func (o *CategoryResponse) GetUuidOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -62,12 +63,12 @@ func (o *CategoryDb) GetUuidOk() (*string, bool) {
 }
 
 // SetUuid sets field value
-func (o *CategoryDb) SetUuid(v string) {
+func (o *CategoryResponse) SetUuid(v string) {
 	o.Uuid = v
 }
 
 // GetName returns the Name field value
-func (o *CategoryDb) GetName() string {
+func (o *CategoryResponse) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -78,7 +79,7 @@ func (o *CategoryDb) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *CategoryDb) GetNameOk() (*string, bool) {
+func (o *CategoryResponse) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -86,12 +87,12 @@ func (o *CategoryDb) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *CategoryDb) SetName(v string) {
+func (o *CategoryResponse) SetName(v string) {
 	o.Name = v
 }
 
 // GetProjectUuid returns the ProjectUuid field value if set, zero value otherwise.
-func (o *CategoryDb) GetProjectUuid() string {
+func (o *CategoryResponse) GetProjectUuid() string {
 	if o == nil || o.ProjectUuid == nil {
 		var ret string
 		return ret
@@ -101,7 +102,7 @@ func (o *CategoryDb) GetProjectUuid() string {
 
 // GetProjectUuidOk returns a tuple with the ProjectUuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CategoryDb) GetProjectUuidOk() (*string, bool) {
+func (o *CategoryResponse) GetProjectUuidOk() (*string, bool) {
 	if o == nil || o.ProjectUuid == nil {
 		return nil, false
 	}
@@ -109,7 +110,7 @@ func (o *CategoryDb) GetProjectUuidOk() (*string, bool) {
 }
 
 // HasProjectUuid returns a boolean if a field has been set.
-func (o *CategoryDb) HasProjectUuid() bool {
+func (o *CategoryResponse) HasProjectUuid() bool {
 	if o != nil && o.ProjectUuid != nil {
 		return true
 	}
@@ -118,12 +119,12 @@ func (o *CategoryDb) HasProjectUuid() bool {
 }
 
 // SetProjectUuid gets a reference to the given string and assigns it to the ProjectUuid field.
-func (o *CategoryDb) SetProjectUuid(v string) {
+func (o *CategoryResponse) SetProjectUuid(v string) {
 	o.ProjectUuid = &v
 }
 
 // GetMetaUuid returns the MetaUuid field value if set, zero value otherwise.
-func (o *CategoryDb) GetMetaUuid() string {
+func (o *CategoryResponse) GetMetaUuid() string {
 	if o == nil || o.MetaUuid == nil {
 		var ret string
 		return ret
@@ -133,7 +134,7 @@ func (o *CategoryDb) GetMetaUuid() string {
 
 // GetMetaUuidOk returns a tuple with the MetaUuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CategoryDb) GetMetaUuidOk() (*string, bool) {
+func (o *CategoryResponse) GetMetaUuidOk() (*string, bool) {
 	if o == nil || o.MetaUuid == nil {
 		return nil, false
 	}
@@ -141,7 +142,7 @@ func (o *CategoryDb) GetMetaUuidOk() (*string, bool) {
 }
 
 // HasMetaUuid returns a boolean if a field has been set.
-func (o *CategoryDb) HasMetaUuid() bool {
+func (o *CategoryResponse) HasMetaUuid() bool {
 	if o != nil && o.MetaUuid != nil {
 		return true
 	}
@@ -150,11 +151,43 @@ func (o *CategoryDb) HasMetaUuid() bool {
 }
 
 // SetMetaUuid gets a reference to the given string and assigns it to the MetaUuid field.
-func (o *CategoryDb) SetMetaUuid(v string) {
+func (o *CategoryResponse) SetMetaUuid(v string) {
 	o.MetaUuid = &v
 }
 
-func (o CategoryDb) MarshalJSON() ([]byte, error) {
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *CategoryResponse) GetMeta() map[string]interface{} {
+	if o == nil || o.Meta == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CategoryResponse) GetMetaOk() (map[string]interface{}, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *CategoryResponse) HasMeta() bool {
+	if o != nil && o.Meta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]interface{} and assigns it to the Meta field.
+func (o *CategoryResponse) SetMeta(v map[string]interface{}) {
+	o.Meta = v
+}
+
+func (o CategoryResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["uuid"] = o.Uuid
@@ -168,41 +201,44 @@ func (o CategoryDb) MarshalJSON() ([]byte, error) {
 	if o.MetaUuid != nil {
 		toSerialize["meta_uuid"] = o.MetaUuid
 	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableCategoryDb struct {
-	value *CategoryDb
+type NullableCategoryResponse struct {
+	value *CategoryResponse
 	isSet bool
 }
 
-func (v NullableCategoryDb) Get() *CategoryDb {
+func (v NullableCategoryResponse) Get() *CategoryResponse {
 	return v.value
 }
 
-func (v *NullableCategoryDb) Set(val *CategoryDb) {
+func (v *NullableCategoryResponse) Set(val *CategoryResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCategoryDb) IsSet() bool {
+func (v NullableCategoryResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCategoryDb) Unset() {
+func (v *NullableCategoryResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCategoryDb(val *CategoryDb) *NullableCategoryDb {
-	return &NullableCategoryDb{value: val, isSet: true}
+func NewNullableCategoryResponse(val *CategoryResponse) *NullableCategoryResponse {
+	return &NullableCategoryResponse{value: val, isSet: true}
 }
 
-func (v NullableCategoryDb) MarshalJSON() ([]byte, error) {
+func (v NullableCategoryResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCategoryDb) UnmarshalJSON(src []byte) error {
+func (v *NullableCategoryResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -4,9 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Uuid** | **string** |  | 
+**EntityUuid** | **string** |  | 
 **ProjectUuid** | Pointer to **string** |  | [optional] 
-**Entity** | Pointer to **map[string]interface{}** |  | [optional] 
+**ScheduleUuid** | Pointer to **string** |  | [optional] 
+**CatalogUuid** | Pointer to **string** |  | [optional] 
+**ReviewGroupUuid** | Pointer to **string** |  | [optional] 
+**Uuid** | **string** |  | 
+**Entity** | Pointer to **string** |  | [optional] 
 **Place** | Pointer to **map[string]interface{}** |  | [optional] 
 **PlaceRoles** | Pointer to **[]string** |  | [optional] 
 **Company** | Pointer to **map[string]interface{}** |  | [optional] 
@@ -22,7 +26,7 @@ Name | Type | Description | Notes
 
 ### NewStaffResponse
 
-`func NewStaffResponse(uuid string, ) *StaffResponse`
+`func NewStaffResponse(entityUuid string, uuid string, ) *StaffResponse`
 
 NewStaffResponse instantiates a new StaffResponse object
 This constructor will assign default values to properties that have it defined,
@@ -37,24 +41,24 @@ NewStaffResponseWithDefaults instantiates a new StaffResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetUuid
+### GetEntityUuid
 
-`func (o *StaffResponse) GetUuid() string`
+`func (o *StaffResponse) GetEntityUuid() string`
 
-GetUuid returns the Uuid field if non-nil, zero value otherwise.
+GetEntityUuid returns the EntityUuid field if non-nil, zero value otherwise.
 
-### GetUuidOk
+### GetEntityUuidOk
 
-`func (o *StaffResponse) GetUuidOk() (*string, bool)`
+`func (o *StaffResponse) GetEntityUuidOk() (*string, bool)`
 
-GetUuidOk returns a tuple with the Uuid field if it's non-nil, zero value otherwise
+GetEntityUuidOk returns a tuple with the EntityUuid field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUuid
+### SetEntityUuid
 
-`func (o *StaffResponse) SetUuid(v string)`
+`func (o *StaffResponse) SetEntityUuid(v string)`
 
-SetUuid sets Uuid field to given value.
+SetEntityUuid sets EntityUuid field to given value.
 
 
 ### GetProjectUuid
@@ -82,22 +86,117 @@ SetProjectUuid sets ProjectUuid field to given value.
 
 HasProjectUuid returns a boolean if a field has been set.
 
+### GetScheduleUuid
+
+`func (o *StaffResponse) GetScheduleUuid() string`
+
+GetScheduleUuid returns the ScheduleUuid field if non-nil, zero value otherwise.
+
+### GetScheduleUuidOk
+
+`func (o *StaffResponse) GetScheduleUuidOk() (*string, bool)`
+
+GetScheduleUuidOk returns a tuple with the ScheduleUuid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetScheduleUuid
+
+`func (o *StaffResponse) SetScheduleUuid(v string)`
+
+SetScheduleUuid sets ScheduleUuid field to given value.
+
+### HasScheduleUuid
+
+`func (o *StaffResponse) HasScheduleUuid() bool`
+
+HasScheduleUuid returns a boolean if a field has been set.
+
+### GetCatalogUuid
+
+`func (o *StaffResponse) GetCatalogUuid() string`
+
+GetCatalogUuid returns the CatalogUuid field if non-nil, zero value otherwise.
+
+### GetCatalogUuidOk
+
+`func (o *StaffResponse) GetCatalogUuidOk() (*string, bool)`
+
+GetCatalogUuidOk returns a tuple with the CatalogUuid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCatalogUuid
+
+`func (o *StaffResponse) SetCatalogUuid(v string)`
+
+SetCatalogUuid sets CatalogUuid field to given value.
+
+### HasCatalogUuid
+
+`func (o *StaffResponse) HasCatalogUuid() bool`
+
+HasCatalogUuid returns a boolean if a field has been set.
+
+### GetReviewGroupUuid
+
+`func (o *StaffResponse) GetReviewGroupUuid() string`
+
+GetReviewGroupUuid returns the ReviewGroupUuid field if non-nil, zero value otherwise.
+
+### GetReviewGroupUuidOk
+
+`func (o *StaffResponse) GetReviewGroupUuidOk() (*string, bool)`
+
+GetReviewGroupUuidOk returns a tuple with the ReviewGroupUuid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReviewGroupUuid
+
+`func (o *StaffResponse) SetReviewGroupUuid(v string)`
+
+SetReviewGroupUuid sets ReviewGroupUuid field to given value.
+
+### HasReviewGroupUuid
+
+`func (o *StaffResponse) HasReviewGroupUuid() bool`
+
+HasReviewGroupUuid returns a boolean if a field has been set.
+
+### GetUuid
+
+`func (o *StaffResponse) GetUuid() string`
+
+GetUuid returns the Uuid field if non-nil, zero value otherwise.
+
+### GetUuidOk
+
+`func (o *StaffResponse) GetUuidOk() (*string, bool)`
+
+GetUuidOk returns a tuple with the Uuid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUuid
+
+`func (o *StaffResponse) SetUuid(v string)`
+
+SetUuid sets Uuid field to given value.
+
+
 ### GetEntity
 
-`func (o *StaffResponse) GetEntity() map[string]interface{}`
+`func (o *StaffResponse) GetEntity() string`
 
 GetEntity returns the Entity field if non-nil, zero value otherwise.
 
 ### GetEntityOk
 
-`func (o *StaffResponse) GetEntityOk() (*map[string]interface{}, bool)`
+`func (o *StaffResponse) GetEntityOk() (*string, bool)`
 
 GetEntityOk returns a tuple with the Entity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEntity
 
-`func (o *StaffResponse) SetEntity(v map[string]interface{})`
+`func (o *StaffResponse) SetEntity(v string)`
 
 SetEntity sets Entity field to given value.
 

@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.112
+eHelply SDK - 1.1.113
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.112
+API version: 1.1.113
 Contact: support@ehelply.com
 */
 
@@ -15,8 +15,8 @@ import (
 	"encoding/json"
 )
 
-// StaffCreate **:param** project_uuid                        **type:** string or None  **:param** entity_uuid                         **type:** string or None  **:param** schedule_uuid                       **type:** string or None  **:param** catalog_uuid                        **type:** string or None  **:param** review_group_uuid                   **type:** string or None
-type StaffCreate struct {
+// StaffBase struct for StaffBase
+type StaffBase struct {
 	EntityUuid string `json:"entity_uuid"`
 	ProjectUuid *string `json:"project_uuid,omitempty"`
 	ScheduleUuid *string `json:"schedule_uuid,omitempty"`
@@ -24,26 +24,26 @@ type StaffCreate struct {
 	ReviewGroupUuid *string `json:"review_group_uuid,omitempty"`
 }
 
-// NewStaffCreate instantiates a new StaffCreate object
+// NewStaffBase instantiates a new StaffBase object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStaffCreate(entityUuid string) *StaffCreate {
-	this := StaffCreate{}
+func NewStaffBase(entityUuid string) *StaffBase {
+	this := StaffBase{}
 	this.EntityUuid = entityUuid
 	return &this
 }
 
-// NewStaffCreateWithDefaults instantiates a new StaffCreate object
+// NewStaffBaseWithDefaults instantiates a new StaffBase object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewStaffCreateWithDefaults() *StaffCreate {
-	this := StaffCreate{}
+func NewStaffBaseWithDefaults() *StaffBase {
+	this := StaffBase{}
 	return &this
 }
 
 // GetEntityUuid returns the EntityUuid field value
-func (o *StaffCreate) GetEntityUuid() string {
+func (o *StaffBase) GetEntityUuid() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -54,7 +54,7 @@ func (o *StaffCreate) GetEntityUuid() string {
 
 // GetEntityUuidOk returns a tuple with the EntityUuid field value
 // and a boolean to check if the value has been set.
-func (o *StaffCreate) GetEntityUuidOk() (*string, bool) {
+func (o *StaffBase) GetEntityUuidOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -62,12 +62,12 @@ func (o *StaffCreate) GetEntityUuidOk() (*string, bool) {
 }
 
 // SetEntityUuid sets field value
-func (o *StaffCreate) SetEntityUuid(v string) {
+func (o *StaffBase) SetEntityUuid(v string) {
 	o.EntityUuid = v
 }
 
 // GetProjectUuid returns the ProjectUuid field value if set, zero value otherwise.
-func (o *StaffCreate) GetProjectUuid() string {
+func (o *StaffBase) GetProjectUuid() string {
 	if o == nil || o.ProjectUuid == nil {
 		var ret string
 		return ret
@@ -77,7 +77,7 @@ func (o *StaffCreate) GetProjectUuid() string {
 
 // GetProjectUuidOk returns a tuple with the ProjectUuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StaffCreate) GetProjectUuidOk() (*string, bool) {
+func (o *StaffBase) GetProjectUuidOk() (*string, bool) {
 	if o == nil || o.ProjectUuid == nil {
 		return nil, false
 	}
@@ -85,7 +85,7 @@ func (o *StaffCreate) GetProjectUuidOk() (*string, bool) {
 }
 
 // HasProjectUuid returns a boolean if a field has been set.
-func (o *StaffCreate) HasProjectUuid() bool {
+func (o *StaffBase) HasProjectUuid() bool {
 	if o != nil && o.ProjectUuid != nil {
 		return true
 	}
@@ -94,12 +94,12 @@ func (o *StaffCreate) HasProjectUuid() bool {
 }
 
 // SetProjectUuid gets a reference to the given string and assigns it to the ProjectUuid field.
-func (o *StaffCreate) SetProjectUuid(v string) {
+func (o *StaffBase) SetProjectUuid(v string) {
 	o.ProjectUuid = &v
 }
 
 // GetScheduleUuid returns the ScheduleUuid field value if set, zero value otherwise.
-func (o *StaffCreate) GetScheduleUuid() string {
+func (o *StaffBase) GetScheduleUuid() string {
 	if o == nil || o.ScheduleUuid == nil {
 		var ret string
 		return ret
@@ -109,7 +109,7 @@ func (o *StaffCreate) GetScheduleUuid() string {
 
 // GetScheduleUuidOk returns a tuple with the ScheduleUuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StaffCreate) GetScheduleUuidOk() (*string, bool) {
+func (o *StaffBase) GetScheduleUuidOk() (*string, bool) {
 	if o == nil || o.ScheduleUuid == nil {
 		return nil, false
 	}
@@ -117,7 +117,7 @@ func (o *StaffCreate) GetScheduleUuidOk() (*string, bool) {
 }
 
 // HasScheduleUuid returns a boolean if a field has been set.
-func (o *StaffCreate) HasScheduleUuid() bool {
+func (o *StaffBase) HasScheduleUuid() bool {
 	if o != nil && o.ScheduleUuid != nil {
 		return true
 	}
@@ -126,12 +126,12 @@ func (o *StaffCreate) HasScheduleUuid() bool {
 }
 
 // SetScheduleUuid gets a reference to the given string and assigns it to the ScheduleUuid field.
-func (o *StaffCreate) SetScheduleUuid(v string) {
+func (o *StaffBase) SetScheduleUuid(v string) {
 	o.ScheduleUuid = &v
 }
 
 // GetCatalogUuid returns the CatalogUuid field value if set, zero value otherwise.
-func (o *StaffCreate) GetCatalogUuid() string {
+func (o *StaffBase) GetCatalogUuid() string {
 	if o == nil || o.CatalogUuid == nil {
 		var ret string
 		return ret
@@ -141,7 +141,7 @@ func (o *StaffCreate) GetCatalogUuid() string {
 
 // GetCatalogUuidOk returns a tuple with the CatalogUuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StaffCreate) GetCatalogUuidOk() (*string, bool) {
+func (o *StaffBase) GetCatalogUuidOk() (*string, bool) {
 	if o == nil || o.CatalogUuid == nil {
 		return nil, false
 	}
@@ -149,7 +149,7 @@ func (o *StaffCreate) GetCatalogUuidOk() (*string, bool) {
 }
 
 // HasCatalogUuid returns a boolean if a field has been set.
-func (o *StaffCreate) HasCatalogUuid() bool {
+func (o *StaffBase) HasCatalogUuid() bool {
 	if o != nil && o.CatalogUuid != nil {
 		return true
 	}
@@ -158,12 +158,12 @@ func (o *StaffCreate) HasCatalogUuid() bool {
 }
 
 // SetCatalogUuid gets a reference to the given string and assigns it to the CatalogUuid field.
-func (o *StaffCreate) SetCatalogUuid(v string) {
+func (o *StaffBase) SetCatalogUuid(v string) {
 	o.CatalogUuid = &v
 }
 
 // GetReviewGroupUuid returns the ReviewGroupUuid field value if set, zero value otherwise.
-func (o *StaffCreate) GetReviewGroupUuid() string {
+func (o *StaffBase) GetReviewGroupUuid() string {
 	if o == nil || o.ReviewGroupUuid == nil {
 		var ret string
 		return ret
@@ -173,7 +173,7 @@ func (o *StaffCreate) GetReviewGroupUuid() string {
 
 // GetReviewGroupUuidOk returns a tuple with the ReviewGroupUuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StaffCreate) GetReviewGroupUuidOk() (*string, bool) {
+func (o *StaffBase) GetReviewGroupUuidOk() (*string, bool) {
 	if o == nil || o.ReviewGroupUuid == nil {
 		return nil, false
 	}
@@ -181,7 +181,7 @@ func (o *StaffCreate) GetReviewGroupUuidOk() (*string, bool) {
 }
 
 // HasReviewGroupUuid returns a boolean if a field has been set.
-func (o *StaffCreate) HasReviewGroupUuid() bool {
+func (o *StaffBase) HasReviewGroupUuid() bool {
 	if o != nil && o.ReviewGroupUuid != nil {
 		return true
 	}
@@ -190,11 +190,11 @@ func (o *StaffCreate) HasReviewGroupUuid() bool {
 }
 
 // SetReviewGroupUuid gets a reference to the given string and assigns it to the ReviewGroupUuid field.
-func (o *StaffCreate) SetReviewGroupUuid(v string) {
+func (o *StaffBase) SetReviewGroupUuid(v string) {
 	o.ReviewGroupUuid = &v
 }
 
-func (o StaffCreate) MarshalJSON() ([]byte, error) {
+func (o StaffBase) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["entity_uuid"] = o.EntityUuid
@@ -214,38 +214,38 @@ func (o StaffCreate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableStaffCreate struct {
-	value *StaffCreate
+type NullableStaffBase struct {
+	value *StaffBase
 	isSet bool
 }
 
-func (v NullableStaffCreate) Get() *StaffCreate {
+func (v NullableStaffBase) Get() *StaffBase {
 	return v.value
 }
 
-func (v *NullableStaffCreate) Set(val *StaffCreate) {
+func (v *NullableStaffBase) Set(val *StaffBase) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableStaffCreate) IsSet() bool {
+func (v NullableStaffBase) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableStaffCreate) Unset() {
+func (v *NullableStaffBase) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableStaffCreate(val *StaffCreate) *NullableStaffCreate {
-	return &NullableStaffCreate{value: val, isSet: true}
+func NewNullableStaffBase(val *StaffBase) *NullableStaffBase {
+	return &NullableStaffBase{value: val, isSet: true}
 }
 
-func (v NullableStaffCreate) MarshalJSON() ([]byte, error) {
+func (v NullableStaffBase) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableStaffCreate) UnmarshalJSON(src []byte) error {
+func (v *NullableStaffBase) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

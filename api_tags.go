@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.112
+eHelply SDK - 1.1.113
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.112
+API version: 1.1.113
 Contact: support@ehelply.com
 */
 
@@ -71,7 +71,7 @@ func (r ApiCreateTagRequest) EhelplyData(ehelplyData string) ApiCreateTagRequest
 	return r
 }
 
-func (r ApiCreateTagRequest) Execute() (*TagDb, *http.Response, error) {
+func (r ApiCreateTagRequest) Execute() (*TagResponse, *http.Response, error) {
 	return r.ApiService.CreateTagExecute(r)
 }
 
@@ -91,13 +91,13 @@ func (a *TagsApiService) CreateTag(ctx context.Context) ApiCreateTagRequest {
 }
 
 // Execute executes the request
-//  @return TagDb
-func (a *TagsApiService) CreateTagExecute(r ApiCreateTagRequest) (*TagDb, *http.Response, error) {
+//  @return TagResponse
+func (a *TagsApiService) CreateTagExecute(r ApiCreateTagRequest) (*TagResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TagDb
+		localVarReturnValue  *TagResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagsApiService.CreateTag")
@@ -239,7 +239,7 @@ func (r ApiGetTagRequest) EhelplyData(ehelplyData string) ApiGetTagRequest {
 	return r
 }
 
-func (r ApiGetTagRequest) Execute() (*TagBase, *http.Response, error) {
+func (r ApiGetTagRequest) Execute() (*TagResponse, *http.Response, error) {
 	return r.ApiService.GetTagExecute(r)
 }
 
@@ -261,13 +261,13 @@ func (a *TagsApiService) GetTag(ctx context.Context, tagUuid string) ApiGetTagRe
 }
 
 // Execute executes the request
-//  @return TagBase
-func (a *TagsApiService) GetTagExecute(r ApiGetTagRequest) (*TagBase, *http.Response, error) {
+//  @return TagResponse
+func (a *TagsApiService) GetTagExecute(r ApiGetTagRequest) (*TagResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TagBase
+		localVarReturnValue  *TagResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagsApiService.GetTag")
@@ -645,7 +645,7 @@ func (r ApiUpdateTagRequest) EhelplyData(ehelplyData string) ApiUpdateTagRequest
 	return r
 }
 
-func (r ApiUpdateTagRequest) Execute() (*TagBase, *http.Response, error) {
+func (r ApiUpdateTagRequest) Execute() (*TagResponse, *http.Response, error) {
 	return r.ApiService.UpdateTagExecute(r)
 }
 
@@ -667,13 +667,13 @@ func (a *TagsApiService) UpdateTag(ctx context.Context, tagUuid string) ApiUpdat
 }
 
 // Execute executes the request
-//  @return TagBase
-func (a *TagsApiService) UpdateTagExecute(r ApiUpdateTagRequest) (*TagBase, *http.Response, error) {
+//  @return TagResponse
+func (a *TagsApiService) UpdateTagExecute(r ApiUpdateTagRequest) (*TagResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TagBase
+		localVarReturnValue  *TagResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagsApiService.UpdateTag")

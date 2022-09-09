@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateStaff
 
-> StaffDb CreateStaff(ctx).StaffCreate(staffCreate).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> StaffResponse CreateStaff(ctx).StaffBase(staffBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Createstaff
 
@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-    staffCreate := *openapiclient.NewStaffCreate("entity_uuid_1234") // StaffCreate | 
+    staffBase := *openapiclient.NewStaffBase("entity_uuid_1234") // StaffBase | 
     xAccessToken := "xAccessToken_example" // string |  (optional)
     xSecretToken := "xSecretToken_example" // string |  (optional)
     authorization := "authorization_example" // string |  (optional)
@@ -43,12 +43,12 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StaffApi.CreateStaff(context.Background()).StaffCreate(staffCreate).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.StaffApi.CreateStaff(context.Background()).StaffBase(staffBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `StaffApi.CreateStaff``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateStaff`: StaffDb
+    // response from `CreateStaff`: StaffResponse
     fmt.Fprintf(os.Stdout, "Response from `StaffApi.CreateStaff`: %v\n", resp)
 }
 ```
@@ -64,7 +64,7 @@ Other parameters are passed through a pointer to a apiCreateStaffRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **staffCreate** | [**StaffCreate**](StaffCreate.md) |  | 
+ **staffBase** | [**StaffBase**](StaffBase.md) |  | 
  **xAccessToken** | **string** |  | 
  **xSecretToken** | **string** |  | 
  **authorization** | **string** |  | 
@@ -74,7 +74,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StaffDb**](StaffDb.md)
+[**StaffResponse**](StaffResponse.md)
 
 ### Authorization
 
@@ -372,7 +372,7 @@ No authorization required
 
 ## UpdateStaff
 
-> StaffResponse UpdateStaff(ctx, staffUuid).StaffCreate(staffCreate).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> StaffResponse UpdateStaff(ctx, staffUuid).StaffBase(staffBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Updatestaff
 
@@ -392,7 +392,7 @@ import (
 
 func main() {
     staffUuid := "staffUuid_example" // string | 
-    staffCreate := *openapiclient.NewStaffCreate("entity_uuid_1234") // StaffCreate | 
+    staffBase := *openapiclient.NewStaffBase("entity_uuid_1234") // StaffBase | 
     xAccessToken := "xAccessToken_example" // string |  (optional)
     xSecretToken := "xSecretToken_example" // string |  (optional)
     authorization := "authorization_example" // string |  (optional)
@@ -402,7 +402,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StaffApi.UpdateStaff(context.Background(), staffUuid).StaffCreate(staffCreate).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.StaffApi.UpdateStaff(context.Background(), staffUuid).StaffBase(staffBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `StaffApi.UpdateStaff``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -428,7 +428,7 @@ Other parameters are passed through a pointer to a apiUpdateStaffRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **staffCreate** | [**StaffCreate**](StaffCreate.md) |  | 
+ **staffBase** | [**StaffBase**](StaffBase.md) |  | 
  **xAccessToken** | **string** |  | 
  **xSecretToken** | **string** |  | 
  **authorization** | **string** |  | 

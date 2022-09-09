@@ -5,7 +5,7 @@ All URIs are relative to *https://api.prod.ehelply.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateCompanyPlacesCompaniesPost**](CompaniesApi.md#CreateCompanyPlacesCompaniesPost) | **Post** /places/companies | Create Company
-[**DeletePlacePlacesCompaniesCompanyUuidDelete**](CompaniesApi.md#DeletePlacePlacesCompaniesCompanyUuidDelete) | **Delete** /places/companies/{company_uuid} | Delete Place
+[**DeleteCompanyPlacesCompaniesCompanyUuidDelete**](CompaniesApi.md#DeleteCompanyPlacesCompaniesCompanyUuidDelete) | **Delete** /places/companies/{company_uuid} | Delete Company
 [**GetCompanyPlacesCompaniesCompanyUuidGet**](CompaniesApi.md#GetCompanyPlacesCompaniesCompanyUuidGet) | **Get** /places/companies/{company_uuid} | Get Company
 [**SearchCompaniesPlacesCompaniesGet**](CompaniesApi.md#SearchCompaniesPlacesCompaniesGet) | **Get** /places/companies | Search Companies
 [**UpdateCompanyPlacesCompaniesCompanyUuidPut**](CompaniesApi.md#UpdateCompanyPlacesCompaniesCompanyUuidPut) | **Put** /places/companies/{company_uuid} | Update Company
@@ -90,11 +90,11 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## DeletePlacePlacesCompaniesCompanyUuidDelete
+## DeleteCompanyPlacesCompaniesCompanyUuidDelete
 
-> interface{} DeletePlacePlacesCompaniesCompanyUuidDelete(ctx, companyUuid).SoftDelete(softDelete).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> interface{} DeleteCompanyPlacesCompaniesCompanyUuidDelete(ctx, companyUuid).SoftDelete(softDelete).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
-Delete Place
+Delete Company
 
 
 
@@ -122,13 +122,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CompaniesApi.DeletePlacePlacesCompaniesCompanyUuidDelete(context.Background(), companyUuid).SoftDelete(softDelete).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.CompaniesApi.DeleteCompanyPlacesCompaniesCompanyUuidDelete(context.Background(), companyUuid).SoftDelete(softDelete).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CompaniesApi.DeletePlacePlacesCompaniesCompanyUuidDelete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CompaniesApi.DeleteCompanyPlacesCompaniesCompanyUuidDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeletePlacePlacesCompaniesCompanyUuidDelete`: interface{}
-    fmt.Fprintf(os.Stdout, "Response from `CompaniesApi.DeletePlacePlacesCompaniesCompanyUuidDelete`: %v\n", resp)
+    // response from `DeleteCompanyPlacesCompaniesCompanyUuidDelete`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `CompaniesApi.DeleteCompanyPlacesCompaniesCompanyUuidDelete`: %v\n", resp)
 }
 ```
 
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeletePlacePlacesCompaniesCompanyUuidDeleteRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteCompanyPlacesCompaniesCompanyUuidDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

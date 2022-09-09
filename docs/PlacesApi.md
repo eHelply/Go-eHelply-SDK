@@ -519,7 +519,7 @@ No authorization required
 
 ## SearchPlaces
 
-> Page SearchPlaces(ctx).ProjectUuid(projectUuid).Name(name).AddressLine1(addressLine1).AddressLine2(addressLine2).City(city).ProvinceState(provinceState).Country(country).PostalZipCode(postalZipCode).Lat(lat).Lng(lng).Email(email).IsPublic(isPublic).IsDeleted(isDeleted).WithCompany(withCompany).WithMeta(withMeta).WithCatalog(withCatalog).WithReviews(withReviews).WithSchedule(withSchedule).WithCollection(withCollection).WithBlog(withBlog).WithTags(withTags).WithCategories(withCategories).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> Page SearchPlaces(ctx).Name(name).AddressLine1(addressLine1).AddressLine2(addressLine2).City(city).ProvinceState(provinceState).Country(country).PostalZipCode(postalZipCode).Lat(lat).Lng(lng).Email(email).IsPublic(isPublic).IsDeleted(isDeleted).WithCompany(withCompany).WithMeta(withMeta).WithCatalog(withCatalog).WithReviews(withReviews).WithSchedule(withSchedule).WithCollection(withCollection).WithBlog(withBlog).WithTags(withTags).WithCategories(withCategories).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Searchplaces
 
@@ -538,7 +538,6 @@ import (
 )
 
 func main() {
-    projectUuid := "projectUuid_example" // string |  (optional)
     name := "name_example" // string |  (optional)
     addressLine1 := "addressLine1_example" // string |  (optional)
     addressLine2 := "addressLine2_example" // string |  (optional)
@@ -573,7 +572,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PlacesApi.SearchPlaces(context.Background()).ProjectUuid(projectUuid).Name(name).AddressLine1(addressLine1).AddressLine2(addressLine2).City(city).ProvinceState(provinceState).Country(country).PostalZipCode(postalZipCode).Lat(lat).Lng(lng).Email(email).IsPublic(isPublic).IsDeleted(isDeleted).WithCompany(withCompany).WithMeta(withMeta).WithCatalog(withCatalog).WithReviews(withReviews).WithSchedule(withSchedule).WithCollection(withCollection).WithBlog(withBlog).WithTags(withTags).WithCategories(withCategories).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.PlacesApi.SearchPlaces(context.Background()).Name(name).AddressLine1(addressLine1).AddressLine2(addressLine2).City(city).ProvinceState(provinceState).Country(country).PostalZipCode(postalZipCode).Lat(lat).Lng(lng).Email(email).IsPublic(isPublic).IsDeleted(isDeleted).WithCompany(withCompany).WithMeta(withMeta).WithCatalog(withCatalog).WithReviews(withReviews).WithSchedule(withSchedule).WithCollection(withCollection).WithBlog(withBlog).WithTags(withTags).WithCategories(withCategories).Page(page).PageSize(pageSize).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PlacesApi.SearchPlaces``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -594,7 +593,6 @@ Other parameters are passed through a pointer to a apiSearchPlacesRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectUuid** | **string** |  | 
  **name** | **string** |  | 
  **addressLine1** | **string** |  | 
  **addressLine2** | **string** |  | 

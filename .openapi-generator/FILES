@@ -46,7 +46,7 @@ docs/CatalogReturn.md
 docs/CatalogsApi.md
 docs/CategoryApi.md
 docs/CategoryBase.md
-docs/CategoryDb.md
+docs/CategoryResponse.md
 docs/CompaniesApi.md
 docs/Company.md
 docs/CompanyBase.md
@@ -156,8 +156,7 @@ docs/ServiceCreate.md
 docs/ServiceMessageResponse.md
 docs/ServiceResponse.md
 docs/StaffApi.md
-docs/StaffCreate.md
-docs/StaffDb.md
+docs/StaffBase.md
 docs/StaffResponse.md
 docs/StatsVitalsResponse.md
 docs/StripeAccountResponse.md
@@ -165,7 +164,7 @@ docs/StripeCustomerSecretResponse.md
 docs/SupportApi.md
 docs/TagApi.md
 docs/TagBase.md
-docs/TagDb.md
+docs/TagResponse.md
 docs/TagsApi.md
 docs/Tax.md
 docs/TicketResponse.md
@@ -209,7 +208,7 @@ model_basic_meta_create.go
 model_catalog_base.go
 model_catalog_return.go
 model_category_base.go
-model_category_db.go
+model_category_response.go
 model_company.go
 model_company_base.go
 model_company_response.go
@@ -308,14 +307,13 @@ model_selection.go
 model_service_create.go
 model_service_message_response.go
 model_service_response.go
-model_staff_create.go
-model_staff_db.go
+model_staff_base.go
 model_staff_response.go
 model_stats_vitals_response.go
 model_stripe_account_response.go
 model_stripe_customer_secret_response.go
 model_tag_base.go
-model_tag_db.go
+model_tag_response.go
 model_tax.go
 model_ticket_response.go
 model_tickets_response.go

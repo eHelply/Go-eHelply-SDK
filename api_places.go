@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.112
+eHelply SDK - 1.1.113
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.112
+API version: 1.1.113
 Contact: support@ehelply.com
 */
 
@@ -1179,7 +1179,6 @@ func (a *PlacesApiService) ReverseGeocodingPlacesGeocodingReverseGetExecute(r Ap
 type ApiSearchPlacesRequest struct {
 	ctx context.Context
 	ApiService *PlacesApiService
-	projectUuid *string
 	name *string
 	addressLine1 *string
 	addressLine2 *string
@@ -1211,11 +1210,6 @@ type ApiSearchPlacesRequest struct {
 	ehelplyActiveParticipant *string
 	ehelplyProject *string
 	ehelplyData *string
-}
-
-func (r ApiSearchPlacesRequest) ProjectUuid(projectUuid string) ApiSearchPlacesRequest {
-	r.projectUuid = &projectUuid
-	return r
 }
 
 func (r ApiSearchPlacesRequest) Name(name string) ApiSearchPlacesRequest {
@@ -1449,9 +1443,6 @@ func (a *PlacesApiService) SearchPlacesExecute(r ApiSearchPlacesRequest) (*Page,
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.projectUuid != nil {
-		localVarQueryParams.Add("project_uuid", parameterToString(*r.projectUuid, ""))
-	}
 	if r.name != nil {
 		localVarQueryParams.Add("name", parameterToString(*r.name, ""))
 	}

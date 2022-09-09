@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.112
+eHelply SDK - 1.1.113
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.112
+API version: 1.1.113
 Contact: support@ehelply.com
 */
 
@@ -197,7 +197,7 @@ func (a *CompaniesApiService) CreateCompanyPlacesCompaniesPostExecute(r ApiCreat
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeletePlacePlacesCompaniesCompanyUuidDeleteRequest struct {
+type ApiDeleteCompanyPlacesCompaniesCompanyUuidDeleteRequest struct {
 	ctx context.Context
 	ApiService *CompaniesApiService
 	companyUuid string
@@ -210,56 +210,56 @@ type ApiDeletePlacePlacesCompaniesCompanyUuidDeleteRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiDeletePlacePlacesCompaniesCompanyUuidDeleteRequest) SoftDelete(softDelete bool) ApiDeletePlacePlacesCompaniesCompanyUuidDeleteRequest {
+func (r ApiDeleteCompanyPlacesCompaniesCompanyUuidDeleteRequest) SoftDelete(softDelete bool) ApiDeleteCompanyPlacesCompaniesCompanyUuidDeleteRequest {
 	r.softDelete = &softDelete
 	return r
 }
 
-func (r ApiDeletePlacePlacesCompaniesCompanyUuidDeleteRequest) XAccessToken(xAccessToken string) ApiDeletePlacePlacesCompaniesCompanyUuidDeleteRequest {
+func (r ApiDeleteCompanyPlacesCompaniesCompanyUuidDeleteRequest) XAccessToken(xAccessToken string) ApiDeleteCompanyPlacesCompaniesCompanyUuidDeleteRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiDeletePlacePlacesCompaniesCompanyUuidDeleteRequest) XSecretToken(xSecretToken string) ApiDeletePlacePlacesCompaniesCompanyUuidDeleteRequest {
+func (r ApiDeleteCompanyPlacesCompaniesCompanyUuidDeleteRequest) XSecretToken(xSecretToken string) ApiDeleteCompanyPlacesCompaniesCompanyUuidDeleteRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiDeletePlacePlacesCompaniesCompanyUuidDeleteRequest) Authorization(authorization string) ApiDeletePlacePlacesCompaniesCompanyUuidDeleteRequest {
+func (r ApiDeleteCompanyPlacesCompaniesCompanyUuidDeleteRequest) Authorization(authorization string) ApiDeleteCompanyPlacesCompaniesCompanyUuidDeleteRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiDeletePlacePlacesCompaniesCompanyUuidDeleteRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiDeletePlacePlacesCompaniesCompanyUuidDeleteRequest {
+func (r ApiDeleteCompanyPlacesCompaniesCompanyUuidDeleteRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiDeleteCompanyPlacesCompaniesCompanyUuidDeleteRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiDeletePlacePlacesCompaniesCompanyUuidDeleteRequest) EhelplyProject(ehelplyProject string) ApiDeletePlacePlacesCompaniesCompanyUuidDeleteRequest {
+func (r ApiDeleteCompanyPlacesCompaniesCompanyUuidDeleteRequest) EhelplyProject(ehelplyProject string) ApiDeleteCompanyPlacesCompaniesCompanyUuidDeleteRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiDeletePlacePlacesCompaniesCompanyUuidDeleteRequest) EhelplyData(ehelplyData string) ApiDeletePlacePlacesCompaniesCompanyUuidDeleteRequest {
+func (r ApiDeleteCompanyPlacesCompaniesCompanyUuidDeleteRequest) EhelplyData(ehelplyData string) ApiDeleteCompanyPlacesCompaniesCompanyUuidDeleteRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiDeletePlacePlacesCompaniesCompanyUuidDeleteRequest) Execute() (interface{}, *http.Response, error) {
-	return r.ApiService.DeletePlacePlacesCompaniesCompanyUuidDeleteExecute(r)
+func (r ApiDeleteCompanyPlacesCompaniesCompanyUuidDeleteRequest) Execute() (interface{}, *http.Response, error) {
+	return r.ApiService.DeleteCompanyPlacesCompaniesCompanyUuidDeleteExecute(r)
 }
 
 /*
-DeletePlacePlacesCompaniesCompanyUuidDelete Delete Place
+DeleteCompanyPlacesCompaniesCompanyUuidDelete Delete Company
 
 Deletes the company with the given ID and returns True if successful
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param companyUuid
- @return ApiDeletePlacePlacesCompaniesCompanyUuidDeleteRequest
+ @return ApiDeleteCompanyPlacesCompaniesCompanyUuidDeleteRequest
 */
-func (a *CompaniesApiService) DeletePlacePlacesCompaniesCompanyUuidDelete(ctx context.Context, companyUuid string) ApiDeletePlacePlacesCompaniesCompanyUuidDeleteRequest {
-	return ApiDeletePlacePlacesCompaniesCompanyUuidDeleteRequest{
+func (a *CompaniesApiService) DeleteCompanyPlacesCompaniesCompanyUuidDelete(ctx context.Context, companyUuid string) ApiDeleteCompanyPlacesCompaniesCompanyUuidDeleteRequest {
+	return ApiDeleteCompanyPlacesCompaniesCompanyUuidDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
 		companyUuid: companyUuid,
@@ -268,7 +268,7 @@ func (a *CompaniesApiService) DeletePlacePlacesCompaniesCompanyUuidDelete(ctx co
 
 // Execute executes the request
 //  @return interface{}
-func (a *CompaniesApiService) DeletePlacePlacesCompaniesCompanyUuidDeleteExecute(r ApiDeletePlacePlacesCompaniesCompanyUuidDeleteRequest) (interface{}, *http.Response, error) {
+func (a *CompaniesApiService) DeleteCompanyPlacesCompaniesCompanyUuidDeleteExecute(r ApiDeleteCompanyPlacesCompaniesCompanyUuidDeleteRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -276,7 +276,7 @@ func (a *CompaniesApiService) DeletePlacePlacesCompaniesCompanyUuidDeleteExecute
 		localVarReturnValue  interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CompaniesApiService.DeletePlacePlacesCompaniesCompanyUuidDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CompaniesApiService.DeleteCompanyPlacesCompaniesCompanyUuidDelete")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

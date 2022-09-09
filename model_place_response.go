@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.112
+eHelply SDK - 1.1.113
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.112
+API version: 1.1.113
 Contact: support@ehelply.com
 */
 
@@ -17,6 +17,7 @@ import (
 
 // PlaceResponse **:param** name                                **type:** string **:param** summary                             **type:** string or None  **:param** public                              **type:** bool or None  **:param** meta                                **type:** dict or None  **:param** addresses                           **type:** PlaceAddress or None  **:param** contact                             **type:** ContactBase or None
 type PlaceResponse struct {
+	ProjectUuid *string `json:"project_uuid,omitempty"`
 	Name string `json:"name"`
 	Summary *string `json:"summary,omitempty"`
 	Public *bool `json:"public,omitempty"`
@@ -25,7 +26,6 @@ type PlaceResponse struct {
 	Contact *ContactBase `json:"contact,omitempty"`
 	Picture *string `json:"picture,omitempty"`
 	Uuid string `json:"uuid"`
-	ProjectUuid *string `json:"project_uuid,omitempty"`
 	MetaUuid *string `json:"meta_uuid,omitempty"`
 	Tags []TagBase `json:"tags,omitempty"`
 	Categories []CategoryBase `json:"categories,omitempty"`
@@ -56,6 +56,38 @@ func NewPlaceResponseWithDefaults() *PlaceResponse {
 	var public bool = true
 	this.Public = &public
 	return &this
+}
+
+// GetProjectUuid returns the ProjectUuid field value if set, zero value otherwise.
+func (o *PlaceResponse) GetProjectUuid() string {
+	if o == nil || o.ProjectUuid == nil {
+		var ret string
+		return ret
+	}
+	return *o.ProjectUuid
+}
+
+// GetProjectUuidOk returns a tuple with the ProjectUuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PlaceResponse) GetProjectUuidOk() (*string, bool) {
+	if o == nil || o.ProjectUuid == nil {
+		return nil, false
+	}
+	return o.ProjectUuid, true
+}
+
+// HasProjectUuid returns a boolean if a field has been set.
+func (o *PlaceResponse) HasProjectUuid() bool {
+	if o != nil && o.ProjectUuid != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProjectUuid gets a reference to the given string and assigns it to the ProjectUuid field.
+func (o *PlaceResponse) SetProjectUuid(v string) {
+	o.ProjectUuid = &v
 }
 
 // GetName returns the Name field value
@@ -298,38 +330,6 @@ func (o *PlaceResponse) SetUuid(v string) {
 	o.Uuid = v
 }
 
-// GetProjectUuid returns the ProjectUuid field value if set, zero value otherwise.
-func (o *PlaceResponse) GetProjectUuid() string {
-	if o == nil || o.ProjectUuid == nil {
-		var ret string
-		return ret
-	}
-	return *o.ProjectUuid
-}
-
-// GetProjectUuidOk returns a tuple with the ProjectUuid field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PlaceResponse) GetProjectUuidOk() (*string, bool) {
-	if o == nil || o.ProjectUuid == nil {
-		return nil, false
-	}
-	return o.ProjectUuid, true
-}
-
-// HasProjectUuid returns a boolean if a field has been set.
-func (o *PlaceResponse) HasProjectUuid() bool {
-	if o != nil && o.ProjectUuid != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetProjectUuid gets a reference to the given string and assigns it to the ProjectUuid field.
-func (o *PlaceResponse) SetProjectUuid(v string) {
-	o.ProjectUuid = &v
-}
-
 // GetMetaUuid returns the MetaUuid field value if set, zero value otherwise.
 func (o *PlaceResponse) GetMetaUuid() string {
 	if o == nil || o.MetaUuid == nil {
@@ -556,6 +556,9 @@ func (o *PlaceResponse) SetDeletedAt(v string) {
 
 func (o PlaceResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.ProjectUuid != nil {
+		toSerialize["project_uuid"] = o.ProjectUuid
+	}
 	if true {
 		toSerialize["name"] = o.Name
 	}
@@ -579,9 +582,6 @@ func (o PlaceResponse) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["uuid"] = o.Uuid
-	}
-	if o.ProjectUuid != nil {
-		toSerialize["project_uuid"] = o.ProjectUuid
 	}
 	if o.MetaUuid != nil {
 		toSerialize["meta_uuid"] = o.MetaUuid

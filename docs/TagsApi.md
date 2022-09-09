@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CreateTag
 
-> TagDb CreateTag(ctx).TagBase(tagBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> TagResponse CreateTag(ctx).TagBase(tagBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Createtag
 
@@ -47,7 +47,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.CreateTag``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateTag`: TagDb
+    // response from `CreateTag`: TagResponse
     fmt.Fprintf(os.Stdout, "Response from `TagsApi.CreateTag`: %v\n", resp)
 }
 ```
@@ -73,7 +73,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TagDb**](TagDb.md)
+[**TagResponse**](TagResponse.md)
 
 ### Authorization
 
@@ -91,7 +91,7 @@ No authorization required
 
 ## GetTag
 
-> TagBase GetTag(ctx, tagUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> TagResponse GetTag(ctx, tagUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Gettag
 
@@ -125,7 +125,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.GetTag``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetTag`: TagBase
+    // response from `GetTag`: TagResponse
     fmt.Fprintf(os.Stdout, "Response from `TagsApi.GetTag`: %v\n", resp)
 }
 ```
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TagBase**](TagBase.md)
+[**TagResponse**](TagResponse.md)
 
 ### Authorization
 
@@ -261,7 +261,7 @@ No authorization required
 
 ## UpdateTag
 
-> TagBase UpdateTag(ctx, tagUuid).TagBase(tagBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> TagResponse UpdateTag(ctx, tagUuid).TagBase(tagBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Updatetag
 
@@ -296,7 +296,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.UpdateTag``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateTag`: TagBase
+    // response from `UpdateTag`: TagResponse
     fmt.Fprintf(os.Stdout, "Response from `TagsApi.UpdateTag`: %v\n", resp)
 }
 ```
@@ -327,7 +327,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TagBase**](TagBase.md)
+[**TagResponse**](TagResponse.md)
 
 ### Authorization
 
