@@ -9,12 +9,13 @@ Name | Type | Description | Notes
 **Log** | **map[string]interface{}** |  | 
 **Severity** | **string** |  | 
 **Subject** | **string** |  | 
+**ServiceName** | **string** |  | 
 
 ## Methods
 
 ### NewLoggingDynamo
 
-`func NewLoggingDynamo(service string, time string, log map[string]interface{}, severity string, subject string, ) *LoggingDynamo`
+`func NewLoggingDynamo(service string, time string, log map[string]interface{}, severity string, subject string, serviceName string, ) *LoggingDynamo`
 
 NewLoggingDynamo instantiates a new LoggingDynamo object
 This constructor will assign default values to properties that have it defined,
@@ -127,6 +128,26 @@ and a boolean to check if the value has been set.
 `func (o *LoggingDynamo) SetSubject(v string)`
 
 SetSubject sets Subject field to given value.
+
+
+### GetServiceName
+
+`func (o *LoggingDynamo) GetServiceName() string`
+
+GetServiceName returns the ServiceName field if non-nil, zero value otherwise.
+
+### GetServiceNameOk
+
+`func (o *LoggingDynamo) GetServiceNameOk() (*string, bool)`
+
+GetServiceNameOk returns a tuple with the ServiceName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServiceName
+
+`func (o *LoggingDynamo) SetServiceName(v string)`
+
+SetServiceName sets ServiceName field to given value.
 
 
 

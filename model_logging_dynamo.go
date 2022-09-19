@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.114
+eHelply SDK - 1.1.115
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.114
+API version: 1.1.115
 Contact: support@ehelply.com
 */
 
@@ -22,19 +22,21 @@ type LoggingDynamo struct {
 	Log map[string]interface{} `json:"log"`
 	Severity string `json:"severity"`
 	Subject string `json:"subject"`
+	ServiceName string `json:"service_name"`
 }
 
 // NewLoggingDynamo instantiates a new LoggingDynamo object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLoggingDynamo(service string, time string, log map[string]interface{}, severity string, subject string) *LoggingDynamo {
+func NewLoggingDynamo(service string, time string, log map[string]interface{}, severity string, subject string, serviceName string) *LoggingDynamo {
 	this := LoggingDynamo{}
 	this.Service = service
 	this.Time = time
 	this.Log = log
 	this.Severity = severity
 	this.Subject = subject
+	this.ServiceName = serviceName
 	return &this
 }
 
@@ -166,6 +168,30 @@ func (o *LoggingDynamo) SetSubject(v string) {
 	o.Subject = v
 }
 
+// GetServiceName returns the ServiceName field value
+func (o *LoggingDynamo) GetServiceName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ServiceName
+}
+
+// GetServiceNameOk returns a tuple with the ServiceName field value
+// and a boolean to check if the value has been set.
+func (o *LoggingDynamo) GetServiceNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ServiceName, true
+}
+
+// SetServiceName sets field value
+func (o *LoggingDynamo) SetServiceName(v string) {
+	o.ServiceName = v
+}
+
 func (o LoggingDynamo) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -182,6 +208,9 @@ func (o LoggingDynamo) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["subject"] = o.Subject
+	}
+	if true {
+		toSerialize["service_name"] = o.ServiceName
 	}
 	return json.Marshal(toSerialize)
 }
