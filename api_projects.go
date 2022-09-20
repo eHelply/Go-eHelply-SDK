@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.108
+eHelply SDK - 1.1.109
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.108
+API version: 1.1.109
 Contact: support@ehelply.com
 */
 
@@ -351,6 +351,16 @@ func (a *ProjectsApiService) ArchiveProjectExecute(r ApiArchiveProjectRequest) (
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v GetAppointment403Response

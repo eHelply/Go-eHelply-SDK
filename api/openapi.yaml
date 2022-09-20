@@ -9,8 +9,8 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://superstack.ehelply.com/support/legal/terms
-  title: eHelply SDK - 1.1.108
-  version: 1.1.108
+  title: eHelply SDK - 1.1.109
+  version: 1.1.109
 servers:
 - description: eHelply / SuperStack Production
   url: https://api.prod.ehelply.com
@@ -7310,227 +7310,6 @@ paths:
       summary: Updatereview
       tags:
       - reviews
-  /sam/logging/logs:
-    get:
-      operationId: getLogs
-      parameters:
-      - explode: true
-        in: query
-        name: service
-        required: false
-        schema:
-          title: Service
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: date_start
-        required: false
-        schema:
-          title: Date Start
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: date_end
-        required: false
-        schema:
-          title: Date End
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: desc
-        required: false
-        schema:
-          default: true
-          title: Desc
-          type: boolean
-        style: form
-      - explode: false
-        in: header
-        name: x-access-token
-        required: false
-        schema:
-          title: X-Access-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: x-secret-token
-        required: false
-        schema:
-          title: X-Secret-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: authorization
-        required: false
-        schema:
-          title: Authorization
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-active-participant
-        required: false
-        schema:
-          title: Ehelply-Active-Participant
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-project
-        required: false
-        schema:
-          title: Ehelply-Project
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-data
-        required: false
-        schema:
-          title: Ehelply-Data
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/LoggingDynamo'
-                title: Response Getlogs
-                type: array
-          description: Successful Response
-        "404":
-          description: Not found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Getlogs
-      tags:
-      - logging
-  /sam/logging/logs/services/{service}:
-    get:
-      operationId: getServiceLogs
-      parameters:
-      - explode: false
-        in: path
-        name: service
-        required: true
-        schema:
-          title: Service
-          type: string
-        style: simple
-      - explode: true
-        in: query
-        name: date_start
-        required: false
-        schema:
-          title: Date Start
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: date_end
-        required: false
-        schema:
-          title: Date End
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: desc
-        required: false
-        schema:
-          default: true
-          title: Desc
-          type: boolean
-        style: form
-      - explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          default: 50
-          title: Limit
-          type: integer
-        style: form
-      - explode: false
-        in: header
-        name: x-access-token
-        required: false
-        schema:
-          title: X-Access-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: x-secret-token
-        required: false
-        schema:
-          title: X-Secret-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: authorization
-        required: false
-        schema:
-          title: Authorization
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-active-participant
-        required: false
-        schema:
-          title: Ehelply-Active-Participant
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-project
-        required: false
-        schema:
-          title: Ehelply-Project
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-data
-        required: false
-        schema:
-          title: Ehelply-Data
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/LoggingDynamo'
-                title: Response Getservicelogs
-                type: array
-          description: Successful Response
-        "404":
-          description: Not found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Getservicelogs
-      tags:
-      - logging
   /sam/logging/logs/services/{service}/subjects/{subject}:
     get:
       operationId: getSubjectLogs
@@ -7638,8 +7417,10 @@ paths:
           content:
             application/json:
               schema:
+                items:
+                  $ref: '#/components/schemas/LoggingDynamo'
                 title: Response Getsubjectlogs
-                type: object
+                type: array
           description: Successful Response
         "404":
           description: Not found
@@ -9039,6 +8820,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Response_Archiveproject'
           description: Successful Response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Cannot archive project
         "403":
           content:
             application/json:
@@ -17143,6 +16930,7 @@ components:
         log: "{}"
         service: service
         subject: subject
+        service_name: service_name
         time: time
       properties:
         service:
@@ -17160,9 +16948,13 @@ components:
         subject:
           title: Subject
           type: string
+        service_name:
+          title: Service Name
+          type: string
       required:
       - log
       - service
+      - service_name
       - severity
       - subject
       - time
