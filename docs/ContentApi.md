@@ -1,13 +1,13 @@
-# \DefaultApi
+# \ContentApi
 
 All URIs are relative to *https://api.prod.ehelply.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateFile**](DefaultApi.md#CreateFile) | **Post** /files/files | Createfile
-[**DeleteFile**](DefaultApi.md#DeleteFile) | **Delete** /files/files/{file_uuid} | Deletefile
-[**GetFile**](DefaultApi.md#GetFile) | **Get** /files/files/{file_uuid} | Getfile
-[**UpdateFile**](DefaultApi.md#UpdateFile) | **Put** /files/files/{file_uuid} | Updatefile
+[**CreateFile**](ContentApi.md#CreateFile) | **Post** /files/files | Createfile
+[**DeleteFile**](ContentApi.md#DeleteFile) | **Delete** /files/files/{file_uuid} | Deletefile
+[**GetFile**](ContentApi.md#GetFile) | **Get** /files/files/{file_uuid} | Getfile
+[**UpdateFile**](ContentApi.md#UpdateFile) | **Put** /files/files/{file_uuid} | Updatefile
 
 
 
@@ -40,13 +40,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.CreateFile(context.Background()).File(file).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.ContentApi.CreateFile(context.Background()).File(file).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CreateFile``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ContentApi.CreateFile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateFile`: CreateFile200Response
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CreateFile`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ContentApi.CreateFile`: %v\n", resp)
 }
 ```
 
@@ -116,13 +116,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.DeleteFile(context.Background(), fileUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.ContentApi.DeleteFile(context.Background(), fileUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DeleteFile``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ContentApi.DeleteFile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteFile`: DeleteFile200Response
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.DeleteFile`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ContentApi.DeleteFile`: %v\n", resp)
 }
 ```
 
@@ -196,13 +196,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.GetFile(context.Background(), fileUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.ContentApi.GetFile(context.Background(), fileUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetFile``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ContentApi.GetFile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetFile`: *os.File
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.GetFile`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ContentApi.GetFile`: %v\n", resp)
 }
 ```
 
@@ -277,13 +277,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.UpdateFile(context.Background(), fileUuid).File(file).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.ContentApi.UpdateFile(context.Background(), fileUuid).File(file).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.UpdateFile``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ContentApi.UpdateFile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateFile`: UpdateFile200Response
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.UpdateFile`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `ContentApi.UpdateFile`: %v\n", resp)
 }
 ```
 

@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.110
+eHelply SDK - 1.1.111
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.110
+API version: 1.1.111
 Contact: support@ehelply.com
 */
 
@@ -22,12 +22,12 @@ import (
 )
 
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// ContentApiService ContentApi service
+type ContentApiService service
 
 type ApiCreateFileRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *ContentApiService
 	file **os.File
 	xAccessToken *string
 	xSecretToken *string
@@ -82,7 +82,7 @@ CreateFile Createfile
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateFileRequest
 */
-func (a *DefaultApiService) CreateFile(ctx context.Context) ApiCreateFileRequest {
+func (a *ContentApiService) CreateFile(ctx context.Context) ApiCreateFileRequest {
 	return ApiCreateFileRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -91,7 +91,7 @@ func (a *DefaultApiService) CreateFile(ctx context.Context) ApiCreateFileRequest
 
 // Execute executes the request
 //  @return CreateFile200Response
-func (a *DefaultApiService) CreateFileExecute(r ApiCreateFileRequest) (*CreateFile200Response, *http.Response, error) {
+func (a *ContentApiService) CreateFileExecute(r ApiCreateFileRequest) (*CreateFile200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -99,7 +99,7 @@ func (a *DefaultApiService) CreateFileExecute(r ApiCreateFileRequest) (*CreateFi
 		localVarReturnValue  *CreateFile200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateFile")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentApiService.CreateFile")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -230,7 +230,7 @@ func (a *DefaultApiService) CreateFileExecute(r ApiCreateFileRequest) (*CreateFi
 
 type ApiDeleteFileRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *ContentApiService
 	fileUuid string
 	xAccessToken *string
 	xSecretToken *string
@@ -281,7 +281,7 @@ DeleteFile Deletefile
  @param fileUuid
  @return ApiDeleteFileRequest
 */
-func (a *DefaultApiService) DeleteFile(ctx context.Context, fileUuid string) ApiDeleteFileRequest {
+func (a *ContentApiService) DeleteFile(ctx context.Context, fileUuid string) ApiDeleteFileRequest {
 	return ApiDeleteFileRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -291,7 +291,7 @@ func (a *DefaultApiService) DeleteFile(ctx context.Context, fileUuid string) Api
 
 // Execute executes the request
 //  @return DeleteFile200Response
-func (a *DefaultApiService) DeleteFileExecute(r ApiDeleteFileRequest) (*DeleteFile200Response, *http.Response, error) {
+func (a *ContentApiService) DeleteFileExecute(r ApiDeleteFileRequest) (*DeleteFile200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -299,7 +299,7 @@ func (a *DefaultApiService) DeleteFileExecute(r ApiDeleteFileRequest) (*DeleteFi
 		localVarReturnValue  *DeleteFile200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteFile")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentApiService.DeleteFile")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -414,7 +414,7 @@ func (a *DefaultApiService) DeleteFileExecute(r ApiDeleteFileRequest) (*DeleteFi
 
 type ApiGetFileRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *ContentApiService
 	fileUuid string
 	xAccessToken *string
 	xSecretToken *string
@@ -465,7 +465,7 @@ GetFile Getfile
  @param fileUuid
  @return ApiGetFileRequest
 */
-func (a *DefaultApiService) GetFile(ctx context.Context, fileUuid string) ApiGetFileRequest {
+func (a *ContentApiService) GetFile(ctx context.Context, fileUuid string) ApiGetFileRequest {
 	return ApiGetFileRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -475,7 +475,7 @@ func (a *DefaultApiService) GetFile(ctx context.Context, fileUuid string) ApiGet
 
 // Execute executes the request
 //  @return *os.File
-func (a *DefaultApiService) GetFileExecute(r ApiGetFileRequest) (**os.File, *http.Response, error) {
+func (a *ContentApiService) GetFileExecute(r ApiGetFileRequest) (**os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -483,7 +483,7 @@ func (a *DefaultApiService) GetFileExecute(r ApiGetFileRequest) (**os.File, *htt
 		localVarReturnValue  **os.File
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetFile")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentApiService.GetFile")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -598,7 +598,7 @@ func (a *DefaultApiService) GetFileExecute(r ApiGetFileRequest) (**os.File, *htt
 
 type ApiUpdateFileRequest struct {
 	ctx context.Context
-	ApiService *DefaultApiService
+	ApiService *ContentApiService
 	fileUuid string
 	file **os.File
 	xAccessToken *string
@@ -655,7 +655,7 @@ UpdateFile Updatefile
  @param fileUuid
  @return ApiUpdateFileRequest
 */
-func (a *DefaultApiService) UpdateFile(ctx context.Context, fileUuid string) ApiUpdateFileRequest {
+func (a *ContentApiService) UpdateFile(ctx context.Context, fileUuid string) ApiUpdateFileRequest {
 	return ApiUpdateFileRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -665,7 +665,7 @@ func (a *DefaultApiService) UpdateFile(ctx context.Context, fileUuid string) Api
 
 // Execute executes the request
 //  @return UpdateFile200Response
-func (a *DefaultApiService) UpdateFileExecute(r ApiUpdateFileRequest) (*UpdateFile200Response, *http.Response, error) {
+func (a *ContentApiService) UpdateFileExecute(r ApiUpdateFileRequest) (*UpdateFile200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -673,7 +673,7 @@ func (a *DefaultApiService) UpdateFileExecute(r ApiUpdateFileRequest) (*UpdateFi
 		localVarReturnValue  *UpdateFile200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateFile")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentApiService.UpdateFile")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
