@@ -8,6 +8,7 @@ api_billing.go
 api_catalogs.go
 api_category.go
 api_companies.go
+api_default.go
 api_logging.go
 api_meta.go
 api_monitor.go
@@ -55,6 +56,7 @@ docs/Contact.md
 docs/ContactBase.md
 docs/ContactMethod.md
 docs/ContactResponse.md
+docs/CreateFile200Response.md
 docs/CreateKeyResponse.md
 docs/CreateProjectCredential.md
 docs/CreateProjectCredit.md
@@ -64,6 +66,8 @@ docs/CreateTicket.md
 docs/Credential.md
 docs/CustomList.md
 docs/DatesMeta.md
+docs/DefaultApi.md
+docs/DeleteFile200Response.md
 docs/Detailed.md
 docs/DetailedMeta.md
 docs/DetailedMetaCreate.md
@@ -170,6 +174,7 @@ docs/TagsApi.md
 docs/Tax.md
 docs/TicketResponse.md
 docs/TicketsResponse.md
+docs/UpdateFile200Response.md
 docs/UpdateProjectCredentialRequest.md
 docs/UpdateReview.md
 docs/User.md
@@ -217,6 +222,7 @@ model_contact.go
 model_contact_base.go
 model_contact_method.go
 model_contact_response.go
+model_create_file_200_response.go
 model_create_key_response.go
 model_create_project_credential.go
 model_create_project_credit.go
@@ -226,6 +232,7 @@ model_create_ticket.go
 model_credential.go
 model_custom_list.go
 model_dates_meta.go
+model_delete_file_200_response.go
 model_detailed.go
 model_detailed_meta.go
 model_detailed_meta_create.go
@@ -319,6 +326,7 @@ model_tag_db.go
 model_tax.go
 model_ticket_response.go
 model_tickets_response.go
+model_update_file_200_response.go
 model_update_project_credential_request.go
 model_update_review.go
 model_user.go
