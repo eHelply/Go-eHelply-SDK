@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | Pointer to **string** |  | [optional] [default to "2022-10-26T18:48:00.130571"]
-**UpdatedAt** | Pointer to **string** |  | [optional] [default to "2022-10-26T18:48:00.130571"]
+**CreatedAt** | Pointer to **string** |  | [optional] [default to "2022-10-26T19:13:31.399861"]
+**UpdatedAt** | Pointer to **string** |  | [optional] [default to "2022-10-26T19:13:31.399861"]
 
 ## Methods
 

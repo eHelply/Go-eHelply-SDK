@@ -9,8 +9,8 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://superstack.ehelply.com/support/legal/terms
-  title: eHelply SDK - 1.1.112
-  version: 1.1.112
+  title: eHelply SDK - 1.1.113
+  version: 1.1.113
 servers:
 - description: eHelply / SuperStack Production
   url: https://api.prod.ehelply.com
@@ -14644,11 +14644,11 @@ components:
       description: Date based meta
       properties:
         created_at:
-          default: 2022-10-26T18:48:00.130571
+          default: 2022-10-26T19:13:31.399861
           title: Created At
           type: string
         updated_at:
-          default: 2022-10-26T18:48:00.130571
+          default: 2022-10-26T19:13:31.399861
           title: Updated At
           type: string
       title: DatesMeta
@@ -14837,7 +14837,6 @@ components:
         detailed:
           $ref: '#/components/schemas/Detailed'
         custom:
-          default: {}
           title: Custom
           type: object
         dates:

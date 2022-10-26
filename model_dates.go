@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.112
+eHelply SDK - 1.1.113
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.112
+API version: 1.1.113
 Contact: support@ehelply.com
 */
 
@@ -27,9 +27,9 @@ type Dates struct {
 // will change when the set of required properties is changed
 func NewDates() *Dates {
 	this := Dates{}
-	var createdAt string = "2022-10-26T18:48:00.130571"
+	var createdAt string = "2022-10-26T19:13:31.399861"
 	this.CreatedAt = &createdAt
-	var updatedAt string = "2022-10-26T18:48:00.130571"
+	var updatedAt string = "2022-10-26T19:13:31.399861"
 	this.UpdatedAt = &updatedAt
 	return &this
 }
@@ -39,9 +39,9 @@ func NewDates() *Dates {
 // but it doesn't guarantee that properties required by API are set
 func NewDatesWithDefaults() *Dates {
 	this := Dates{}
-	var createdAt string = "2022-10-26T18:48:00.130571"
+	var createdAt string = "2022-10-26T19:13:31.399861"
 	this.CreatedAt = &createdAt
-	var updatedAt string = "2022-10-26T18:48:00.130571"
+	var updatedAt string = "2022-10-26T19:13:31.399861"
 	this.UpdatedAt = &updatedAt
 	return &this
 }

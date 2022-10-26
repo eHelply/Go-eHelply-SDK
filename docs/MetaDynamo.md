@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Basic** | Pointer to [**Basic**](Basic.md) |  | [optional] 
 **Detailed** | Pointer to [**Detailed**](Detailed.md) |  | [optional] 
-**Custom** | Pointer to **map[string]interface{}** |  | [optional] [default to {}]
+**Custom** | Pointer to **map[string]interface{}** |  | [optional] 
 **Dates** | Pointer to [**Dates**](Dates.md) |  | [optional] 
 **Fields** | Pointer to [**[]Field**](Field.md) |  | [optional] 
 **Children** | Pointer to **[]map[string]interface{}** |  | [optional] 
