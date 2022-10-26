@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.116
+eHelply SDK - 1.1.117
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.116
+API version: 1.1.117
 Contact: support@ehelply.com
 */
 
@@ -102,7 +102,7 @@ type Configuration struct {
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		DefaultHeader:    make(map[string]string),
-		UserAgent:        "OpenAPI-Generator/1.1.116/go",
+		UserAgent:        "OpenAPI-Generator/1.1.117/go",
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
