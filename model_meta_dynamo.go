@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.111
+eHelply SDK - 1.1.112
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.111
+API version: 1.1.112
 Contact: support@ehelply.com
 */
 
@@ -19,10 +19,10 @@ import (
 type MetaDynamo struct {
 	Basic *Basic `json:"basic,omitempty"`
 	Detailed *Detailed `json:"detailed,omitempty"`
-	Custom *MetaCustom `json:"custom,omitempty"`
-	Dates *DatesMeta `json:"dates,omitempty"`
+	Custom map[string]interface{} `json:"custom,omitempty"`
+	Dates *Dates `json:"dates,omitempty"`
 	Fields []Field `json:"fields,omitempty"`
-	Children []MetaChildren `json:"children,omitempty"`
+	Children []map[string]interface{} `json:"children,omitempty"`
 	ParentUuid *string `json:"parent_uuid,omitempty"`
 	Uuid string `json:"uuid"`
 }
@@ -110,17 +110,17 @@ func (o *MetaDynamo) SetDetailed(v Detailed) {
 }
 
 // GetCustom returns the Custom field value if set, zero value otherwise.
-func (o *MetaDynamo) GetCustom() MetaCustom {
+func (o *MetaDynamo) GetCustom() map[string]interface{} {
 	if o == nil || o.Custom == nil {
-		var ret MetaCustom
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Custom
+	return o.Custom
 }
 
 // GetCustomOk returns a tuple with the Custom field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetaDynamo) GetCustomOk() (*MetaCustom, bool) {
+func (o *MetaDynamo) GetCustomOk() (map[string]interface{}, bool) {
 	if o == nil || o.Custom == nil {
 		return nil, false
 	}
@@ -136,15 +136,15 @@ func (o *MetaDynamo) HasCustom() bool {
 	return false
 }
 
-// SetCustom gets a reference to the given MetaCustom and assigns it to the Custom field.
-func (o *MetaDynamo) SetCustom(v MetaCustom) {
-	o.Custom = &v
+// SetCustom gets a reference to the given map[string]interface{} and assigns it to the Custom field.
+func (o *MetaDynamo) SetCustom(v map[string]interface{}) {
+	o.Custom = v
 }
 
 // GetDates returns the Dates field value if set, zero value otherwise.
-func (o *MetaDynamo) GetDates() DatesMeta {
+func (o *MetaDynamo) GetDates() Dates {
 	if o == nil || o.Dates == nil {
-		var ret DatesMeta
+		var ret Dates
 		return ret
 	}
 	return *o.Dates
@@ -152,7 +152,7 @@ func (o *MetaDynamo) GetDates() DatesMeta {
 
 // GetDatesOk returns a tuple with the Dates field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetaDynamo) GetDatesOk() (*DatesMeta, bool) {
+func (o *MetaDynamo) GetDatesOk() (*Dates, bool) {
 	if o == nil || o.Dates == nil {
 		return nil, false
 	}
@@ -168,8 +168,8 @@ func (o *MetaDynamo) HasDates() bool {
 	return false
 }
 
-// SetDates gets a reference to the given DatesMeta and assigns it to the Dates field.
-func (o *MetaDynamo) SetDates(v DatesMeta) {
+// SetDates gets a reference to the given Dates and assigns it to the Dates field.
+func (o *MetaDynamo) SetDates(v Dates) {
 	o.Dates = &v
 }
 
@@ -206,9 +206,9 @@ func (o *MetaDynamo) SetFields(v []Field) {
 }
 
 // GetChildren returns the Children field value if set, zero value otherwise.
-func (o *MetaDynamo) GetChildren() []MetaChildren {
+func (o *MetaDynamo) GetChildren() []map[string]interface{} {
 	if o == nil || o.Children == nil {
-		var ret []MetaChildren
+		var ret []map[string]interface{}
 		return ret
 	}
 	return o.Children
@@ -216,7 +216,7 @@ func (o *MetaDynamo) GetChildren() []MetaChildren {
 
 // GetChildrenOk returns a tuple with the Children field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetaDynamo) GetChildrenOk() ([]MetaChildren, bool) {
+func (o *MetaDynamo) GetChildrenOk() ([]map[string]interface{}, bool) {
 	if o == nil || o.Children == nil {
 		return nil, false
 	}
@@ -232,8 +232,8 @@ func (o *MetaDynamo) HasChildren() bool {
 	return false
 }
 
-// SetChildren gets a reference to the given []MetaChildren and assigns it to the Children field.
-func (o *MetaDynamo) SetChildren(v []MetaChildren) {
+// SetChildren gets a reference to the given []map[string]interface{} and assigns it to the Children field.
+func (o *MetaDynamo) SetChildren(v []map[string]interface{}) {
 	o.Children = v
 }
 

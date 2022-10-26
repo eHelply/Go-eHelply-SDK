@@ -4,14 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Uuid** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **int32** |  | [optional] 
+**Type** | Pointer to **map[string]interface{}** |  | [optional] 
 **Placeholder** | Pointer to **string** |  | [optional] 
-**Validations** | Pointer to [**Validations**](Validations.md) |  | [optional] 
+**Validations** | Pointer to **map[string]interface{}** |  | [optional] 
 **Hint** | Pointer to **string** |  | [optional] 
 **Icon** | Pointer to **string** |  | [optional] 
 **Label** | Pointer to **string** |  | [optional] 
-**Options** | Pointer to [**Options**](Options.md) |  | [optional] 
+**Options** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
 
@@ -32,47 +31,22 @@ NewFieldWithDefaults instantiates a new Field object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetUuid
-
-`func (o *Field) GetUuid() string`
-
-GetUuid returns the Uuid field if non-nil, zero value otherwise.
-
-### GetUuidOk
-
-`func (o *Field) GetUuidOk() (*string, bool)`
-
-GetUuidOk returns a tuple with the Uuid field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUuid
-
-`func (o *Field) SetUuid(v string)`
-
-SetUuid sets Uuid field to given value.
-
-### HasUuid
-
-`func (o *Field) HasUuid() bool`
-
-HasUuid returns a boolean if a field has been set.
-
 ### GetType
 
-`func (o *Field) GetType() int32`
+`func (o *Field) GetType() map[string]interface{}`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *Field) GetTypeOk() (*int32, bool)`
+`func (o *Field) GetTypeOk() (*map[string]interface{}, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *Field) SetType(v int32)`
+`func (o *Field) SetType(v map[string]interface{})`
 
 SetType sets Type field to given value.
 
@@ -109,20 +83,20 @@ HasPlaceholder returns a boolean if a field has been set.
 
 ### GetValidations
 
-`func (o *Field) GetValidations() Validations`
+`func (o *Field) GetValidations() map[string]interface{}`
 
 GetValidations returns the Validations field if non-nil, zero value otherwise.
 
 ### GetValidationsOk
 
-`func (o *Field) GetValidationsOk() (*Validations, bool)`
+`func (o *Field) GetValidationsOk() (*map[string]interface{}, bool)`
 
 GetValidationsOk returns a tuple with the Validations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValidations
 
-`func (o *Field) SetValidations(v Validations)`
+`func (o *Field) SetValidations(v map[string]interface{})`
 
 SetValidations sets Validations field to given value.
 
@@ -209,20 +183,20 @@ HasLabel returns a boolean if a field has been set.
 
 ### GetOptions
 
-`func (o *Field) GetOptions() Options`
+`func (o *Field) GetOptions() map[string]interface{}`
 
 GetOptions returns the Options field if non-nil, zero value otherwise.
 
 ### GetOptionsOk
 
-`func (o *Field) GetOptionsOk() (*Options, bool)`
+`func (o *Field) GetOptionsOk() (*map[string]interface{}, bool)`
 
 GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOptions
 
-`func (o *Field) SetOptions(v Options)`
+`func (o *Field) SetOptions(v map[string]interface{})`
 
 SetOptions sets Options field to given value.
 

@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.111
+eHelply SDK - 1.1.112
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.111
+API version: 1.1.112
 Contact: support@ehelply.com
 */
 
@@ -71,12 +71,12 @@ func (r ApiCreateNoteRequest) EhelplyData(ehelplyData string) ApiCreateNoteReque
 	return r
 }
 
-func (r ApiCreateNoteRequest) Execute() (*NoteDynamoResponse, *http.Response, error) {
+func (r ApiCreateNoteRequest) Execute() (*CreateNote200Response, *http.Response, error) {
 	return r.ApiService.CreateNoteExecute(r)
 }
 
 /*
-CreateNote Create Note
+CreateNote Createnote
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateNoteRequest
@@ -89,13 +89,13 @@ func (a *NotesApiService) CreateNote(ctx context.Context) ApiCreateNoteRequest {
 }
 
 // Execute executes the request
-//  @return NoteDynamoResponse
-func (a *NotesApiService) CreateNoteExecute(r ApiCreateNoteRequest) (*NoteDynamoResponse, *http.Response, error) {
+//  @return CreateNote200Response
+func (a *NotesApiService) CreateNoteExecute(r ApiCreateNoteRequest) (*CreateNote200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *NoteDynamoResponse
+		localVarReturnValue  *CreateNote200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotesApiService.CreateNote")
@@ -171,6 +171,26 @@ func (a *NotesApiService) CreateNoteExecute(r ApiCreateNoteRequest) (*NoteDynamo
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v HTTPValidationError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -243,12 +263,12 @@ func (r ApiDeleteNoteRequest) EhelplyData(ehelplyData string) ApiDeleteNoteReque
 	return r
 }
 
-func (r ApiDeleteNoteRequest) Execute() (interface{}, *http.Response, error) {
+func (r ApiDeleteNoteRequest) Execute() (*DeleteNote200Response, *http.Response, error) {
 	return r.ApiService.DeleteNoteExecute(r)
 }
 
 /*
-DeleteNote Delete Note
+DeleteNote Deletenote
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param noteId
@@ -263,13 +283,13 @@ func (a *NotesApiService) DeleteNote(ctx context.Context, noteId string) ApiDele
 }
 
 // Execute executes the request
-//  @return interface{}
-func (a *NotesApiService) DeleteNoteExecute(r ApiDeleteNoteRequest) (interface{}, *http.Response, error) {
+//  @return DeleteNote200Response
+func (a *NotesApiService) DeleteNoteExecute(r ApiDeleteNoteRequest) (*DeleteNote200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  interface{}
+		localVarReturnValue  *DeleteNote200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotesApiService.DeleteNote")
@@ -343,6 +363,26 @@ func (a *NotesApiService) DeleteNoteExecute(r ApiDeleteNoteRequest) (interface{}
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v HTTPValidationError
@@ -427,7 +467,7 @@ func (r ApiGetNoteRequest) Execute() (*NoteDynamoHistoryResponse, *http.Response
 }
 
 /*
-GetNote Get Note
+GetNote Getnote
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param noteId
@@ -526,6 +566,26 @@ func (a *NotesApiService) GetNoteExecute(r ApiGetNoteRequest) (*NoteDynamoHistor
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v HTTPValidationError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -598,12 +658,12 @@ func (r ApiUpdateNoteRequest) EhelplyData(ehelplyData string) ApiUpdateNoteReque
 	return r
 }
 
-func (r ApiUpdateNoteRequest) Execute() (*NoteDynamoResponse, *http.Response, error) {
+func (r ApiUpdateNoteRequest) Execute() (*UpdateNote200Response, *http.Response, error) {
 	return r.ApiService.UpdateNoteExecute(r)
 }
 
 /*
-UpdateNote Update Note
+UpdateNote Updatenote
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param noteId
@@ -618,13 +678,13 @@ func (a *NotesApiService) UpdateNote(ctx context.Context, noteId string) ApiUpda
 }
 
 // Execute executes the request
-//  @return NoteDynamoResponse
-func (a *NotesApiService) UpdateNoteExecute(r ApiUpdateNoteRequest) (*NoteDynamoResponse, *http.Response, error) {
+//  @return UpdateNote200Response
+func (a *NotesApiService) UpdateNoteExecute(r ApiUpdateNoteRequest) (*UpdateNote200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *NoteDynamoResponse
+		localVarReturnValue  *UpdateNote200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotesApiService.UpdateNote")
@@ -700,6 +760,36 @@ func (a *NotesApiService) UpdateNoteExecute(r ApiUpdateNoteRequest) (*NoteDynamo
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v HTTPValidationError

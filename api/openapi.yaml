@@ -9,8 +9,8 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://superstack.ehelply.com/support/legal/terms
-  title: eHelply SDK - 1.1.111
-  version: 1.1.111
+  title: eHelply SDK - 1.1.112
+  version: 1.1.112
 servers:
 - description: eHelply / SuperStack Production
   url: https://api.prod.ehelply.com
@@ -989,7 +989,7 @@ paths:
           description: Validation Error
       summary: Createfile
       tags:
-      - Content
+      - content
   /files/files/{file_uuid}:
     delete:
       operationId: deleteFile
@@ -1079,7 +1079,7 @@ paths:
           description: Validation Error
       summary: Deletefile
       tags:
-      - Content
+      - content
     get:
       operationId: getFile
       parameters:
@@ -1170,7 +1170,7 @@ paths:
           description: Validation Error
       summary: Getfile
       tags:
-      - Content
+      - content
     put:
       operationId: updateFile
       parameters:
@@ -1265,1141 +1265,7 @@ paths:
           description: Validation Error
       summary: Updatefile
       tags:
-      - Content
-  /meta/meta/service/{service}/type/{type_str}/entity/{entity_uuid}:
-    delete:
-      operationId: deleteMeta
-      parameters:
-      - explode: false
-        in: path
-        name: service
-        required: true
-        schema:
-          title: Service
-          type: string
-        style: simple
-      - explode: false
-        in: path
-        name: type_str
-        required: true
-        schema:
-          title: Type Str
-          type: string
-        style: simple
-      - explode: false
-        in: path
-        name: entity_uuid
-        required: true
-        schema:
-          title: Entity Uuid
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: x-access-token
-        required: false
-        schema:
-          title: X-Access-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: x-secret-token
-        required: false
-        schema:
-          title: X-Secret-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: authorization
-        required: false
-        schema:
-          title: Authorization
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-active-participant
-        required: false
-        schema:
-          title: Ehelply-Active-Participant
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-project
-        required: false
-        schema:
-          title: Ehelply-Project
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-data
-        required: false
-        schema:
-          title: Ehelply-Data
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema: {}
-          description: Successful Response
-        "404":
-          description: Not found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Delete Meta
-      tags:
-      - meta
-    get:
-      operationId: getMeta
-      parameters:
-      - explode: false
-        in: path
-        name: service
-        required: true
-        schema:
-          title: Service
-          type: string
-        style: simple
-      - explode: false
-        in: path
-        name: type_str
-        required: true
-        schema:
-          title: Type Str
-          type: string
-        style: simple
-      - explode: false
-        in: path
-        name: entity_uuid
-        required: true
-        schema:
-          title: Entity Uuid
-          type: string
-        style: simple
-      - explode: true
-        in: query
-        name: detailed
-        required: false
-        schema:
-          default: false
-          title: Detailed
-          type: boolean
-        style: form
-      - explode: true
-        in: query
-        name: custom
-        required: false
-        schema:
-          default: false
-          title: Custom
-          type: boolean
-        style: form
-      - explode: true
-        in: query
-        name: dates
-        required: false
-        schema:
-          default: false
-          title: Dates
-          type: boolean
-        style: form
-      - explode: true
-        in: query
-        name: history
-        required: false
-        schema:
-          default: 0
-          title: History
-          type: integer
-        style: form
-      - explode: false
-        in: header
-        name: x-access-token
-        required: false
-        schema:
-          title: X-Access-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: x-secret-token
-        required: false
-        schema:
-          title: X-Secret-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: authorization
-        required: false
-        schema:
-          title: Authorization
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-active-participant
-        required: false
-        schema:
-          title: Ehelply-Active-Participant
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-project
-        required: false
-        schema:
-          title: Ehelply-Project
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-data
-        required: false
-        schema:
-          title: Ehelply-Data
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MetaGet'
-          description: Successful Response
-        "404":
-          description: Not found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Get Meta
-      tags:
-      - meta
-    post:
-      operationId: createMeta
-      parameters:
-      - explode: false
-        in: path
-        name: service
-        required: true
-        schema:
-          title: Service
-          type: string
-        style: simple
-      - explode: false
-        in: path
-        name: type_str
-        required: true
-        schema:
-          title: Type Str
-          type: string
-        style: simple
-      - explode: false
-        in: path
-        name: entity_uuid
-        required: true
-        schema:
-          title: Entity Uuid
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: x-access-token
-        required: false
-        schema:
-          title: X-Access-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: x-secret-token
-        required: false
-        schema:
-          title: X-Secret-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: authorization
-        required: false
-        schema:
-          title: Authorization
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-active-participant
-        required: false
-        schema:
-          title: Ehelply-Active-Participant
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-project
-        required: false
-        schema:
-          title: Ehelply-Project
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-data
-        required: false
-        schema:
-          title: Ehelply-Data
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MetaCreate'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MetaDynamo'
-          description: Successful Response
-        "404":
-          description: Not found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Create Meta
-      tags:
-      - meta
-    put:
-      operationId: updateMeta
-      parameters:
-      - explode: false
-        in: path
-        name: service
-        required: true
-        schema:
-          title: Service
-          type: string
-        style: simple
-      - explode: false
-        in: path
-        name: type_str
-        required: true
-        schema:
-          title: Type Str
-          type: string
-        style: simple
-      - explode: false
-        in: path
-        name: entity_uuid
-        required: true
-        schema:
-          title: Entity Uuid
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: x-access-token
-        required: false
-        schema:
-          title: X-Access-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: x-secret-token
-        required: false
-        schema:
-          title: X-Secret-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: authorization
-        required: false
-        schema:
-          title: Authorization
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-active-participant
-        required: false
-        schema:
-          title: Ehelply-Active-Participant
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-project
-        required: false
-        schema:
-          title: Ehelply-Project
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-data
-        required: false
-        schema:
-          title: Ehelply-Data
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MetaCreate'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MetaDynamo'
-          description: Successful Response
-        "404":
-          description: Not found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Update Meta
-      tags:
-      - meta
-  /meta/meta/{meta_uuid}:
-    delete:
-      operationId: deleteMetaFromUuid
-      parameters:
-      - explode: false
-        in: path
-        name: meta_uuid
-        required: true
-        schema:
-          title: Meta Uuid
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: x-access-token
-        required: false
-        schema:
-          title: X-Access-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: x-secret-token
-        required: false
-        schema:
-          title: X-Secret-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: authorization
-        required: false
-        schema:
-          title: Authorization
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-active-participant
-        required: false
-        schema:
-          title: Ehelply-Active-Participant
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-project
-        required: false
-        schema:
-          title: Ehelply-Project
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-data
-        required: false
-        schema:
-          title: Ehelply-Data
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema: {}
-          description: Successful Response
-        "404":
-          description: Not found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Delete Meta From Uuid
-      tags:
-      - meta
-    get:
-      operationId: getMetaFromUuid
-      parameters:
-      - explode: false
-        in: path
-        name: meta_uuid
-        required: true
-        schema:
-          title: Meta Uuid
-          type: string
-        style: simple
-      - explode: true
-        in: query
-        name: detailed
-        required: false
-        schema:
-          default: false
-          title: Detailed
-          type: boolean
-        style: form
-      - explode: true
-        in: query
-        name: custom
-        required: false
-        schema:
-          default: false
-          title: Custom
-          type: boolean
-        style: form
-      - explode: true
-        in: query
-        name: dates
-        required: false
-        schema:
-          default: false
-          title: Dates
-          type: boolean
-        style: form
-      - explode: true
-        in: query
-        name: history
-        required: false
-        schema:
-          default: 0
-          title: History
-          type: integer
-        style: form
-      - explode: false
-        in: header
-        name: x-access-token
-        required: false
-        schema:
-          title: X-Access-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: x-secret-token
-        required: false
-        schema:
-          title: X-Secret-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: authorization
-        required: false
-        schema:
-          title: Authorization
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-active-participant
-        required: false
-        schema:
-          title: Ehelply-Active-Participant
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-project
-        required: false
-        schema:
-          title: Ehelply-Project
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-data
-        required: false
-        schema:
-          title: Ehelply-Data
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MetaGet'
-          description: Successful Response
-        "404":
-          description: Not found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Get Meta From Uuid
-      tags:
-      - meta
-    put:
-      operationId: updateMetaFromUuid
-      parameters:
-      - explode: false
-        in: path
-        name: meta_uuid
-        required: true
-        schema:
-          title: Meta Uuid
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: x-access-token
-        required: false
-        schema:
-          title: X-Access-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: x-secret-token
-        required: false
-        schema:
-          title: X-Secret-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: authorization
-        required: false
-        schema:
-          title: Authorization
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-active-participant
-        required: false
-        schema:
-          title: Ehelply-Active-Participant
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-project
-        required: false
-        schema:
-          title: Ehelply-Project
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-data
-        required: false
-        schema:
-          title: Ehelply-Data
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MetaCreate'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MetaDynamo'
-          description: Successful Response
-        "404":
-          description: Not found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Update Meta From Uuid
-      tags:
-      - meta
-  /meta/meta/service/{service}/type/{type_str}/entity/{entity_uuid}/touch:
-    post:
-      operationId: touchMeta
-      parameters:
-      - explode: false
-        in: path
-        name: service
-        required: true
-        schema:
-          title: Service
-          type: string
-        style: simple
-      - explode: false
-        in: path
-        name: type_str
-        required: true
-        schema:
-          title: Type Str
-          type: string
-        style: simple
-      - explode: false
-        in: path
-        name: entity_uuid
-        required: true
-        schema:
-          title: Entity Uuid
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: x-access-token
-        required: false
-        schema:
-          title: X-Access-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: x-secret-token
-        required: false
-        schema:
-          title: X-Secret-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: authorization
-        required: false
-        schema:
-          title: Authorization
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-active-participant
-        required: false
-        schema:
-          title: Ehelply-Active-Participant
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-project
-        required: false
-        schema:
-          title: Ehelply-Project
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-data
-        required: false
-        schema:
-          title: Ehelply-Data
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MetaDynamo'
-          description: Successful Response
-        "404":
-          description: Not found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Touch Meta
-      tags:
-      - meta
-  /meta/meta/slug:
-    post:
-      operationId: makeSlug
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MetaSlugger'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema: {}
-          description: Successful Response
-        "404":
-          description: Not found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Make Slug
-      tags:
-      - meta
-  /meta/field:
-    post:
-      operationId: createField
-      parameters:
-      - explode: false
-        in: header
-        name: x-access-token
-        required: false
-        schema:
-          title: X-Access-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: x-secret-token
-        required: false
-        schema:
-          title: X-Secret-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: authorization
-        required: false
-        schema:
-          title: Authorization
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-active-participant
-        required: false
-        schema:
-          title: Ehelply-Active-Participant
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-project
-        required: false
-        schema:
-          title: Ehelply-Project
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-data
-        required: false
-        schema:
-          title: Ehelply-Data
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Field'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FieldDynamo'
-          description: Successful Response
-        "404":
-          description: Not found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Create Field
-      tags:
-      - meta
-  /meta/field/{field_uuid}:
-    delete:
-      operationId: deleteField
-      parameters:
-      - explode: false
-        in: path
-        name: field_uuid
-        required: true
-        schema:
-          title: Field Uuid
-          type: string
-        style: simple
-      - explode: true
-        in: query
-        name: soft_delete
-        required: false
-        schema:
-          default: true
-          title: Soft Delete
-          type: boolean
-        style: form
-      - explode: false
-        in: header
-        name: x-access-token
-        required: false
-        schema:
-          title: X-Access-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: x-secret-token
-        required: false
-        schema:
-          title: X-Secret-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: authorization
-        required: false
-        schema:
-          title: Authorization
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-active-participant
-        required: false
-        schema:
-          title: Ehelply-Active-Participant
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-project
-        required: false
-        schema:
-          title: Ehelply-Project
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-data
-        required: false
-        schema:
-          title: Ehelply-Data
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema: {}
-          description: Successful Response
-        "404":
-          description: Not found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Delete Field
-      tags:
-      - meta
-    get:
-      operationId: getField
-      parameters:
-      - explode: false
-        in: path
-        name: field_uuid
-        required: true
-        schema:
-          title: Field Uuid
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: x-access-token
-        required: false
-        schema:
-          title: X-Access-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: x-secret-token
-        required: false
-        schema:
-          title: X-Secret-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: authorization
-        required: false
-        schema:
-          title: Authorization
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-active-participant
-        required: false
-        schema:
-          title: Ehelply-Active-Participant
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-project
-        required: false
-        schema:
-          title: Ehelply-Project
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-data
-        required: false
-        schema:
-          title: Ehelply-Data
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FieldDynamo'
-          description: Successful Response
-        "404":
-          description: Not found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Get Field
-      tags:
-      - meta
-    put:
-      operationId: updateField
-      parameters:
-      - explode: false
-        in: path
-        name: field_uuid
-        required: true
-        schema:
-          title: Field Uuid
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: x-access-token
-        required: false
-        schema:
-          title: X-Access-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: x-secret-token
-        required: false
-        schema:
-          title: X-Secret-Token
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: authorization
-        required: false
-        schema:
-          title: Authorization
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-active-participant
-        required: false
-        schema:
-          title: Ehelply-Active-Participant
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-project
-        required: false
-        schema:
-          title: Ehelply-Project
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: ehelply-data
-        required: false
-        schema:
-          title: Ehelply-Data
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Field'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema: {}
-          description: Successful Response
-        "404":
-          description: Not found
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Update Field
-      tags:
-      - meta
+      - content
   /notes/notes/{note_id}:
     delete:
       operationId: deleteNote
@@ -2473,8 +1339,21 @@ paths:
         "200":
           content:
             application/json:
-              schema: {}
+              schema:
+                $ref: '#/components/schemas/deleteNote_200_response'
           description: Successful Response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unable to delete note(s)
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
         "404":
           description: Not found
         "422":
@@ -2483,7 +1362,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Delete Note
+      summary: Deletenote
       tags:
       - notes
     get:
@@ -2570,15 +1449,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/NoteDynamoHistoryResponse'
           description: Successful Response
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
         "404":
-          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: note does not exist
         "422":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Get Note
+      summary: Getnote
       tags:
       - notes
     put:
@@ -2651,17 +1540,33 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NoteDynamoResponse'
+                $ref: '#/components/schemas/updateNote_200_response'
           description: Successful Response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Something went wrong while updating note
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
         "404":
-          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: note does not exist
         "422":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Update Note
+      summary: Updatenote
       tags:
       - notes
   /notes/notes:
@@ -2727,8 +1632,20 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NoteDynamoResponse'
+                $ref: '#/components/schemas/createNote_200_response'
           description: Successful Response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Something went wrong while trying to create a note
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
         "404":
           description: Not found
         "422":
@@ -2737,9 +1654,1316 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
-      summary: Create Note
+      summary: Createnote
       tags:
       - notes
+  /fields/fields/{field_uuid}:
+    delete:
+      operationId: deleteField
+      parameters:
+      - explode: false
+        in: path
+        name: field_uuid
+        required: true
+        schema:
+          title: The ID of the field to get
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/deleteField_200_response'
+          description: Successful Response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unable to delete field(s)
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          description: Not found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Deletefield
+      tags:
+      - fields
+    get:
+      operationId: getField
+      parameters:
+      - explode: false
+        in: path
+        name: field_uuid
+        required: true
+        schema:
+          title: The ID of the field to get
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FieldDynamo'
+          description: Successful Response
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: field does not exist
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Getfield
+      tags:
+      - fields
+    put:
+      operationId: updateField
+      parameters:
+      - explode: false
+        in: path
+        name: field_uuid
+        required: true
+        schema:
+          title: The ID of the field to get
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Field'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateField_200_response'
+          description: Successful Response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Something went wrong while updating field
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: field does not exist
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Updatefield
+      tags:
+      - fields
+  /fields/fields:
+    post:
+      operationId: createField
+      parameters:
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Field'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createField_200_response'
+          description: Successful Response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Something went wrong while trying to create a field
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          description: Not found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Createfield
+      tags:
+      - fields
+  /meta/meta/{meta_uuid}:
+    delete:
+      operationId: deleteMeta
+      parameters:
+      - explode: false
+        in: path
+        name: meta_uuid
+        required: true
+        schema:
+          title: The ID of the meta to get
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/deleteMeta_200_response'
+          description: Successful Response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unable to delete meta(s)
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          description: Not found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Deletemeta
+      tags:
+      - meta
+    get:
+      operationId: getMeta
+      parameters:
+      - explode: false
+        in: path
+        name: meta_uuid
+        required: true
+        schema:
+          title: The ID of the meta to get
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: detailed
+        required: false
+        schema:
+          default: false
+          title: Detailed
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: custom
+        required: false
+        schema:
+          default: false
+          title: Custom
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: history
+        required: false
+        schema:
+          default: 0
+          title: History
+          type: integer
+        style: form
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetaDynamo'
+          description: Successful Response
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: meta does not exist
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Getmeta
+      tags:
+      - meta
+    put:
+      operationId: updateMeta
+      parameters:
+      - explode: false
+        in: path
+        name: meta_uuid
+        required: true
+        schema:
+          title: The ID of the meta to get
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetaCreate'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateMeta_200_response'
+          description: Successful Response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Something went wrong while updating meta
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: meta does not exist
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Updatemeta
+      tags:
+      - meta
+  /meta/meta/service/{service}/type/{type_name}/entity/{entity_uuid}:
+    delete:
+      operationId: deleteMetaFromParts
+      parameters:
+      - explode: false
+        in: path
+        name: service
+        required: true
+        schema:
+          title: Service name
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: type_name
+        required: true
+        schema:
+          title: Type name
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: entity_uuid
+        required: true
+        schema:
+          title: An ID unique to the combination of service and type
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/deleteMeta_200_response'
+          description: Successful Response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unable to delete meta(s)
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          description: Not found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Deletemetafromparts
+      tags:
+      - meta
+    get:
+      operationId: getMetaFromParts
+      parameters:
+      - explode: false
+        in: path
+        name: service
+        required: true
+        schema:
+          title: Service name
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: type_name
+        required: true
+        schema:
+          title: Type name
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: entity_uuid
+        required: true
+        schema:
+          title: An ID unique to the combination of service and type
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: detailed
+        required: false
+        schema:
+          default: false
+          title: Detailed
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: custom
+        required: false
+        schema:
+          default: false
+          title: Custom
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: history
+        required: false
+        schema:
+          default: 0
+          title: History
+          type: integer
+        style: form
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetaDynamo'
+          description: Successful Response
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: meta does not exist
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Getmetafromparts
+      tags:
+      - meta
+    post:
+      operationId: createMeta
+      parameters:
+      - explode: false
+        in: path
+        name: service
+        required: true
+        schema:
+          title: Service name
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: type_name
+        required: true
+        schema:
+          title: Type name
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: entity_uuid
+        required: true
+        schema:
+          title: An ID unique to the combination of service and type
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetaCreate'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createMeta_200_response'
+          description: Successful Response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Something went wrong while trying to create a meta
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          description: Not found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Createmeta
+      tags:
+      - meta
+    put:
+      operationId: updateMetaFromParts
+      parameters:
+      - explode: false
+        in: path
+        name: service
+        required: true
+        schema:
+          title: Service name
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: type_name
+        required: true
+        schema:
+          title: Type name
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: entity_uuid
+        required: true
+        schema:
+          title: An ID unique to the combination of service and type
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetaCreate'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateMeta_200_response'
+          description: Successful Response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Something went wrong while updating meta
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: meta does not exist
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Updatemetafromparts
+      tags:
+      - meta
+  /meta/meta/{meta_uuid}/touch:
+    post:
+      operationId: touchMeta
+      parameters:
+      - explode: false
+        in: path
+        name: meta_uuid
+        required: true
+        schema:
+          title: The ID of the meta to get
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/touchMeta_200_response'
+          description: Successful Response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unable to touch meta(s)
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          description: Not found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Touchmeta
+      tags:
+      - meta
+  /meta/slug:
+    post:
+      operationId: createSlug
+      parameters:
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Slugger'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createSlug_200_response'
+          description: Successful Response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unable to create slug
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          description: Not found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Createslug
+      tags:
+      - meta
   /places/places:
     get:
       description: "Search all places and returns paginated results with Places being\
@@ -14370,31 +14594,8 @@ components:
       - type
       title: ValidationError
       type: object
-    Body_createFile:
-      properties:
-        file:
-          format: binary
-          title: File
-          type: string
-      required:
-      - file
-      title: Body_createFile
-      type: object
-    Body_updateFile:
-      properties:
-        file:
-          format: binary
-          title: File
-          type: string
-      required:
-      - file
-      title: Body_updateFile
-      type: object
     BasicMeta:
       description: Basic meta
-      example:
-        name: name
-        slug: slug
       properties:
         name:
           title: Name
@@ -14419,29 +14620,35 @@ components:
           type: boolean
       title: BasicMetaCreate
       type: object
-    CustomList:
-      example:
-        name: name
-        description: description
+    Body_createFile:
       properties:
-        name:
-          title: Name
+        file:
+          format: binary
+          title: File
           type: string
-        description:
-          title: Description
+      required:
+      - file
+      title: Body_createFile
+      type: object
+    Body_updateFile:
+      properties:
+        file:
+          format: binary
+          title: File
           type: string
-      title: CustomList
+      required:
+      - file
+      title: Body_updateFile
       type: object
     DatesMeta:
       description: Date based meta
-      example:
-        updated_at: updated_at
-        created_at: created_at
       properties:
         created_at:
+          default: 2022-10-26T18:48:00.130571
           title: Created At
           type: string
         updated_at:
+          default: 2022-10-26T18:48:00.130571
           title: Updated At
           type: string
       title: DatesMeta
@@ -14471,94 +14678,26 @@ components:
           type: string
       title: DetailedMetaCreate
       type: object
-    DetailedMetaGet:
-      description: Detailed meta based on Notes
-      example:
-        summary: summary
-        summary_history:
-        - summary_history
-        - summary_history
-        description: description
-        description_history:
-        - description_history
-        - description_history
-      properties:
-        summary:
-          title: Summary
-          type: string
-        description:
-          title: Description
-          type: string
-        summary_history:
-          items:
-            type: string
-          title: Summary History
-          type: array
-        description_history:
-          items:
-            type: string
-          title: Description History
-          type: array
-      title: DetailedMetaGet
-      type: object
     Field:
       description: Field
       example:
         hint: hint
         icon: icon
-        options:
-          color: color
-          insetLabel: insetLabel
-          icon: icon
-          caption: caption
-          label: label
-          counter: true
-          type: type
-          required: true
-          selections:
-          - selections:
-            - name: name
-              icon: icon
-              value: 1.4658129805029452
-            - name: name
-              icon: icon
-              value: 1.4658129805029452
-            name: name
-            type: type
-          - selections:
-            - name: name
-              icon: icon
-              value: 1.4658129805029452
-            - name: name
-              icon: icon
-              value: 1.4658129805029452
-            name: name
-            type: type
-          size: size
-          hint: hint
-          iconPosition: iconPosition
-          placeholder: placeholder
-          maxLength: 6.027456183070403
+        options: "{}"
         placeholder: placeholder
-        validations:
-          value:
-          - value
-          - value
+        validations: "{}"
         label: label
-        type: 0
-        uuid: uuid
+        type: "{}"
       properties:
-        uuid:
-          title: Uuid
-          type: string
         type:
           title: Type
-          type: integer
+          type: object
         placeholder:
           title: Placeholder
           type: string
         validations:
-          $ref: '#/components/schemas/Validations'
+          title: Validations
+          type: object
         hint:
           title: Hint
           type: string
@@ -14569,7 +14708,8 @@ components:
           title: Label
           type: string
         options:
-          $ref: '#/components/schemas/Options'
+          title: Options
+          type: object
       title: Field
       type: object
     FieldDynamo:
@@ -14577,59 +14717,22 @@ components:
       example:
         hint: hint
         icon: icon
-        options:
-          color: color
-          insetLabel: insetLabel
-          icon: icon
-          caption: caption
-          label: label
-          counter: true
-          type: type
-          required: true
-          selections:
-          - selections:
-            - name: name
-              icon: icon
-              value: 1.4658129805029452
-            - name: name
-              icon: icon
-              value: 1.4658129805029452
-            name: name
-            type: type
-          - selections:
-            - name: name
-              icon: icon
-              value: 1.4658129805029452
-            - name: name
-              icon: icon
-              value: 1.4658129805029452
-            name: name
-            type: type
-          size: size
-          hint: hint
-          iconPosition: iconPosition
-          placeholder: placeholder
-          maxLength: 6.027456183070403
+        options: "{}"
         placeholder: placeholder
-        validations:
-          value:
-          - value
-          - value
+        validations: "{}"
         label: label
-        type: 0
+        type: "{}"
         uuid: uuid
       properties:
-        uuid:
-          title: Uuid
-          type: string
         type:
           title: Type
-          type: integer
+          type: object
         placeholder:
           title: Placeholder
           type: string
         validations:
-          $ref: '#/components/schemas/Validations'
+          title: Validations
+          type: object
         hint:
           title: Hint
           type: string
@@ -14640,27 +14743,14 @@ components:
           title: Label
           type: string
         options:
-          $ref: '#/components/schemas/Options'
+          title: Options
+          type: object
+        uuid:
+          title: Uuid
+          type: string
       required:
       - uuid
       title: FieldDynamo
-      type: object
-    MetaChildren:
-      example:
-        child_uuid: child_uuid
-        child_description: child_description
-        child_name: child_name
-      properties:
-        child_name:
-          title: Child Name
-          type: string
-        child_description:
-          title: Child Description
-          type: string
-        child_uuid:
-          title: Child Uuid
-          type: string
-      title: MetaChildren
       type: object
     MetaCreate:
       description: Meta
@@ -14670,117 +14760,35 @@ components:
           summary: summary
           description: description
         children:
-        - child_uuid: child_uuid
-          child_description: child_description
-          child_name: child_name
-        - child_uuid: child_uuid
-          child_description: child_description
-          child_name: child_name
-        custom:
-          name: name
-          description: description
-          list:
-          - name: name
-            description: description
-          - name: name
-            description: description
+        - "{}"
+        - "{}"
+        custom: "{}"
         basic:
           name: name
           slug: true
         fields:
         - hint: hint
           icon: icon
-          options:
-            color: color
-            insetLabel: insetLabel
-            icon: icon
-            caption: caption
-            label: label
-            counter: true
-            type: type
-            required: true
-            selections:
-            - selections:
-              - name: name
-                icon: icon
-                value: 1.4658129805029452
-              - name: name
-                icon: icon
-                value: 1.4658129805029452
-              name: name
-              type: type
-            - selections:
-              - name: name
-                icon: icon
-                value: 1.4658129805029452
-              - name: name
-                icon: icon
-                value: 1.4658129805029452
-              name: name
-              type: type
-            size: size
-            hint: hint
-            iconPosition: iconPosition
-            placeholder: placeholder
-            maxLength: 6.027456183070403
+          options: "{}"
           placeholder: placeholder
-          validations:
-            value:
-            - value
-            - value
+          validations: "{}"
           label: label
-          type: 0
-          uuid: uuid
+          type: "{}"
         - hint: hint
           icon: icon
-          options:
-            color: color
-            insetLabel: insetLabel
-            icon: icon
-            caption: caption
-            label: label
-            counter: true
-            type: type
-            required: true
-            selections:
-            - selections:
-              - name: name
-                icon: icon
-                value: 1.4658129805029452
-              - name: name
-                icon: icon
-                value: 1.4658129805029452
-              name: name
-              type: type
-            - selections:
-              - name: name
-                icon: icon
-                value: 1.4658129805029452
-              - name: name
-                icon: icon
-                value: 1.4658129805029452
-              name: name
-              type: type
-            size: size
-            hint: hint
-            iconPosition: iconPosition
-            placeholder: placeholder
-            maxLength: 6.027456183070403
+          options: "{}"
           placeholder: placeholder
-          validations:
-            value:
-            - value
-            - value
+          validations: "{}"
           label: label
-          type: 0
-          uuid: uuid
+          type: "{}"
       properties:
         basic:
           $ref: '#/components/schemas/BasicMetaCreate'
         detailed:
           $ref: '#/components/schemas/DetailedMetaCreate'
         custom:
-          $ref: '#/components/schemas/MetaCustom'
+          title: Custom
+          type: object
         fields:
           items:
             $ref: '#/components/schemas/Field'
@@ -14788,7 +14796,7 @@ components:
           type: array
         children:
           items:
-            $ref: '#/components/schemas/MetaChildren'
+            type: object
           title: Children
           type: array
         parent_uuid:
@@ -14796,140 +14804,32 @@ components:
           type: string
       title: MetaCreate
       type: object
-    MetaCustom:
-      example:
-        name: name
-        description: description
-        list:
-        - name: name
-          description: description
-        - name: name
-          description: description
-      properties:
-        name:
-          title: Name
-          type: string
-        description:
-          title: Description
-          type: string
-        list:
-          items:
-            $ref: '#/components/schemas/CustomList'
-          title: List
-          type: array
-      title: MetaCustom
-      type: object
     MetaDynamo:
       description: A meta from DynamoDB
       example:
         parent_uuid: parent_uuid
         detailed: null
         children:
-        - child_uuid: child_uuid
-          child_description: child_description
-          child_name: child_name
-        - child_uuid: child_uuid
-          child_description: child_description
-          child_name: child_name
-        custom:
-          name: name
-          description: description
-          list:
-          - name: name
-            description: description
-          - name: name
-            description: description
-        dates:
-          updated_at: updated_at
-          created_at: created_at
+        - "{}"
+        - "{}"
+        custom: "{}"
+        dates: null
         basic: null
         fields:
         - hint: hint
           icon: icon
-          options:
-            color: color
-            insetLabel: insetLabel
-            icon: icon
-            caption: caption
-            label: label
-            counter: true
-            type: type
-            required: true
-            selections:
-            - selections:
-              - name: name
-                icon: icon
-                value: 1.4658129805029452
-              - name: name
-                icon: icon
-                value: 1.4658129805029452
-              name: name
-              type: type
-            - selections:
-              - name: name
-                icon: icon
-                value: 1.4658129805029452
-              - name: name
-                icon: icon
-                value: 1.4658129805029452
-              name: name
-              type: type
-            size: size
-            hint: hint
-            iconPosition: iconPosition
-            placeholder: placeholder
-            maxLength: 6.027456183070403
+          options: "{}"
           placeholder: placeholder
-          validations:
-            value:
-            - value
-            - value
+          validations: "{}"
           label: label
-          type: 0
-          uuid: uuid
+          type: "{}"
         - hint: hint
           icon: icon
-          options:
-            color: color
-            insetLabel: insetLabel
-            icon: icon
-            caption: caption
-            label: label
-            counter: true
-            type: type
-            required: true
-            selections:
-            - selections:
-              - name: name
-                icon: icon
-                value: 1.4658129805029452
-              - name: name
-                icon: icon
-                value: 1.4658129805029452
-              name: name
-              type: type
-            - selections:
-              - name: name
-                icon: icon
-                value: 1.4658129805029452
-              - name: name
-                icon: icon
-                value: 1.4658129805029452
-              name: name
-              type: type
-            size: size
-            hint: hint
-            iconPosition: iconPosition
-            placeholder: placeholder
-            maxLength: 6.027456183070403
+          options: "{}"
           placeholder: placeholder
-          validations:
-            value:
-            - value
-            - value
+          validations: "{}"
           label: label
-          type: 0
-          uuid: uuid
+          type: "{}"
         uuid: uuid
       properties:
         basic:
@@ -14937,18 +14837,19 @@ components:
         detailed:
           $ref: '#/components/schemas/Detailed'
         custom:
-          $ref: '#/components/schemas/MetaCustom'
+          default: {}
+          title: Custom
+          type: object
         dates:
-          $ref: '#/components/schemas/DatesMeta'
+          $ref: '#/components/schemas/Dates'
         fields:
           items:
             $ref: '#/components/schemas/Field'
           title: Fields
           type: array
         children:
-          default: []
           items:
-            $ref: '#/components/schemas/MetaChildren'
+            type: object
           title: Children
           type: array
         parent_uuid:
@@ -14960,311 +14861,6 @@ components:
       required:
       - uuid
       title: MetaDynamo
-      type: object
-    MetaGet:
-      description: Meta
-      example:
-        parent_uuid: parent_uuid
-        detailed:
-          summary: summary
-          summary_history:
-          - summary_history
-          - summary_history
-          description: description
-          description_history:
-          - description_history
-          - description_history
-        children:
-        - child_uuid: child_uuid
-          child_description: child_description
-          child_name: child_name
-        - child_uuid: child_uuid
-          child_description: child_description
-          child_name: child_name
-        custom:
-          name: name
-          description: description
-          list:
-          - name: name
-            description: description
-          - name: name
-            description: description
-        dates:
-          updated_at: updated_at
-          created_at: created_at
-        basic:
-          name: name
-          slug: slug
-        fields:
-        - hint: hint
-          icon: icon
-          options:
-            color: color
-            insetLabel: insetLabel
-            icon: icon
-            caption: caption
-            label: label
-            counter: true
-            type: type
-            required: true
-            selections:
-            - selections:
-              - name: name
-                icon: icon
-                value: 1.4658129805029452
-              - name: name
-                icon: icon
-                value: 1.4658129805029452
-              name: name
-              type: type
-            - selections:
-              - name: name
-                icon: icon
-                value: 1.4658129805029452
-              - name: name
-                icon: icon
-                value: 1.4658129805029452
-              name: name
-              type: type
-            size: size
-            hint: hint
-            iconPosition: iconPosition
-            placeholder: placeholder
-            maxLength: 6.027456183070403
-          placeholder: placeholder
-          validations:
-            value:
-            - value
-            - value
-          label: label
-          type: 0
-          uuid: uuid
-        - hint: hint
-          icon: icon
-          options:
-            color: color
-            insetLabel: insetLabel
-            icon: icon
-            caption: caption
-            label: label
-            counter: true
-            type: type
-            required: true
-            selections:
-            - selections:
-              - name: name
-                icon: icon
-                value: 1.4658129805029452
-              - name: name
-                icon: icon
-                value: 1.4658129805029452
-              name: name
-              type: type
-            - selections:
-              - name: name
-                icon: icon
-                value: 1.4658129805029452
-              - name: name
-                icon: icon
-                value: 1.4658129805029452
-              name: name
-              type: type
-            size: size
-            hint: hint
-            iconPosition: iconPosition
-            placeholder: placeholder
-            maxLength: 6.027456183070403
-          placeholder: placeholder
-          validations:
-            value:
-            - value
-            - value
-          label: label
-          type: 0
-          uuid: uuid
-        uuid: uuid
-      properties:
-        uuid:
-          title: Uuid
-          type: string
-        basic:
-          $ref: '#/components/schemas/BasicMeta'
-        detailed:
-          $ref: '#/components/schemas/DetailedMetaGet'
-        custom:
-          $ref: '#/components/schemas/MetaCustom'
-        dates:
-          $ref: '#/components/schemas/DatesMeta'
-        fields:
-          items:
-            $ref: '#/components/schemas/Field'
-          title: Fields
-          type: array
-        children:
-          items:
-            $ref: '#/components/schemas/MetaChildren'
-          title: Children
-          type: array
-        parent_uuid:
-          title: Parent Uuid
-          type: string
-      required:
-      - basic
-      - detailed
-      - uuid
-      title: MetaGet
-      type: object
-    MetaSlugger:
-      description: Meta slugger
-      example:
-        name: name
-      properties:
-        name:
-          title: Name
-          type: string
-      required:
-      - name
-      title: MetaSlugger
-      type: object
-    OptionGroup:
-      description: Option Group
-      example:
-        selections:
-        - name: name
-          icon: icon
-          value: 1.4658129805029452
-        - name: name
-          icon: icon
-          value: 1.4658129805029452
-        name: name
-        type: type
-      properties:
-        name:
-          title: Name
-          type: string
-        type:
-          title: Type
-          type: string
-        selections:
-          items:
-            $ref: '#/components/schemas/Selection'
-          title: Selections
-          type: array
-      title: OptionGroup
-      type: object
-    Options:
-      description: Options
-      example:
-        color: color
-        insetLabel: insetLabel
-        icon: icon
-        caption: caption
-        label: label
-        counter: true
-        type: type
-        required: true
-        selections:
-        - selections:
-          - name: name
-            icon: icon
-            value: 1.4658129805029452
-          - name: name
-            icon: icon
-            value: 1.4658129805029452
-          name: name
-          type: type
-        - selections:
-          - name: name
-            icon: icon
-            value: 1.4658129805029452
-          - name: name
-            icon: icon
-            value: 1.4658129805029452
-          name: name
-          type: type
-        size: size
-        hint: hint
-        iconPosition: iconPosition
-        placeholder: placeholder
-        maxLength: 6.027456183070403
-      properties:
-        required:
-          title: Required
-          type: boolean
-        label:
-          title: Label
-          type: string
-        insetLabel:
-          title: Insetlabel
-          type: string
-        placeholder:
-          title: Placeholder
-          type: string
-        hint:
-          title: Hint
-          type: string
-        icon:
-          title: Icon
-          type: string
-        maxLength:
-          title: Maxlength
-          type: number
-        counter:
-          title: Counter
-          type: boolean
-        caption:
-          title: Caption
-          type: string
-        color:
-          title: Color
-          type: string
-        size:
-          title: Size
-          type: string
-        type:
-          title: Type
-          type: string
-        iconPosition:
-          title: Iconposition
-          type: string
-        selections:
-          items:
-            $ref: '#/components/schemas/OptionGroup'
-          title: Selections
-          type: array
-      title: Options
-      type: object
-    Selection:
-      description: Selection Model
-      example:
-        name: name
-        icon: icon
-        value: 1.4658129805029452
-      properties:
-        name:
-          title: Name
-          type: string
-        value:
-          title: Value
-          type: number
-        icon:
-          title: Icon
-          type: string
-      title: Selection
-      type: object
-    Validations:
-      description: Validations
-      example:
-        value:
-        - value
-        - value
-      properties:
-        value:
-          items:
-            type: string
-          title: Value
-          type: array
-      title: Validations
       type: object
     NoteBase:
       description: |-
@@ -15399,6 +14995,18 @@ components:
       required:
       - author
       title: NoteMeta
+      type: object
+    Slugger:
+      description: Meta slugger
+      example:
+        name: name
+      properties:
+        name:
+          title: Name
+          type: string
+      required:
+      - name
+      title: Slugger
       type: object
     AddressBase:
       description: |-
@@ -18871,6 +18479,96 @@ components:
         message:
           type: string
       type: object
+    updateNote_200_response:
+      example:
+        message:
+          message: Note updated
+      properties:
+        message:
+          type: string
+      type: object
+    deleteNote_200_response:
+      example:
+        message:
+          message: Deleted note.
+          deleted_note_versions: []
+      properties:
+        message:
+          type: string
+      type: object
+    createNote_200_response:
+      example:
+        message:
+          note_id: <note_id>
+      properties:
+        message:
+          type: string
+      type: object
+    updateField_200_response:
+      example:
+        message:
+          message: Field updated
+      properties:
+        message:
+          type: string
+      type: object
+    deleteField_200_response:
+      example:
+        message:
+          message: Deleted field
+      properties:
+        message:
+          type: string
+      type: object
+    createField_200_response:
+      example:
+        message:
+          field_id: <field_id>
+      properties:
+        message:
+          type: string
+      type: object
+    updateMeta_200_response:
+      example:
+        message:
+          message: Meta updated
+      properties:
+        message:
+          type: string
+      type: object
+    deleteMeta_200_response:
+      example:
+        message:
+          message: Deleted meta
+      properties:
+        message:
+          type: string
+      type: object
+    createMeta_200_response:
+      example:
+        message:
+          meta_id: <meta_id>
+      properties:
+        message:
+          type: string
+      type: object
+    touchMeta_200_response:
+      example:
+        message:
+          message: Touched meta
+      properties:
+        message:
+          type: string
+      type: object
+    createSlug_200_response:
+      example:
+        message:
+          message: Created slug
+          slug: <slug>
+      properties:
+        message:
+          type: string
+      type: object
     Response_Archiveproject:
       example:
         message: Archived project
@@ -18978,6 +18676,10 @@ components:
       allOf:
       - $ref: '#/components/schemas/DetailedMeta'
       title: Detailed
+    Dates:
+      allOf:
+      - $ref: '#/components/schemas/DatesMeta'
+      title: Dates
     Company:
       allOf:
       - $ref: '#/components/schemas/CompanyBase'

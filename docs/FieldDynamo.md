@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Uuid** | **string** |  | 
-**Type** | Pointer to **int32** |  | [optional] 
+**Type** | Pointer to **map[string]interface{}** |  | [optional] 
 **Placeholder** | Pointer to **string** |  | [optional] 
-**Validations** | Pointer to [**Validations**](Validations.md) |  | [optional] 
+**Validations** | Pointer to **map[string]interface{}** |  | [optional] 
 **Hint** | Pointer to **string** |  | [optional] 
 **Icon** | Pointer to **string** |  | [optional] 
 **Label** | Pointer to **string** |  | [optional] 
-**Options** | Pointer to [**Options**](Options.md) |  | [optional] 
+**Options** | Pointer to **map[string]interface{}** |  | [optional] 
+**Uuid** | **string** |  | 
 
 ## Methods
 
@@ -32,42 +32,22 @@ NewFieldDynamoWithDefaults instantiates a new FieldDynamo object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetUuid
-
-`func (o *FieldDynamo) GetUuid() string`
-
-GetUuid returns the Uuid field if non-nil, zero value otherwise.
-
-### GetUuidOk
-
-`func (o *FieldDynamo) GetUuidOk() (*string, bool)`
-
-GetUuidOk returns a tuple with the Uuid field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUuid
-
-`func (o *FieldDynamo) SetUuid(v string)`
-
-SetUuid sets Uuid field to given value.
-
-
 ### GetType
 
-`func (o *FieldDynamo) GetType() int32`
+`func (o *FieldDynamo) GetType() map[string]interface{}`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *FieldDynamo) GetTypeOk() (*int32, bool)`
+`func (o *FieldDynamo) GetTypeOk() (*map[string]interface{}, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *FieldDynamo) SetType(v int32)`
+`func (o *FieldDynamo) SetType(v map[string]interface{})`
 
 SetType sets Type field to given value.
 
@@ -104,20 +84,20 @@ HasPlaceholder returns a boolean if a field has been set.
 
 ### GetValidations
 
-`func (o *FieldDynamo) GetValidations() Validations`
+`func (o *FieldDynamo) GetValidations() map[string]interface{}`
 
 GetValidations returns the Validations field if non-nil, zero value otherwise.
 
 ### GetValidationsOk
 
-`func (o *FieldDynamo) GetValidationsOk() (*Validations, bool)`
+`func (o *FieldDynamo) GetValidationsOk() (*map[string]interface{}, bool)`
 
 GetValidationsOk returns a tuple with the Validations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValidations
 
-`func (o *FieldDynamo) SetValidations(v Validations)`
+`func (o *FieldDynamo) SetValidations(v map[string]interface{})`
 
 SetValidations sets Validations field to given value.
 
@@ -204,20 +184,20 @@ HasLabel returns a boolean if a field has been set.
 
 ### GetOptions
 
-`func (o *FieldDynamo) GetOptions() Options`
+`func (o *FieldDynamo) GetOptions() map[string]interface{}`
 
 GetOptions returns the Options field if non-nil, zero value otherwise.
 
 ### GetOptionsOk
 
-`func (o *FieldDynamo) GetOptionsOk() (*Options, bool)`
+`func (o *FieldDynamo) GetOptionsOk() (*map[string]interface{}, bool)`
 
 GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOptions
 
-`func (o *FieldDynamo) SetOptions(v Options)`
+`func (o *FieldDynamo) SetOptions(v map[string]interface{})`
 
 SetOptions sets Options field to given value.
 
@@ -226,6 +206,26 @@ SetOptions sets Options field to given value.
 `func (o *FieldDynamo) HasOptions() bool`
 
 HasOptions returns a boolean if a field has been set.
+
+### GetUuid
+
+`func (o *FieldDynamo) GetUuid() string`
+
+GetUuid returns the Uuid field if non-nil, zero value otherwise.
+
+### GetUuidOk
+
+`func (o *FieldDynamo) GetUuidOk() (*string, bool)`
+
+GetUuidOk returns a tuple with the Uuid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUuid
+
+`func (o *FieldDynamo) SetUuid(v string)`
+
+SetUuid sets Uuid field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

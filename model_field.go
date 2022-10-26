@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.111
+eHelply SDK - 1.1.112
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.111
+API version: 1.1.112
 Contact: support@ehelply.com
 */
 
@@ -17,14 +17,13 @@ import (
 
 // Field Field
 type Field struct {
-	Uuid *string `json:"uuid,omitempty"`
-	Type *int32 `json:"type,omitempty"`
+	Type map[string]interface{} `json:"type,omitempty"`
 	Placeholder *string `json:"placeholder,omitempty"`
-	Validations *Validations `json:"validations,omitempty"`
+	Validations map[string]interface{} `json:"validations,omitempty"`
 	Hint *string `json:"hint,omitempty"`
 	Icon *string `json:"icon,omitempty"`
 	Label *string `json:"label,omitempty"`
-	Options *Options `json:"options,omitempty"`
+	Options map[string]interface{} `json:"options,omitempty"`
 }
 
 // NewField instantiates a new Field object
@@ -44,50 +43,18 @@ func NewFieldWithDefaults() *Field {
 	return &this
 }
 
-// GetUuid returns the Uuid field value if set, zero value otherwise.
-func (o *Field) GetUuid() string {
-	if o == nil || o.Uuid == nil {
-		var ret string
-		return ret
-	}
-	return *o.Uuid
-}
-
-// GetUuidOk returns a tuple with the Uuid field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Field) GetUuidOk() (*string, bool) {
-	if o == nil || o.Uuid == nil {
-		return nil, false
-	}
-	return o.Uuid, true
-}
-
-// HasUuid returns a boolean if a field has been set.
-func (o *Field) HasUuid() bool {
-	if o != nil && o.Uuid != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetUuid gets a reference to the given string and assigns it to the Uuid field.
-func (o *Field) SetUuid(v string) {
-	o.Uuid = &v
-}
-
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *Field) GetType() int32 {
+func (o *Field) GetType() map[string]interface{} {
 	if o == nil || o.Type == nil {
-		var ret int32
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Type
+	return o.Type
 }
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Field) GetTypeOk() (*int32, bool) {
+func (o *Field) GetTypeOk() (map[string]interface{}, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -103,9 +70,9 @@ func (o *Field) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given int32 and assigns it to the Type field.
-func (o *Field) SetType(v int32) {
-	o.Type = &v
+// SetType gets a reference to the given map[string]interface{} and assigns it to the Type field.
+func (o *Field) SetType(v map[string]interface{}) {
+	o.Type = v
 }
 
 // GetPlaceholder returns the Placeholder field value if set, zero value otherwise.
@@ -141,17 +108,17 @@ func (o *Field) SetPlaceholder(v string) {
 }
 
 // GetValidations returns the Validations field value if set, zero value otherwise.
-func (o *Field) GetValidations() Validations {
+func (o *Field) GetValidations() map[string]interface{} {
 	if o == nil || o.Validations == nil {
-		var ret Validations
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Validations
+	return o.Validations
 }
 
 // GetValidationsOk returns a tuple with the Validations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Field) GetValidationsOk() (*Validations, bool) {
+func (o *Field) GetValidationsOk() (map[string]interface{}, bool) {
 	if o == nil || o.Validations == nil {
 		return nil, false
 	}
@@ -167,9 +134,9 @@ func (o *Field) HasValidations() bool {
 	return false
 }
 
-// SetValidations gets a reference to the given Validations and assigns it to the Validations field.
-func (o *Field) SetValidations(v Validations) {
-	o.Validations = &v
+// SetValidations gets a reference to the given map[string]interface{} and assigns it to the Validations field.
+func (o *Field) SetValidations(v map[string]interface{}) {
+	o.Validations = v
 }
 
 // GetHint returns the Hint field value if set, zero value otherwise.
@@ -269,17 +236,17 @@ func (o *Field) SetLabel(v string) {
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
-func (o *Field) GetOptions() Options {
+func (o *Field) GetOptions() map[string]interface{} {
 	if o == nil || o.Options == nil {
-		var ret Options
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Options
+	return o.Options
 }
 
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Field) GetOptionsOk() (*Options, bool) {
+func (o *Field) GetOptionsOk() (map[string]interface{}, bool) {
 	if o == nil || o.Options == nil {
 		return nil, false
 	}
@@ -295,16 +262,13 @@ func (o *Field) HasOptions() bool {
 	return false
 }
 
-// SetOptions gets a reference to the given Options and assigns it to the Options field.
-func (o *Field) SetOptions(v Options) {
-	o.Options = &v
+// SetOptions gets a reference to the given map[string]interface{} and assigns it to the Options field.
+func (o *Field) SetOptions(v map[string]interface{}) {
+	o.Options = v
 }
 
 func (o Field) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Uuid != nil {
-		toSerialize["uuid"] = o.Uuid
-	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}

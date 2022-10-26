@@ -6,10 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Basic** | Pointer to [**Basic**](Basic.md) |  | [optional] 
 **Detailed** | Pointer to [**Detailed**](Detailed.md) |  | [optional] 
-**Custom** | Pointer to [**MetaCustom**](MetaCustom.md) |  | [optional] 
-**Dates** | Pointer to [**DatesMeta**](DatesMeta.md) |  | [optional] 
+**Custom** | Pointer to **map[string]interface{}** |  | [optional] [default to {}]
+**Dates** | Pointer to [**Dates**](Dates.md) |  | [optional] 
 **Fields** | Pointer to [**[]Field**](Field.md) |  | [optional] 
-**Children** | Pointer to [**[]MetaChildren**](MetaChildren.md) |  | [optional] [default to []]
+**Children** | Pointer to **[]map[string]interface{}** |  | [optional] 
 **ParentUuid** | Pointer to **string** |  | [optional] 
 **Uuid** | **string** |  | 
 
@@ -84,20 +84,20 @@ HasDetailed returns a boolean if a field has been set.
 
 ### GetCustom
 
-`func (o *MetaDynamo) GetCustom() MetaCustom`
+`func (o *MetaDynamo) GetCustom() map[string]interface{}`
 
 GetCustom returns the Custom field if non-nil, zero value otherwise.
 
 ### GetCustomOk
 
-`func (o *MetaDynamo) GetCustomOk() (*MetaCustom, bool)`
+`func (o *MetaDynamo) GetCustomOk() (*map[string]interface{}, bool)`
 
 GetCustomOk returns a tuple with the Custom field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCustom
 
-`func (o *MetaDynamo) SetCustom(v MetaCustom)`
+`func (o *MetaDynamo) SetCustom(v map[string]interface{})`
 
 SetCustom sets Custom field to given value.
 
@@ -109,20 +109,20 @@ HasCustom returns a boolean if a field has been set.
 
 ### GetDates
 
-`func (o *MetaDynamo) GetDates() DatesMeta`
+`func (o *MetaDynamo) GetDates() Dates`
 
 GetDates returns the Dates field if non-nil, zero value otherwise.
 
 ### GetDatesOk
 
-`func (o *MetaDynamo) GetDatesOk() (*DatesMeta, bool)`
+`func (o *MetaDynamo) GetDatesOk() (*Dates, bool)`
 
 GetDatesOk returns a tuple with the Dates field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDates
 
-`func (o *MetaDynamo) SetDates(v DatesMeta)`
+`func (o *MetaDynamo) SetDates(v Dates)`
 
 SetDates sets Dates field to given value.
 
@@ -159,20 +159,20 @@ HasFields returns a boolean if a field has been set.
 
 ### GetChildren
 
-`func (o *MetaDynamo) GetChildren() []MetaChildren`
+`func (o *MetaDynamo) GetChildren() []map[string]interface{}`
 
 GetChildren returns the Children field if non-nil, zero value otherwise.
 
 ### GetChildrenOk
 
-`func (o *MetaDynamo) GetChildrenOk() (*[]MetaChildren, bool)`
+`func (o *MetaDynamo) GetChildrenOk() (*[]map[string]interface{}, bool)`
 
 GetChildrenOk returns a tuple with the Children field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetChildren
 
-`func (o *MetaDynamo) SetChildren(v []MetaChildren)`
+`func (o *MetaDynamo) SetChildren(v []map[string]interface{})`
 
 SetChildren sets Children field to given value.
 

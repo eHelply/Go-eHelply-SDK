@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.111
+eHelply SDK - 1.1.112
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.111
+API version: 1.1.112
 Contact: support@ehelply.com
 */
 
@@ -15,31 +15,31 @@ import (
 	"encoding/json"
 )
 
-// MetaSlugger Meta slugger
-type MetaSlugger struct {
+// Slugger Meta slugger
+type Slugger struct {
 	Name string `json:"name"`
 }
 
-// NewMetaSlugger instantiates a new MetaSlugger object
+// NewSlugger instantiates a new Slugger object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMetaSlugger(name string) *MetaSlugger {
-	this := MetaSlugger{}
+func NewSlugger(name string) *Slugger {
+	this := Slugger{}
 	this.Name = name
 	return &this
 }
 
-// NewMetaSluggerWithDefaults instantiates a new MetaSlugger object
+// NewSluggerWithDefaults instantiates a new Slugger object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewMetaSluggerWithDefaults() *MetaSlugger {
-	this := MetaSlugger{}
+func NewSluggerWithDefaults() *Slugger {
+	this := Slugger{}
 	return &this
 }
 
 // GetName returns the Name field value
-func (o *MetaSlugger) GetName() string {
+func (o *Slugger) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -50,7 +50,7 @@ func (o *MetaSlugger) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *MetaSlugger) GetNameOk() (*string, bool) {
+func (o *Slugger) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -58,11 +58,11 @@ func (o *MetaSlugger) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *MetaSlugger) SetName(v string) {
+func (o *Slugger) SetName(v string) {
 	o.Name = v
 }
 
-func (o MetaSlugger) MarshalJSON() ([]byte, error) {
+func (o Slugger) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["name"] = o.Name
@@ -70,38 +70,38 @@ func (o MetaSlugger) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableMetaSlugger struct {
-	value *MetaSlugger
+type NullableSlugger struct {
+	value *Slugger
 	isSet bool
 }
 
-func (v NullableMetaSlugger) Get() *MetaSlugger {
+func (v NullableSlugger) Get() *Slugger {
 	return v.value
 }
 
-func (v *NullableMetaSlugger) Set(val *MetaSlugger) {
+func (v *NullableSlugger) Set(val *Slugger) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableMetaSlugger) IsSet() bool {
+func (v NullableSlugger) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableMetaSlugger) Unset() {
+func (v *NullableSlugger) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableMetaSlugger(val *MetaSlugger) *NullableMetaSlugger {
-	return &NullableMetaSlugger{value: val, isSet: true}
+func NewNullableSlugger(val *Slugger) *NullableSlugger {
+	return &NullableSlugger{value: val, isSet: true}
 }
 
-func (v NullableMetaSlugger) MarshalJSON() ([]byte, error) {
+func (v NullableSlugger) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableMetaSlugger) UnmarshalJSON(src []byte) error {
+func (v *NullableSlugger) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

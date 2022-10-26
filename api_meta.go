@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.111
+eHelply SDK - 1.1.112
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.111
+API version: 1.1.112
 Contact: support@ehelply.com
 */
 
@@ -24,182 +24,11 @@ import (
 // MetaApiService MetaApi service
 type MetaApiService service
 
-type ApiCreateFieldRequest struct {
-	ctx context.Context
-	ApiService *MetaApiService
-	field *Field
-	xAccessToken *string
-	xSecretToken *string
-	authorization *string
-	ehelplyActiveParticipant *string
-	ehelplyProject *string
-	ehelplyData *string
-}
-
-func (r ApiCreateFieldRequest) Field(field Field) ApiCreateFieldRequest {
-	r.field = &field
-	return r
-}
-
-func (r ApiCreateFieldRequest) XAccessToken(xAccessToken string) ApiCreateFieldRequest {
-	r.xAccessToken = &xAccessToken
-	return r
-}
-
-func (r ApiCreateFieldRequest) XSecretToken(xSecretToken string) ApiCreateFieldRequest {
-	r.xSecretToken = &xSecretToken
-	return r
-}
-
-func (r ApiCreateFieldRequest) Authorization(authorization string) ApiCreateFieldRequest {
-	r.authorization = &authorization
-	return r
-}
-
-func (r ApiCreateFieldRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiCreateFieldRequest {
-	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
-	return r
-}
-
-func (r ApiCreateFieldRequest) EhelplyProject(ehelplyProject string) ApiCreateFieldRequest {
-	r.ehelplyProject = &ehelplyProject
-	return r
-}
-
-func (r ApiCreateFieldRequest) EhelplyData(ehelplyData string) ApiCreateFieldRequest {
-	r.ehelplyData = &ehelplyData
-	return r
-}
-
-func (r ApiCreateFieldRequest) Execute() (*FieldDynamo, *http.Response, error) {
-	return r.ApiService.CreateFieldExecute(r)
-}
-
-/*
-CreateField Create Field
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateFieldRequest
-*/
-func (a *MetaApiService) CreateField(ctx context.Context) ApiCreateFieldRequest {
-	return ApiCreateFieldRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return FieldDynamo
-func (a *MetaApiService) CreateFieldExecute(r ApiCreateFieldRequest) (*FieldDynamo, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FieldDynamo
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetaApiService.CreateField")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/meta/field"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.field == nil {
-		return localVarReturnValue, nil, reportError("field is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xAccessToken != nil {
-		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
-	}
-	if r.xSecretToken != nil {
-		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
-	}
-	if r.authorization != nil {
-		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
-	}
-	if r.ehelplyActiveParticipant != nil {
-		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
-	}
-	if r.ehelplyProject != nil {
-		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
-	}
-	if r.ehelplyData != nil {
-		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
-	}
-	// body params
-	localVarPostBody = r.field
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v HTTPValidationError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ApiCreateMetaRequest struct {
 	ctx context.Context
 	ApiService *MetaApiService
 	service string
-	typeStr string
+	typeName string
 	entityUuid string
 	metaCreate *MetaCreate
 	xAccessToken *string
@@ -245,37 +74,37 @@ func (r ApiCreateMetaRequest) EhelplyData(ehelplyData string) ApiCreateMetaReque
 	return r
 }
 
-func (r ApiCreateMetaRequest) Execute() (*MetaDynamo, *http.Response, error) {
+func (r ApiCreateMetaRequest) Execute() (*CreateMeta200Response, *http.Response, error) {
 	return r.ApiService.CreateMetaExecute(r)
 }
 
 /*
-CreateMeta Create Meta
+CreateMeta Createmeta
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param service
- @param typeStr
+ @param typeName
  @param entityUuid
  @return ApiCreateMetaRequest
 */
-func (a *MetaApiService) CreateMeta(ctx context.Context, service string, typeStr string, entityUuid string) ApiCreateMetaRequest {
+func (a *MetaApiService) CreateMeta(ctx context.Context, service string, typeName string, entityUuid string) ApiCreateMetaRequest {
 	return ApiCreateMetaRequest{
 		ApiService: a,
 		ctx: ctx,
 		service: service,
-		typeStr: typeStr,
+		typeName: typeName,
 		entityUuid: entityUuid,
 	}
 }
 
 // Execute executes the request
-//  @return MetaDynamo
-func (a *MetaApiService) CreateMetaExecute(r ApiCreateMetaRequest) (*MetaDynamo, *http.Response, error) {
+//  @return CreateMeta200Response
+func (a *MetaApiService) CreateMetaExecute(r ApiCreateMetaRequest) (*CreateMeta200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *MetaDynamo
+		localVarReturnValue  *CreateMeta200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetaApiService.CreateMeta")
@@ -283,9 +112,9 @@ func (a *MetaApiService) CreateMetaExecute(r ApiCreateMetaRequest) (*MetaDynamo,
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/meta/meta/service/{service}/type/{type_str}/entity/{entity_uuid}"
+	localVarPath := localBasePath + "/meta/meta/service/{service}/type/{type_name}/entity/{entity_uuid}"
 	localVarPath = strings.Replace(localVarPath, "{"+"service"+"}", url.PathEscape(parameterToString(r.service, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"type_str"+"}", url.PathEscape(parameterToString(r.typeStr, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"type_name"+"}", url.PathEscape(parameterToString(r.typeName, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"entity_uuid"+"}", url.PathEscape(parameterToString(r.entityUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -354,6 +183,26 @@ func (a *MetaApiService) CreateMetaExecute(r ApiCreateMetaRequest) (*MetaDynamo,
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v HTTPValidationError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -378,11 +227,10 @@ func (a *MetaApiService) CreateMetaExecute(r ApiCreateMetaRequest) (*MetaDynamo,
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteFieldRequest struct {
+type ApiCreateSlugRequest struct {
 	ctx context.Context
 	ApiService *MetaApiService
-	fieldUuid string
-	softDelete *bool
+	slugger *Slugger
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -391,87 +239,84 @@ type ApiDeleteFieldRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiDeleteFieldRequest) SoftDelete(softDelete bool) ApiDeleteFieldRequest {
-	r.softDelete = &softDelete
+func (r ApiCreateSlugRequest) Slugger(slugger Slugger) ApiCreateSlugRequest {
+	r.slugger = &slugger
 	return r
 }
 
-func (r ApiDeleteFieldRequest) XAccessToken(xAccessToken string) ApiDeleteFieldRequest {
+func (r ApiCreateSlugRequest) XAccessToken(xAccessToken string) ApiCreateSlugRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiDeleteFieldRequest) XSecretToken(xSecretToken string) ApiDeleteFieldRequest {
+func (r ApiCreateSlugRequest) XSecretToken(xSecretToken string) ApiCreateSlugRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiDeleteFieldRequest) Authorization(authorization string) ApiDeleteFieldRequest {
+func (r ApiCreateSlugRequest) Authorization(authorization string) ApiCreateSlugRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiDeleteFieldRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiDeleteFieldRequest {
+func (r ApiCreateSlugRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiCreateSlugRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiDeleteFieldRequest) EhelplyProject(ehelplyProject string) ApiDeleteFieldRequest {
+func (r ApiCreateSlugRequest) EhelplyProject(ehelplyProject string) ApiCreateSlugRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiDeleteFieldRequest) EhelplyData(ehelplyData string) ApiDeleteFieldRequest {
+func (r ApiCreateSlugRequest) EhelplyData(ehelplyData string) ApiCreateSlugRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiDeleteFieldRequest) Execute() (interface{}, *http.Response, error) {
-	return r.ApiService.DeleteFieldExecute(r)
+func (r ApiCreateSlugRequest) Execute() (*CreateSlug200Response, *http.Response, error) {
+	return r.ApiService.CreateSlugExecute(r)
 }
 
 /*
-DeleteField Delete Field
+CreateSlug Createslug
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param fieldUuid
- @return ApiDeleteFieldRequest
+ @return ApiCreateSlugRequest
 */
-func (a *MetaApiService) DeleteField(ctx context.Context, fieldUuid string) ApiDeleteFieldRequest {
-	return ApiDeleteFieldRequest{
+func (a *MetaApiService) CreateSlug(ctx context.Context) ApiCreateSlugRequest {
+	return ApiCreateSlugRequest{
 		ApiService: a,
 		ctx: ctx,
-		fieldUuid: fieldUuid,
 	}
 }
 
 // Execute executes the request
-//  @return interface{}
-func (a *MetaApiService) DeleteFieldExecute(r ApiDeleteFieldRequest) (interface{}, *http.Response, error) {
+//  @return CreateSlug200Response
+func (a *MetaApiService) CreateSlugExecute(r ApiCreateSlugRequest) (*CreateSlug200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  interface{}
+		localVarReturnValue  *CreateSlug200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetaApiService.DeleteField")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetaApiService.CreateSlug")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/meta/field/{field_uuid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"field_uuid"+"}", url.PathEscape(parameterToString(r.fieldUuid, "")), -1)
+	localVarPath := localBasePath + "/meta/slug"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-
-	if r.softDelete != nil {
-		localVarQueryParams.Add("soft_delete", parameterToString(*r.softDelete, ""))
+	if r.slugger == nil {
+		return localVarReturnValue, nil, reportError("slugger is required and must be specified")
 	}
+
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -505,6 +350,8 @@ func (a *MetaApiService) DeleteFieldExecute(r ApiDeleteFieldRequest) (interface{
 	if r.ehelplyData != nil {
 		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
 	}
+	// body params
+	localVarPostBody = r.slugger
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -526,6 +373,26 @@ func (a *MetaApiService) DeleteFieldExecute(r ApiDeleteFieldRequest) (interface{
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v HTTPValidationError
@@ -554,9 +421,7 @@ func (a *MetaApiService) DeleteFieldExecute(r ApiDeleteFieldRequest) (interface{
 type ApiDeleteMetaRequest struct {
 	ctx context.Context
 	ApiService *MetaApiService
-	service string
-	typeStr string
-	entityUuid string
+	metaUuid string
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -595,189 +460,19 @@ func (r ApiDeleteMetaRequest) EhelplyData(ehelplyData string) ApiDeleteMetaReque
 	return r
 }
 
-func (r ApiDeleteMetaRequest) Execute() (interface{}, *http.Response, error) {
+func (r ApiDeleteMetaRequest) Execute() (*DeleteMeta200Response, *http.Response, error) {
 	return r.ApiService.DeleteMetaExecute(r)
 }
 
 /*
-DeleteMeta Delete Meta
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param service
- @param typeStr
- @param entityUuid
- @return ApiDeleteMetaRequest
-*/
-func (a *MetaApiService) DeleteMeta(ctx context.Context, service string, typeStr string, entityUuid string) ApiDeleteMetaRequest {
-	return ApiDeleteMetaRequest{
-		ApiService: a,
-		ctx: ctx,
-		service: service,
-		typeStr: typeStr,
-		entityUuid: entityUuid,
-	}
-}
-
-// Execute executes the request
-//  @return interface{}
-func (a *MetaApiService) DeleteMetaExecute(r ApiDeleteMetaRequest) (interface{}, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  interface{}
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetaApiService.DeleteMeta")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/meta/meta/service/{service}/type/{type_str}/entity/{entity_uuid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"service"+"}", url.PathEscape(parameterToString(r.service, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"type_str"+"}", url.PathEscape(parameterToString(r.typeStr, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"entity_uuid"+"}", url.PathEscape(parameterToString(r.entityUuid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xAccessToken != nil {
-		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
-	}
-	if r.xSecretToken != nil {
-		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
-	}
-	if r.authorization != nil {
-		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
-	}
-	if r.ehelplyActiveParticipant != nil {
-		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
-	}
-	if r.ehelplyProject != nil {
-		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
-	}
-	if r.ehelplyData != nil {
-		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v HTTPValidationError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiDeleteMetaFromUuidRequest struct {
-	ctx context.Context
-	ApiService *MetaApiService
-	metaUuid string
-	xAccessToken *string
-	xSecretToken *string
-	authorization *string
-	ehelplyActiveParticipant *string
-	ehelplyProject *string
-	ehelplyData *string
-}
-
-func (r ApiDeleteMetaFromUuidRequest) XAccessToken(xAccessToken string) ApiDeleteMetaFromUuidRequest {
-	r.xAccessToken = &xAccessToken
-	return r
-}
-
-func (r ApiDeleteMetaFromUuidRequest) XSecretToken(xSecretToken string) ApiDeleteMetaFromUuidRequest {
-	r.xSecretToken = &xSecretToken
-	return r
-}
-
-func (r ApiDeleteMetaFromUuidRequest) Authorization(authorization string) ApiDeleteMetaFromUuidRequest {
-	r.authorization = &authorization
-	return r
-}
-
-func (r ApiDeleteMetaFromUuidRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiDeleteMetaFromUuidRequest {
-	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
-	return r
-}
-
-func (r ApiDeleteMetaFromUuidRequest) EhelplyProject(ehelplyProject string) ApiDeleteMetaFromUuidRequest {
-	r.ehelplyProject = &ehelplyProject
-	return r
-}
-
-func (r ApiDeleteMetaFromUuidRequest) EhelplyData(ehelplyData string) ApiDeleteMetaFromUuidRequest {
-	r.ehelplyData = &ehelplyData
-	return r
-}
-
-func (r ApiDeleteMetaFromUuidRequest) Execute() (interface{}, *http.Response, error) {
-	return r.ApiService.DeleteMetaFromUuidExecute(r)
-}
-
-/*
-DeleteMetaFromUuid Delete Meta From Uuid
+DeleteMeta Deletemeta
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param metaUuid
- @return ApiDeleteMetaFromUuidRequest
+ @return ApiDeleteMetaRequest
 */
-func (a *MetaApiService) DeleteMetaFromUuid(ctx context.Context, metaUuid string) ApiDeleteMetaFromUuidRequest {
-	return ApiDeleteMetaFromUuidRequest{
+func (a *MetaApiService) DeleteMeta(ctx context.Context, metaUuid string) ApiDeleteMetaRequest {
+	return ApiDeleteMetaRequest{
 		ApiService: a,
 		ctx: ctx,
 		metaUuid: metaUuid,
@@ -785,16 +480,16 @@ func (a *MetaApiService) DeleteMetaFromUuid(ctx context.Context, metaUuid string
 }
 
 // Execute executes the request
-//  @return interface{}
-func (a *MetaApiService) DeleteMetaFromUuidExecute(r ApiDeleteMetaFromUuidRequest) (interface{}, *http.Response, error) {
+//  @return DeleteMeta200Response
+func (a *MetaApiService) DeleteMetaExecute(r ApiDeleteMetaRequest) (*DeleteMeta200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  interface{}
+		localVarReturnValue  *DeleteMeta200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetaApiService.DeleteMetaFromUuid")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetaApiService.DeleteMeta")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -863,6 +558,26 @@ func (a *MetaApiService) DeleteMetaFromUuidExecute(r ApiDeleteMetaFromUuidReques
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v HTTPValidationError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -887,10 +602,12 @@ func (a *MetaApiService) DeleteMetaFromUuidExecute(r ApiDeleteMetaFromUuidReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetFieldRequest struct {
+type ApiDeleteMetaFromPartsRequest struct {
 	ctx context.Context
 	ApiService *MetaApiService
-	fieldUuid string
+	service string
+	typeName string
+	entityUuid string
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -899,72 +616,78 @@ type ApiGetFieldRequest struct {
 	ehelplyData *string
 }
 
-func (r ApiGetFieldRequest) XAccessToken(xAccessToken string) ApiGetFieldRequest {
+func (r ApiDeleteMetaFromPartsRequest) XAccessToken(xAccessToken string) ApiDeleteMetaFromPartsRequest {
 	r.xAccessToken = &xAccessToken
 	return r
 }
 
-func (r ApiGetFieldRequest) XSecretToken(xSecretToken string) ApiGetFieldRequest {
+func (r ApiDeleteMetaFromPartsRequest) XSecretToken(xSecretToken string) ApiDeleteMetaFromPartsRequest {
 	r.xSecretToken = &xSecretToken
 	return r
 }
 
-func (r ApiGetFieldRequest) Authorization(authorization string) ApiGetFieldRequest {
+func (r ApiDeleteMetaFromPartsRequest) Authorization(authorization string) ApiDeleteMetaFromPartsRequest {
 	r.authorization = &authorization
 	return r
 }
 
-func (r ApiGetFieldRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiGetFieldRequest {
+func (r ApiDeleteMetaFromPartsRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiDeleteMetaFromPartsRequest {
 	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
 	return r
 }
 
-func (r ApiGetFieldRequest) EhelplyProject(ehelplyProject string) ApiGetFieldRequest {
+func (r ApiDeleteMetaFromPartsRequest) EhelplyProject(ehelplyProject string) ApiDeleteMetaFromPartsRequest {
 	r.ehelplyProject = &ehelplyProject
 	return r
 }
 
-func (r ApiGetFieldRequest) EhelplyData(ehelplyData string) ApiGetFieldRequest {
+func (r ApiDeleteMetaFromPartsRequest) EhelplyData(ehelplyData string) ApiDeleteMetaFromPartsRequest {
 	r.ehelplyData = &ehelplyData
 	return r
 }
 
-func (r ApiGetFieldRequest) Execute() (*FieldDynamo, *http.Response, error) {
-	return r.ApiService.GetFieldExecute(r)
+func (r ApiDeleteMetaFromPartsRequest) Execute() (*DeleteMeta200Response, *http.Response, error) {
+	return r.ApiService.DeleteMetaFromPartsExecute(r)
 }
 
 /*
-GetField Get Field
+DeleteMetaFromParts Deletemetafromparts
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param fieldUuid
- @return ApiGetFieldRequest
+ @param service
+ @param typeName
+ @param entityUuid
+ @return ApiDeleteMetaFromPartsRequest
 */
-func (a *MetaApiService) GetField(ctx context.Context, fieldUuid string) ApiGetFieldRequest {
-	return ApiGetFieldRequest{
+func (a *MetaApiService) DeleteMetaFromParts(ctx context.Context, service string, typeName string, entityUuid string) ApiDeleteMetaFromPartsRequest {
+	return ApiDeleteMetaFromPartsRequest{
 		ApiService: a,
 		ctx: ctx,
-		fieldUuid: fieldUuid,
+		service: service,
+		typeName: typeName,
+		entityUuid: entityUuid,
 	}
 }
 
 // Execute executes the request
-//  @return FieldDynamo
-func (a *MetaApiService) GetFieldExecute(r ApiGetFieldRequest) (*FieldDynamo, *http.Response, error) {
+//  @return DeleteMeta200Response
+func (a *MetaApiService) DeleteMetaFromPartsExecute(r ApiDeleteMetaFromPartsRequest) (*DeleteMeta200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *FieldDynamo
+		localVarReturnValue  *DeleteMeta200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetaApiService.GetField")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetaApiService.DeleteMetaFromParts")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/meta/field/{field_uuid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"field_uuid"+"}", url.PathEscape(parameterToString(r.fieldUuid, "")), -1)
+	localVarPath := localBasePath + "/meta/meta/service/{service}/type/{type_name}/entity/{entity_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"service"+"}", url.PathEscape(parameterToString(r.service, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"type_name"+"}", url.PathEscape(parameterToString(r.typeName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"entity_uuid"+"}", url.PathEscape(parameterToString(r.entityUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1027,6 +750,26 @@ func (a *MetaApiService) GetFieldExecute(r ApiGetFieldRequest) (*FieldDynamo, *h
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v HTTPValidationError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1054,12 +797,9 @@ func (a *MetaApiService) GetFieldExecute(r ApiGetFieldRequest) (*FieldDynamo, *h
 type ApiGetMetaRequest struct {
 	ctx context.Context
 	ApiService *MetaApiService
-	service string
-	typeStr string
-	entityUuid string
+	metaUuid string
 	detailed *bool
 	custom *bool
-	dates *bool
 	history *int32
 	xAccessToken *string
 	xSecretToken *string
@@ -1076,11 +816,6 @@ func (r ApiGetMetaRequest) Detailed(detailed bool) ApiGetMetaRequest {
 
 func (r ApiGetMetaRequest) Custom(custom bool) ApiGetMetaRequest {
 	r.custom = &custom
-	return r
-}
-
-func (r ApiGetMetaRequest) Dates(dates bool) ApiGetMetaRequest {
-	r.dates = &dates
 	return r
 }
 
@@ -1119,225 +854,19 @@ func (r ApiGetMetaRequest) EhelplyData(ehelplyData string) ApiGetMetaRequest {
 	return r
 }
 
-func (r ApiGetMetaRequest) Execute() (*MetaGet, *http.Response, error) {
+func (r ApiGetMetaRequest) Execute() (*MetaDynamo, *http.Response, error) {
 	return r.ApiService.GetMetaExecute(r)
 }
 
 /*
-GetMeta Get Meta
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param service
- @param typeStr
- @param entityUuid
- @return ApiGetMetaRequest
-*/
-func (a *MetaApiService) GetMeta(ctx context.Context, service string, typeStr string, entityUuid string) ApiGetMetaRequest {
-	return ApiGetMetaRequest{
-		ApiService: a,
-		ctx: ctx,
-		service: service,
-		typeStr: typeStr,
-		entityUuid: entityUuid,
-	}
-}
-
-// Execute executes the request
-//  @return MetaGet
-func (a *MetaApiService) GetMetaExecute(r ApiGetMetaRequest) (*MetaGet, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *MetaGet
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetaApiService.GetMeta")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/meta/meta/service/{service}/type/{type_str}/entity/{entity_uuid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"service"+"}", url.PathEscape(parameterToString(r.service, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"type_str"+"}", url.PathEscape(parameterToString(r.typeStr, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"entity_uuid"+"}", url.PathEscape(parameterToString(r.entityUuid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.detailed != nil {
-		localVarQueryParams.Add("detailed", parameterToString(*r.detailed, ""))
-	}
-	if r.custom != nil {
-		localVarQueryParams.Add("custom", parameterToString(*r.custom, ""))
-	}
-	if r.dates != nil {
-		localVarQueryParams.Add("dates", parameterToString(*r.dates, ""))
-	}
-	if r.history != nil {
-		localVarQueryParams.Add("history", parameterToString(*r.history, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xAccessToken != nil {
-		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
-	}
-	if r.xSecretToken != nil {
-		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
-	}
-	if r.authorization != nil {
-		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
-	}
-	if r.ehelplyActiveParticipant != nil {
-		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
-	}
-	if r.ehelplyProject != nil {
-		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
-	}
-	if r.ehelplyData != nil {
-		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v HTTPValidationError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetMetaFromUuidRequest struct {
-	ctx context.Context
-	ApiService *MetaApiService
-	metaUuid string
-	detailed *bool
-	custom *bool
-	dates *bool
-	history *int32
-	xAccessToken *string
-	xSecretToken *string
-	authorization *string
-	ehelplyActiveParticipant *string
-	ehelplyProject *string
-	ehelplyData *string
-}
-
-func (r ApiGetMetaFromUuidRequest) Detailed(detailed bool) ApiGetMetaFromUuidRequest {
-	r.detailed = &detailed
-	return r
-}
-
-func (r ApiGetMetaFromUuidRequest) Custom(custom bool) ApiGetMetaFromUuidRequest {
-	r.custom = &custom
-	return r
-}
-
-func (r ApiGetMetaFromUuidRequest) Dates(dates bool) ApiGetMetaFromUuidRequest {
-	r.dates = &dates
-	return r
-}
-
-func (r ApiGetMetaFromUuidRequest) History(history int32) ApiGetMetaFromUuidRequest {
-	r.history = &history
-	return r
-}
-
-func (r ApiGetMetaFromUuidRequest) XAccessToken(xAccessToken string) ApiGetMetaFromUuidRequest {
-	r.xAccessToken = &xAccessToken
-	return r
-}
-
-func (r ApiGetMetaFromUuidRequest) XSecretToken(xSecretToken string) ApiGetMetaFromUuidRequest {
-	r.xSecretToken = &xSecretToken
-	return r
-}
-
-func (r ApiGetMetaFromUuidRequest) Authorization(authorization string) ApiGetMetaFromUuidRequest {
-	r.authorization = &authorization
-	return r
-}
-
-func (r ApiGetMetaFromUuidRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiGetMetaFromUuidRequest {
-	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
-	return r
-}
-
-func (r ApiGetMetaFromUuidRequest) EhelplyProject(ehelplyProject string) ApiGetMetaFromUuidRequest {
-	r.ehelplyProject = &ehelplyProject
-	return r
-}
-
-func (r ApiGetMetaFromUuidRequest) EhelplyData(ehelplyData string) ApiGetMetaFromUuidRequest {
-	r.ehelplyData = &ehelplyData
-	return r
-}
-
-func (r ApiGetMetaFromUuidRequest) Execute() (*MetaGet, *http.Response, error) {
-	return r.ApiService.GetMetaFromUuidExecute(r)
-}
-
-/*
-GetMetaFromUuid Get Meta From Uuid
+GetMeta Getmeta
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param metaUuid
- @return ApiGetMetaFromUuidRequest
+ @return ApiGetMetaRequest
 */
-func (a *MetaApiService) GetMetaFromUuid(ctx context.Context, metaUuid string) ApiGetMetaFromUuidRequest {
-	return ApiGetMetaFromUuidRequest{
+func (a *MetaApiService) GetMeta(ctx context.Context, metaUuid string) ApiGetMetaRequest {
+	return ApiGetMetaRequest{
 		ApiService: a,
 		ctx: ctx,
 		metaUuid: metaUuid,
@@ -1345,16 +874,16 @@ func (a *MetaApiService) GetMetaFromUuid(ctx context.Context, metaUuid string) A
 }
 
 // Execute executes the request
-//  @return MetaGet
-func (a *MetaApiService) GetMetaFromUuidExecute(r ApiGetMetaFromUuidRequest) (*MetaGet, *http.Response, error) {
+//  @return MetaDynamo
+func (a *MetaApiService) GetMetaExecute(r ApiGetMetaRequest) (*MetaDynamo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *MetaGet
+		localVarReturnValue  *MetaDynamo
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetaApiService.GetMetaFromUuid")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetaApiService.GetMeta")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1372,8 +901,224 @@ func (a *MetaApiService) GetMetaFromUuidExecute(r ApiGetMetaFromUuidRequest) (*M
 	if r.custom != nil {
 		localVarQueryParams.Add("custom", parameterToString(*r.custom, ""))
 	}
-	if r.dates != nil {
-		localVarQueryParams.Add("dates", parameterToString(*r.dates, ""))
+	if r.history != nil {
+		localVarQueryParams.Add("history", parameterToString(*r.history, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetMetaFromPartsRequest struct {
+	ctx context.Context
+	ApiService *MetaApiService
+	service string
+	typeName string
+	entityUuid string
+	detailed *bool
+	custom *bool
+	history *int32
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
+}
+
+func (r ApiGetMetaFromPartsRequest) Detailed(detailed bool) ApiGetMetaFromPartsRequest {
+	r.detailed = &detailed
+	return r
+}
+
+func (r ApiGetMetaFromPartsRequest) Custom(custom bool) ApiGetMetaFromPartsRequest {
+	r.custom = &custom
+	return r
+}
+
+func (r ApiGetMetaFromPartsRequest) History(history int32) ApiGetMetaFromPartsRequest {
+	r.history = &history
+	return r
+}
+
+func (r ApiGetMetaFromPartsRequest) XAccessToken(xAccessToken string) ApiGetMetaFromPartsRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiGetMetaFromPartsRequest) XSecretToken(xSecretToken string) ApiGetMetaFromPartsRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiGetMetaFromPartsRequest) Authorization(authorization string) ApiGetMetaFromPartsRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiGetMetaFromPartsRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiGetMetaFromPartsRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiGetMetaFromPartsRequest) EhelplyProject(ehelplyProject string) ApiGetMetaFromPartsRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiGetMetaFromPartsRequest) EhelplyData(ehelplyData string) ApiGetMetaFromPartsRequest {
+	r.ehelplyData = &ehelplyData
+	return r
+}
+
+func (r ApiGetMetaFromPartsRequest) Execute() (*MetaDynamo, *http.Response, error) {
+	return r.ApiService.GetMetaFromPartsExecute(r)
+}
+
+/*
+GetMetaFromParts Getmetafromparts
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param service
+ @param typeName
+ @param entityUuid
+ @return ApiGetMetaFromPartsRequest
+*/
+func (a *MetaApiService) GetMetaFromParts(ctx context.Context, service string, typeName string, entityUuid string) ApiGetMetaFromPartsRequest {
+	return ApiGetMetaFromPartsRequest{
+		ApiService: a,
+		ctx: ctx,
+		service: service,
+		typeName: typeName,
+		entityUuid: entityUuid,
+	}
+}
+
+// Execute executes the request
+//  @return MetaDynamo
+func (a *MetaApiService) GetMetaFromPartsExecute(r ApiGetMetaFromPartsRequest) (*MetaDynamo, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *MetaDynamo
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetaApiService.GetMetaFromParts")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/meta/meta/service/{service}/type/{type_name}/entity/{entity_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"service"+"}", url.PathEscape(parameterToString(r.service, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"type_name"+"}", url.PathEscape(parameterToString(r.typeName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"entity_uuid"+"}", url.PathEscape(parameterToString(r.entityUuid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.detailed != nil {
+		localVarQueryParams.Add("detailed", parameterToString(*r.detailed, ""))
+	}
+	if r.custom != nil {
+		localVarQueryParams.Add("custom", parameterToString(*r.custom, ""))
 	}
 	if r.history != nil {
 		localVarQueryParams.Add("history", parameterToString(*r.history, ""))
@@ -1435,122 +1180,25 @@ func (a *MetaApiService) GetMetaFromUuidExecute(r ApiGetMetaFromUuidRequest) (*M
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v HTTPValidationError
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiMakeSlugRequest struct {
-	ctx context.Context
-	ApiService *MetaApiService
-	metaSlugger *MetaSlugger
-}
-
-func (r ApiMakeSlugRequest) MetaSlugger(metaSlugger MetaSlugger) ApiMakeSlugRequest {
-	r.metaSlugger = &metaSlugger
-	return r
-}
-
-func (r ApiMakeSlugRequest) Execute() (interface{}, *http.Response, error) {
-	return r.ApiService.MakeSlugExecute(r)
-}
-
-/*
-MakeSlug Make Slug
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiMakeSlugRequest
-*/
-func (a *MetaApiService) MakeSlug(ctx context.Context) ApiMakeSlugRequest {
-	return ApiMakeSlugRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return interface{}
-func (a *MetaApiService) MakeSlugExecute(r ApiMakeSlugRequest) (interface{}, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  interface{}
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetaApiService.MakeSlug")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/meta/meta/slug"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.metaSlugger == nil {
-		return localVarReturnValue, nil, reportError("metaSlugger is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.metaSlugger
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v HTTPValidationError
@@ -1579,9 +1227,7 @@ func (a *MetaApiService) MakeSlugExecute(r ApiMakeSlugRequest) (interface{}, *ht
 type ApiTouchMetaRequest struct {
 	ctx context.Context
 	ApiService *MetaApiService
-	service string
-	typeStr string
-	entityUuid string
+	metaUuid string
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -1620,37 +1266,33 @@ func (r ApiTouchMetaRequest) EhelplyData(ehelplyData string) ApiTouchMetaRequest
 	return r
 }
 
-func (r ApiTouchMetaRequest) Execute() (*MetaDynamo, *http.Response, error) {
+func (r ApiTouchMetaRequest) Execute() (*TouchMeta200Response, *http.Response, error) {
 	return r.ApiService.TouchMetaExecute(r)
 }
 
 /*
-TouchMeta Touch Meta
+TouchMeta Touchmeta
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param service
- @param typeStr
- @param entityUuid
+ @param metaUuid
  @return ApiTouchMetaRequest
 */
-func (a *MetaApiService) TouchMeta(ctx context.Context, service string, typeStr string, entityUuid string) ApiTouchMetaRequest {
+func (a *MetaApiService) TouchMeta(ctx context.Context, metaUuid string) ApiTouchMetaRequest {
 	return ApiTouchMetaRequest{
 		ApiService: a,
 		ctx: ctx,
-		service: service,
-		typeStr: typeStr,
-		entityUuid: entityUuid,
+		metaUuid: metaUuid,
 	}
 }
 
 // Execute executes the request
-//  @return MetaDynamo
-func (a *MetaApiService) TouchMetaExecute(r ApiTouchMetaRequest) (*MetaDynamo, *http.Response, error) {
+//  @return TouchMeta200Response
+func (a *MetaApiService) TouchMetaExecute(r ApiTouchMetaRequest) (*TouchMeta200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *MetaDynamo
+		localVarReturnValue  *TouchMeta200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetaApiService.TouchMeta")
@@ -1658,10 +1300,8 @@ func (a *MetaApiService) TouchMetaExecute(r ApiTouchMetaRequest) (*MetaDynamo, *
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/meta/meta/service/{service}/type/{type_str}/entity/{entity_uuid}/touch"
-	localVarPath = strings.Replace(localVarPath, "{"+"service"+"}", url.PathEscape(parameterToString(r.service, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"type_str"+"}", url.PathEscape(parameterToString(r.typeStr, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"entity_uuid"+"}", url.PathEscape(parameterToString(r.entityUuid, "")), -1)
+	localVarPath := localBasePath + "/meta/meta/{meta_uuid}/touch"
+	localVarPath = strings.Replace(localVarPath, "{"+"meta_uuid"+"}", url.PathEscape(parameterToString(r.metaUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1724,180 +1364,25 @@ func (a *MetaApiService) TouchMetaExecute(r ApiTouchMetaRequest) (*MetaDynamo, *
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v HTTPValidationError
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GetAppointment403Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiUpdateFieldRequest struct {
-	ctx context.Context
-	ApiService *MetaApiService
-	fieldUuid string
-	field *Field
-	xAccessToken *string
-	xSecretToken *string
-	authorization *string
-	ehelplyActiveParticipant *string
-	ehelplyProject *string
-	ehelplyData *string
-}
-
-func (r ApiUpdateFieldRequest) Field(field Field) ApiUpdateFieldRequest {
-	r.field = &field
-	return r
-}
-
-func (r ApiUpdateFieldRequest) XAccessToken(xAccessToken string) ApiUpdateFieldRequest {
-	r.xAccessToken = &xAccessToken
-	return r
-}
-
-func (r ApiUpdateFieldRequest) XSecretToken(xSecretToken string) ApiUpdateFieldRequest {
-	r.xSecretToken = &xSecretToken
-	return r
-}
-
-func (r ApiUpdateFieldRequest) Authorization(authorization string) ApiUpdateFieldRequest {
-	r.authorization = &authorization
-	return r
-}
-
-func (r ApiUpdateFieldRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiUpdateFieldRequest {
-	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
-	return r
-}
-
-func (r ApiUpdateFieldRequest) EhelplyProject(ehelplyProject string) ApiUpdateFieldRequest {
-	r.ehelplyProject = &ehelplyProject
-	return r
-}
-
-func (r ApiUpdateFieldRequest) EhelplyData(ehelplyData string) ApiUpdateFieldRequest {
-	r.ehelplyData = &ehelplyData
-	return r
-}
-
-func (r ApiUpdateFieldRequest) Execute() (interface{}, *http.Response, error) {
-	return r.ApiService.UpdateFieldExecute(r)
-}
-
-/*
-UpdateField Update Field
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param fieldUuid
- @return ApiUpdateFieldRequest
-*/
-func (a *MetaApiService) UpdateField(ctx context.Context, fieldUuid string) ApiUpdateFieldRequest {
-	return ApiUpdateFieldRequest{
-		ApiService: a,
-		ctx: ctx,
-		fieldUuid: fieldUuid,
-	}
-}
-
-// Execute executes the request
-//  @return interface{}
-func (a *MetaApiService) UpdateFieldExecute(r ApiUpdateFieldRequest) (interface{}, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  interface{}
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetaApiService.UpdateField")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/meta/field/{field_uuid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"field_uuid"+"}", url.PathEscape(parameterToString(r.fieldUuid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.field == nil {
-		return localVarReturnValue, nil, reportError("field is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xAccessToken != nil {
-		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
-	}
-	if r.xSecretToken != nil {
-		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
-	}
-	if r.authorization != nil {
-		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
-	}
-	if r.ehelplyActiveParticipant != nil {
-		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
-	}
-	if r.ehelplyProject != nil {
-		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
-	}
-	if r.ehelplyData != nil {
-		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
-	}
-	// body params
-	localVarPostBody = r.field
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v HTTPValidationError
@@ -1926,9 +1411,7 @@ func (a *MetaApiService) UpdateFieldExecute(r ApiUpdateFieldRequest) (interface{
 type ApiUpdateMetaRequest struct {
 	ctx context.Context
 	ApiService *MetaApiService
-	service string
-	typeStr string
-	entityUuid string
+	metaUuid string
 	metaCreate *MetaCreate
 	xAccessToken *string
 	xSecretToken *string
@@ -1973,200 +1456,19 @@ func (r ApiUpdateMetaRequest) EhelplyData(ehelplyData string) ApiUpdateMetaReque
 	return r
 }
 
-func (r ApiUpdateMetaRequest) Execute() (*MetaDynamo, *http.Response, error) {
+func (r ApiUpdateMetaRequest) Execute() (*UpdateMeta200Response, *http.Response, error) {
 	return r.ApiService.UpdateMetaExecute(r)
 }
 
 /*
-UpdateMeta Update Meta
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param service
- @param typeStr
- @param entityUuid
- @return ApiUpdateMetaRequest
-*/
-func (a *MetaApiService) UpdateMeta(ctx context.Context, service string, typeStr string, entityUuid string) ApiUpdateMetaRequest {
-	return ApiUpdateMetaRequest{
-		ApiService: a,
-		ctx: ctx,
-		service: service,
-		typeStr: typeStr,
-		entityUuid: entityUuid,
-	}
-}
-
-// Execute executes the request
-//  @return MetaDynamo
-func (a *MetaApiService) UpdateMetaExecute(r ApiUpdateMetaRequest) (*MetaDynamo, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *MetaDynamo
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetaApiService.UpdateMeta")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/meta/meta/service/{service}/type/{type_str}/entity/{entity_uuid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"service"+"}", url.PathEscape(parameterToString(r.service, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"type_str"+"}", url.PathEscape(parameterToString(r.typeStr, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"entity_uuid"+"}", url.PathEscape(parameterToString(r.entityUuid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.metaCreate == nil {
-		return localVarReturnValue, nil, reportError("metaCreate is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xAccessToken != nil {
-		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
-	}
-	if r.xSecretToken != nil {
-		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
-	}
-	if r.authorization != nil {
-		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
-	}
-	if r.ehelplyActiveParticipant != nil {
-		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
-	}
-	if r.ehelplyProject != nil {
-		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
-	}
-	if r.ehelplyData != nil {
-		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
-	}
-	// body params
-	localVarPostBody = r.metaCreate
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v HTTPValidationError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiUpdateMetaFromUuidRequest struct {
-	ctx context.Context
-	ApiService *MetaApiService
-	metaUuid string
-	metaCreate *MetaCreate
-	xAccessToken *string
-	xSecretToken *string
-	authorization *string
-	ehelplyActiveParticipant *string
-	ehelplyProject *string
-	ehelplyData *string
-}
-
-func (r ApiUpdateMetaFromUuidRequest) MetaCreate(metaCreate MetaCreate) ApiUpdateMetaFromUuidRequest {
-	r.metaCreate = &metaCreate
-	return r
-}
-
-func (r ApiUpdateMetaFromUuidRequest) XAccessToken(xAccessToken string) ApiUpdateMetaFromUuidRequest {
-	r.xAccessToken = &xAccessToken
-	return r
-}
-
-func (r ApiUpdateMetaFromUuidRequest) XSecretToken(xSecretToken string) ApiUpdateMetaFromUuidRequest {
-	r.xSecretToken = &xSecretToken
-	return r
-}
-
-func (r ApiUpdateMetaFromUuidRequest) Authorization(authorization string) ApiUpdateMetaFromUuidRequest {
-	r.authorization = &authorization
-	return r
-}
-
-func (r ApiUpdateMetaFromUuidRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiUpdateMetaFromUuidRequest {
-	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
-	return r
-}
-
-func (r ApiUpdateMetaFromUuidRequest) EhelplyProject(ehelplyProject string) ApiUpdateMetaFromUuidRequest {
-	r.ehelplyProject = &ehelplyProject
-	return r
-}
-
-func (r ApiUpdateMetaFromUuidRequest) EhelplyData(ehelplyData string) ApiUpdateMetaFromUuidRequest {
-	r.ehelplyData = &ehelplyData
-	return r
-}
-
-func (r ApiUpdateMetaFromUuidRequest) Execute() (*MetaDynamo, *http.Response, error) {
-	return r.ApiService.UpdateMetaFromUuidExecute(r)
-}
-
-/*
-UpdateMetaFromUuid Update Meta From Uuid
+UpdateMeta Updatemeta
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param metaUuid
- @return ApiUpdateMetaFromUuidRequest
+ @return ApiUpdateMetaRequest
 */
-func (a *MetaApiService) UpdateMetaFromUuid(ctx context.Context, metaUuid string) ApiUpdateMetaFromUuidRequest {
-	return ApiUpdateMetaFromUuidRequest{
+func (a *MetaApiService) UpdateMeta(ctx context.Context, metaUuid string) ApiUpdateMetaRequest {
+	return ApiUpdateMetaRequest{
 		ApiService: a,
 		ctx: ctx,
 		metaUuid: metaUuid,
@@ -2174,16 +1476,16 @@ func (a *MetaApiService) UpdateMetaFromUuid(ctx context.Context, metaUuid string
 }
 
 // Execute executes the request
-//  @return MetaDynamo
-func (a *MetaApiService) UpdateMetaFromUuidExecute(r ApiUpdateMetaFromUuidRequest) (*MetaDynamo, *http.Response, error) {
+//  @return UpdateMeta200Response
+func (a *MetaApiService) UpdateMetaExecute(r ApiUpdateMetaRequest) (*UpdateMeta200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *MetaDynamo
+		localVarReturnValue  *UpdateMeta200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetaApiService.UpdateMetaFromUuid")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetaApiService.UpdateMeta")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2256,6 +1558,249 @@ func (a *MetaApiService) UpdateMetaFromUuidExecute(r ApiUpdateMetaFromUuidReques
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiUpdateMetaFromPartsRequest struct {
+	ctx context.Context
+	ApiService *MetaApiService
+	service string
+	typeName string
+	entityUuid string
+	metaCreate *MetaCreate
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
+}
+
+func (r ApiUpdateMetaFromPartsRequest) MetaCreate(metaCreate MetaCreate) ApiUpdateMetaFromPartsRequest {
+	r.metaCreate = &metaCreate
+	return r
+}
+
+func (r ApiUpdateMetaFromPartsRequest) XAccessToken(xAccessToken string) ApiUpdateMetaFromPartsRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiUpdateMetaFromPartsRequest) XSecretToken(xSecretToken string) ApiUpdateMetaFromPartsRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiUpdateMetaFromPartsRequest) Authorization(authorization string) ApiUpdateMetaFromPartsRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiUpdateMetaFromPartsRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiUpdateMetaFromPartsRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiUpdateMetaFromPartsRequest) EhelplyProject(ehelplyProject string) ApiUpdateMetaFromPartsRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiUpdateMetaFromPartsRequest) EhelplyData(ehelplyData string) ApiUpdateMetaFromPartsRequest {
+	r.ehelplyData = &ehelplyData
+	return r
+}
+
+func (r ApiUpdateMetaFromPartsRequest) Execute() (*UpdateMeta200Response, *http.Response, error) {
+	return r.ApiService.UpdateMetaFromPartsExecute(r)
+}
+
+/*
+UpdateMetaFromParts Updatemetafromparts
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param service
+ @param typeName
+ @param entityUuid
+ @return ApiUpdateMetaFromPartsRequest
+*/
+func (a *MetaApiService) UpdateMetaFromParts(ctx context.Context, service string, typeName string, entityUuid string) ApiUpdateMetaFromPartsRequest {
+	return ApiUpdateMetaFromPartsRequest{
+		ApiService: a,
+		ctx: ctx,
+		service: service,
+		typeName: typeName,
+		entityUuid: entityUuid,
+	}
+}
+
+// Execute executes the request
+//  @return UpdateMeta200Response
+func (a *MetaApiService) UpdateMetaFromPartsExecute(r ApiUpdateMetaFromPartsRequest) (*UpdateMeta200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UpdateMeta200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetaApiService.UpdateMetaFromParts")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/meta/meta/service/{service}/type/{type_name}/entity/{entity_uuid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"service"+"}", url.PathEscape(parameterToString(r.service, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"type_name"+"}", url.PathEscape(parameterToString(r.typeName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"entity_uuid"+"}", url.PathEscape(parameterToString(r.entityUuid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.metaCreate == nil {
+		return localVarReturnValue, nil, reportError("metaCreate is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
+	// body params
+	localVarPostBody = r.metaCreate
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v GetAppointment403Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v HTTPValidationError

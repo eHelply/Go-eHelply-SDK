@@ -4,18 +4,18 @@ All URIs are relative to *https://api.prod.ehelply.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateNote**](NotesApi.md#CreateNote) | **Post** /notes/notes | Create Note
-[**DeleteNote**](NotesApi.md#DeleteNote) | **Delete** /notes/notes/{note_id} | Delete Note
-[**GetNote**](NotesApi.md#GetNote) | **Get** /notes/notes/{note_id} | Get Note
-[**UpdateNote**](NotesApi.md#UpdateNote) | **Put** /notes/notes/{note_id} | Update Note
+[**CreateNote**](NotesApi.md#CreateNote) | **Post** /notes/notes | Createnote
+[**DeleteNote**](NotesApi.md#DeleteNote) | **Delete** /notes/notes/{note_id} | Deletenote
+[**GetNote**](NotesApi.md#GetNote) | **Get** /notes/notes/{note_id} | Getnote
+[**UpdateNote**](NotesApi.md#UpdateNote) | **Put** /notes/notes/{note_id} | Updatenote
 
 
 
 ## CreateNote
 
-> NoteDynamoResponse CreateNote(ctx).NoteBase(noteBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> CreateNote200Response CreateNote(ctx).NoteBase(noteBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
-Create Note
+Createnote
 
 ### Example
 
@@ -45,7 +45,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `NotesApi.CreateNote``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateNote`: NoteDynamoResponse
+    // response from `CreateNote`: CreateNote200Response
     fmt.Fprintf(os.Stdout, "Response from `NotesApi.CreateNote`: %v\n", resp)
 }
 ```
@@ -71,7 +71,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NoteDynamoResponse**](NoteDynamoResponse.md)
+[**CreateNote200Response**](CreateNote200Response.md)
 
 ### Authorization
 
@@ -89,9 +89,9 @@ No authorization required
 
 ## DeleteNote
 
-> interface{} DeleteNote(ctx, noteId).Method(method).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> DeleteNote200Response DeleteNote(ctx, noteId).Method(method).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
-Delete Note
+Deletenote
 
 ### Example
 
@@ -122,7 +122,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `NotesApi.DeleteNote``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteNote`: interface{}
+    // response from `DeleteNote`: DeleteNote200Response
     fmt.Fprintf(os.Stdout, "Response from `NotesApi.DeleteNote`: %v\n", resp)
 }
 ```
@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+[**DeleteNote200Response**](DeleteNote200Response.md)
 
 ### Authorization
 
@@ -173,7 +173,7 @@ No authorization required
 
 > NoteDynamoHistoryResponse GetNote(ctx, noteId).History(history).HistoryContent(historyContent).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
-Get Note
+Getnote
 
 ### Example
 
@@ -255,9 +255,9 @@ No authorization required
 
 ## UpdateNote
 
-> NoteDynamoResponse UpdateNote(ctx, noteId).NoteBase(noteBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> UpdateNote200Response UpdateNote(ctx, noteId).NoteBase(noteBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
-Update Note
+Updatenote
 
 ### Example
 
@@ -288,7 +288,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `NotesApi.UpdateNote``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateNote`: NoteDynamoResponse
+    // response from `UpdateNote`: UpdateNote200Response
     fmt.Fprintf(os.Stdout, "Response from `NotesApi.UpdateNote`: %v\n", resp)
 }
 ```
@@ -319,7 +319,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NoteDynamoResponse**](NoteDynamoResponse.md)
+[**UpdateNote200Response**](UpdateNote200Response.md)
 
 ### Authorization
 
