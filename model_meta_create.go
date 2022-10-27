@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.113
+eHelply SDK - 1.1.114
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.113
+API version: 1.1.114
 Contact: support@ehelply.com
 */
 
@@ -19,9 +19,9 @@ import (
 type MetaCreate struct {
 	Basic *BasicMetaCreate `json:"basic,omitempty"`
 	Detailed *DetailedMetaCreate `json:"detailed,omitempty"`
-	Custom map[string]interface{} `json:"custom,omitempty"`
+	Custom *MetaCustom `json:"custom,omitempty"`
 	Fields []Field `json:"fields,omitempty"`
-	Children []map[string]interface{} `json:"children,omitempty"`
+	Children []MetaChildren `json:"children,omitempty"`
 	ParentUuid *string `json:"parent_uuid,omitempty"`
 }
 
@@ -107,17 +107,17 @@ func (o *MetaCreate) SetDetailed(v DetailedMetaCreate) {
 }
 
 // GetCustom returns the Custom field value if set, zero value otherwise.
-func (o *MetaCreate) GetCustom() map[string]interface{} {
+func (o *MetaCreate) GetCustom() MetaCustom {
 	if o == nil || o.Custom == nil {
-		var ret map[string]interface{}
+		var ret MetaCustom
 		return ret
 	}
-	return o.Custom
+	return *o.Custom
 }
 
 // GetCustomOk returns a tuple with the Custom field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetaCreate) GetCustomOk() (map[string]interface{}, bool) {
+func (o *MetaCreate) GetCustomOk() (*MetaCustom, bool) {
 	if o == nil || o.Custom == nil {
 		return nil, false
 	}
@@ -133,9 +133,9 @@ func (o *MetaCreate) HasCustom() bool {
 	return false
 }
 
-// SetCustom gets a reference to the given map[string]interface{} and assigns it to the Custom field.
-func (o *MetaCreate) SetCustom(v map[string]interface{}) {
-	o.Custom = v
+// SetCustom gets a reference to the given MetaCustom and assigns it to the Custom field.
+func (o *MetaCreate) SetCustom(v MetaCustom) {
+	o.Custom = &v
 }
 
 // GetFields returns the Fields field value if set, zero value otherwise.
@@ -171,9 +171,9 @@ func (o *MetaCreate) SetFields(v []Field) {
 }
 
 // GetChildren returns the Children field value if set, zero value otherwise.
-func (o *MetaCreate) GetChildren() []map[string]interface{} {
+func (o *MetaCreate) GetChildren() []MetaChildren {
 	if o == nil || o.Children == nil {
-		var ret []map[string]interface{}
+		var ret []MetaChildren
 		return ret
 	}
 	return o.Children
@@ -181,7 +181,7 @@ func (o *MetaCreate) GetChildren() []map[string]interface{} {
 
 // GetChildrenOk returns a tuple with the Children field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetaCreate) GetChildrenOk() ([]map[string]interface{}, bool) {
+func (o *MetaCreate) GetChildrenOk() ([]MetaChildren, bool) {
 	if o == nil || o.Children == nil {
 		return nil, false
 	}
@@ -197,8 +197,8 @@ func (o *MetaCreate) HasChildren() bool {
 	return false
 }
 
-// SetChildren gets a reference to the given []map[string]interface{} and assigns it to the Children field.
-func (o *MetaCreate) SetChildren(v []map[string]interface{}) {
+// SetChildren gets a reference to the given []MetaChildren and assigns it to the Children field.
+func (o *MetaCreate) SetChildren(v []MetaChildren) {
 	o.Children = v
 }
 

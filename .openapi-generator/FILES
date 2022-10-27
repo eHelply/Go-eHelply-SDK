@@ -70,7 +70,7 @@ docs/CreateReview.md
 docs/CreateSlug200Response.md
 docs/CreateTicket.md
 docs/Credential.md
-docs/Dates.md
+docs/CustomList.md
 docs/DatesMeta.md
 docs/DeleteField200Response.md
 docs/DeleteFile200Response.md
@@ -102,7 +102,9 @@ docs/LineItem.md
 docs/LoggingApi.md
 docs/LoggingDynamo.md
 docs/MetaApi.md
+docs/MetaChildren.md
 docs/MetaCreate.md
+docs/MetaCustom.md
 docs/MetaDynamo.md
 docs/MonitorApi.md
 docs/Note.md
@@ -111,6 +113,8 @@ docs/NoteDynamoHistoryResponse.md
 docs/NoteDynamoResponse.md
 docs/NoteMeta.md
 docs/NotesApi.md
+docs/OptionGroup.md
+docs/Options.md
 docs/Page.md
 docs/Pagination.md
 docs/ParticipantCreate.md
@@ -157,6 +161,7 @@ docs/SecurityEncryptionKeyResponse.md
 docs/SecurityKeyCreate.md
 docs/SecurityKeyGet.md
 docs/SecurityKeyVerify.md
+docs/Selection.md
 docs/ServiceCreate.md
 docs/ServiceMessageResponse.md
 docs/ServiceResponse.md
@@ -198,6 +203,7 @@ docs/UserTokenReturn.md
 docs/UserValidations.md
 docs/UsersApi.md
 docs/ValidationError.md
+docs/Validations.md
 git_push.sh
 go.mod
 go.sum
@@ -239,7 +245,7 @@ model_create_review.go
 model_create_slug_200_response.go
 model_create_ticket.go
 model_credential.go
-model_dates.go
+model_custom_list.go
 model_dates_meta.go
 model_delete_field_200_response.go
 model_delete_file_200_response.go
@@ -268,13 +274,17 @@ model_http_validation_error.go
 model_kpi_response.go
 model_line_item.go
 model_logging_dynamo.go
+model_meta_children.go
 model_meta_create.go
+model_meta_custom.go
 model_meta_dynamo.go
 model_note.go
 model_note_base.go
 model_note_dynamo_history_response.go
 model_note_dynamo_response.go
 model_note_meta.go
+model_option_group.go
+model_options.go
 model_page.go
 model_pagination.go
 model_participant_create.go
@@ -316,6 +326,7 @@ model_security_encryption_key_response.go
 model_security_key_create.go
 model_security_key_get.go
 model_security_key_verify.go
+model_selection.go
 model_service_create.go
 model_service_message_response.go
 model_service_response.go
@@ -352,5 +363,6 @@ model_user_signup_return.go
 model_user_token_return.go
 model_user_validations.go
 model_validation_error.go
+model_validations.go
 response.go
 utils.go

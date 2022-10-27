@@ -9,8 +9,8 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://superstack.ehelply.com/support/legal/terms
-  title: eHelply SDK - 1.1.113
-  version: 1.1.113
+  title: eHelply SDK - 1.1.114
+  version: 1.1.114
 servers:
 - description: eHelply / SuperStack Production
   url: https://api.prod.ehelply.com
@@ -14640,15 +14640,29 @@ components:
       - file
       title: Body_updateFile
       type: object
+    CustomList:
+      example:
+        name: name
+        description: description
+      properties:
+        name:
+          title: Name
+          type: string
+        description:
+          title: Description
+          type: string
+      title: CustomList
+      type: object
     DatesMeta:
       description: Date based meta
+      example:
+        updated_at: updated_at
+        created_at: created_at
       properties:
         created_at:
-          default: 2022-10-26T19:13:31.399861
           title: Created At
           type: string
         updated_at:
-          default: 2022-10-26T19:13:31.399861
           title: Updated At
           type: string
       title: DatesMeta
@@ -14683,21 +14697,55 @@ components:
       example:
         hint: hint
         icon: icon
-        options: "{}"
+        options:
+          color: color
+          insetLabel: insetLabel
+          icon: icon
+          caption: caption
+          label: label
+          counter: true
+          type: type
+          required: true
+          selections:
+          - selections:
+            - name: name
+              icon: icon
+              value: 1.4658129805029452
+            - name: name
+              icon: icon
+              value: 1.4658129805029452
+            name: name
+            type: type
+          - selections:
+            - name: name
+              icon: icon
+              value: 1.4658129805029452
+            - name: name
+              icon: icon
+              value: 1.4658129805029452
+            name: name
+            type: type
+          size: size
+          hint: hint
+          iconPosition: iconPosition
+          placeholder: placeholder
+          maxLength: 6.027456183070403
         placeholder: placeholder
-        validations: "{}"
+        validations:
+          value:
+          - value
+          - value
         label: label
-        type: "{}"
+        type: 0
       properties:
         type:
           title: Type
-          type: object
+          type: integer
         placeholder:
           title: Placeholder
           type: string
         validations:
-          title: Validations
-          type: object
+          $ref: '#/components/schemas/Validations'
         hint:
           title: Hint
           type: string
@@ -14708,8 +14756,7 @@ components:
           title: Label
           type: string
         options:
-          title: Options
-          type: object
+          $ref: '#/components/schemas/Options'
       title: Field
       type: object
     FieldDynamo:
@@ -14717,22 +14764,56 @@ components:
       example:
         hint: hint
         icon: icon
-        options: "{}"
+        options:
+          color: color
+          insetLabel: insetLabel
+          icon: icon
+          caption: caption
+          label: label
+          counter: true
+          type: type
+          required: true
+          selections:
+          - selections:
+            - name: name
+              icon: icon
+              value: 1.4658129805029452
+            - name: name
+              icon: icon
+              value: 1.4658129805029452
+            name: name
+            type: type
+          - selections:
+            - name: name
+              icon: icon
+              value: 1.4658129805029452
+            - name: name
+              icon: icon
+              value: 1.4658129805029452
+            name: name
+            type: type
+          size: size
+          hint: hint
+          iconPosition: iconPosition
+          placeholder: placeholder
+          maxLength: 6.027456183070403
         placeholder: placeholder
-        validations: "{}"
+        validations:
+          value:
+          - value
+          - value
         label: label
-        type: "{}"
+        type: 0
         uuid: uuid
       properties:
         type:
           title: Type
-          type: object
+          type: integer
         placeholder:
           title: Placeholder
           type: string
         validations:
-          title: Validations
-          type: object
+          $ref: '#/components/schemas/Validations'
         hint:
           title: Hint
           type: string
@@ -14743,14 +14824,30 @@ components:
           title: Label
           type: string
         options:
-          title: Options
-          type: object
+          $ref: '#/components/schemas/Options'
         uuid:
           title: Uuid
           type: string
       required:
       - uuid
       title: FieldDynamo
+      type: object
+    MetaChildren:
+      example:
+        child_uuid: child_uuid
+        child_description: child_description
+        child_name: child_name
+      properties:
+        child_name:
+          title: Child Name
+          type: string
+        child_description:
+          title: Child Description
+          type: string
+        child_uuid:
+          title: Child Uuid
+          type: string
+      title: MetaChildren
       type: object
     MetaCreate:
       description: Meta
@@ -14760,35 +14857,115 @@ components:
           summary: summary
           description: description
         children:
-        - "{}"
-        - "{}"
-        custom: "{}"
+        - child_uuid: child_uuid
+          child_description: child_description
+          child_name: child_name
+        - child_uuid: child_uuid
+          child_description: child_description
+          child_name: child_name
+        custom:
+          name: name
+          description: description
+          list:
+          - name: name
+            description: description
+          - name: name
+            description: description
         basic:
           name: name
           slug: true
         fields:
         - hint: hint
           icon: icon
-          options: "{}"
+          options:
+            color: color
+            insetLabel: insetLabel
+            icon: icon
+            caption: caption
+            label: label
+            counter: true
+            type: type
+            required: true
+            selections:
+            - selections:
+              - name: name
+                icon: icon
+                value: 1.4658129805029452
+              - name: name
+                icon: icon
+                value: 1.4658129805029452
+              name: name
+              type: type
+            - selections:
+              - name: name
+                icon: icon
+                value: 1.4658129805029452
+              - name: name
+                icon: icon
+                value: 1.4658129805029452
+              name: name
+              type: type
+            size: size
+            hint: hint
+            iconPosition: iconPosition
+            placeholder: placeholder
+            maxLength: 6.027456183070403
           placeholder: placeholder
-          validations: "{}"
+          validations:
+            value:
+            - value
+            - value
           label: label
-          type: "{}"
+          type: 0
         - hint: hint
           icon: icon
-          options: "{}"
+          options:
+            color: color
+            insetLabel: insetLabel
+            icon: icon
+            caption: caption
+            label: label
+            counter: true
+            type: type
+            required: true
+            selections:
+            - selections:
+              - name: name
+                icon: icon
+                value: 1.4658129805029452
+              - name: name
+                icon: icon
+                value: 1.4658129805029452
+              name: name
+              type: type
+            - selections:
+              - name: name
+                icon: icon
+                value: 1.4658129805029452
+              - name: name
+                icon: icon
+                value: 1.4658129805029452
+              name: name
+              type: type
+            size: size
+            hint: hint
+            iconPosition: iconPosition
+            placeholder: placeholder
+            maxLength: 6.027456183070403
           placeholder: placeholder
-          validations: "{}"
+          validations:
+            value:
+            - value
+            - value
           label: label
-          type: "{}"
+          type: 0
       properties:
         basic:
           $ref: '#/components/schemas/BasicMetaCreate'
         detailed:
           $ref: '#/components/schemas/DetailedMetaCreate'
         custom:
-          title: Custom
-          type: object
+          $ref: '#/components/schemas/MetaCustom'
         fields:
           items:
             $ref: '#/components/schemas/Field'
@@ -14796,7 +14973,7 @@ components:
           type: array
         children:
           items:
-            type: object
+            $ref: '#/components/schemas/MetaChildren'
           title: Children
           type: array
         parent_uuid:
@@ -14804,32 +14981,138 @@ components:
           type: string
       title: MetaCreate
       type: object
+    MetaCustom:
+      example:
+        name: name
+        description: description
+        list:
+        - name: name
+          description: description
+        - name: name
+          description: description
+      properties:
+        name:
+          title: Name
+          type: string
+        description:
+          title: Description
+          type: string
+        list:
+          items:
+            $ref: '#/components/schemas/CustomList'
+          title: List
+          type: array
+      title: MetaCustom
+      type: object
     MetaDynamo:
       description: A meta from DynamoDB
       example:
         parent_uuid: parent_uuid
         detailed: null
         children:
-        - "{}"
-        - "{}"
-        custom: "{}"
-        dates: null
+        - child_uuid: child_uuid
+          child_description: child_description
+          child_name: child_name
+        - child_uuid: child_uuid
+          child_description: child_description
+          child_name: child_name
+        custom:
+          name: name
+          description: description
+          list:
+          - name: name
+            description: description
+          - name: name
+            description: description
+        dates:
+          updated_at: updated_at
+          created_at: created_at
         basic: null
         fields:
         - hint: hint
           icon: icon
-          options: "{}"
+          options:
+            color: color
+            insetLabel: insetLabel
+            icon: icon
+            caption: caption
+            label: label
+            counter: true
+            type: type
+            required: true
+            selections:
+            - selections:
+              - name: name
+                icon: icon
+                value: 1.4658129805029452
+              - name: name
+                icon: icon
+                value: 1.4658129805029452
+              name: name
+              type: type
+            - selections:
+              - name: name
+                icon: icon
+                value: 1.4658129805029452
+              - name: name
+                icon: icon
+                value: 1.4658129805029452
+              name: name
+              type: type
+            size: size
+            hint: hint
+            iconPosition: iconPosition
+            placeholder: placeholder
+            maxLength: 6.027456183070403
           placeholder: placeholder
-          validations: "{}"
+          validations:
+            value:
+            - value
+            - value
           label: label
-          type: "{}"
+          type: 0
         - hint: hint
           icon: icon
-          options: "{}"
+          options:
+            color: color
+            insetLabel: insetLabel
+            icon: icon
+            caption: caption
+            label: label
+            counter: true
+            type: type
+            required: true
+            selections:
+            - selections:
+              - name: name
+                icon: icon
+                value: 1.4658129805029452
+              - name: name
+                icon: icon
+                value: 1.4658129805029452
+              name: name
+              type: type
+            - selections:
+              - name: name
+                icon: icon
+                value: 1.4658129805029452
+              - name: name
+                icon: icon
+                value: 1.4658129805029452
+              name: name
+              type: type
+            size: size
+            hint: hint
+            iconPosition: iconPosition
+            placeholder: placeholder
+            maxLength: 6.027456183070403
           placeholder: placeholder
-          validations: "{}"
+          validations:
+            value:
+            - value
+            - value
           label: label
-          type: "{}"
+          type: 0
         uuid: uuid
       properties:
         basic:
@@ -14837,18 +15120,18 @@ components:
         detailed:
           $ref: '#/components/schemas/Detailed'
         custom:
-          title: Custom
-          type: object
+          $ref: '#/components/schemas/MetaCustom'
         dates:
-          $ref: '#/components/schemas/Dates'
+          $ref: '#/components/schemas/DatesMeta'
         fields:
           items:
             $ref: '#/components/schemas/Field'
           title: Fields
           type: array
         children:
+          default: []
           items:
-            type: object
+            $ref: '#/components/schemas/MetaChildren'
           title: Children
           type: array
         parent_uuid:
@@ -14995,6 +15278,132 @@ components:
       - author
       title: NoteMeta
       type: object
+    OptionGroup:
+      description: Option Group
+      example:
+        selections:
+        - name: name
+          icon: icon
+          value: 1.4658129805029452
+        - name: name
+          icon: icon
+          value: 1.4658129805029452
+        name: name
+        type: type
+      properties:
+        name:
+          title: Name
+          type: string
+        type:
+          title: Type
+          type: string
+        selections:
+          items:
+            $ref: '#/components/schemas/Selection'
+          title: Selections
+          type: array
+      title: OptionGroup
+      type: object
+    Options:
+      description: Options
+      example:
+        color: color
+        insetLabel: insetLabel
+        icon: icon
+        caption: caption
+        label: label
+        counter: true
+        type: type
+        required: true
+        selections:
+        - selections:
+          - name: name
+            icon: icon
+            value: 1.4658129805029452
+          - name: name
+            icon: icon
+            value: 1.4658129805029452
+          name: name
+          type: type
+        - selections:
+          - name: name
+            icon: icon
+            value: 1.4658129805029452
+          - name: name
+            icon: icon
+            value: 1.4658129805029452
+          name: name
+          type: type
+        size: size
+        hint: hint
+        iconPosition: iconPosition
+        placeholder: placeholder
+        maxLength: 6.027456183070403
+      properties:
+        required:
+          title: Required
+          type: boolean
+        label:
+          title: Label
+          type: string
+        insetLabel:
+          title: Insetlabel
+          type: string
+        placeholder:
+          title: Placeholder
+          type: string
+        hint:
+          title: Hint
+          type: string
+        icon:
+          title: Icon
+          type: string
+        maxLength:
+          title: Maxlength
+          type: number
+        counter:
+          title: Counter
+          type: boolean
+        caption:
+          title: Caption
+          type: string
+        color:
+          title: Color
+          type: string
+        size:
+          title: Size
+          type: string
+        type:
+          title: Type
+          type: string
+        iconPosition:
+          title: Iconposition
+          type: string
+        selections:
+          items:
+            $ref: '#/components/schemas/OptionGroup'
+          title: Selections
+          type: array
+      title: Options
+      type: object
+    Selection:
+      description: Selection Model
+      example:
+        name: name
+        icon: icon
+        value: 1.4658129805029452
+      properties:
+        name:
+          title: Name
+          type: string
+        value:
+          title: Value
+          type: number
+        icon:
+          title: Icon
+          type: string
+      title: Selection
+      type: object
     Slugger:
       description: Meta slugger
       example:
@@ -15006,6 +15415,20 @@ components:
       required:
       - name
       title: Slugger
+      type: object
+    Validations:
+      description: Validations
+      example:
+        value:
+        - value
+        - value
+      properties:
+        value:
+          items:
+            type: string
+          title: Value
+          type: array
+      title: Validations
       type: object
     AddressBase:
       description: |-
@@ -18675,10 +19098,6 @@ components:
       allOf:
       - $ref: '#/components/schemas/DetailedMeta'
       title: Detailed
-    Dates:
-      allOf:
-      - $ref: '#/components/schemas/DatesMeta'
-      title: Dates
     Company:
       allOf:
       - $ref: '#/components/schemas/CompanyBase'

@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Basic** | Pointer to [**BasicMetaCreate**](BasicMetaCreate.md) |  | [optional] 
 **Detailed** | Pointer to [**DetailedMetaCreate**](DetailedMetaCreate.md) |  | [optional] 
-**Custom** | Pointer to **map[string]interface{}** |  | [optional] 
+**Custom** | Pointer to [**MetaCustom**](MetaCustom.md) |  | [optional] 
 **Fields** | Pointer to [**[]Field**](Field.md) |  | [optional] 
-**Children** | Pointer to **[]map[string]interface{}** |  | [optional] 
+**Children** | Pointer to [**[]MetaChildren**](MetaChildren.md) |  | [optional] 
 **ParentUuid** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -82,20 +82,20 @@ HasDetailed returns a boolean if a field has been set.
 
 ### GetCustom
 
-`func (o *MetaCreate) GetCustom() map[string]interface{}`
+`func (o *MetaCreate) GetCustom() MetaCustom`
 
 GetCustom returns the Custom field if non-nil, zero value otherwise.
 
 ### GetCustomOk
 
-`func (o *MetaCreate) GetCustomOk() (*map[string]interface{}, bool)`
+`func (o *MetaCreate) GetCustomOk() (*MetaCustom, bool)`
 
 GetCustomOk returns a tuple with the Custom field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCustom
 
-`func (o *MetaCreate) SetCustom(v map[string]interface{})`
+`func (o *MetaCreate) SetCustom(v MetaCustom)`
 
 SetCustom sets Custom field to given value.
 
@@ -132,20 +132,20 @@ HasFields returns a boolean if a field has been set.
 
 ### GetChildren
 
-`func (o *MetaCreate) GetChildren() []map[string]interface{}`
+`func (o *MetaCreate) GetChildren() []MetaChildren`
 
 GetChildren returns the Children field if non-nil, zero value otherwise.
 
 ### GetChildrenOk
 
-`func (o *MetaCreate) GetChildrenOk() (*[]map[string]interface{}, bool)`
+`func (o *MetaCreate) GetChildrenOk() (*[]MetaChildren, bool)`
 
 GetChildrenOk returns a tuple with the Children field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetChildren
 
-`func (o *MetaCreate) SetChildren(v []map[string]interface{})`
+`func (o *MetaCreate) SetChildren(v []MetaChildren)`
 
 SetChildren sets Children field to given value.
 

@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.113
+eHelply SDK - 1.1.114
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.113
+API version: 1.1.114
 Contact: support@ehelply.com
 */
 
@@ -17,13 +17,13 @@ import (
 
 // FieldDynamo Field Dynamo
 type FieldDynamo struct {
-	Type map[string]interface{} `json:"type,omitempty"`
+	Type *int32 `json:"type,omitempty"`
 	Placeholder *string `json:"placeholder,omitempty"`
-	Validations map[string]interface{} `json:"validations,omitempty"`
+	Validations *Validations `json:"validations,omitempty"`
 	Hint *string `json:"hint,omitempty"`
 	Icon *string `json:"icon,omitempty"`
 	Label *string `json:"label,omitempty"`
-	Options map[string]interface{} `json:"options,omitempty"`
+	Options *Options `json:"options,omitempty"`
 	Uuid string `json:"uuid"`
 }
 
@@ -46,17 +46,17 @@ func NewFieldDynamoWithDefaults() *FieldDynamo {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *FieldDynamo) GetType() map[string]interface{} {
+func (o *FieldDynamo) GetType() int32 {
 	if o == nil || o.Type == nil {
-		var ret map[string]interface{}
+		var ret int32
 		return ret
 	}
-	return o.Type
+	return *o.Type
 }
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FieldDynamo) GetTypeOk() (map[string]interface{}, bool) {
+func (o *FieldDynamo) GetTypeOk() (*int32, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -72,9 +72,9 @@ func (o *FieldDynamo) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given map[string]interface{} and assigns it to the Type field.
-func (o *FieldDynamo) SetType(v map[string]interface{}) {
-	o.Type = v
+// SetType gets a reference to the given int32 and assigns it to the Type field.
+func (o *FieldDynamo) SetType(v int32) {
+	o.Type = &v
 }
 
 // GetPlaceholder returns the Placeholder field value if set, zero value otherwise.
@@ -110,17 +110,17 @@ func (o *FieldDynamo) SetPlaceholder(v string) {
 }
 
 // GetValidations returns the Validations field value if set, zero value otherwise.
-func (o *FieldDynamo) GetValidations() map[string]interface{} {
+func (o *FieldDynamo) GetValidations() Validations {
 	if o == nil || o.Validations == nil {
-		var ret map[string]interface{}
+		var ret Validations
 		return ret
 	}
-	return o.Validations
+	return *o.Validations
 }
 
 // GetValidationsOk returns a tuple with the Validations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FieldDynamo) GetValidationsOk() (map[string]interface{}, bool) {
+func (o *FieldDynamo) GetValidationsOk() (*Validations, bool) {
 	if o == nil || o.Validations == nil {
 		return nil, false
 	}
@@ -136,9 +136,9 @@ func (o *FieldDynamo) HasValidations() bool {
 	return false
 }
 
-// SetValidations gets a reference to the given map[string]interface{} and assigns it to the Validations field.
-func (o *FieldDynamo) SetValidations(v map[string]interface{}) {
-	o.Validations = v
+// SetValidations gets a reference to the given Validations and assigns it to the Validations field.
+func (o *FieldDynamo) SetValidations(v Validations) {
+	o.Validations = &v
 }
 
 // GetHint returns the Hint field value if set, zero value otherwise.
@@ -238,17 +238,17 @@ func (o *FieldDynamo) SetLabel(v string) {
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
-func (o *FieldDynamo) GetOptions() map[string]interface{} {
+func (o *FieldDynamo) GetOptions() Options {
 	if o == nil || o.Options == nil {
-		var ret map[string]interface{}
+		var ret Options
 		return ret
 	}
-	return o.Options
+	return *o.Options
 }
 
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FieldDynamo) GetOptionsOk() (map[string]interface{}, bool) {
+func (o *FieldDynamo) GetOptionsOk() (*Options, bool) {
 	if o == nil || o.Options == nil {
 		return nil, false
 	}
@@ -264,9 +264,9 @@ func (o *FieldDynamo) HasOptions() bool {
 	return false
 }
 
-// SetOptions gets a reference to the given map[string]interface{} and assigns it to the Options field.
-func (o *FieldDynamo) SetOptions(v map[string]interface{}) {
-	o.Options = v
+// SetOptions gets a reference to the given Options and assigns it to the Options field.
+func (o *FieldDynamo) SetOptions(v Options) {
+	o.Options = &v
 }
 
 // GetUuid returns the Uuid field value
