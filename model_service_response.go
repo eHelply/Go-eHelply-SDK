@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.114
+eHelply SDK - 1.1.115
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.114
+API version: 1.1.115
 Contact: support@ehelply.com
 */
 
@@ -29,6 +29,7 @@ type ServiceResponse struct {
 	HiddenStages []string `json:"hidden_stages,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	UpdatedAt *string `json:"updated_at,omitempty"`
+	SuperstackMeta *ServiceSuperStackMeta `json:"superstack_meta,omitempty"`
 }
 
 // NewServiceResponse instantiates a new ServiceResponse object
@@ -390,6 +391,38 @@ func (o *ServiceResponse) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
 }
 
+// GetSuperstackMeta returns the SuperstackMeta field value if set, zero value otherwise.
+func (o *ServiceResponse) GetSuperstackMeta() ServiceSuperStackMeta {
+	if o == nil || o.SuperstackMeta == nil {
+		var ret ServiceSuperStackMeta
+		return ret
+	}
+	return *o.SuperstackMeta
+}
+
+// GetSuperstackMetaOk returns a tuple with the SuperstackMeta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceResponse) GetSuperstackMetaOk() (*ServiceSuperStackMeta, bool) {
+	if o == nil || o.SuperstackMeta == nil {
+		return nil, false
+	}
+	return o.SuperstackMeta, true
+}
+
+// HasSuperstackMeta returns a boolean if a field has been set.
+func (o *ServiceResponse) HasSuperstackMeta() bool {
+	if o != nil && o.SuperstackMeta != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSuperstackMeta gets a reference to the given ServiceSuperStackMeta and assigns it to the SuperstackMeta field.
+func (o *ServiceResponse) SetSuperstackMeta(v ServiceSuperStackMeta) {
+	o.SuperstackMeta = &v
+}
+
 func (o ServiceResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -427,6 +460,9 @@ func (o ServiceResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if o.SuperstackMeta != nil {
+		toSerialize["superstack_meta"] = o.SuperstackMeta
 	}
 	return json.Marshal(toSerialize)
 }

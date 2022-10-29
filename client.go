@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.114
+eHelply SDK - 1.1.115
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.114
+API version: 1.1.115
 Contact: support@ehelply.com
 */
 
@@ -42,7 +42,7 @@ var (
 	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 )
 
-// APIClient manages communication with the eHelply SDK - 1.1.114 API v1.1.114
+// APIClient manages communication with the eHelply SDK - 1.1.115 API v1.1.115
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration

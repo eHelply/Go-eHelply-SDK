@@ -9,8 +9,8 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://superstack.ehelply.com/support/legal/terms
-  title: eHelply SDK - 1.1.114
-  version: 1.1.114
+  title: eHelply SDK - 1.1.115
+  version: 1.1.115
 servers:
 - description: eHelply / SuperStack Production
   url: https://api.prod.ehelply.com
@@ -8021,6 +8021,183 @@ paths:
       summary: Getsubjectlogs
       tags:
       - logging
+  /sam/monitor/superstack-services:
+    get:
+      operationId: getSupertackServices
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ServiceSuperStackMeta'
+                title: Response Getsupertackservices
+                type: array
+          description: Successful Response
+        "404":
+          description: Not found
+      summary: Getsupertackservices
+      tags:
+      - monitor
+  /sam/monitor/services/{service}/superstack:
+    delete:
+      operationId: deleteServiceSuperStackMeta
+      parameters:
+      - explode: false
+        in: path
+        name: service
+        required: true
+        schema:
+          title: Service
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        "404":
+          description: Not found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Deleteservicesuperstackmeta
+      tags:
+      - monitor
+    post:
+      operationId: saveServiceSuperStackMeta
+      parameters:
+      - explode: false
+        in: path
+        name: service
+        required: true
+        schema:
+          title: Service
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceSuperStackMeta'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        "404":
+          description: Not found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Saveservicesuperstackmeta
+      tags:
+      - monitor
   /sam/monitor/services/{service}:
     get:
       operationId: getService
@@ -8077,6 +8254,54 @@ paths:
           title: Stage
           type: string
         style: form
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -8160,6 +8385,54 @@ paths:
           title: Key
           type: string
         style: form
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -8183,6 +8456,55 @@ paths:
       - monitor
     post:
       operationId: registerService
+      parameters:
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -8227,6 +8549,54 @@ paths:
           title: Stage
           type: string
         style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -8263,6 +8633,54 @@ paths:
         required: true
         schema:
           title: Stage
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
           type: string
         style: simple
       responses:
@@ -8312,6 +8730,54 @@ paths:
           title: History
           type: integer
         style: form
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -8354,6 +8820,54 @@ paths:
           title: History
           type: integer
         style: form
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -8404,6 +8918,54 @@ paths:
           title: History
           type: integer
         style: form
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -8472,6 +9034,54 @@ paths:
           title: Include Cleared
           type: boolean
         style: form
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -8510,6 +9120,54 @@ paths:
         required: true
         schema:
           title: Stage
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
           type: string
         style: simple
       requestBody:
@@ -8564,6 +9222,54 @@ paths:
           title: Alarm Uuid
           type: string
         style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -8610,6 +9316,54 @@ paths:
           title: Alarm Uuid
           type: string
         style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -8654,6 +9408,54 @@ paths:
         required: true
         schema:
           title: Alarm Uuid
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
           type: string
         style: simple
       requestBody:
@@ -8708,6 +9510,54 @@ paths:
           title: Alarm Uuid
           type: string
         style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -8758,6 +9608,54 @@ paths:
         required: true
         schema:
           title: Alarm Uuid
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
           type: string
         style: simple
       requestBody:
@@ -8812,6 +9710,54 @@ paths:
           title: Alarm Uuid
           type: string
         style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -8864,6 +9810,54 @@ paths:
           title: Alarm Uuid
           type: string
         style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -8914,6 +9908,54 @@ paths:
         required: true
         schema:
           title: Alarm Uuid
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
           type: string
         style: simple
       requestBody:
@@ -9003,6 +10045,54 @@ paths:
           title: Sort Desc
           type: boolean
         style: form
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -18172,10 +19262,6 @@ components:
         heartbeats:
         - ""
         - ""
-        updated_at: updated_at
-        hidden_stages:
-        - hidden_stages
-        - hidden_stages
         alarms:
         - severity: severity
           ticket_uuid: ticket_uuid
@@ -18223,13 +19309,52 @@ components:
           cleared_at: cleared_at
           acknowledged_at: acknowledged_at
           terminated_at: terminated_at
-        name: name
         created_at: created_at
         version: version
+        uuid: uuid
+        updated_at: updated_at
+        hidden_stages:
+        - hidden_stages
+        - hidden_stages
+        name: name
+        superstack_meta:
+          summary: summary
+          human_name: human_name
+          featured: true
+          getting_started:
+            blurb: blurb
+            endpoint_teasers:
+            - path: path
+              method: method
+              description: description
+            - path: path
+              method: method
+              description: description
+          route_name: route_name
+          service_name: service_name
+          description: description
+          use_cases:
+          - summary: summary
+            name: name
+          - summary: summary
+            name: name
+          tag_line: tag_line
+          picture: picture
+          features:
+          - summary: summary
+            name: name
+          - summary: summary
+            name: name
+          background_picture: background_picture
+          faqs:
+          - question: question
+            answer: answer
+          - question: question
+            answer: answer
+          advertise: true
         author_emails:
         - author_emails
         - author_emails
-        uuid: uuid
         key: key
         authors:
         - authors
@@ -18281,6 +19406,8 @@ components:
         updated_at:
           title: Updated At
           type: string
+        superstack_meta:
+          $ref: '#/components/schemas/ServiceSuperStackMeta'
       required:
       - author_emails
       - authors
@@ -18289,6 +19416,200 @@ components:
       - summary
       - version
       title: ServiceResponse
+      type: object
+    ServiceSuperStackMeta:
+      example:
+        summary: summary
+        human_name: human_name
+        featured: true
+        getting_started:
+          blurb: blurb
+          endpoint_teasers:
+          - path: path
+            method: method
+            description: description
+          - path: path
+            method: method
+            description: description
+        route_name: route_name
+        service_name: service_name
+        description: description
+        use_cases:
+        - summary: summary
+          name: name
+        - summary: summary
+          name: name
+        tag_line: tag_line
+        picture: picture
+        features:
+        - summary: summary
+          name: name
+        - summary: summary
+          name: name
+        background_picture: background_picture
+        faqs:
+        - question: question
+          answer: answer
+        - question: question
+          answer: answer
+        advertise: true
+      properties:
+        human_name:
+          title: Human Name
+          type: string
+        route_name:
+          title: Route Name
+          type: string
+        service_name:
+          title: Service Name
+          type: string
+        advertise:
+          title: Advertise
+          type: boolean
+        featured:
+          title: Featured
+          type: boolean
+        picture:
+          title: Picture
+          type: string
+        background_picture:
+          title: Background Picture
+          type: string
+        tag_line:
+          title: Tag Line
+          type: string
+        summary:
+          title: Summary
+          type: string
+        description:
+          title: Description
+          type: string
+        features:
+          items:
+            $ref: '#/components/schemas/ServiceSuperStackMetaFeature'
+          title: Features
+          type: array
+        use_cases:
+          items:
+            $ref: '#/components/schemas/ServiceSuperStackMetaUseCase'
+          title: Use Cases
+          type: array
+        getting_started:
+          $ref: '#/components/schemas/ServiceSuperStackMetaGettingStarted'
+        faqs:
+          items:
+            $ref: '#/components/schemas/ServiceSuperStackMetaFaq'
+          title: Faqs
+          type: array
+      required:
+      - advertise
+      - background_picture
+      - description
+      - faqs
+      - featured
+      - features
+      - getting_started
+      - human_name
+      - picture
+      - route_name
+      - service_name
+      - summary
+      - tag_line
+      - use_cases
+      title: ServiceSuperStackMeta
+      type: object
+    ServiceSuperStackMetaFaq:
+      example:
+        question: question
+        answer: answer
+      properties:
+        question:
+          title: Question
+          type: string
+        answer:
+          title: Answer
+          type: string
+      required:
+      - answer
+      - question
+      title: ServiceSuperStackMetaFaq
+      type: object
+    ServiceSuperStackMetaFeature:
+      example:
+        summary: summary
+        name: name
+      properties:
+        name:
+          title: Name
+          type: string
+        summary:
+          title: Summary
+          type: string
+      required:
+      - name
+      - summary
+      title: ServiceSuperStackMetaFeature
+      type: object
+    ServiceSuperStackMetaGettingStarted:
+      example:
+        blurb: blurb
+        endpoint_teasers:
+        - path: path
+          method: method
+          description: description
+        - path: path
+          method: method
+          description: description
+      properties:
+        blurb:
+          title: Blurb
+          type: string
+        endpoint_teasers:
+          items:
+            $ref: '#/components/schemas/ServiceSuperStackMetaGettingStartedEndpointTeaser'
+          title: Endpoint Teasers
+          type: array
+      required:
+      - blurb
+      - endpoint_teasers
+      title: ServiceSuperStackMetaGettingStarted
+      type: object
+    ServiceSuperStackMetaGettingStartedEndpointTeaser:
+      example:
+        path: path
+        method: method
+        description: description
+      properties:
+        path:
+          title: Path
+          type: string
+        method:
+          title: Method
+          type: string
+        description:
+          title: Description
+          type: string
+      required:
+      - description
+      - method
+      - path
+      title: ServiceSuperStackMetaGettingStartedEndpointTeaser
+      type: object
+    ServiceSuperStackMetaUseCase:
+      example:
+        summary: summary
+        name: name
+      properties:
+        name:
+          title: Name
+          type: string
+        summary:
+          title: Summary
+          type: string
+      required:
+      - name
+      - summary
+      title: ServiceSuperStackMetaUseCase
       type: object
     StatsVitalsResponse:
       example:
