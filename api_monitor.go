@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.118
+eHelply SDK - 1.1.119
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.118
+API version: 1.1.119
 Contact: support@ehelply.com
 */
 
@@ -31,10 +31,46 @@ type ApiAcknowledgeAlarmRequest struct {
 	stage string
 	alarmUuid string
 	alarmAcknowledge *AlarmAcknowledge
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
 }
 
 func (r ApiAcknowledgeAlarmRequest) AlarmAcknowledge(alarmAcknowledge AlarmAcknowledge) ApiAcknowledgeAlarmRequest {
 	r.alarmAcknowledge = &alarmAcknowledge
+	return r
+}
+
+func (r ApiAcknowledgeAlarmRequest) XAccessToken(xAccessToken string) ApiAcknowledgeAlarmRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiAcknowledgeAlarmRequest) XSecretToken(xSecretToken string) ApiAcknowledgeAlarmRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiAcknowledgeAlarmRequest) Authorization(authorization string) ApiAcknowledgeAlarmRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiAcknowledgeAlarmRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiAcknowledgeAlarmRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiAcknowledgeAlarmRequest) EhelplyProject(ehelplyProject string) ApiAcknowledgeAlarmRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiAcknowledgeAlarmRequest) EhelplyData(ehelplyData string) ApiAcknowledgeAlarmRequest {
+	r.ehelplyData = &ehelplyData
 	return r
 }
 
@@ -105,6 +141,24 @@ func (a *MonitorApiService) AcknowledgeAlarmExecute(r ApiAcknowledgeAlarmRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
 	// body params
 	localVarPostBody = r.alarmAcknowledge
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -160,10 +214,46 @@ type ApiAssignAlarmRequest struct {
 	stage string
 	alarmUuid string
 	alarmAssign *AlarmAssign
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
 }
 
 func (r ApiAssignAlarmRequest) AlarmAssign(alarmAssign AlarmAssign) ApiAssignAlarmRequest {
 	r.alarmAssign = &alarmAssign
+	return r
+}
+
+func (r ApiAssignAlarmRequest) XAccessToken(xAccessToken string) ApiAssignAlarmRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiAssignAlarmRequest) XSecretToken(xSecretToken string) ApiAssignAlarmRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiAssignAlarmRequest) Authorization(authorization string) ApiAssignAlarmRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiAssignAlarmRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiAssignAlarmRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiAssignAlarmRequest) EhelplyProject(ehelplyProject string) ApiAssignAlarmRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiAssignAlarmRequest) EhelplyData(ehelplyData string) ApiAssignAlarmRequest {
+	r.ehelplyData = &ehelplyData
 	return r
 }
 
@@ -234,6 +324,24 @@ func (a *MonitorApiService) AssignAlarmExecute(r ApiAssignAlarmRequest) (*AlarmR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
 	// body params
 	localVarPostBody = r.alarmAssign
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -289,10 +397,46 @@ type ApiAttachAlarmNoteRequest struct {
 	stage string
 	alarmUuid string
 	alarmNote *AlarmNote
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
 }
 
 func (r ApiAttachAlarmNoteRequest) AlarmNote(alarmNote AlarmNote) ApiAttachAlarmNoteRequest {
 	r.alarmNote = &alarmNote
+	return r
+}
+
+func (r ApiAttachAlarmNoteRequest) XAccessToken(xAccessToken string) ApiAttachAlarmNoteRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiAttachAlarmNoteRequest) XSecretToken(xSecretToken string) ApiAttachAlarmNoteRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiAttachAlarmNoteRequest) Authorization(authorization string) ApiAttachAlarmNoteRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiAttachAlarmNoteRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiAttachAlarmNoteRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiAttachAlarmNoteRequest) EhelplyProject(ehelplyProject string) ApiAttachAlarmNoteRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiAttachAlarmNoteRequest) EhelplyData(ehelplyData string) ApiAttachAlarmNoteRequest {
+	r.ehelplyData = &ehelplyData
 	return r
 }
 
@@ -363,6 +507,24 @@ func (a *MonitorApiService) AttachAlarmNoteExecute(r ApiAttachAlarmNoteRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
 	// body params
 	localVarPostBody = r.alarmNote
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -418,10 +580,46 @@ type ApiAttachAlarmTicketRequest struct {
 	stage string
 	alarmUuid string
 	alarmTicket *AlarmTicket
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
 }
 
 func (r ApiAttachAlarmTicketRequest) AlarmTicket(alarmTicket AlarmTicket) ApiAttachAlarmTicketRequest {
 	r.alarmTicket = &alarmTicket
+	return r
+}
+
+func (r ApiAttachAlarmTicketRequest) XAccessToken(xAccessToken string) ApiAttachAlarmTicketRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiAttachAlarmTicketRequest) XSecretToken(xSecretToken string) ApiAttachAlarmTicketRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiAttachAlarmTicketRequest) Authorization(authorization string) ApiAttachAlarmTicketRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiAttachAlarmTicketRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiAttachAlarmTicketRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiAttachAlarmTicketRequest) EhelplyProject(ehelplyProject string) ApiAttachAlarmTicketRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiAttachAlarmTicketRequest) EhelplyData(ehelplyData string) ApiAttachAlarmTicketRequest {
+	r.ehelplyData = &ehelplyData
 	return r
 }
 
@@ -492,6 +690,24 @@ func (a *MonitorApiService) AttachAlarmTicketExecute(r ApiAttachAlarmTicketReque
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
 	// body params
 	localVarPostBody = r.alarmTicket
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -546,6 +762,42 @@ type ApiClearAlarmRequest struct {
 	service string
 	stage string
 	alarmUuid string
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
+}
+
+func (r ApiClearAlarmRequest) XAccessToken(xAccessToken string) ApiClearAlarmRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiClearAlarmRequest) XSecretToken(xSecretToken string) ApiClearAlarmRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiClearAlarmRequest) Authorization(authorization string) ApiClearAlarmRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiClearAlarmRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiClearAlarmRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiClearAlarmRequest) EhelplyProject(ehelplyProject string) ApiClearAlarmRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiClearAlarmRequest) EhelplyData(ehelplyData string) ApiClearAlarmRequest {
+	r.ehelplyData = &ehelplyData
+	return r
 }
 
 func (r ApiClearAlarmRequest) Execute() (*AlarmResponse, *http.Response, error) {
@@ -612,6 +864,188 @@ func (a *MonitorApiService) ClearAlarmExecute(r ApiClearAlarmRequest) (*AlarmRes
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiDeleteServiceSuperStackMetaRequest struct {
+	ctx context.Context
+	ApiService *MonitorApiService
+	service string
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
+}
+
+func (r ApiDeleteServiceSuperStackMetaRequest) XAccessToken(xAccessToken string) ApiDeleteServiceSuperStackMetaRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiDeleteServiceSuperStackMetaRequest) XSecretToken(xSecretToken string) ApiDeleteServiceSuperStackMetaRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiDeleteServiceSuperStackMetaRequest) Authorization(authorization string) ApiDeleteServiceSuperStackMetaRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiDeleteServiceSuperStackMetaRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiDeleteServiceSuperStackMetaRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiDeleteServiceSuperStackMetaRequest) EhelplyProject(ehelplyProject string) ApiDeleteServiceSuperStackMetaRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiDeleteServiceSuperStackMetaRequest) EhelplyData(ehelplyData string) ApiDeleteServiceSuperStackMetaRequest {
+	r.ehelplyData = &ehelplyData
+	return r
+}
+
+func (r ApiDeleteServiceSuperStackMetaRequest) Execute() (interface{}, *http.Response, error) {
+	return r.ApiService.DeleteServiceSuperStackMetaExecute(r)
+}
+
+/*
+DeleteServiceSuperStackMeta Deleteservicesuperstackmeta
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param service
+ @return ApiDeleteServiceSuperStackMetaRequest
+*/
+func (a *MonitorApiService) DeleteServiceSuperStackMeta(ctx context.Context, service string) ApiDeleteServiceSuperStackMetaRequest {
+	return ApiDeleteServiceSuperStackMetaRequest{
+		ApiService: a,
+		ctx: ctx,
+		service: service,
+	}
+}
+
+// Execute executes the request
+//  @return interface{}
+func (a *MonitorApiService) DeleteServiceSuperStackMetaExecute(r ApiDeleteServiceSuperStackMetaRequest) (interface{}, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  interface{}
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitorApiService.DeleteServiceSuperStackMeta")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/sam/monitor/services/{service}/superstack"
+	localVarPath = strings.Replace(localVarPath, "{"+"service"+"}", url.PathEscape(parameterToString(r.service, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -667,6 +1101,12 @@ type ApiGetServiceRequest struct {
 	alarms *bool
 	alarmLimit *int32
 	stage *string
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
 }
 
 func (r ApiGetServiceRequest) Heartbeats(heartbeats bool) ApiGetServiceRequest {
@@ -691,6 +1131,36 @@ func (r ApiGetServiceRequest) AlarmLimit(alarmLimit int32) ApiGetServiceRequest 
 
 func (r ApiGetServiceRequest) Stage(stage string) ApiGetServiceRequest {
 	r.stage = &stage
+	return r
+}
+
+func (r ApiGetServiceRequest) XAccessToken(xAccessToken string) ApiGetServiceRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiGetServiceRequest) XSecretToken(xSecretToken string) ApiGetServiceRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiGetServiceRequest) Authorization(authorization string) ApiGetServiceRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiGetServiceRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiGetServiceRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiGetServiceRequest) EhelplyProject(ehelplyProject string) ApiGetServiceRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiGetServiceRequest) EhelplyData(ehelplyData string) ApiGetServiceRequest {
+	r.ehelplyData = &ehelplyData
 	return r
 }
 
@@ -767,6 +1237,24 @@ func (a *MonitorApiService) GetServiceExecute(r ApiGetServiceRequest) (*ServiceR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -819,6 +1307,42 @@ type ApiGetServiceAlarmRequest struct {
 	service string
 	stage string
 	alarmUuid string
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
+}
+
+func (r ApiGetServiceAlarmRequest) XAccessToken(xAccessToken string) ApiGetServiceAlarmRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiGetServiceAlarmRequest) XSecretToken(xSecretToken string) ApiGetServiceAlarmRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiGetServiceAlarmRequest) Authorization(authorization string) ApiGetServiceAlarmRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiGetServiceAlarmRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiGetServiceAlarmRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiGetServiceAlarmRequest) EhelplyProject(ehelplyProject string) ApiGetServiceAlarmRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiGetServiceAlarmRequest) EhelplyData(ehelplyData string) ApiGetServiceAlarmRequest {
+	r.ehelplyData = &ehelplyData
+	return r
 }
 
 func (r ApiGetServiceAlarmRequest) Execute() (*AlarmResponse, *http.Response, error) {
@@ -885,6 +1409,24 @@ func (a *MonitorApiService) GetServiceAlarmExecute(r ApiGetServiceAlarmRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -939,6 +1481,12 @@ type ApiGetServiceAlarmsRequest struct {
 	history *int32
 	includeTerminated *bool
 	includeCleared *bool
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
 }
 
 func (r ApiGetServiceAlarmsRequest) History(history int32) ApiGetServiceAlarmsRequest {
@@ -953,6 +1501,36 @@ func (r ApiGetServiceAlarmsRequest) IncludeTerminated(includeTerminated bool) Ap
 
 func (r ApiGetServiceAlarmsRequest) IncludeCleared(includeCleared bool) ApiGetServiceAlarmsRequest {
 	r.includeCleared = &includeCleared
+	return r
+}
+
+func (r ApiGetServiceAlarmsRequest) XAccessToken(xAccessToken string) ApiGetServiceAlarmsRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiGetServiceAlarmsRequest) XSecretToken(xSecretToken string) ApiGetServiceAlarmsRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiGetServiceAlarmsRequest) Authorization(authorization string) ApiGetServiceAlarmsRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiGetServiceAlarmsRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiGetServiceAlarmsRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiGetServiceAlarmsRequest) EhelplyProject(ehelplyProject string) ApiGetServiceAlarmsRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiGetServiceAlarmsRequest) EhelplyData(ehelplyData string) ApiGetServiceAlarmsRequest {
+	r.ehelplyData = &ehelplyData
 	return r
 }
 
@@ -1026,6 +1604,24 @@ func (a *MonitorApiService) GetServiceAlarmsExecute(r ApiGetServiceAlarmsRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1078,10 +1674,46 @@ type ApiGetServiceHeartbeatRequest struct {
 	service string
 	stage string
 	history *int32
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
 }
 
 func (r ApiGetServiceHeartbeatRequest) History(history int32) ApiGetServiceHeartbeatRequest {
 	r.history = &history
+	return r
+}
+
+func (r ApiGetServiceHeartbeatRequest) XAccessToken(xAccessToken string) ApiGetServiceHeartbeatRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiGetServiceHeartbeatRequest) XSecretToken(xSecretToken string) ApiGetServiceHeartbeatRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiGetServiceHeartbeatRequest) Authorization(authorization string) ApiGetServiceHeartbeatRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiGetServiceHeartbeatRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiGetServiceHeartbeatRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiGetServiceHeartbeatRequest) EhelplyProject(ehelplyProject string) ApiGetServiceHeartbeatRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiGetServiceHeartbeatRequest) EhelplyData(ehelplyData string) ApiGetServiceHeartbeatRequest {
+	r.ehelplyData = &ehelplyData
 	return r
 }
 
@@ -1149,6 +1781,24 @@ func (a *MonitorApiService) GetServiceHeartbeatExecute(r ApiGetServiceHeartbeatR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1200,10 +1850,46 @@ type ApiGetServiceKpisRequest struct {
 	ApiService *MonitorApiService
 	service string
 	history *int32
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
 }
 
 func (r ApiGetServiceKpisRequest) History(history int32) ApiGetServiceKpisRequest {
 	r.history = &history
+	return r
+}
+
+func (r ApiGetServiceKpisRequest) XAccessToken(xAccessToken string) ApiGetServiceKpisRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiGetServiceKpisRequest) XSecretToken(xSecretToken string) ApiGetServiceKpisRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiGetServiceKpisRequest) Authorization(authorization string) ApiGetServiceKpisRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiGetServiceKpisRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiGetServiceKpisRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiGetServiceKpisRequest) EhelplyProject(ehelplyProject string) ApiGetServiceKpisRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiGetServiceKpisRequest) EhelplyData(ehelplyData string) ApiGetServiceKpisRequest {
+	r.ehelplyData = &ehelplyData
 	return r
 }
 
@@ -1267,6 +1953,24 @@ func (a *MonitorApiService) GetServiceKpisExecute(r ApiGetServiceKpisRequest) ([
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1564,10 +2268,46 @@ type ApiGetServiceVitalsRequest struct {
 	service string
 	stage string
 	history *int32
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
 }
 
 func (r ApiGetServiceVitalsRequest) History(history int32) ApiGetServiceVitalsRequest {
 	r.history = &history
+	return r
+}
+
+func (r ApiGetServiceVitalsRequest) XAccessToken(xAccessToken string) ApiGetServiceVitalsRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiGetServiceVitalsRequest) XSecretToken(xSecretToken string) ApiGetServiceVitalsRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiGetServiceVitalsRequest) Authorization(authorization string) ApiGetServiceVitalsRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiGetServiceVitalsRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiGetServiceVitalsRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiGetServiceVitalsRequest) EhelplyProject(ehelplyProject string) ApiGetServiceVitalsRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiGetServiceVitalsRequest) EhelplyData(ehelplyData string) ApiGetServiceVitalsRequest {
+	r.ehelplyData = &ehelplyData
 	return r
 }
 
@@ -1635,6 +2375,24 @@ func (a *MonitorApiService) GetServiceVitalsExecute(r ApiGetServiceVitalsRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1691,6 +2449,12 @@ type ApiGetServicesRequest struct {
 	includeHidden *bool
 	stage *string
 	key *string
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
 }
 
 func (r ApiGetServicesRequest) Heartbeats(heartbeats bool) ApiGetServicesRequest {
@@ -1725,6 +2489,36 @@ func (r ApiGetServicesRequest) Stage(stage string) ApiGetServicesRequest {
 
 func (r ApiGetServicesRequest) Key(key string) ApiGetServicesRequest {
 	r.key = &key
+	return r
+}
+
+func (r ApiGetServicesRequest) XAccessToken(xAccessToken string) ApiGetServicesRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiGetServicesRequest) XSecretToken(xSecretToken string) ApiGetServicesRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiGetServicesRequest) Authorization(authorization string) ApiGetServicesRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiGetServicesRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiGetServicesRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiGetServicesRequest) EhelplyProject(ehelplyProject string) ApiGetServicesRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiGetServicesRequest) EhelplyData(ehelplyData string) ApiGetServicesRequest {
+	r.ehelplyData = &ehelplyData
 	return r
 }
 
@@ -1803,6 +2597,24 @@ func (a *MonitorApiService) GetServicesExecute(r ApiGetServicesRequest) ([]Servi
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1957,11 +2769,144 @@ func (a *MonitorApiService) GetServicesWithSpecsExecute(r ApiGetServicesWithSpec
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiGetSupertackServicesRequest struct {
+	ctx context.Context
+	ApiService *MonitorApiService
+}
+
+func (r ApiGetSupertackServicesRequest) Execute() ([]ServiceSuperStackMeta, *http.Response, error) {
+	return r.ApiService.GetSupertackServicesExecute(r)
+}
+
+/*
+GetSupertackServices Getsupertackservices
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetSupertackServicesRequest
+*/
+func (a *MonitorApiService) GetSupertackServices(ctx context.Context) ApiGetSupertackServicesRequest {
+	return ApiGetSupertackServicesRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return []ServiceSuperStackMeta
+func (a *MonitorApiService) GetSupertackServicesExecute(r ApiGetSupertackServicesRequest) ([]ServiceSuperStackMeta, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []ServiceSuperStackMeta
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitorApiService.GetSupertackServices")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/sam/monitor/superstack-services"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiHideServiceRequest struct {
 	ctx context.Context
 	ApiService *MonitorApiService
 	service string
 	stage string
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
+}
+
+func (r ApiHideServiceRequest) XAccessToken(xAccessToken string) ApiHideServiceRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiHideServiceRequest) XSecretToken(xSecretToken string) ApiHideServiceRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiHideServiceRequest) Authorization(authorization string) ApiHideServiceRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiHideServiceRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiHideServiceRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiHideServiceRequest) EhelplyProject(ehelplyProject string) ApiHideServiceRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiHideServiceRequest) EhelplyData(ehelplyData string) ApiHideServiceRequest {
+	r.ehelplyData = &ehelplyData
+	return r
 }
 
 func (r ApiHideServiceRequest) Execute() (*ServiceMessageResponse, *http.Response, error) {
@@ -2025,6 +2970,24 @@ func (a *MonitorApiService) HideServiceExecute(r ApiHideServiceRequest) (*Servic
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2078,10 +3041,46 @@ type ApiIgnoreAlarmRequest struct {
 	stage string
 	alarmUuid string
 	alarmIgnore *AlarmIgnore
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
 }
 
 func (r ApiIgnoreAlarmRequest) AlarmIgnore(alarmIgnore AlarmIgnore) ApiIgnoreAlarmRequest {
 	r.alarmIgnore = &alarmIgnore
+	return r
+}
+
+func (r ApiIgnoreAlarmRequest) XAccessToken(xAccessToken string) ApiIgnoreAlarmRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiIgnoreAlarmRequest) XSecretToken(xSecretToken string) ApiIgnoreAlarmRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiIgnoreAlarmRequest) Authorization(authorization string) ApiIgnoreAlarmRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiIgnoreAlarmRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiIgnoreAlarmRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiIgnoreAlarmRequest) EhelplyProject(ehelplyProject string) ApiIgnoreAlarmRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiIgnoreAlarmRequest) EhelplyData(ehelplyData string) ApiIgnoreAlarmRequest {
+	r.ehelplyData = &ehelplyData
 	return r
 }
 
@@ -2152,6 +3151,24 @@ func (a *MonitorApiService) IgnoreAlarmExecute(r ApiIgnoreAlarmRequest) (*AlarmR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
 	// body params
 	localVarPostBody = r.alarmIgnore
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -2204,10 +3221,46 @@ type ApiRegisterServiceRequest struct {
 	ctx context.Context
 	ApiService *MonitorApiService
 	serviceCreate *ServiceCreate
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
 }
 
 func (r ApiRegisterServiceRequest) ServiceCreate(serviceCreate ServiceCreate) ApiRegisterServiceRequest {
 	r.serviceCreate = &serviceCreate
+	return r
+}
+
+func (r ApiRegisterServiceRequest) XAccessToken(xAccessToken string) ApiRegisterServiceRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiRegisterServiceRequest) XSecretToken(xSecretToken string) ApiRegisterServiceRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiRegisterServiceRequest) Authorization(authorization string) ApiRegisterServiceRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiRegisterServiceRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiRegisterServiceRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiRegisterServiceRequest) EhelplyProject(ehelplyProject string) ApiRegisterServiceRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiRegisterServiceRequest) EhelplyData(ehelplyData string) ApiRegisterServiceRequest {
+	r.ehelplyData = &ehelplyData
 	return r
 }
 
@@ -2269,8 +3322,201 @@ func (a *MonitorApiService) RegisterServiceExecute(r ApiRegisterServiceRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
 	// body params
 	localVarPostBody = r.serviceCreate
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSaveServiceSuperStackMetaRequest struct {
+	ctx context.Context
+	ApiService *MonitorApiService
+	service string
+	serviceSuperStackMeta *ServiceSuperStackMeta
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
+}
+
+func (r ApiSaveServiceSuperStackMetaRequest) ServiceSuperStackMeta(serviceSuperStackMeta ServiceSuperStackMeta) ApiSaveServiceSuperStackMetaRequest {
+	r.serviceSuperStackMeta = &serviceSuperStackMeta
+	return r
+}
+
+func (r ApiSaveServiceSuperStackMetaRequest) XAccessToken(xAccessToken string) ApiSaveServiceSuperStackMetaRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiSaveServiceSuperStackMetaRequest) XSecretToken(xSecretToken string) ApiSaveServiceSuperStackMetaRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiSaveServiceSuperStackMetaRequest) Authorization(authorization string) ApiSaveServiceSuperStackMetaRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiSaveServiceSuperStackMetaRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiSaveServiceSuperStackMetaRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiSaveServiceSuperStackMetaRequest) EhelplyProject(ehelplyProject string) ApiSaveServiceSuperStackMetaRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiSaveServiceSuperStackMetaRequest) EhelplyData(ehelplyData string) ApiSaveServiceSuperStackMetaRequest {
+	r.ehelplyData = &ehelplyData
+	return r
+}
+
+func (r ApiSaveServiceSuperStackMetaRequest) Execute() (interface{}, *http.Response, error) {
+	return r.ApiService.SaveServiceSuperStackMetaExecute(r)
+}
+
+/*
+SaveServiceSuperStackMeta Saveservicesuperstackmeta
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param service
+ @return ApiSaveServiceSuperStackMetaRequest
+*/
+func (a *MonitorApiService) SaveServiceSuperStackMeta(ctx context.Context, service string) ApiSaveServiceSuperStackMetaRequest {
+	return ApiSaveServiceSuperStackMetaRequest{
+		ApiService: a,
+		ctx: ctx,
+		service: service,
+	}
+}
+
+// Execute executes the request
+//  @return interface{}
+func (a *MonitorApiService) SaveServiceSuperStackMetaExecute(r ApiSaveServiceSuperStackMetaRequest) (interface{}, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  interface{}
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitorApiService.SaveServiceSuperStackMeta")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/sam/monitor/services/{service}/superstack"
+	localVarPath = strings.Replace(localVarPath, "{"+"service"+"}", url.PathEscape(parameterToString(r.service, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.serviceSuperStackMeta == nil {
+		return localVarReturnValue, nil, reportError("serviceSuperStackMeta is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
+	// body params
+	localVarPostBody = r.serviceSuperStackMeta
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2327,6 +3573,12 @@ type ApiSearchAlarmsRequest struct {
 	searchOn *string
 	sortOn *string
 	sortDesc *bool
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
 }
 
 func (r ApiSearchAlarmsRequest) Page(page int32) ApiSearchAlarmsRequest {
@@ -2356,6 +3608,36 @@ func (r ApiSearchAlarmsRequest) SortOn(sortOn string) ApiSearchAlarmsRequest {
 
 func (r ApiSearchAlarmsRequest) SortDesc(sortDesc bool) ApiSearchAlarmsRequest {
 	r.sortDesc = &sortDesc
+	return r
+}
+
+func (r ApiSearchAlarmsRequest) XAccessToken(xAccessToken string) ApiSearchAlarmsRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiSearchAlarmsRequest) XSecretToken(xSecretToken string) ApiSearchAlarmsRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiSearchAlarmsRequest) Authorization(authorization string) ApiSearchAlarmsRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiSearchAlarmsRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiSearchAlarmsRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiSearchAlarmsRequest) EhelplyProject(ehelplyProject string) ApiSearchAlarmsRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiSearchAlarmsRequest) EhelplyData(ehelplyData string) ApiSearchAlarmsRequest {
+	r.ehelplyData = &ehelplyData
 	return r
 }
 
@@ -2435,6 +3717,24 @@ func (a *MonitorApiService) SearchAlarmsExecute(r ApiSearchAlarmsRequest) (*Page
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2486,6 +3786,42 @@ type ApiShowServiceRequest struct {
 	ApiService *MonitorApiService
 	service string
 	stage string
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
+}
+
+func (r ApiShowServiceRequest) XAccessToken(xAccessToken string) ApiShowServiceRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiShowServiceRequest) XSecretToken(xSecretToken string) ApiShowServiceRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiShowServiceRequest) Authorization(authorization string) ApiShowServiceRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiShowServiceRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiShowServiceRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiShowServiceRequest) EhelplyProject(ehelplyProject string) ApiShowServiceRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiShowServiceRequest) EhelplyData(ehelplyData string) ApiShowServiceRequest {
+	r.ehelplyData = &ehelplyData
+	return r
 }
 
 func (r ApiShowServiceRequest) Execute() (*ServiceMessageResponse, *http.Response, error) {
@@ -2549,6 +3885,24 @@ func (a *MonitorApiService) ShowServiceExecute(r ApiShowServiceRequest) (*Servic
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2602,10 +3956,46 @@ type ApiTerminateAlarmRequest struct {
 	stage string
 	alarmUuid string
 	alarmTerminate *AlarmTerminate
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
 }
 
 func (r ApiTerminateAlarmRequest) AlarmTerminate(alarmTerminate AlarmTerminate) ApiTerminateAlarmRequest {
 	r.alarmTerminate = &alarmTerminate
+	return r
+}
+
+func (r ApiTerminateAlarmRequest) XAccessToken(xAccessToken string) ApiTerminateAlarmRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiTerminateAlarmRequest) XSecretToken(xSecretToken string) ApiTerminateAlarmRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiTerminateAlarmRequest) Authorization(authorization string) ApiTerminateAlarmRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiTerminateAlarmRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiTerminateAlarmRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiTerminateAlarmRequest) EhelplyProject(ehelplyProject string) ApiTerminateAlarmRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiTerminateAlarmRequest) EhelplyData(ehelplyData string) ApiTerminateAlarmRequest {
+	r.ehelplyData = &ehelplyData
 	return r
 }
 
@@ -2676,6 +4066,24 @@ func (a *MonitorApiService) TerminateAlarmExecute(r ApiTerminateAlarmRequest) (*
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
+	}
 	// body params
 	localVarPostBody = r.alarmTerminate
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -2730,10 +4138,46 @@ type ApiTriggerAlarmRequest struct {
 	service string
 	stage string
 	alarmCreate *AlarmCreate
+	xAccessToken *string
+	xSecretToken *string
+	authorization *string
+	ehelplyActiveParticipant *string
+	ehelplyProject *string
+	ehelplyData *string
 }
 
 func (r ApiTriggerAlarmRequest) AlarmCreate(alarmCreate AlarmCreate) ApiTriggerAlarmRequest {
 	r.alarmCreate = &alarmCreate
+	return r
+}
+
+func (r ApiTriggerAlarmRequest) XAccessToken(xAccessToken string) ApiTriggerAlarmRequest {
+	r.xAccessToken = &xAccessToken
+	return r
+}
+
+func (r ApiTriggerAlarmRequest) XSecretToken(xSecretToken string) ApiTriggerAlarmRequest {
+	r.xSecretToken = &xSecretToken
+	return r
+}
+
+func (r ApiTriggerAlarmRequest) Authorization(authorization string) ApiTriggerAlarmRequest {
+	r.authorization = &authorization
+	return r
+}
+
+func (r ApiTriggerAlarmRequest) EhelplyActiveParticipant(ehelplyActiveParticipant string) ApiTriggerAlarmRequest {
+	r.ehelplyActiveParticipant = &ehelplyActiveParticipant
+	return r
+}
+
+func (r ApiTriggerAlarmRequest) EhelplyProject(ehelplyProject string) ApiTriggerAlarmRequest {
+	r.ehelplyProject = &ehelplyProject
+	return r
+}
+
+func (r ApiTriggerAlarmRequest) EhelplyData(ehelplyData string) ApiTriggerAlarmRequest {
+	r.ehelplyData = &ehelplyData
 	return r
 }
 
@@ -2800,6 +4244,24 @@ func (a *MonitorApiService) TriggerAlarmExecute(r ApiTriggerAlarmRequest) (*Alar
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xAccessToken != nil {
+		localVarHeaderParams["x-access-token"] = parameterToString(*r.xAccessToken, "")
+	}
+	if r.xSecretToken != nil {
+		localVarHeaderParams["x-secret-token"] = parameterToString(*r.xSecretToken, "")
+	}
+	if r.authorization != nil {
+		localVarHeaderParams["authorization"] = parameterToString(*r.authorization, "")
+	}
+	if r.ehelplyActiveParticipant != nil {
+		localVarHeaderParams["ehelply-active-participant"] = parameterToString(*r.ehelplyActiveParticipant, "")
+	}
+	if r.ehelplyProject != nil {
+		localVarHeaderParams["ehelply-project"] = parameterToString(*r.ehelplyProject, "")
+	}
+	if r.ehelplyData != nil {
+		localVarHeaderParams["ehelply-data"] = parameterToString(*r.ehelplyData, "")
 	}
 	// body params
 	localVarPostBody = r.alarmCreate

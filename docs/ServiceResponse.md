@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **HiddenStages** | Pointer to **[]string** |  | [optional] [default to []]
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
+**SuperstackMeta** | Pointer to [**ServiceSuperStackMeta**](ServiceSuperStackMeta.md) |  | [optional] 
 
 ## Methods
 
@@ -305,6 +306,31 @@ SetUpdatedAt sets UpdatedAt field to given value.
 `func (o *ServiceResponse) HasUpdatedAt() bool`
 
 HasUpdatedAt returns a boolean if a field has been set.
+
+### GetSuperstackMeta
+
+`func (o *ServiceResponse) GetSuperstackMeta() ServiceSuperStackMeta`
+
+GetSuperstackMeta returns the SuperstackMeta field if non-nil, zero value otherwise.
+
+### GetSuperstackMetaOk
+
+`func (o *ServiceResponse) GetSuperstackMetaOk() (*ServiceSuperStackMeta, bool)`
+
+GetSuperstackMetaOk returns a tuple with the SuperstackMeta field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSuperstackMeta
+
+`func (o *ServiceResponse) SetSuperstackMeta(v ServiceSuperStackMeta)`
+
+SetSuperstackMeta sets SuperstackMeta field to given value.
+
+### HasSuperstackMeta
+
+`func (o *ServiceResponse) HasSuperstackMeta() bool`
+
+HasSuperstackMeta returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

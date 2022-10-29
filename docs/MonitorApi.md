@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**AttachAlarmNote**](MonitorApi.md#AttachAlarmNote) | **Post** /sam/monitor/services/{service}/stages/{stage}/alarms/{alarm_uuid}/note | Attachalarmnote
 [**AttachAlarmTicket**](MonitorApi.md#AttachAlarmTicket) | **Post** /sam/monitor/services/{service}/stages/{stage}/alarms/{alarm_uuid}/ticket | Attachalarmticket
 [**ClearAlarm**](MonitorApi.md#ClearAlarm) | **Post** /sam/monitor/services/{service}/stages/{stage}/alarms/{alarm_uuid}/clear | Clearalarm
+[**DeleteServiceSuperStackMeta**](MonitorApi.md#DeleteServiceSuperStackMeta) | **Delete** /sam/monitor/services/{service}/superstack | Deleteservicesuperstackmeta
 [**GetService**](MonitorApi.md#GetService) | **Get** /sam/monitor/services/{service} | Getservice
 [**GetServiceAlarm**](MonitorApi.md#GetServiceAlarm) | **Get** /sam/monitor/services/{service}/stages/{stage}/alarms/{alarm_uuid} | Getservicealarm
 [**GetServiceAlarms**](MonitorApi.md#GetServiceAlarms) | **Get** /sam/monitor/services/{service}/stages/{stage}/alarms | Getservicealarms
@@ -19,9 +20,11 @@ Method | HTTP request | Description
 [**GetServiceVitals**](MonitorApi.md#GetServiceVitals) | **Get** /sam/monitor/services/{service}/stages/{stage}/vitals | Getservicevitals
 [**GetServices**](MonitorApi.md#GetServices) | **Get** /sam/monitor/services | Getservices
 [**GetServicesWithSpecs**](MonitorApi.md#GetServicesWithSpecs) | **Get** /sam/monitor/specs/services | Getserviceswithspecs
+[**GetSupertackServices**](MonitorApi.md#GetSupertackServices) | **Get** /sam/monitor/superstack-services | Getsupertackservices
 [**HideService**](MonitorApi.md#HideService) | **Post** /sam/monitor/services/{service}/stages/{stage}/hide | Hideservice
 [**IgnoreAlarm**](MonitorApi.md#IgnoreAlarm) | **Post** /sam/monitor/services/{service}/stages/{stage}/alarms/{alarm_uuid}/ignore | Ignorealarm
 [**RegisterService**](MonitorApi.md#RegisterService) | **Post** /sam/monitor/services | Registerservice
+[**SaveServiceSuperStackMeta**](MonitorApi.md#SaveServiceSuperStackMeta) | **Post** /sam/monitor/services/{service}/superstack | Saveservicesuperstackmeta
 [**SearchAlarms**](MonitorApi.md#SearchAlarms) | **Get** /sam/monitor/services/{service}/alarms | Searchalarms
 [**ShowService**](MonitorApi.md#ShowService) | **Post** /sam/monitor/services/{service}/stages/{stage}/show | Showservice
 [**TerminateAlarm**](MonitorApi.md#TerminateAlarm) | **Post** /sam/monitor/services/{service}/stages/{stage}/alarms/{alarm_uuid}/terminate | Terminatealarm
@@ -31,7 +34,7 @@ Method | HTTP request | Description
 
 ## AcknowledgeAlarm
 
-> AlarmResponse AcknowledgeAlarm(ctx, service, stage, alarmUuid).AlarmAcknowledge(alarmAcknowledge).Execute()
+> AlarmResponse AcknowledgeAlarm(ctx, service, stage, alarmUuid).AlarmAcknowledge(alarmAcknowledge).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Acknowledgealarm
 
@@ -52,10 +55,16 @@ func main() {
     stage := "stage_example" // string | 
     alarmUuid := "alarmUuid_example" // string | 
     alarmAcknowledge := *openapiclient.NewAlarmAcknowledge("AcknowledgerUuid_example") // AlarmAcknowledge | 
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorApi.AcknowledgeAlarm(context.Background(), service, stage, alarmUuid).AlarmAcknowledge(alarmAcknowledge).Execute()
+    resp, r, err := apiClient.MonitorApi.AcknowledgeAlarm(context.Background(), service, stage, alarmUuid).AlarmAcknowledge(alarmAcknowledge).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.AcknowledgeAlarm``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -86,6 +95,12 @@ Name | Type | Description  | Notes
 
 
  **alarmAcknowledge** | [**AlarmAcknowledge**](AlarmAcknowledge.md) |  | 
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
 
 ### Return type
 
@@ -107,7 +122,7 @@ No authorization required
 
 ## AssignAlarm
 
-> AlarmResponse AssignAlarm(ctx, service, stage, alarmUuid).AlarmAssign(alarmAssign).Execute()
+> AlarmResponse AssignAlarm(ctx, service, stage, alarmUuid).AlarmAssign(alarmAssign).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Assignalarm
 
@@ -128,10 +143,16 @@ func main() {
     stage := "stage_example" // string | 
     alarmUuid := "alarmUuid_example" // string | 
     alarmAssign := *openapiclient.NewAlarmAssign("AssigneeUuid_example") // AlarmAssign | 
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorApi.AssignAlarm(context.Background(), service, stage, alarmUuid).AlarmAssign(alarmAssign).Execute()
+    resp, r, err := apiClient.MonitorApi.AssignAlarm(context.Background(), service, stage, alarmUuid).AlarmAssign(alarmAssign).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.AssignAlarm``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -162,6 +183,12 @@ Name | Type | Description  | Notes
 
 
  **alarmAssign** | [**AlarmAssign**](AlarmAssign.md) |  | 
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
 
 ### Return type
 
@@ -183,7 +210,7 @@ No authorization required
 
 ## AttachAlarmNote
 
-> AlarmResponse AttachAlarmNote(ctx, service, stage, alarmUuid).AlarmNote(alarmNote).Execute()
+> AlarmResponse AttachAlarmNote(ctx, service, stage, alarmUuid).AlarmNote(alarmNote).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Attachalarmnote
 
@@ -204,10 +231,16 @@ func main() {
     stage := "stage_example" // string | 
     alarmUuid := "alarmUuid_example" // string | 
     alarmNote := *openapiclient.NewAlarmNote("AuthorUuid_example", "Message_example") // AlarmNote | 
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorApi.AttachAlarmNote(context.Background(), service, stage, alarmUuid).AlarmNote(alarmNote).Execute()
+    resp, r, err := apiClient.MonitorApi.AttachAlarmNote(context.Background(), service, stage, alarmUuid).AlarmNote(alarmNote).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.AttachAlarmNote``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -238,6 +271,12 @@ Name | Type | Description  | Notes
 
 
  **alarmNote** | [**AlarmNote**](AlarmNote.md) |  | 
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
 
 ### Return type
 
@@ -259,7 +298,7 @@ No authorization required
 
 ## AttachAlarmTicket
 
-> AlarmResponse AttachAlarmTicket(ctx, service, stage, alarmUuid).AlarmTicket(alarmTicket).Execute()
+> AlarmResponse AttachAlarmTicket(ctx, service, stage, alarmUuid).AlarmTicket(alarmTicket).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Attachalarmticket
 
@@ -280,10 +319,16 @@ func main() {
     stage := "stage_example" // string | 
     alarmUuid := "alarmUuid_example" // string | 
     alarmTicket := *openapiclient.NewAlarmTicket("TicketUuid_example") // AlarmTicket | 
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorApi.AttachAlarmTicket(context.Background(), service, stage, alarmUuid).AlarmTicket(alarmTicket).Execute()
+    resp, r, err := apiClient.MonitorApi.AttachAlarmTicket(context.Background(), service, stage, alarmUuid).AlarmTicket(alarmTicket).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.AttachAlarmTicket``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -314,6 +359,12 @@ Name | Type | Description  | Notes
 
 
  **alarmTicket** | [**AlarmTicket**](AlarmTicket.md) |  | 
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
 
 ### Return type
 
@@ -335,7 +386,7 @@ No authorization required
 
 ## ClearAlarm
 
-> AlarmResponse ClearAlarm(ctx, service, stage, alarmUuid).Execute()
+> AlarmResponse ClearAlarm(ctx, service, stage, alarmUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Clearalarm
 
@@ -355,10 +406,16 @@ func main() {
     service := "service_example" // string | 
     stage := "stage_example" // string | 
     alarmUuid := "alarmUuid_example" // string | 
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorApi.ClearAlarm(context.Background(), service, stage, alarmUuid).Execute()
+    resp, r, err := apiClient.MonitorApi.ClearAlarm(context.Background(), service, stage, alarmUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.ClearAlarm``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -388,6 +445,12 @@ Name | Type | Description  | Notes
 
 
 
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
 
 ### Return type
 
@@ -407,9 +470,89 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## DeleteServiceSuperStackMeta
+
+> interface{} DeleteServiceSuperStackMeta(ctx, service).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+
+Deleteservicesuperstackmeta
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    service := "service_example" // string | 
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.MonitorApi.DeleteServiceSuperStackMeta(context.Background(), service).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.DeleteServiceSuperStackMeta``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteServiceSuperStackMeta`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `MonitorApi.DeleteServiceSuperStackMeta`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**service** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteServiceSuperStackMetaRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
+
+### Return type
+
+**interface{}**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetService
 
-> ServiceResponse GetService(ctx, service).Heartbeats(heartbeats).HeartbeatLimit(heartbeatLimit).Alarms(alarms).AlarmLimit(alarmLimit).Stage(stage).Execute()
+> ServiceResponse GetService(ctx, service).Heartbeats(heartbeats).HeartbeatLimit(heartbeatLimit).Alarms(alarms).AlarmLimit(alarmLimit).Stage(stage).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Getservice
 
@@ -432,10 +575,16 @@ func main() {
     alarms := true // bool |  (optional) (default to false)
     alarmLimit := int32(56) // int32 |  (optional) (default to 5)
     stage := "stage_example" // string |  (optional)
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorApi.GetService(context.Background(), service).Heartbeats(heartbeats).HeartbeatLimit(heartbeatLimit).Alarms(alarms).AlarmLimit(alarmLimit).Stage(stage).Execute()
+    resp, r, err := apiClient.MonitorApi.GetService(context.Background(), service).Heartbeats(heartbeats).HeartbeatLimit(heartbeatLimit).Alarms(alarms).AlarmLimit(alarmLimit).Stage(stage).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.GetService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -466,6 +615,12 @@ Name | Type | Description  | Notes
  **alarms** | **bool** |  | [default to false]
  **alarmLimit** | **int32** |  | [default to 5]
  **stage** | **string** |  | 
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
 
 ### Return type
 
@@ -487,7 +642,7 @@ No authorization required
 
 ## GetServiceAlarm
 
-> AlarmResponse GetServiceAlarm(ctx, service, stage, alarmUuid).Execute()
+> AlarmResponse GetServiceAlarm(ctx, service, stage, alarmUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Getservicealarm
 
@@ -507,10 +662,16 @@ func main() {
     service := "service_example" // string | 
     stage := "stage_example" // string | 
     alarmUuid := "alarmUuid_example" // string | 
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorApi.GetServiceAlarm(context.Background(), service, stage, alarmUuid).Execute()
+    resp, r, err := apiClient.MonitorApi.GetServiceAlarm(context.Background(), service, stage, alarmUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.GetServiceAlarm``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -540,6 +701,12 @@ Name | Type | Description  | Notes
 
 
 
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
 
 ### Return type
 
@@ -561,7 +728,7 @@ No authorization required
 
 ## GetServiceAlarms
 
-> []AlarmResponse GetServiceAlarms(ctx, service, stage).History(history).IncludeTerminated(includeTerminated).IncludeCleared(includeCleared).Execute()
+> []AlarmResponse GetServiceAlarms(ctx, service, stage).History(history).IncludeTerminated(includeTerminated).IncludeCleared(includeCleared).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Getservicealarms
 
@@ -583,10 +750,16 @@ func main() {
     history := int32(56) // int32 |  (optional) (default to 5)
     includeTerminated := true // bool |  (optional) (default to false)
     includeCleared := true // bool |  (optional) (default to false)
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorApi.GetServiceAlarms(context.Background(), service, stage).History(history).IncludeTerminated(includeTerminated).IncludeCleared(includeCleared).Execute()
+    resp, r, err := apiClient.MonitorApi.GetServiceAlarms(context.Background(), service, stage).History(history).IncludeTerminated(includeTerminated).IncludeCleared(includeCleared).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.GetServiceAlarms``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -617,6 +790,12 @@ Name | Type | Description  | Notes
  **history** | **int32** |  | [default to 5]
  **includeTerminated** | **bool** |  | [default to false]
  **includeCleared** | **bool** |  | [default to false]
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
 
 ### Return type
 
@@ -638,7 +817,7 @@ No authorization required
 
 ## GetServiceHeartbeat
 
-> []HeartbeatResponse GetServiceHeartbeat(ctx, service, stage).History(history).Execute()
+> []HeartbeatResponse GetServiceHeartbeat(ctx, service, stage).History(history).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Getserviceheartbeat
 
@@ -658,10 +837,16 @@ func main() {
     service := "service_example" // string | 
     stage := "stage_example" // string | 
     history := int32(56) // int32 |  (optional) (default to 5)
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorApi.GetServiceHeartbeat(context.Background(), service, stage).History(history).Execute()
+    resp, r, err := apiClient.MonitorApi.GetServiceHeartbeat(context.Background(), service, stage).History(history).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.GetServiceHeartbeat``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -690,6 +875,12 @@ Name | Type | Description  | Notes
 
 
  **history** | **int32** |  | [default to 5]
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
 
 ### Return type
 
@@ -711,7 +902,7 @@ No authorization required
 
 ## GetServiceKpis
 
-> []KpiResponse GetServiceKpis(ctx, service).History(history).Execute()
+> []KpiResponse GetServiceKpis(ctx, service).History(history).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Getservicekpis
 
@@ -730,10 +921,16 @@ import (
 func main() {
     service := "service_example" // string | 
     history := int32(56) // int32 |  (optional) (default to 5)
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorApi.GetServiceKpis(context.Background(), service).History(history).Execute()
+    resp, r, err := apiClient.MonitorApi.GetServiceKpis(context.Background(), service).History(history).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.GetServiceKpis``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -760,6 +957,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **history** | **int32** |  | [default to 5]
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
 
 ### Return type
 
@@ -920,7 +1123,7 @@ No authorization required
 
 ## GetServiceVitals
 
-> []StatsVitalsResponse GetServiceVitals(ctx, service, stage).History(history).Execute()
+> []StatsVitalsResponse GetServiceVitals(ctx, service, stage).History(history).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Getservicevitals
 
@@ -940,10 +1143,16 @@ func main() {
     service := "service_example" // string | 
     stage := "stage_example" // string | 
     history := int32(56) // int32 |  (optional) (default to 5)
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorApi.GetServiceVitals(context.Background(), service, stage).History(history).Execute()
+    resp, r, err := apiClient.MonitorApi.GetServiceVitals(context.Background(), service, stage).History(history).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.GetServiceVitals``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -972,6 +1181,12 @@ Name | Type | Description  | Notes
 
 
  **history** | **int32** |  | [default to 5]
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
 
 ### Return type
 
@@ -993,7 +1208,7 @@ No authorization required
 
 ## GetServices
 
-> []ServiceResponse GetServices(ctx).Heartbeats(heartbeats).HeartbeatLimit(heartbeatLimit).Alarms(alarms).AlarmLimit(alarmLimit).IncludeHidden(includeHidden).Stage(stage).Key(key).Execute()
+> []ServiceResponse GetServices(ctx).Heartbeats(heartbeats).HeartbeatLimit(heartbeatLimit).Alarms(alarms).AlarmLimit(alarmLimit).IncludeHidden(includeHidden).Stage(stage).Key(key).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Getservices
 
@@ -1017,10 +1232,16 @@ func main() {
     includeHidden := true // bool |  (optional) (default to false)
     stage := "stage_example" // string |  (optional)
     key := "key_example" // string |  (optional)
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorApi.GetServices(context.Background()).Heartbeats(heartbeats).HeartbeatLimit(heartbeatLimit).Alarms(alarms).AlarmLimit(alarmLimit).IncludeHidden(includeHidden).Stage(stage).Key(key).Execute()
+    resp, r, err := apiClient.MonitorApi.GetServices(context.Background()).Heartbeats(heartbeats).HeartbeatLimit(heartbeatLimit).Alarms(alarms).AlarmLimit(alarmLimit).IncludeHidden(includeHidden).Stage(stage).Key(key).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.GetServices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1048,6 +1269,12 @@ Name | Type | Description  | Notes
  **includeHidden** | **bool** |  | [default to false]
  **stage** | **string** |  | 
  **key** | **string** |  | 
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
 
 ### Return type
 
@@ -1126,9 +1353,68 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## GetSupertackServices
+
+> []ServiceSuperStackMeta GetSupertackServices(ctx).Execute()
+
+Getsupertackservices
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.MonitorApi.GetSupertackServices(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.GetSupertackServices``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetSupertackServices`: []ServiceSuperStackMeta
+    fmt.Fprintf(os.Stdout, "Response from `MonitorApi.GetSupertackServices`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetSupertackServicesRequest struct via the builder pattern
+
+
+### Return type
+
+[**[]ServiceSuperStackMeta**](ServiceSuperStackMeta.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## HideService
 
-> ServiceMessageResponse HideService(ctx, service, stage).Execute()
+> ServiceMessageResponse HideService(ctx, service, stage).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Hideservice
 
@@ -1147,10 +1433,16 @@ import (
 func main() {
     service := "service_example" // string | 
     stage := "stage_example" // string | 
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorApi.HideService(context.Background(), service, stage).Execute()
+    resp, r, err := apiClient.MonitorApi.HideService(context.Background(), service, stage).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.HideService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1178,6 +1470,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
 
 ### Return type
 
@@ -1199,7 +1497,7 @@ No authorization required
 
 ## IgnoreAlarm
 
-> AlarmResponse IgnoreAlarm(ctx, service, stage, alarmUuid).AlarmIgnore(alarmIgnore).Execute()
+> AlarmResponse IgnoreAlarm(ctx, service, stage, alarmUuid).AlarmIgnore(alarmIgnore).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Ignorealarm
 
@@ -1220,10 +1518,16 @@ func main() {
     stage := "stage_example" // string | 
     alarmUuid := "alarmUuid_example" // string | 
     alarmIgnore := *openapiclient.NewAlarmIgnore("IgnorerUuid_example") // AlarmIgnore | 
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorApi.IgnoreAlarm(context.Background(), service, stage, alarmUuid).AlarmIgnore(alarmIgnore).Execute()
+    resp, r, err := apiClient.MonitorApi.IgnoreAlarm(context.Background(), service, stage, alarmUuid).AlarmIgnore(alarmIgnore).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.IgnoreAlarm``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1254,6 +1558,12 @@ Name | Type | Description  | Notes
 
 
  **alarmIgnore** | [**AlarmIgnore**](AlarmIgnore.md) |  | 
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
 
 ### Return type
 
@@ -1275,7 +1585,7 @@ No authorization required
 
 ## RegisterService
 
-> ServiceResponse RegisterService(ctx).ServiceCreate(serviceCreate).Execute()
+> ServiceResponse RegisterService(ctx).ServiceCreate(serviceCreate).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Registerservice
 
@@ -1293,10 +1603,16 @@ import (
 
 func main() {
     serviceCreate := *openapiclient.NewServiceCreate("Name_example", "Key_example", "Version_example", "Summary_example", []string{"Authors_example"}, []string{"AuthorEmails_example"}) // ServiceCreate | 
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorApi.RegisterService(context.Background()).ServiceCreate(serviceCreate).Execute()
+    resp, r, err := apiClient.MonitorApi.RegisterService(context.Background()).ServiceCreate(serviceCreate).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.RegisterService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1318,6 +1634,12 @@ Other parameters are passed through a pointer to a apiRegisterServiceRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **serviceCreate** | [**ServiceCreate**](ServiceCreate.md) |  | 
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
 
 ### Return type
 
@@ -1337,9 +1659,91 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## SaveServiceSuperStackMeta
+
+> interface{} SaveServiceSuperStackMeta(ctx, service).ServiceSuperStackMeta(serviceSuperStackMeta).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+
+Saveservicesuperstackmeta
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    service := "service_example" // string | 
+    serviceSuperStackMeta := *openapiclient.NewServiceSuperStackMeta("HumanName_example", "RouteName_example", "ServiceName_example", false, false, "Picture_example", "BackgroundPicture_example", "TagLine_example", "Summary_example", "Description_example", []openapiclient.ServiceSuperStackMetaFeature{*openapiclient.NewServiceSuperStackMetaFeature("Name_example", "Summary_example")}, []openapiclient.ServiceSuperStackMetaUseCase{*openapiclient.NewServiceSuperStackMetaUseCase("Name_example", "Summary_example")}, *openapiclient.NewServiceSuperStackMetaGettingStarted("Blurb_example", []openapiclient.ServiceSuperStackMetaGettingStartedEndpointTeaser{*openapiclient.NewServiceSuperStackMetaGettingStartedEndpointTeaser("Path_example", "Method_example", "Description_example")}), []openapiclient.ServiceSuperStackMetaFaq{*openapiclient.NewServiceSuperStackMetaFaq("Question_example", "Answer_example")}) // ServiceSuperStackMeta | 
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.MonitorApi.SaveServiceSuperStackMeta(context.Background(), service).ServiceSuperStackMeta(serviceSuperStackMeta).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.SaveServiceSuperStackMeta``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SaveServiceSuperStackMeta`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `MonitorApi.SaveServiceSuperStackMeta`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**service** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSaveServiceSuperStackMetaRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **serviceSuperStackMeta** | [**ServiceSuperStackMeta**](ServiceSuperStackMeta.md) |  | 
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
+
+### Return type
+
+**interface{}**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## SearchAlarms
 
-> Page SearchAlarms(ctx, service).Page(page).PageSize(pageSize).Search(search).SearchOn(searchOn).SortOn(sortOn).SortDesc(sortDesc).Execute()
+> Page SearchAlarms(ctx, service).Page(page).PageSize(pageSize).Search(search).SearchOn(searchOn).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Searchalarms
 
@@ -1363,10 +1767,16 @@ func main() {
     searchOn := "searchOn_example" // string |  (optional)
     sortOn := "sortOn_example" // string |  (optional)
     sortDesc := true // bool |  (optional) (default to false)
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorApi.SearchAlarms(context.Background(), service).Page(page).PageSize(pageSize).Search(search).SearchOn(searchOn).SortOn(sortOn).SortDesc(sortDesc).Execute()
+    resp, r, err := apiClient.MonitorApi.SearchAlarms(context.Background(), service).Page(page).PageSize(pageSize).Search(search).SearchOn(searchOn).SortOn(sortOn).SortDesc(sortDesc).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.SearchAlarms``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1398,6 +1808,12 @@ Name | Type | Description  | Notes
  **searchOn** | **string** |  | 
  **sortOn** | **string** |  | 
  **sortDesc** | **bool** |  | [default to false]
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
 
 ### Return type
 
@@ -1419,7 +1835,7 @@ No authorization required
 
 ## ShowService
 
-> ServiceMessageResponse ShowService(ctx, service, stage).Execute()
+> ServiceMessageResponse ShowService(ctx, service, stage).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Showservice
 
@@ -1438,10 +1854,16 @@ import (
 func main() {
     service := "service_example" // string | 
     stage := "stage_example" // string | 
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorApi.ShowService(context.Background(), service, stage).Execute()
+    resp, r, err := apiClient.MonitorApi.ShowService(context.Background(), service, stage).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.ShowService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1469,6 +1891,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
 
 ### Return type
 
@@ -1490,7 +1918,7 @@ No authorization required
 
 ## TerminateAlarm
 
-> AlarmResponse TerminateAlarm(ctx, service, stage, alarmUuid).AlarmTerminate(alarmTerminate).Execute()
+> AlarmResponse TerminateAlarm(ctx, service, stage, alarmUuid).AlarmTerminate(alarmTerminate).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Terminatealarm
 
@@ -1511,10 +1939,16 @@ func main() {
     stage := "stage_example" // string | 
     alarmUuid := "alarmUuid_example" // string | 
     alarmTerminate := *openapiclient.NewAlarmTerminate("TerminaterUuid_example") // AlarmTerminate | 
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorApi.TerminateAlarm(context.Background(), service, stage, alarmUuid).AlarmTerminate(alarmTerminate).Execute()
+    resp, r, err := apiClient.MonitorApi.TerminateAlarm(context.Background(), service, stage, alarmUuid).AlarmTerminate(alarmTerminate).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.TerminateAlarm``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1545,6 +1979,12 @@ Name | Type | Description  | Notes
 
 
  **alarmTerminate** | [**AlarmTerminate**](AlarmTerminate.md) |  | 
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
 
 ### Return type
 
@@ -1566,7 +2006,7 @@ No authorization required
 
 ## TriggerAlarm
 
-> AlarmResponse TriggerAlarm(ctx, service, stage).AlarmCreate(alarmCreate).Execute()
+> AlarmResponse TriggerAlarm(ctx, service, stage).AlarmCreate(alarmCreate).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Triggeralarm
 
@@ -1586,10 +2026,16 @@ func main() {
     service := "service_example" // string | 
     stage := "stage_example" // string | 
     alarmCreate := *openapiclient.NewAlarmCreate() // AlarmCreate | 
+    xAccessToken := "xAccessToken_example" // string |  (optional)
+    xSecretToken := "xSecretToken_example" // string |  (optional)
+    authorization := "authorization_example" // string |  (optional)
+    ehelplyActiveParticipant := "ehelplyActiveParticipant_example" // string |  (optional)
+    ehelplyProject := "ehelplyProject_example" // string |  (optional)
+    ehelplyData := "ehelplyData_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.MonitorApi.TriggerAlarm(context.Background(), service, stage).AlarmCreate(alarmCreate).Execute()
+    resp, r, err := apiClient.MonitorApi.TriggerAlarm(context.Background(), service, stage).AlarmCreate(alarmCreate).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MonitorApi.TriggerAlarm``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1618,6 +2064,12 @@ Name | Type | Description  | Notes
 
 
  **alarmCreate** | [**AlarmCreate**](AlarmCreate.md) |  | 
+ **xAccessToken** | **string** |  | 
+ **xSecretToken** | **string** |  | 
+ **authorization** | **string** |  | 
+ **ehelplyActiveParticipant** | **string** |  | 
+ **ehelplyProject** | **string** |  | 
+ **ehelplyData** | **string** |  | 
 
 ### Return type
 
