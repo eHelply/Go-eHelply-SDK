@@ -9,6 +9,7 @@ api_catalogs.go
 api_category.go
 api_companies.go
 api_content.go
+api_facts.go
 api_fields.go
 api_logging.go
 api_meta.go
@@ -72,6 +73,7 @@ docs/CreateTicket.md
 docs/Credential.md
 docs/CustomList.md
 docs/DatesMeta.md
+docs/DeleteFact200Response.md
 docs/DeleteField200Response.md
 docs/DeleteFile200Response.md
 docs/DeleteMeta200Response.md
@@ -81,6 +83,9 @@ docs/DetailedMeta.md
 docs/DetailedMetaCreate.md
 docs/Discount.md
 docs/Email.md
+docs/Fact.md
+docs/FactCreate.md
+docs/FactsApi.md
 docs/Field.md
 docs/FieldDynamo.md
 docs/FieldsApi.md
@@ -154,6 +159,7 @@ docs/ResponseRemovememberfromproject.md
 docs/ResponseRevokeprojectcredit.md
 docs/ResponseUpdateprojectcredential.md
 docs/ReviewsApi.md
+docs/SaveFact200Response.md
 docs/SecurityApi.md
 docs/SecurityCreateToken.md
 docs/SecurityEncryptionKeyGet.md
@@ -252,6 +258,7 @@ model_create_ticket.go
 model_credential.go
 model_custom_list.go
 model_dates_meta.go
+model_delete_fact_200_response.go
 model_delete_field_200_response.go
 model_delete_file_200_response.go
 model_delete_meta_200_response.go
@@ -261,6 +268,8 @@ model_detailed_meta.go
 model_detailed_meta_create.go
 model_discount.go
 model_email.go
+model_fact.go
+model_fact_create.go
 model_field.go
 model_field_dynamo.go
 model_get_appointment_403_response.go
@@ -325,6 +334,7 @@ model_response_generatetoken.go
 model_response_removememberfromproject.go
 model_response_revokeprojectcredit.go
 model_response_updateprojectcredential.go
+model_save_fact_200_response.go
 model_security_create_token.go
 model_security_encryption_key_get.go
 model_security_encryption_key_response.go
