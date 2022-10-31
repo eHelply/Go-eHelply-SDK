@@ -9,8 +9,8 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://superstack.ehelply.com/support/legal/terms
-  title: eHelply SDK - 1.1.115
-  version: 1.1.115
+  title: eHelply SDK - 1.1.116
+  version: 1.1.116
 servers:
 - description: eHelply / SuperStack Production
   url: https://api.prod.ehelply.com
@@ -15486,6 +15486,353 @@ paths:
       summary: Updateuser
       tags:
       - users
+  /sam/facts/facts/{fact_name}:
+    get:
+      operationId: getFact
+      parameters:
+      - explode: false
+        in: path
+        name: fact_name
+        required: true
+        schema:
+          title: The name of the fact to get
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fact'
+          description: Successful Response
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: fact does not exist
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Getfact
+      tags:
+      - facts
+      - facts
+    post:
+      operationId: deleteFact
+      parameters:
+      - explode: false
+        in: path
+        name: fact_name
+        required: true
+        schema:
+          title: The name of the fact to delete
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/deleteFact_200_response'
+          description: Successful Response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Something went wrong while deleting fact
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          description: Not found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Deletefact
+      tags:
+      - facts
+      - facts
+  /sam/facts/facts:
+    get:
+      operationId: getFacts
+      parameters:
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Fact'
+                title: Response Getfacts
+                type: array
+          description: Successful Response
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          description: Not found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Getfacts
+      tags:
+      - facts
+      - facts
+    post:
+      operationId: saveFact
+      parameters:
+      - explode: false
+        in: header
+        name: x-access-token
+        required: false
+        schema:
+          title: X-Access-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: x-secret-token
+        required: false
+        schema:
+          title: X-Secret-Token
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          title: Authorization
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-active-participant
+        required: false
+        schema:
+          title: Ehelply-Active-Participant
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-project
+        required: false
+        schema:
+          title: Ehelply-Project
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: ehelply-data
+        required: false
+        schema:
+          title: Ehelply-Data
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FactCreate'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/saveFact_200_response'
+          description: Successful Response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Something went wrong while saving fact
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAppointment_403_response'
+          description: Unauthorized - Denied by eHelply
+        "404":
+          description: Not found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Savefact
+      tags:
+      - facts
+      - facts
 components:
   schemas:
     AppointmentBase:
@@ -18030,6 +18377,48 @@ components:
       - rate
       title: Discount
       type: object
+    Fact:
+      example:
+        data: "{}"
+        public: true
+        name: name
+      properties:
+        name:
+          title: Name
+          type: string
+        data:
+          title: Data
+          type: object
+        public:
+          title: Public
+          type: boolean
+      required:
+      - data
+      - name
+      - public
+      title: Fact
+      type: object
+    FactCreate:
+      example:
+        data: "{}"
+        public: true
+        name: name
+      properties:
+        name:
+          title: Name
+          type: string
+        data:
+          title: Data
+          type: object
+        public:
+          title: Public
+          type: boolean
+      required:
+      - data
+      - name
+      - public
+      title: FactCreate
+      type: object
     GetInvoiceResponse:
       example:
         total: 2
@@ -20410,6 +20799,22 @@ components:
         message:
           type: string
       title: Response Deletekey
+      type: object
+    deleteFact_200_response:
+      example:
+        message:
+          message: Deleted fact
+      properties:
+        message:
+          type: string
+      type: object
+    saveFact_200_response:
+      example:
+        message:
+          message: Saved fact
+      properties:
+        message:
+          type: string
       type: object
     Basic:
       allOf:
