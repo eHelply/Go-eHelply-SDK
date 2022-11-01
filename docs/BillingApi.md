@@ -4,19 +4,19 @@ All URIs are relative to *https://api.prod.ehelply.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateBillingAccount**](BillingApi.md#CreateBillingAccount) | **Post** /sam/billing/create_billing_account | Createbillingaccount
-[**GetClientSecret**](BillingApi.md#GetClientSecret) | **Get** /sam/billing/retrieve_secret | Getclientsecret
-[**HasPayment**](BillingApi.md#HasPayment) | **Get** /sam/billing/has_payment | Haspayment
-[**ListPaymentMethods**](BillingApi.md#ListPaymentMethods) | **Get** /sam/billing/view_payment_method | Listpaymentmethods
-[**ProcessPayment**](BillingApi.md#ProcessPayment) | **Post** /sam/billing/process_payment | Processpayment
-[**ReconcilePaymentMethod**](BillingApi.md#ReconcilePaymentMethod) | **Get** /sam/billing/reconcile_payment | Reconcilepaymentmethod
-[**RemovePaymentMethod**](BillingApi.md#RemovePaymentMethod) | **Delete** /sam/billing/remove_payment_method | Removepaymentmethod
+[**CreateBillingAccount**](BillingApi.md#CreateBillingAccount) | **Post** /sam/billing/projects/{project_uuid}/accounts | Createbillingaccount
+[**GetClientSecret**](BillingApi.md#GetClientSecret) | **Get** /sam/billing/projects/{project_uuid}/secrets | Getclientsecret
+[**HasPayment**](BillingApi.md#HasPayment) | **Get** /sam/billing/projects/{project_uuid}/payment-methods-exist | Haspayment
+[**ListPaymentMethods**](BillingApi.md#ListPaymentMethods) | **Get** /sam/billing/projects/{project_uuid}/payment-methods | Listpaymentmethods
+[**ProcessPayment**](BillingApi.md#ProcessPayment) | **Post** /sam/billing/projects/{project_uuid}/payments | Processpayment
+[**ReconcilePaymentMethod**](BillingApi.md#ReconcilePaymentMethod) | **Get** /sam/billing/projects/{project_uuid}/payment-methods-reconciliation | Reconcilepaymentmethod
+[**RemovePaymentMethod**](BillingApi.md#RemovePaymentMethod) | **Delete** /sam/billing/projects/{project_uuid}/payment-methods | Removepaymentmethod
 
 
 
 ## CreateBillingAccount
 
-> StripeAccountResponse CreateBillingAccount(ctx).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> StripeAccountResponse CreateBillingAccount(ctx, projectUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Createbillingaccount
 
@@ -33,6 +33,7 @@ import (
 )
 
 func main() {
+    projectUuid := "projectUuid_example" // string | 
     xAccessToken := "xAccessToken_example" // string |  (optional)
     xSecretToken := "xSecretToken_example" // string |  (optional)
     authorization := "authorization_example" // string |  (optional)
@@ -42,7 +43,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BillingApi.CreateBillingAccount(context.Background()).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.BillingApi.CreateBillingAccount(context.Background(), projectUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BillingApi.CreateBillingAccount``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -55,6 +56,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectUuid** | **string** |  | 
 
 ### Other Parameters
 
@@ -63,6 +68,7 @@ Other parameters are passed through a pointer to a apiCreateBillingAccountReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
  **xAccessToken** | **string** |  | 
  **xSecretToken** | **string** |  | 
  **authorization** | **string** |  | 
@@ -90,7 +96,7 @@ No authorization required
 
 ## GetClientSecret
 
-> StripeCustomerSecretResponse GetClientSecret(ctx).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> StripeCustomerSecretResponse GetClientSecret(ctx, projectUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Getclientsecret
 
@@ -107,6 +113,7 @@ import (
 )
 
 func main() {
+    projectUuid := "projectUuid_example" // string | 
     xAccessToken := "xAccessToken_example" // string |  (optional)
     xSecretToken := "xSecretToken_example" // string |  (optional)
     authorization := "authorization_example" // string |  (optional)
@@ -116,7 +123,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BillingApi.GetClientSecret(context.Background()).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.BillingApi.GetClientSecret(context.Background(), projectUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BillingApi.GetClientSecret``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -129,6 +136,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectUuid** | **string** |  | 
 
 ### Other Parameters
 
@@ -137,6 +148,7 @@ Other parameters are passed through a pointer to a apiGetClientSecretRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
  **xAccessToken** | **string** |  | 
  **xSecretToken** | **string** |  | 
  **authorization** | **string** |  | 
@@ -164,7 +176,7 @@ No authorization required
 
 ## HasPayment
 
-> bool HasPayment(ctx).ProjectUuid(projectUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> bool HasPayment(ctx, projectUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Haspayment
 
@@ -181,7 +193,7 @@ import (
 )
 
 func main() {
-    projectUuid := TODO // interface{} |  (optional)
+    projectUuid := "projectUuid_example" // string | 
     xAccessToken := "xAccessToken_example" // string |  (optional)
     xSecretToken := "xSecretToken_example" // string |  (optional)
     authorization := "authorization_example" // string |  (optional)
@@ -191,7 +203,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BillingApi.HasPayment(context.Background()).ProjectUuid(projectUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.BillingApi.HasPayment(context.Background(), projectUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BillingApi.HasPayment``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -204,6 +216,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectUuid** | **string** |  | 
 
 ### Other Parameters
 
@@ -212,7 +228,7 @@ Other parameters are passed through a pointer to a apiHasPaymentRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectUuid** | [**interface{}**](interface{}.md) |  | 
+
  **xAccessToken** | **string** |  | 
  **xSecretToken** | **string** |  | 
  **authorization** | **string** |  | 
@@ -240,7 +256,7 @@ No authorization required
 
 ## ListPaymentMethods
 
-> []PaymentMethodResponse ListPaymentMethods(ctx).ProjectUuid(projectUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> []PaymentMethodResponse ListPaymentMethods(ctx, projectUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Listpaymentmethods
 
@@ -257,7 +273,7 @@ import (
 )
 
 func main() {
-    projectUuid := TODO // interface{} |  (optional)
+    projectUuid := "projectUuid_example" // string | 
     xAccessToken := "xAccessToken_example" // string |  (optional)
     xSecretToken := "xSecretToken_example" // string |  (optional)
     authorization := "authorization_example" // string |  (optional)
@@ -267,7 +283,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BillingApi.ListPaymentMethods(context.Background()).ProjectUuid(projectUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.BillingApi.ListPaymentMethods(context.Background(), projectUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BillingApi.ListPaymentMethods``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -280,6 +296,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectUuid** | **string** |  | 
 
 ### Other Parameters
 
@@ -288,7 +308,7 @@ Other parameters are passed through a pointer to a apiListPaymentMethodsRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectUuid** | [**interface{}**](interface{}.md) |  | 
+
  **xAccessToken** | **string** |  | 
  **xSecretToken** | **string** |  | 
  **authorization** | **string** |  | 
@@ -316,7 +336,7 @@ No authorization required
 
 ## ProcessPayment
 
-> string ProcessPayment(ctx).Payment(payment).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> string ProcessPayment(ctx, projectUuid).Payment(payment).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Processpayment
 
@@ -333,6 +353,7 @@ import (
 )
 
 func main() {
+    projectUuid := "projectUuid_example" // string | 
     payment := *openapiclient.NewPayment(int32(123)) // Payment | 
     xAccessToken := "xAccessToken_example" // string |  (optional)
     xSecretToken := "xSecretToken_example" // string |  (optional)
@@ -343,7 +364,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BillingApi.ProcessPayment(context.Background()).Payment(payment).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.BillingApi.ProcessPayment(context.Background(), projectUuid).Payment(payment).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BillingApi.ProcessPayment``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -356,6 +377,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectUuid** | **string** |  | 
 
 ### Other Parameters
 
@@ -364,6 +389,7 @@ Other parameters are passed through a pointer to a apiProcessPaymentRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
  **payment** | [**Payment**](Payment.md) |  | 
  **xAccessToken** | **string** |  | 
  **xSecretToken** | **string** |  | 
@@ -392,7 +418,7 @@ No authorization required
 
 ## ReconcilePaymentMethod
 
-> bool ReconcilePaymentMethod(ctx).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> bool ReconcilePaymentMethod(ctx, projectUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Reconcilepaymentmethod
 
@@ -409,6 +435,7 @@ import (
 )
 
 func main() {
+    projectUuid := "projectUuid_example" // string | 
     xAccessToken := "xAccessToken_example" // string |  (optional)
     xSecretToken := "xSecretToken_example" // string |  (optional)
     authorization := "authorization_example" // string |  (optional)
@@ -418,7 +445,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BillingApi.ReconcilePaymentMethod(context.Background()).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.BillingApi.ReconcilePaymentMethod(context.Background(), projectUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BillingApi.ReconcilePaymentMethod``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -431,6 +458,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectUuid** | **string** |  | 
 
 ### Other Parameters
 
@@ -439,6 +470,7 @@ Other parameters are passed through a pointer to a apiReconcilePaymentMethodRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
  **xAccessToken** | **string** |  | 
  **xSecretToken** | **string** |  | 
  **authorization** | **string** |  | 
@@ -466,7 +498,7 @@ No authorization required
 
 ## RemovePaymentMethod
 
-> string RemovePaymentMethod(ctx).ProjectUuid(projectUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> string RemovePaymentMethod(ctx, projectUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Removepaymentmethod
 
@@ -483,7 +515,7 @@ import (
 )
 
 func main() {
-    projectUuid := TODO // interface{} |  (optional)
+    projectUuid := "projectUuid_example" // string | 
     xAccessToken := "xAccessToken_example" // string |  (optional)
     xSecretToken := "xSecretToken_example" // string |  (optional)
     authorization := "authorization_example" // string |  (optional)
@@ -493,7 +525,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BillingApi.RemovePaymentMethod(context.Background()).ProjectUuid(projectUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+    resp, r, err := apiClient.BillingApi.RemovePaymentMethod(context.Background(), projectUuid).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BillingApi.RemovePaymentMethod``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -506,6 +538,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectUuid** | **string** |  | 
 
 ### Other Parameters
 
@@ -514,7 +550,7 @@ Other parameters are passed through a pointer to a apiRemovePaymentMethodRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectUuid** | [**interface{}**](interface{}.md) |  | 
+
  **xAccessToken** | **string** |  | 
  **xSecretToken** | **string** |  | 
  **authorization** | **string** |  | 

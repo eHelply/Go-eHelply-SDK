@@ -9,8 +9,8 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://superstack.ehelply.com/support/legal/terms
-  title: eHelply SDK - 1.1.116
-  version: 1.1.116
+  title: eHelply SDK - 1.1.117
+  version: 1.1.117
 servers:
 - description: eHelply / SuperStack Production
   url: https://api.prod.ehelply.com
@@ -13943,10 +13943,18 @@ paths:
       summary: Updateticket
       tags:
       - support
-  /sam/billing/create_billing_account:
+  /sam/billing/projects/{project_uuid}/accounts:
     post:
       operationId: createBillingAccount
       parameters:
+      - explode: false
+        in: path
+        name: project_uuid
+        required: true
+        schema:
+          title: Project Uuid
+          type: string
+        style: simple
       - explode: false
         in: header
         name: x-access-token
@@ -14013,10 +14021,18 @@ paths:
       summary: Createbillingaccount
       tags:
       - billing
-  /sam/billing/retrieve_secret:
+  /sam/billing/projects/{project_uuid}/secrets:
     get:
       operationId: getClientSecret
       parameters:
+      - explode: false
+        in: path
+        name: project_uuid
+        required: true
+        schema:
+          title: Project Uuid
+          type: string
+        style: simple
       - explode: false
         in: header
         name: x-access-token
@@ -14083,10 +14099,18 @@ paths:
       summary: Getclientsecret
       tags:
       - billing
-  /sam/billing/process_payment:
+  /sam/billing/projects/{project_uuid}/payments:
     post:
       operationId: processPayment
       parameters:
+      - explode: false
+        in: path
+        name: project_uuid
+        required: true
+        schema:
+          title: Project Uuid
+          type: string
+        style: simple
       - explode: false
         in: header
         name: x-access-token
@@ -14160,17 +14184,18 @@ paths:
       summary: Processpayment
       tags:
       - billing
-  /sam/billing/remove_payment_method:
+  /sam/billing/projects/{project_uuid}/payment-methods:
     delete:
       operationId: removePaymentMethod
       parameters:
-      - explode: true
-        in: query
+      - explode: false
+        in: path
         name: project_uuid
-        required: false
+        required: true
         schema:
           title: Project Uuid
-        style: form
+          type: string
+        style: simple
       - explode: false
         in: header
         name: x-access-token
@@ -14238,17 +14263,17 @@ paths:
       summary: Removepaymentmethod
       tags:
       - billing
-  /sam/billing/view_payment_method:
     get:
       operationId: listPaymentMethods
       parameters:
-      - explode: true
-        in: query
+      - explode: false
+        in: path
         name: project_uuid
-        required: false
+        required: true
         schema:
           title: Project Uuid
-        style: form
+          type: string
+        style: simple
       - explode: false
         in: header
         name: x-access-token
@@ -14332,17 +14357,18 @@ paths:
       summary: Listpaymentmethods
       tags:
       - billing
-  /sam/billing/has_payment:
+  /sam/billing/projects/{project_uuid}/payment-methods-exist:
     get:
       operationId: hasPayment
       parameters:
-      - explode: true
-        in: query
+      - explode: false
+        in: path
         name: project_uuid
-        required: false
+        required: true
         schema:
           title: Project Uuid
-        style: form
+          type: string
+        style: simple
       - explode: false
         in: header
         name: x-access-token
@@ -14410,10 +14436,18 @@ paths:
       summary: Haspayment
       tags:
       - billing
-  /sam/billing/reconcile_payment:
+  /sam/billing/projects/{project_uuid}/payment-methods-reconciliation:
     get:
       operationId: reconcilePaymentMethod
       parameters:
+      - explode: false
+        in: path
+        name: project_uuid
+        required: true
+        schema:
+          title: Project Uuid
+          type: string
+        style: simple
       - explode: false
         in: header
         name: x-access-token
