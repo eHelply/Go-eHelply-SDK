@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.120
+eHelply SDK - 1.1.121
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.120
+API version: 1.1.121
 Contact: support@ehelply.com
 */
 
@@ -17,6 +17,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"strings"
 )
 
 
@@ -26,6 +27,7 @@ type BillingApiService service
 type ApiCreateBillingAccountRequest struct {
 	ctx context.Context
 	ApiService *BillingApiService
+	projectUuid string
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -72,12 +74,14 @@ func (r ApiCreateBillingAccountRequest) Execute() (*StripeAccountResponse, *http
 CreateBillingAccount Createbillingaccount
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param projectUuid
  @return ApiCreateBillingAccountRequest
 */
-func (a *BillingApiService) CreateBillingAccount(ctx context.Context) ApiCreateBillingAccountRequest {
+func (a *BillingApiService) CreateBillingAccount(ctx context.Context, projectUuid string) ApiCreateBillingAccountRequest {
 	return ApiCreateBillingAccountRequest{
 		ApiService: a,
 		ctx: ctx,
+		projectUuid: projectUuid,
 	}
 }
 
@@ -96,7 +100,8 @@ func (a *BillingApiService) CreateBillingAccountExecute(r ApiCreateBillingAccoun
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/sam/billing/create_billing_account"
+	localVarPath := localBasePath + "/sam/billing/projects/{project_uuid}/accounts"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_uuid"+"}", url.PathEscape(parameterToString(r.projectUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -186,6 +191,7 @@ func (a *BillingApiService) CreateBillingAccountExecute(r ApiCreateBillingAccoun
 type ApiGetClientSecretRequest struct {
 	ctx context.Context
 	ApiService *BillingApiService
+	projectUuid string
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -232,12 +238,14 @@ func (r ApiGetClientSecretRequest) Execute() (*StripeCustomerSecretResponse, *ht
 GetClientSecret Getclientsecret
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param projectUuid
  @return ApiGetClientSecretRequest
 */
-func (a *BillingApiService) GetClientSecret(ctx context.Context) ApiGetClientSecretRequest {
+func (a *BillingApiService) GetClientSecret(ctx context.Context, projectUuid string) ApiGetClientSecretRequest {
 	return ApiGetClientSecretRequest{
 		ApiService: a,
 		ctx: ctx,
+		projectUuid: projectUuid,
 	}
 }
 
@@ -256,7 +264,8 @@ func (a *BillingApiService) GetClientSecretExecute(r ApiGetClientSecretRequest) 
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/sam/billing/retrieve_secret"
+	localVarPath := localBasePath + "/sam/billing/projects/{project_uuid}/secrets"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_uuid"+"}", url.PathEscape(parameterToString(r.projectUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -346,18 +355,13 @@ func (a *BillingApiService) GetClientSecretExecute(r ApiGetClientSecretRequest) 
 type ApiHasPaymentRequest struct {
 	ctx context.Context
 	ApiService *BillingApiService
-	projectUuid *interface{}
+	projectUuid string
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
 	ehelplyActiveParticipant *string
 	ehelplyProject *string
 	ehelplyData *string
-}
-
-func (r ApiHasPaymentRequest) ProjectUuid(projectUuid interface{}) ApiHasPaymentRequest {
-	r.projectUuid = &projectUuid
-	return r
 }
 
 func (r ApiHasPaymentRequest) XAccessToken(xAccessToken string) ApiHasPaymentRequest {
@@ -398,12 +402,14 @@ func (r ApiHasPaymentRequest) Execute() (bool, *http.Response, error) {
 HasPayment Haspayment
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param projectUuid
  @return ApiHasPaymentRequest
 */
-func (a *BillingApiService) HasPayment(ctx context.Context) ApiHasPaymentRequest {
+func (a *BillingApiService) HasPayment(ctx context.Context, projectUuid string) ApiHasPaymentRequest {
 	return ApiHasPaymentRequest{
 		ApiService: a,
 		ctx: ctx,
+		projectUuid: projectUuid,
 	}
 }
 
@@ -422,15 +428,13 @@ func (a *BillingApiService) HasPaymentExecute(r ApiHasPaymentRequest) (bool, *ht
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/sam/billing/has_payment"
+	localVarPath := localBasePath + "/sam/billing/projects/{project_uuid}/payment-methods-exist"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_uuid"+"}", url.PathEscape(parameterToString(r.projectUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.projectUuid != nil {
-		localVarQueryParams.Add("project_uuid", parameterToString(*r.projectUuid, ""))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -515,18 +519,13 @@ func (a *BillingApiService) HasPaymentExecute(r ApiHasPaymentRequest) (bool, *ht
 type ApiListPaymentMethodsRequest struct {
 	ctx context.Context
 	ApiService *BillingApiService
-	projectUuid *interface{}
+	projectUuid string
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
 	ehelplyActiveParticipant *string
 	ehelplyProject *string
 	ehelplyData *string
-}
-
-func (r ApiListPaymentMethodsRequest) ProjectUuid(projectUuid interface{}) ApiListPaymentMethodsRequest {
-	r.projectUuid = &projectUuid
-	return r
 }
 
 func (r ApiListPaymentMethodsRequest) XAccessToken(xAccessToken string) ApiListPaymentMethodsRequest {
@@ -567,12 +566,14 @@ func (r ApiListPaymentMethodsRequest) Execute() ([]PaymentMethodResponse, *http.
 ListPaymentMethods Listpaymentmethods
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param projectUuid
  @return ApiListPaymentMethodsRequest
 */
-func (a *BillingApiService) ListPaymentMethods(ctx context.Context) ApiListPaymentMethodsRequest {
+func (a *BillingApiService) ListPaymentMethods(ctx context.Context, projectUuid string) ApiListPaymentMethodsRequest {
 	return ApiListPaymentMethodsRequest{
 		ApiService: a,
 		ctx: ctx,
+		projectUuid: projectUuid,
 	}
 }
 
@@ -591,15 +592,13 @@ func (a *BillingApiService) ListPaymentMethodsExecute(r ApiListPaymentMethodsReq
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/sam/billing/view_payment_method"
+	localVarPath := localBasePath + "/sam/billing/projects/{project_uuid}/payment-methods"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_uuid"+"}", url.PathEscape(parameterToString(r.projectUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.projectUuid != nil {
-		localVarQueryParams.Add("project_uuid", parameterToString(*r.projectUuid, ""))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -704,6 +703,7 @@ func (a *BillingApiService) ListPaymentMethodsExecute(r ApiListPaymentMethodsReq
 type ApiProcessPaymentRequest struct {
 	ctx context.Context
 	ApiService *BillingApiService
+	projectUuid string
 	payment *Payment
 	xAccessToken *string
 	xSecretToken *string
@@ -756,12 +756,14 @@ func (r ApiProcessPaymentRequest) Execute() (string, *http.Response, error) {
 ProcessPayment Processpayment
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param projectUuid
  @return ApiProcessPaymentRequest
 */
-func (a *BillingApiService) ProcessPayment(ctx context.Context) ApiProcessPaymentRequest {
+func (a *BillingApiService) ProcessPayment(ctx context.Context, projectUuid string) ApiProcessPaymentRequest {
 	return ApiProcessPaymentRequest{
 		ApiService: a,
 		ctx: ctx,
+		projectUuid: projectUuid,
 	}
 }
 
@@ -780,7 +782,8 @@ func (a *BillingApiService) ProcessPaymentExecute(r ApiProcessPaymentRequest) (s
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/sam/billing/process_payment"
+	localVarPath := localBasePath + "/sam/billing/projects/{project_uuid}/payments"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_uuid"+"}", url.PathEscape(parameterToString(r.projectUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -875,6 +878,7 @@ func (a *BillingApiService) ProcessPaymentExecute(r ApiProcessPaymentRequest) (s
 type ApiReconcilePaymentMethodRequest struct {
 	ctx context.Context
 	ApiService *BillingApiService
+	projectUuid string
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
@@ -921,12 +925,14 @@ func (r ApiReconcilePaymentMethodRequest) Execute() (bool, *http.Response, error
 ReconcilePaymentMethod Reconcilepaymentmethod
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param projectUuid
  @return ApiReconcilePaymentMethodRequest
 */
-func (a *BillingApiService) ReconcilePaymentMethod(ctx context.Context) ApiReconcilePaymentMethodRequest {
+func (a *BillingApiService) ReconcilePaymentMethod(ctx context.Context, projectUuid string) ApiReconcilePaymentMethodRequest {
 	return ApiReconcilePaymentMethodRequest{
 		ApiService: a,
 		ctx: ctx,
+		projectUuid: projectUuid,
 	}
 }
 
@@ -945,7 +951,8 @@ func (a *BillingApiService) ReconcilePaymentMethodExecute(r ApiReconcilePaymentM
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/sam/billing/reconcile_payment"
+	localVarPath := localBasePath + "/sam/billing/projects/{project_uuid}/payment-methods-reconciliation"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_uuid"+"}", url.PathEscape(parameterToString(r.projectUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1035,18 +1042,13 @@ func (a *BillingApiService) ReconcilePaymentMethodExecute(r ApiReconcilePaymentM
 type ApiRemovePaymentMethodRequest struct {
 	ctx context.Context
 	ApiService *BillingApiService
-	projectUuid *interface{}
+	projectUuid string
 	xAccessToken *string
 	xSecretToken *string
 	authorization *string
 	ehelplyActiveParticipant *string
 	ehelplyProject *string
 	ehelplyData *string
-}
-
-func (r ApiRemovePaymentMethodRequest) ProjectUuid(projectUuid interface{}) ApiRemovePaymentMethodRequest {
-	r.projectUuid = &projectUuid
-	return r
 }
 
 func (r ApiRemovePaymentMethodRequest) XAccessToken(xAccessToken string) ApiRemovePaymentMethodRequest {
@@ -1087,12 +1089,14 @@ func (r ApiRemovePaymentMethodRequest) Execute() (string, *http.Response, error)
 RemovePaymentMethod Removepaymentmethod
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param projectUuid
  @return ApiRemovePaymentMethodRequest
 */
-func (a *BillingApiService) RemovePaymentMethod(ctx context.Context) ApiRemovePaymentMethodRequest {
+func (a *BillingApiService) RemovePaymentMethod(ctx context.Context, projectUuid string) ApiRemovePaymentMethodRequest {
 	return ApiRemovePaymentMethodRequest{
 		ApiService: a,
 		ctx: ctx,
+		projectUuid: projectUuid,
 	}
 }
 
@@ -1111,15 +1115,13 @@ func (a *BillingApiService) RemovePaymentMethodExecute(r ApiRemovePaymentMethodR
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/sam/billing/remove_payment_method"
+	localVarPath := localBasePath + "/sam/billing/projects/{project_uuid}/payment-methods"
+	localVarPath = strings.Replace(localVarPath, "{"+"project_uuid"+"}", url.PathEscape(parameterToString(r.projectUuid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.projectUuid != nil {
-		localVarQueryParams.Add("project_uuid", parameterToString(*r.projectUuid, ""))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
