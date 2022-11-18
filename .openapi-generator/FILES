@@ -63,7 +63,7 @@ docs/CreateField200Response.md
 docs/CreateFile200Response.md
 docs/CreateKeyResponse.md
 docs/CreateMeta200Response.md
-docs/CreateNote200Response.md
+docs/CreateNoteResponse.md
 docs/CreateProjectCredential.md
 docs/CreateProjectCredit.md
 docs/CreateProjectInvoice.md
@@ -249,7 +249,7 @@ model_create_field_200_response.go
 model_create_file_200_response.go
 model_create_key_response.go
 model_create_meta_200_response.go
-model_create_note_200_response.go
+model_create_note_response.go
 model_create_project_credential.go
 model_create_project_credit.go
 model_create_project_invoice.go

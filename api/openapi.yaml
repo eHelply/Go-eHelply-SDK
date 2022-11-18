@@ -9,8 +9,8 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://superstack.ehelply.com/support/legal/terms
-  title: eHelply SDK - 1.1.117
-  version: 1.1.117
+  title: eHelply SDK - 1.1.118
+  version: 1.1.118
 servers:
 - description: eHelply / SuperStack Production
   url: https://api.prod.ehelply.com
@@ -1632,7 +1632,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createNote_200_response'
+                $ref: '#/components/schemas/CreateNoteResponse'
           description: Successful Response
         "400":
           content:
@@ -16111,6 +16111,17 @@ components:
       - file
       title: Body_updateFile
       type: object
+    CreateNoteResponse:
+      example:
+        uuid: uuid
+      properties:
+        uuid:
+          title: Uuid
+          type: string
+      required:
+      - uuid
+      title: CreateNoteResponse
+      type: object
     CustomList:
       example:
         name: name
@@ -20658,14 +20669,6 @@ components:
         message:
           message: Deleted note.
           deleted_note_versions: []
-      properties:
-        message:
-          type: string
-      type: object
-    createNote_200_response:
-      example:
-        message:
-          note_id: <note_id>
       properties:
         message:
           type: string
