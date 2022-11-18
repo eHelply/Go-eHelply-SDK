@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CreateNote
 
-> CreateNote200Response CreateNote(ctx).NoteBase(noteBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
+> CreateNoteResponse CreateNote(ctx).NoteBase(noteBase).XAccessToken(xAccessToken).XSecretToken(xSecretToken).Authorization(authorization).EhelplyActiveParticipant(ehelplyActiveParticipant).EhelplyProject(ehelplyProject).EhelplyData(ehelplyData).Execute()
 
 Createnote
 
@@ -45,7 +45,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `NotesApi.CreateNote``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateNote`: CreateNote200Response
+    // response from `CreateNote`: CreateNoteResponse
     fmt.Fprintf(os.Stdout, "Response from `NotesApi.CreateNote`: %v\n", resp)
 }
 ```
@@ -71,7 +71,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateNote200Response**](CreateNote200Response.md)
+[**CreateNoteResponse**](CreateNoteResponse.md)
 
 ### Authorization
 

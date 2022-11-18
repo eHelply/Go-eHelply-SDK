@@ -1,9 +1,9 @@
 /*
-eHelply SDK - 1.1.121
+eHelply SDK - 1.1.122
 
 eHelply SDK for SuperStack Services
 
-API version: 1.1.121
+API version: 1.1.122
 Contact: support@ehelply.com
 */
 
@@ -71,7 +71,7 @@ func (r ApiCreateNoteRequest) EhelplyData(ehelplyData string) ApiCreateNoteReque
 	return r
 }
 
-func (r ApiCreateNoteRequest) Execute() (*CreateNote200Response, *http.Response, error) {
+func (r ApiCreateNoteRequest) Execute() (*CreateNoteResponse, *http.Response, error) {
 	return r.ApiService.CreateNoteExecute(r)
 }
 
@@ -89,13 +89,13 @@ func (a *NotesApiService) CreateNote(ctx context.Context) ApiCreateNoteRequest {
 }
 
 // Execute executes the request
-//  @return CreateNote200Response
-func (a *NotesApiService) CreateNoteExecute(r ApiCreateNoteRequest) (*CreateNote200Response, *http.Response, error) {
+//  @return CreateNoteResponse
+func (a *NotesApiService) CreateNoteExecute(r ApiCreateNoteRequest) (*CreateNoteResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateNote200Response
+		localVarReturnValue  *CreateNoteResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotesApiService.CreateNote")
